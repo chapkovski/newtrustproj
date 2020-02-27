@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Page title
+{% endblock %}
+
+{% block content %}
+    {% for foo in cities %}
+        {{ foo.description }}
+    {% endfor %}
+
+    {% next_button %}
+
+{% endblock %}
