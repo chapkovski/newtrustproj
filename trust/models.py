@@ -105,7 +105,7 @@ class Decision(djmodels.Model):
 
 
 class SenderDecision(Decision):
-    send = models.BooleanField()
+    send = models.BooleanField(widget=widgets.RadioSelectHorizontal, choices=[(False, 'No'), (True, 'Yes')])
 
 
 class ReturnDecision(Decision):

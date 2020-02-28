@@ -6,7 +6,7 @@ from .models import Constants
 class Code(Page):
     form_model = 'player'
     form_fields = ['city']
-
+    a = 1
     def city_error_message(self, value):
         if value not in self.subsession.cities:
             return 'Please check the code!'

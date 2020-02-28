@@ -1,8 +1,9 @@
 from otree.api import Currency as c, currency_range
 from typing import Union, List, Any, Optional
 from ._builtin import Page, WaitPage
-from .generic_pages import ReturnerPage, SenderPage
+from .generic_pages import ReturnerPage, SenderPage, FormSetMixin
 import random
+from .forms import sender_formset, return_formset, returnbelief_formset, senderbelief_formset
 
 
 class StartWP(WaitPage):
@@ -41,20 +42,21 @@ class StartWP(WaitPage):
             p.create_beliefs()
 
 
-class SenderDecisionP(SenderPage):
-    pass
+class SenderDecisionP(FormSetMixin, SenderPage):
+    formset = sender_formset
 
 
-class ReturnDecisionP(ReturnerPage):
-    pass
+
+class ReturnDecisionP(FormSetMixin, ReturnerPage):
+    formset = return_formset
 
 
-class SenderBeliefP(SenderPage):
-    pass
+class SenderBeliefP(FormSetMixin, SenderPage):
+    formset = senderbelief_formset
 
 
-class ReturnerBeliefP(ReturnerPage):
-    pass
+class ReturnerBeliefP(FormSetMixin, ReturnerPage):
+    formset = returnbelief_formset
 
 
 class ResultsWaitPage(WaitPage):
