@@ -5,13 +5,7 @@ from .models import Constants
 import random
 from django.conf import settings
 from django.db.utils import OperationalError
-from .models import City
 
-try:
-    for i in settings.CITIES:
-        City.objects.get_or_create(code=i['code'], defaults={'description': i['name']})
-except OperationalError:
-    print('no table is ready yet...')
 
 
 class PlayerBot(Bot):

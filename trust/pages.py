@@ -1,8 +1,7 @@
 from otree.api import Currency as c, currency_range
 from typing import Union, List, Any, Optional
 from ._builtin import Page, WaitPage
-from .models import Constants
-from django.apps import apps
+from .generic_pages import ReturnerPage, SenderPage
 import random
 
 
@@ -38,11 +37,24 @@ class StartWP(WaitPage):
             p.city = p.participant.vars.get('city')
             p._role = p.role()  # just to store it in db;
             p.participant.vars['matched'] = True
+            p.create_decisions()
+            p.create_beliefs()
 
 
-class MyPage(Page):
-    def vars_for_template(self) -> dict:
-        return dict(cities=City.objects.all())
+class SenderDecisionP(SenderPage):
+    pass
+
+
+class ReturnDecisionP(ReturnerPage):
+    pass
+
+
+class SenderBeliefP(SenderPage):
+    pass
+
+
+class ReturnerBeliefP(ReturnerPage):
+    pass
 
 
 class ResultsWaitPage(WaitPage):
@@ -56,10 +68,11 @@ class Results(Page):
 
 page_sequence = [
     StartWP,
+    SenderDecisionP,
+    ReturnDecisionP,
+    SenderBeliefP,
+    ReturnerBeliefP,
+    ResultsWaitPage,
+    Results
 
-    # StartWP,
-
-    # MyPage,
-    # ResultsWaitPage,
-    # Results
 ]
