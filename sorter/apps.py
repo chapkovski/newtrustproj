@@ -2,8 +2,8 @@ from django.apps import AppConfig
 from django.conf import settings
 from django.db.utils import OperationalError
 
-class TrustConfig(AppConfig):
-    name = 'trust'
+class SorterConfig(AppConfig):
+    name = 'sorter'
 
     def ready(self):
         print('READY?')

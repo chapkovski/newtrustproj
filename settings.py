@@ -11,7 +11,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 import yaml
 
-with open(r'./trust/data/cities.yaml') as file:
+with open(r'./data/cities.yaml') as file:
     # The FullLoader parameter handles the conversion from YAML
     # scalar values to Python the dictionary format
     CITIES = yaml.load(file, Loader=yaml.FullLoader)
@@ -21,7 +21,7 @@ SESSION_CONFIGS = [
         name='trust',
         display_name="trust",
         num_demo_participants=2,
-        app_sequence=['trust'],
+        app_sequence=['sorter', 'trust'],
         city1='MSK',
         city2='SPB',
 
