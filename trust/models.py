@@ -31,10 +31,19 @@ class Constants(BaseConstants):
     expanded_receiver_choices = list(zip(receiver_choices, receiver_choices))
     receiver_belief_bonus = 3
     sender_belief_bonuses = {0: 6.5, 3: 5.5}
+    roles = {'Sender': 'Person A', 'Receiver': 'Person B'}
 
 
 def return_choices():
     return list(range(0, Constants.endowment + 1, Constants.step))
+
+
+class City(djmodels.Model):
+    code = models.StringField(unique=True)
+    description = models.StringField(unique=True)
+
+    def __str__(self):
+        return f'Code: {self.code}; Description: {self.description}'
 
 
 class Subsession(BaseSubsession):
@@ -71,8 +80,8 @@ class Group(BaseGroup):
     def set_payoffs(self):
         sender = self.get_player_by_role('Sender')
         receiver = self.get_player_by_role('Receiver')
-        sender_city = City.objects.get(code=sender.city)
-        receiver_city = City.objects.get(code=receiver.city)
+        sender_city = sender.get_city_obj()
+        receiver_city = receiver.get_city_obj()
 
         def stage1_payoffs():
             self.sender_decision_re_receiver = sender.senderdecisions.get(city=receiver_city).send
@@ -96,6 +105,7 @@ class Group(BaseGroup):
         stage2_payoffs()
         for p in self.get_players():
             p.payoff = p.stage1payoff + p.stage2payoff
+            p.dump_vars()
 
 
 class Player(BasePlayer):
@@ -106,6 +116,29 @@ class Player(BasePlayer):
     stage1payoff = models.CurrencyField(initial=0)
     stage2payoff = models.CurrencyField(initial=0)
     city_order = models.BooleanField()
+
+    @property
+    def role_desc(self):
+        return Constants.roles.get(self.role())
+
+    def get_city_obj(self):
+        return City.objects.get(code=self.city)
+
+    def dump_vars(self):
+        dump = dict(
+            city=self.get_city_obj().description,
+            guess=1,
+            other_role_desc=self.other.role_desc,
+            own_decision=1,
+            partner_city=self.other.get_city_obj().description,
+            partner_decision=1,
+            role=self.role(),
+            role_desc=self.role_desc,
+            sender_decision=1,
+            stage1payoff=1,
+            stage2payoff=1,
+        )
+        self.participant.vars = {**self.participant.vars, **dump}
 
     @property
     def other(self):
@@ -144,14 +177,6 @@ class Player(BasePlayer):
     def _universal_creator(self, obj):
         for city in City.objects.all():
             obj.objects.create(city=city, owner=self)
-
-
-class City(djmodels.Model):
-    code = models.StringField(unique=True)
-    description = models.StringField(unique=True)
-
-    def __str__(self):
-        return f'Code: {self.code}; Description: {self.description}'
 
 
 class Decision(djmodels.Model):

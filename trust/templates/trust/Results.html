@@ -2,10 +2,91 @@
 {% load otree static %}
 
 {% block title %}
-   Results
+    Results
 {% endblock %}
 
 {% block content %}
+    <table class="table table-hover table-stripped table-sm ">
+
+        <tbody>
+        <tr>
+            <td>You are from the city:</td>
+            <td>{{ participant.vars.city }}</td>
+        </tr>
+        <tr>
+            <td>Your role in this study was:</td>
+            <td>{{ participant.vars.role_desc }}</td>
+        </tr>
+        <tr>
+            <td>You were matched with a participant from the city:</td>
+            <td>{{ participant.vars.partner_city }}</td>
+        </tr>
+        <tr>
+            <td>Their role in this study was:</td>
+            <td>{{ participant.vars.other_role_desc }}</td>
+        </tr>
+        {# STAGE 1 PAYOFF#}
+        <tr>
+            <td colspan="2" class="text-center">Stage 1 Payoff</td>
+        </tr>
+        {% if participant.vars.role == 'Sender' %}
+            <tr>
+                <td>For the participant from the city {{ participant.vars.partner_city }} your decision was:</td>
+                <td>{{ participant.vars.own_decision }}</td>
+            </tr>
+            {% if participant.vars.sender_decision %}
+                <tr>
+                    <td>The decision of your partner was:</td>
+                    <td>{{ participant.vars.partner_decision }}</td>
+                </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td>The decision of your partner was:</td>
+                <td>{{ participant.vars.partner_decision }}</td>
+            </tr>
+            <tr>
+                <td>For the participant from the city {{ participant.vars.partner_city }} your decision was:</td>
+                <td>{{ participant.vars.own_decision }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <th>Your payoff for the Stage 1 is:</th>
+            <th>{{ participant.vars.stage2payoff }}</th>
+        </tr>
+        {# STAGE 2 PAYOFF#}
+        <tr>
+            <td colspan="2" class="text-center">Stage 2 Payoff</td>
+        </tr>
+
+        <tr>
+            <td>Your guess about the decision of a participant from the city {{ participant.vars.partner_city }}
+                was:
+            </td>
+            <td>{{ participant.vars.guess }}</td>
+        </tr>
+
+        <tr>
+            <td>Their decision was:</td>
+            <td>{{ participant.vars.partner_decision }}</td>
+        </tr>
+
+        <tr>
+            <th>Your payoff for the Stage 2 is:</th>
+            <th>{{ participant.vars.stage1payoff }}</th>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr class="table-success">
+            <th>Your final payoff is:</th>
+            <th>{{ participant.payoff }}</th>
+        </tr>
+
+        </tbody>
+    </table>
+
+
 
     {% next_button %}
 {% endblock %}

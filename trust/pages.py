@@ -66,7 +66,8 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
-    pass
+    def vars_for_template(self) -> dict:
+        self.player.dump_vars()
 
 
 page_sequence = [
