@@ -1,4 +1,4 @@
-from otree.api import Currency as c, currency_range, Submission
+from otree.api import Currency as c, currency_range
 from .pages import *
 from ._builtin import Bot
 from .models import Constants
@@ -32,17 +32,14 @@ class PlayerBot(Bot):
         }
 
     def play_round(self):
-        if self.player._role == 'Sender':
-            print("AAA", self.player._role)
-            yield Submission(SenderDecisionP, post_data=self._create_data(name='senderdecisions', field_name='send',
-                                                     choice_set=[True, False]), check_html=False)
-            # yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
-            #                                          choice_set=[0, 3])
-            yield Results
-        if self.player._role == 'Receiver':
-            print("AAA", self.player._role)
-            yield Submission(ReturnDecisionP, post_data=self._create_data(name='returndecisions', field_name='send_back',
-                                                     choice_set=[0, 3]), check_html=False)
-            # yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
-            #                                          choice_set=[True, False])
-            yield Results
+        if self.player.role() == 'Sender':
+            yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='send',
+                                                     choice_set=[True, False])
+            yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
+                                                     choice_set=[0, 3])
+        else:
+            yield ReturnDecisionP, self._create_data(name='returndecisions', field_name='send_back',
+                                                     choice_set=[0, 3])
+            yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
+                                                     choice_set=[True, False])
+        yield Results

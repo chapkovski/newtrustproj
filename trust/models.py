@@ -22,12 +22,13 @@ class Constants(BaseConstants):
     name_in_url = 'trust'
     players_per_group = None
     num_rounds = 1
-    sender_endowment = 10
+    sender_endowment = 30
     step = 3
-    coef = 3
-    sender_choices = ((0, 'No'), (sender_endowment, "Yes"))
-    receiver_choices = list(range(0, sender_endowment*coef + 1, step))
-    expanded_receiver_choices = list(zip(receiver_choices, receiver_choices))
+
+
+def return_choices():
+    return list(range(0, Constants.sender_endowment + 1, Constants.step))
+
 
 class Subsession(BaseSubsession):
     matched_different = models.BooleanField(default=True)
@@ -49,15 +50,7 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    def set_payoffs(self):
-        sender = self.get_player_by_role('Sender')
-        receiver = self.get_player_by_role('Receiver')
-        sender_city = City.objects.get(code=sender.city)
-        receiver_city = City.objects.get(code=receiver.city)
-        sender_decision_re_receiver = sender.senderdecisions.get(city=receiver_city).send
-        receiver_decision_re_sender = receiver.returndecisions.get(city=sender_city).send_back
-        sender.payoff = Constants.sender_endowment - sender_decision_re_receiver + receiver_decision_re_sender
-        receiver.payoff = sender_decision_re_receiver * Constants.coef - receiver_decision_re_sender
+    pass
 
 
 class Player(BasePlayer):
@@ -117,7 +110,7 @@ class Decision(djmodels.Model):
 
 
 class SenderDecision(Decision):
-    send = models.IntegerField()
+    send = models.BooleanField(widget=widgets.RadioSelectHorizontal, choices=[(False, 'No'), (True, 'Yes')])
 
 
 class ReturnDecision(Decision):
@@ -129,4 +122,4 @@ class SenderBelief(Decision):
 
 
 class ReturnerBelief(Decision):
-    belief_on_send = models.IntegerField()
+    belief_on_send = models.BooleanField()

@@ -61,7 +61,7 @@ class ReturnerBeliefP(FormSetMixin, ReturnerPage):
 
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
-        self.group.set_payoffs()
+        pass
 
 
 class Results(Page):
@@ -72,8 +72,8 @@ page_sequence = [
     StartWP,
     SenderDecisionP,
     ReturnDecisionP,
-    # SenderBeliefP,
-    # ReturnerBeliefP,
+    SenderBeliefP,
+    ReturnerBeliefP,
     ResultsWaitPage,
     Results
 
