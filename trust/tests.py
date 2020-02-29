@@ -43,4 +43,4 @@ class PlayerBot(Bot):
                                                      choice_set=Constants.receiver_choices)
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
-        yield Results
+

@@ -65,11 +65,6 @@ class ResultsWaitPage(WaitPage):
         self.group.set_payoffs()
 
 
-class Results(Page):
-    def vars_for_template(self) -> dict:
-        self.player.dump_vars()
-
-
 page_sequence = [
     StartWP,
     SenderDecisionP,
@@ -77,5 +72,4 @@ page_sequence = [
     SenderBeliefP,
     ReturnerBeliefP,
     ResultsWaitPage,
-    Results
 ]
