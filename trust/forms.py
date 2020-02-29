@@ -1,34 +1,31 @@
 import django.forms as forms
-from .models import Player, SenderDecision, SenderBelief, ReturnerBelief, ReturnDecision, return_choices
+from .models import Player, SenderDecision, SenderBelief, ReturnerBelief, ReturnDecision, Constants
 from django.forms import inlineformset_factory
 from otree.api import widgets
 
 from django.forms import BaseInlineFormSet
 
-a = [1, 2, 3]
-print('JOPA', list(zip(a, a, )))
-
 
 class SenderForm(forms.ModelForm):
-    CHOICES = ((True, 'Yes',), (False, 'No',))
+    CHOICES = Constants.sender_choices
     send = forms.ChoiceField(widget=widgets.RadioSelectHorizontal(attrs={'required': True}), choices=CHOICES,
                              required=True)
 
 
 class ReturnForm(forms.ModelForm):
-    CHOICES = list(zip(return_choices(), return_choices()))
+    CHOICES = Constants.expanded_receiver_choices
     send_back = forms.ChoiceField(widget=widgets.RadioSelectHorizontal(attrs={'required': True}), choices=CHOICES,
                                   required=True)
 
 
 class ReturnerBeliefForm(forms.ModelForm):
-    CHOICES = ((True, 'Yes',), (False, 'No',))
+    CHOICES = Constants.sender_choices
     belief_on_send = forms.ChoiceField(widget=widgets.RadioSelectHorizontal(attrs={'required': True}), choices=CHOICES,
                                        required=True)
 
 
 class SenderBeliefForm(forms.ModelForm):
-    CHOICES = list(zip(return_choices(), return_choices()))
+    CHOICES = Constants.expanded_receiver_choices
     belief_on_return = forms.ChoiceField(widget=widgets.RadioSelectHorizontal(attrs={'required': True}),
                                          choices=CHOICES,
                                          required=True)
