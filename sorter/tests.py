@@ -10,8 +10,8 @@ from django.db.utils import OperationalError
 
 class PlayerBot(Bot):
     def play_round(self):
-        if self.player.id_in_subsession < .6 * self.session.num_participants:
-            city = 'MSK'
-        else:
-            city = 'SPB'
-        yield pages.Code, {'city': city}
+        # if self.player.id_in_subsession < .6 * self.session.num_participants:
+        #     city = 'MSK'
+        # else:
+        #     city = 'SPB'
+        yield pages.Code, {'city': random.choice(['MSK', 'SPB'])}
