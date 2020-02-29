@@ -11,7 +11,6 @@ from otree.api import (
 from django.db import models as djmodels
 from django.conf import settings
 
-
 author = 'Philipp Chapkovski'
 
 doc = """
@@ -23,6 +22,12 @@ class Constants(BaseConstants):
     name_in_url = 'trust'
     players_per_group = None
     num_rounds = 1
+    sender_endowment = 30
+    step = 3
+
+
+def return_choices():
+    return list(range(0, Constants.sender_endowment + 1, Constants.step))
 
 
 class Subsession(BaseSubsession):
@@ -97,7 +102,7 @@ class City(djmodels.Model):
 
 class Decision(djmodels.Model):
     city = djmodels.ForeignKey(to=City, on_delete=djmodels.CASCADE, null=True)
-    owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name = "%(class)ss")
+    owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="%(class)ss")
 
     class Meta:
         abstract = True
