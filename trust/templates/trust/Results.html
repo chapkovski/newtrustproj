@@ -52,7 +52,7 @@
         {% endif %}
         <tr>
             <th>Your payoff for the Stage 1 is:</th>
-            <th>{{ participant.vars.stage2payoff }}</th>
+            <th>{{ participant.vars.stage1payoff|c }}</th>
         </tr>
         {# STAGE 2 PAYOFF#}
         <tr>
@@ -73,7 +73,7 @@
 
         <tr>
             <th>Your payoff for the Stage 2 is:</th>
-            <th>{{ participant.vars.stage1payoff }}</th>
+            <th>{{ participant.vars.stage2payoff|c }}</th>
         </tr>
         <tr>
             <td colspan="2">&nbsp;</td>

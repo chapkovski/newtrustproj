@@ -26,6 +26,7 @@ class Constants(BaseConstants):
     endowment = 10
     step = 3
     coef = 3
+    max_return = endowment * coef
     sender_choices = ((0, 'No'), (endowment, "Yes"))
     receiver_choices = list(range(0, endowment * coef + 1, step))
     expanded_receiver_choices = list(zip(receiver_choices, receiver_choices))
@@ -124,19 +125,47 @@ class Player(BasePlayer):
     def get_city_obj(self):
         return City.objects.get(code=self.city)
 
+    @property
+    def guess(self):
+        if self.role() == 'Sender':
+            return self.senderbeliefs.get(city=self.other.get_city_obj()).belief_on_return
+        else:
+            return self.returnerbeliefs.get(city=self.other.get_city_obj()).belief_on_send
+
+    @property
+    def guess_desc(self):
+        if self.role() == 'Sender':
+            return self.guess
+        else:
+            return 'not to send the endowment' if self.guess == 0 else 'to send the endowment'
+
+    @property
+    def decision(self):
+        if self.role() == 'Sender':
+            return self.senderdecisions.get(city=self.other.get_city_obj()).send
+        else:
+            return self.returndecisions.get(city=self.other.get_city_obj()).send_back
+
+    @property
+    def decision_desc(self):
+        if self.role() == 'Sender':
+            return 'not send the endowment' if self.decision == 0 else 'to send the endowment'
+        else:
+            return f'to send back {c(self.decision)}'
+
     def dump_vars(self):
         dump = dict(
             city=self.get_city_obj().description,
-            guess=1,
+            guess=self.guess_desc,
             other_role_desc=self.other.role_desc,
-            own_decision=1,
+            own_decision=self.decision_desc,
             partner_city=self.other.get_city_obj().description,
-            partner_decision=1,
+            partner_decision=self.other.decision_desc,
             role=self.role(),
             role_desc=self.role_desc,
-            sender_decision=1,
-            stage1payoff=1,
-            stage2payoff=1,
+            sender_decision=self.group.sender_decision_re_receiver != 0,
+            stage1payoff=self.stage1payoff,
+            stage2payoff=self.stage2payoff,
         )
         self.participant.vars = {**self.participant.vars, **dump}
 

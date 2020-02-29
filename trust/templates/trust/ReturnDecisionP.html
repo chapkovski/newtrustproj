@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Page title
+    Stage 1. {{ player.role_desc }}: decision
 {% endblock %}
 
 {% block content %}
@@ -10,9 +10,11 @@
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th>If a Person A you will be interacting with, is a participant from …</th>
+        <th>If a {{player.other.role_desc}} you will be interacting with, is a participant from …</th>
 
-        <th>how many tokens do you return in case Person A has transferred her endowment to you, i.e., you received 30 tokens?</th>
+        <th>how many tokens do you return in case {{player.other.role_desc}} has transferred her endowment to you, i.e., you
+            received {{ Constants.max_return|c }}?
+        </th>
         </thead>
         <tbody>
         {% for f in formset %}

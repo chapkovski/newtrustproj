@@ -2,16 +2,20 @@
 {% load otree static %}
 
 {% block title %}
-    Page title
+    Stage 2. {{ player.role_desc }}: decision
 {% endblock %}
 
 {% block content %}
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th>City</th>
+        <th>If you would have transferred your initial
+            endowment to a {{ player.other.role_desc }}, who is a participant from …
+        </th>
 
-        <th>Your decision</th>
+        <th>what is your estimate of how many out of the {{ Constants.max_return|c }} {{ player.other.role_desc }} would
+            have returned to you:
+        </th>
         </thead>
         <tbody>
         {% for f in formset %}
