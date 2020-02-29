@@ -35,8 +35,10 @@ class StartWP(WaitPage):
 
     def after_all_players_arrive(self):
         for p in self.group.get_players():
+            roles = {1: 'Sender', 2: 'Receiver'}
             p.city = p.participant.vars.get('city')
-            p._role = p.role()  # just to store it in db;
+            p.partner_city = p.other.participant.vars.get('city')
+            p._role = roles[p.id_in_group]
             p.participant.vars['matched'] = True
             p.create_decisions()
             p.create_beliefs()
@@ -44,7 +46,6 @@ class StartWP(WaitPage):
 
 class SenderDecisionP(FormSetMixin, SenderPage):
     formset = sender_formset
-
 
 
 class ReturnDecisionP(FormSetMixin, ReturnerPage):
