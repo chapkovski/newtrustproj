@@ -31,9 +31,9 @@ class Constants(BaseConstants):
     sender_choices = ((0, 'No'), (endowment, "Yes"))
     receiver_choices = list(range(0, endowment * coef + 1, step))
     expanded_receiver_choices = list(zip(receiver_choices, receiver_choices))
-    receiver_belief_bonus = 3
-    sender_belief_bonuses = {0: 6.5, 3: 5.5}
-    roles = {'Sender': 'Person A', 'Receiver': 'Person B'}
+    receiver_belief_bonus = 10
+    sender_belief_bonuses = {0: 20, 3: 10}
+    roles = {'Sender': 'A', 'Receiver': 'B'}
 
 
 def return_choices():
@@ -137,7 +137,7 @@ class Player(BasePlayer):
     @property
     def guess_desc(self):
         if self.role() == 'Sender':
-            return self.guess
+            return c(self.guess)
         else:
             return 'not to send the endowment' if self.guess == 0 else 'to send the endowment'
 
@@ -151,7 +151,7 @@ class Player(BasePlayer):
     @property
     def decision_desc(self):
         if self.role() == 'Sender':
-            return 'not send the endowment' if self.decision == 0 else 'to send the endowment'
+            return 'not to send the endowment' if self.decision == 0 else 'to send the endowment'
         else:
             return f'to send back {c(self.decision)}'
 
@@ -179,9 +179,6 @@ class Player(BasePlayer):
         return self.get_others_in_group()[0]
 
     def role(self):
-        # if not self._role:
-        #     return 'Sender' if self.id_in_subsession % 2 == 1 else 'Receiver'
-        # else:
         return self._role
 
     def create_decisions(self):

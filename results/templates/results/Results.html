@@ -15,14 +15,11 @@
         </tr>
         <tr>
             <td>Your role in this study was:</td>
-            <td>{{ participant.vars.role_desc }}</td>
+            <td>Participant {{ participant.vars.role_desc }}</td>
         </tr>
+
         <tr>
-            <td>You were matched with a participant from the city:</td>
-            <td>{{ participant.vars.partner_city }}</td>
-        </tr>
-        <tr>
-            <td>Their role in this study was:</td>
+            <td>You were matched with a Participant whose role was:</td>
             <td>{{ participant.vars.other_role_desc }}</td>
         </tr>
         {# STAGE 1 PAYOFF#}
@@ -31,22 +28,27 @@
         </tr>
         {% if participant.vars.role == 'Sender' %}
             <tr>
-                <td>For the participant from the city {{ participant.vars.partner_city }} your decision was:</td>
+                <td>For the Participant {{ participant.vars.other_role_desc }} you were matched with your decision
+                    was:
+                </td>
                 <td>{{ participant.vars.own_decision }}</td>
             </tr>
             {% if participant.vars.sender_decision %}
                 <tr>
-                    <td>The decision of your partner was:</td>
+                    <td>The decision of the Participant {{ participant.vars.other_role_desc }} you were matched was:
+                    </td>
                     <td>{{ participant.vars.partner_decision }}</td>
                 </tr>
             {% endif %}
         {% else %}
             <tr>
-                <td>The decision of your partner was:</td>
+                <td>The decision of the Participant {{ participant.vars.other_role_desc }} you were matched was:</td>
                 <td>{{ participant.vars.partner_decision }}</td>
             </tr>
             <tr>
-                <td>For the participant from the city {{ participant.vars.partner_city }} your decision was:</td>
+                <td>For the Participant {{ participant.vars.other_role_desc }} you were matched with your decision
+                    was:
+                </td>
                 <td>{{ participant.vars.own_decision }}</td>
             </tr>
         {% endif %}
@@ -60,14 +62,14 @@
         </tr>
 
         <tr>
-            <td>Your guess about the decision of a participant from the city {{ participant.vars.partner_city }}
-                was:
+            <td>Your estimation about the decision of the Participant {{ participant.vars.other_role_desc }} you were
+                matched with was:
             </td>
             <td>{{ participant.vars.guess }}</td>
         </tr>
 
         <tr>
-            <td>Their decision was:</td>
+            <td>His decision was:</td>
             <td>{{ participant.vars.partner_decision }}</td>
         </tr>
 

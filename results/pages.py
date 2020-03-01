@@ -4,7 +4,10 @@ from .models import Constants
 
 
 class Results(Page):
-    pass
+    def post(self):
+        import time
+        time.sleep(5)
+        return super().post()
 
 
 page_sequence = [Results]
