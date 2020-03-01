@@ -19,7 +19,7 @@ with open(r'./data/cities.yaml') as file:
 SESSION_CONFIGS = [
     dict(
         name='trust',
-        use_browser_bots=True,
+        use_browser_bots=False,
         display_name="trust: Moscow-SPB",
         num_demo_participants=2,
         app_sequence=[
