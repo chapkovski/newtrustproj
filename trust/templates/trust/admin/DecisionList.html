@@ -1,0 +1,23 @@
+{% extends "trust/admin/BaseDAAdmin.html" %}
+{% load static %}
+{% block title %}
+
+    Decisions
+
+{% endblock %}
+
+{% block content %}
+{{ object_list.columns }}
+
+    {% for foo in object_list.columns  %}
+    <div>{{ foo.1 }}</div>
+    {% endfor %}
+    {% for foo in object_list.records %}
+    {{ foo }}
+    {% endfor %}
+
+
+{% endblock %}
+
+
+

@@ -24,8 +24,8 @@ class PlayerBot(Bot):
         return {
             f'{name}-TOTAL_FORMS': nbundles,
             f'{name}-INITIAL_FORMS': nbundles,
-            f'{name}-MIN_NUM_FORMS': ['0'],
-            f'{name}-MAX_NUM_FORMS': ['1000'],
+            f'{name}-MIN_NUM_FORMS': '0',
+            f'{name}-MAX_NUM_FORMS': '1000',
             **answers_dct,
             **ids_dct,
             **pls_dct,
