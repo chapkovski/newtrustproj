@@ -16,7 +16,7 @@ with open(r'./data/cities.yaml') as file:
     # scalar values to Python the dictionary format
     CITIES = yaml.load(file, Loader=yaml.FullLoader)
 uni_trust = dict(
-    name='trust_no_bots',
+    name='trust',
     use_browser_bots=False,
     display_name="trust: Moscow-SPB",
     num_demo_participants=2,

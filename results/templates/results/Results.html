@@ -45,12 +45,14 @@
                 <td>The decision of the Participant {{ participant.vars.other_role_desc }} you were matched was:</td>
                 <td>{{ participant.vars.partner_decision }}</td>
             </tr>
-            <tr>
-                <td>For the Participant {{ participant.vars.other_role_desc }} you were matched with your decision
-                    was:
-                </td>
-                <td>{{ participant.vars.own_decision }}</td>
-            </tr>
+            {% if participant.vars.sender_decision %}
+                <tr>
+                    <td>For the Participant {{ participant.vars.other_role_desc }} you were matched with your decision
+                        was:
+                    </td>
+                    <td>{{ participant.vars.own_decision }}</td>
+                </tr>
+            {% endif %}
         {% endif %}
         <tr>
             <th>Your payoff for the Stage 1 is:</th>
