@@ -15,22 +15,26 @@ with open(r'./data/cities.yaml') as file:
     # The FullLoader parameter handles the conversion from YAML
     # scalar values to Python the dictionary format
     CITIES = yaml.load(file, Loader=yaml.FullLoader)
+uni_trust = dict(
+    name='trust_no_bots',
+    use_browser_bots=False,
+    display_name="trust: Moscow-SPB",
+    num_demo_participants=2,
+    app_sequence=[
+        'sorter',
+        'trust',
+        'questionnaire',
+        'results'],
+    city1='MSK',
+    city2='SPB',
 
+)
 SESSION_CONFIGS = [
-    dict(
-        name='trust',
-        use_browser_bots=False,
-        display_name="trust: Moscow-SPB",
-        num_demo_participants=2,
-        app_sequence=[
-            'sorter',
-            'trust',
-            'questionnaire',
-            'results'],
-        city1='MSK',
-        city2='SPB',
-
-    ),
+    uni_trust,
+    {**uni_trust,
+     'name': 'trust_bots',
+     'display_name': 'trust: Moscow-SPB - bots!',
+     'use_browser_bots': True}
 ]
 
 # ISO-639 code
@@ -53,4 +57,4 @@ SECRET_KEY = 'm1e8fnwh3#$v6xbng%$!jn_onduh(22hmzx$kt=$ch6+m6*lcg'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
-EXTENSION_APPS=['trust']
+EXTENSION_APPS = ['trust']
