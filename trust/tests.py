@@ -37,10 +37,10 @@ class PlayerBot(Bot):
             yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='send',
                                                      choice_set=[0, Constants.endowment])
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
-                                                   choice_set=[18])
+                                                   choice_set=Constants.receiver_choices)
         else:
             yield ReturnDecisionP, self._create_data(name='returndecisions', field_name='send_back',
-                                                     choice_set=[18])
+                                                     choice_set=Constants.receiver_choices)
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
 
