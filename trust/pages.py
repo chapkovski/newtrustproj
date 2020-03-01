@@ -44,7 +44,7 @@ class StartWP(WaitPage):
             p.create_beliefs()
 
 
-class SenderDecisionP(FormSetMixin, SenderPage):
+class SenderDecisionP( SenderPage,FormSetMixin):
     formset = sender_formset
 
 
@@ -56,7 +56,7 @@ class SenderBeliefP(FormSetMixin, SenderPage):
     formset = senderbelief_formset
 
 
-class ReturnerBeliefP(FormSetMixin, ReturnerPage):
+class ReturnerBeliefP(ReturnerPage, FormSetMixin):
     formset = returnbelief_formset
 
 

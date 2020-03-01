@@ -2,6 +2,10 @@ from ._builtin import Page, WaitPage
 
 
 class SenderPage(Page):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['formset'] = self.formset(instance=self.player)
+        return context
     def is_displayed(self) -> bool:
         return self.player.role() == 'Sender'
 
@@ -20,6 +24,14 @@ class FormSetMixin:
         return context
 
     def post(self):
+        import otree.bots.browser as browser_bots
+        if self.participant.is_browser_bot:
+            print("BEFORE SUBMISSIONS!!!!!")
+            submission = browser_bots.get_next_post_data(
+                participant_code=self.participant.code
+            )
+            print('SUBMISSION', submission)
+            raise Exception('JJJJ')
         self.object = self.get_object()
         self.form = self.get_form(
             data=self.request.POST, files=self.request.FILES, instance=self.object)
