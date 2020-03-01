@@ -12,6 +12,7 @@ from django.db import models as djmodels
 from django.conf import settings
 import random
 import json
+from django.core.serializers import serialize
 
 author = 'Philipp Chapkovski'
 
@@ -47,16 +48,21 @@ class City(djmodels.Model):
     def __str__(self):
         return f'Code: {self.code}; Description: {self.description}'
 
+from json import JSONEncoder
+class MyEncoder(JSONEncoder):
+        def default(self, o):
+            return o.__dict__
 
 class Subsession(BaseSubsession):
     matched_different = models.BooleanField(default=True)
+    session_config_dump = models.LongStringField()
 
     @property
     def cities(self):
         return set([self.session.config.get('city1'), self.session.config.get('city2')])
 
     def creating_session(self):
-
+        self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)
         for p in self.get_players():
             p.participant.vars['city_order'] = random.choice([True, False])
             p.city_order = p.participant.vars['city_order']
@@ -78,6 +84,11 @@ class Group(BaseGroup):
     receiver_belief_re_receiver = models.IntegerField()
     receiver_correct_guess = models.BooleanField()
     sender_belief_diff = models.IntegerField()
+    # group of dumping vars
+    sender_decisions_dump = models.LongStringField()
+    receiver_decisions_dump = models.LongStringField()
+    sender_beliefs_dump = models.LongStringField()
+    receiver_beliefs_dump = models.LongStringField()
 
     def set_payoffs(self):
         sender = self.get_player_by_role('Sender')
@@ -105,9 +116,19 @@ class Group(BaseGroup):
 
         stage1_payoffs()
         stage2_payoffs()
+        self.dump_extra()
         for p in self.get_players():
             p.payoff = p.stage1payoff + p.stage2payoff
             p.dump_vars()
+
+    def dump_extra(self):
+        sender = self.get_player_by_role('Sender')
+        receiver = self.get_player_by_role('Receiver')
+        self.sender_decisions_dump = serialize('json', sender.senderdecisions.all())
+        self.receiver_decisions_dump = serialize('json', receiver.returndecisions.all())
+        self.sender_beliefs_dump = serialize('json', sender.senderbeliefs.all())
+        self.receiver_beliefs_dump = serialize('json', receiver.returnerbeliefs.all())
+
 
 
 class Player(BasePlayer):
@@ -118,7 +139,6 @@ class Player(BasePlayer):
     stage1payoff = models.CurrencyField(initial=0)
     stage2payoff = models.CurrencyField(initial=0)
     city_order = models.BooleanField()
-    sender_decisions_dump = models.LongStringField()
 
     @property
     def role_desc(self):
@@ -156,9 +176,7 @@ class Player(BasePlayer):
             return f'to send back {c(self.decision)}'
 
     def dump_vars(self):
-        from django.core.serializers import serialize
-        queryset = self.senderdecisions.all()
-        self.sender_decisions_dump = serialize('json', queryset,)
+
         dump = dict(
             city=self.get_city_obj().description,
             guess=self.guess_desc,
