@@ -30,8 +30,8 @@ class FormSetMixin:
             submission = browser_bots.get_next_post_data(
                 participant_code=self.participant.code
             )
-            print('SUBMISSION', submission)
-            raise Exception('JJJJ')
+            # print('SUBMISSION', submission)
+            # raise Exception('JJJJ')
         self.object = self.get_object()
         self.form = self.get_form(
             data=self.request.POST, files=self.request.FILES, instance=self.object)

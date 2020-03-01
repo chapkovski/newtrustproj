@@ -11,6 +11,7 @@ from otree.api import (
 from django.db import models as djmodels
 from django.conf import settings
 import random
+import json
 
 author = 'Philipp Chapkovski'
 
@@ -117,6 +118,7 @@ class Player(BasePlayer):
     stage1payoff = models.CurrencyField(initial=0)
     stage2payoff = models.CurrencyField(initial=0)
     city_order = models.BooleanField()
+    sender_decisions_dump = models.LongStringField()
 
     @property
     def role_desc(self):
@@ -154,6 +156,9 @@ class Player(BasePlayer):
             return f'to send back {c(self.decision)}'
 
     def dump_vars(self):
+        from django.core.serializers import serialize
+        queryset = self.senderdecisions.all()
+        self.sender_decisions_dump = serialize('json', queryset,)
         dump = dict(
             city=self.get_city_obj().description,
             guess=self.guess_desc,
@@ -219,6 +224,9 @@ class Decision(djmodels.Model):
 
 class SenderDecision(Decision):
     send = models.IntegerField()
+
+    def __str__(self):
+        return f'city: {self.city.description}: send:{self.send}'
 
 
 class ReturnDecision(Decision):
