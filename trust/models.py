@@ -14,6 +14,7 @@ from django.conf import settings
 import random
 import json
 from django.core.serializers import serialize
+from otree.models import Session
 
 author = 'Philipp Chapkovski'
 
@@ -36,6 +37,9 @@ class Constants(BaseConstants):
     receiver_belief_bonus = 10
     sender_belief_bonuses = {0: 20, 3: 10}
     roles = {'Sender': 'A', 'Receiver': 'B'}
+    blocked_page_names = ['IntroStage1',
+                          'IntroStage2',
+                          ]
 
 
 def return_choices():
@@ -49,20 +53,31 @@ class City(djmodels.Model):
     def __str__(self):
         return f'Code: {self.code}; Description: {self.description}'
 
+
 from json import JSONEncoder
+
+
 class MyEncoder(JSONEncoder):
-        def default(self, o):
-            return o.__dict__
+    def default(self, o):
+        return o.__dict__
+
 
 class Subsession(BaseSubsession):
     matched_different = models.BooleanField(default=True)
     session_config_dump = models.LongStringField()
+
+    def vars_for_admin_report(self):
+        blockers = Blocker.objects.filter(session=self.session).order_by('pk')
+        return {'blockers': blockers}
 
     @property
     def cities(self):
         return set([self.session.config.get('city1'), self.session.config.get('city2')])
 
     def creating_session(self):
+        active_blockers = Constants.blocked_page_names
+        blockers = [Blocker(page=i, session=self.session, locked=True) for i in active_blockers]
+        Blocker.objects.bulk_create(blockers)
         self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)
         for p in self.get_players():
             p.participant.vars['city_order'] = random.choice([True, False])
@@ -131,7 +146,6 @@ class Group(BaseGroup):
         self.receiver_beliefs_dump = serialize('json', receiver.returnerbeliefs.all())
 
 
-
 class Player(CQPlayer):
     endowment = models.CurrencyField(initial=Constants.endowment)
     city = models.StringField()
@@ -177,7 +191,6 @@ class Player(CQPlayer):
             return f'to send back {c(self.decision)}'
 
     def dump_vars(self):
-
         dump = dict(
             city=self.get_city_obj().description,
             guess=self.guess_desc,
@@ -255,3 +268,9 @@ class SenderBelief(Decision):
 
 class ReturnerBelief(Decision):
     belief_on_send = models.IntegerField()
+
+
+class Blocker(djmodels.Model):
+    session = djmodels.ForeignKey(to=Session, related_name='blockers', on_delete=djmodels.CASCADE)
+    page = models.StringField()
+    locked = models.BooleanField(initial=False)

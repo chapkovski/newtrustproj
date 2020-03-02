@@ -2,7 +2,7 @@ from ._builtin import Page, WaitPage
 from typing import List
 import otree.bots.browser as browser_bots
 from .cq_models import correct_answers
-
+from .models import Blocker
 
 class SenderPage(Page):
     def get_context_data(self, **kwargs):
@@ -40,3 +40,16 @@ class CQPage(Page):
 
     def get_form_fields(self) -> List[str]:
         return [k for k in correct_answers.keys() if k.startswith(f'cq{self.page}')]
+
+
+class BlockablePage(Page):
+    lockable = False
+
+    def error_message(self, values):
+        if not self.participant._is_bot:
+            try:
+                blocker = self.session.blockers.get(page=self.__class__.__name__).locked
+            except Blocker.DoesNotExist:
+                blocker = False
+            if blocker:
+                return 'error!'

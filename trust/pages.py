@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range
 from typing import Union, List, Any, Optional
 from ._builtin import Page, WaitPage
-from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage
+from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage, BlockablePage
 import random
 from .forms import sender_formset, return_formset, returnbelief_formset, senderbelief_formset
 
@@ -77,11 +77,25 @@ class CQ2(CQPage):
 ############ END OF: Comprehension questions #############################################################
 
 
+########### BLOCK: STOPPERS ##############################################################
+class IntroStage1(BlockablePage):
+    lockable = True
+
+
+class IntroStage2(BlockablePage):
+    lockable = True
+
+
+############ END OF: STOPPERS #############################################################
+
+
 page_sequence = [
     StartWP,
+    IntroStage1,
     CQ1,
     SenderDecisionP,
     ReturnDecisionP,
+    IntroStage2,
     CQ2,
     SenderBeliefP,
     ReturnerBeliefP,
