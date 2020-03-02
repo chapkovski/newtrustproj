@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range
 from typing import Union, List, Any, Optional
 from ._builtin import Page, WaitPage
-from .generic_pages import ReturnerPage, SenderPage, FormSetMixin
+from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage
 import random
 from .forms import sender_formset, return_formset, returnbelief_formset, senderbelief_formset
 
@@ -44,7 +44,7 @@ class StartWP(WaitPage):
             p.create_beliefs()
 
 
-class SenderDecisionP(FormSetMixin, SenderPage,):
+class SenderDecisionP(FormSetMixin, SenderPage, ):
     formset = sender_formset
 
 
@@ -56,7 +56,7 @@ class SenderBeliefP(FormSetMixin, SenderPage):
     formset = senderbelief_formset
 
 
-class ReturnerBeliefP(FormSetMixin,ReturnerPage):
+class ReturnerBeliefP(FormSetMixin, ReturnerPage):
     formset = returnbelief_formset
 
 
@@ -65,10 +65,24 @@ class ResultsWaitPage(WaitPage):
         self.group.set_payoffs()
 
 
+########### BLOCK: Comprehension questions ##############################################################
+class CQ1(CQPage):
+    page = 1
+
+
+class CQ2(CQPage):
+    page = 2
+
+
+############ END OF: Comprehension questions #############################################################
+
+
 page_sequence = [
     StartWP,
+    CQ1,
     SenderDecisionP,
     ReturnDecisionP,
+    CQ2,
     SenderBeliefP,
     ReturnerBeliefP,
     ResultsWaitPage,

@@ -8,6 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
+from .cq_models import CQPlayer
 from django.db import models as djmodels
 from django.conf import settings
 import random
@@ -131,7 +132,7 @@ class Group(BaseGroup):
 
 
 
-class Player(BasePlayer):
+class Player(CQPlayer):
     endowment = models.CurrencyField(initial=Constants.endowment)
     city = models.StringField()
     partner_city = models.StringField()

@@ -5,3 +5,4 @@
 ++5. Move result vars to participant.vars
 ++6. Dump participant.vars and decision objects to main table
 7. Export module for custom tables
+8. Averages wquestions

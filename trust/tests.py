@@ -1,4 +1,4 @@
-from otree.api import Currency as c, currency_range
+from otree.api import Currency as c, currency_range, SubmissionMustFail
 from .pages import *
 from ._builtin import Bot
 from .models import Constants
@@ -32,15 +32,43 @@ class PlayerBot(Bot):
         }
 
     def play_round(self):
-        pass
+        if self.session.config.get('cq'):
+            сc1answers = dict(
+                cq1_1=30,
+                cq1_2=30,
+                cq1_3=20,
+                cq1_4=31,
+                cq1_5=9,
+                cq1_6=10,
+                cq1_7=10,
+                cq1_8=3,
+                cq1_9=2,
+            )
+            cq1wronganswers = {k: v + 1 for k, v in сc1answers.items()}
+            # yield SubmissionMustFail(CQ1, cq1wronganswers)
+            yield CQ1, сc1answers
+            cq2answers = dict(
+                cq2_1=0,
+                cq2_2=10,
+                cq2_3=0,
+                cq2_4=10,
+                cq2_5=20,
+            )
+            cq2wronganswers = {k:v+1 for k,v in cq2answers.items()}
+
         if self.player.role() == 'Sender':
             yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='send',
                                                      choice_set=[0, Constants.endowment])
+            if self.session.config.get('cq'):
+                # yield SubmissionMustFail(CQ2, cq2wronganswers)
+                yield CQ2,cq2answers
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
                                                    choice_set=Constants.receiver_choices)
         else:
             yield ReturnDecisionP, self._create_data(name='returndecisions', field_name='send_back',
                                                      choice_set=Constants.receiver_choices)
+            if self.session.config.get('cq'):
+                # yield SubmissionMustFail(CQ2,cq2wronganswers)
+                yield CQ2, cq2answers
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
-
