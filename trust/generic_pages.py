@@ -42,9 +42,9 @@ class CQPage(Page):
         return [k for k in correct_answers.keys() if k.startswith(f'cq{self.page}')]
 
 
-class BlockablePage(Page):
-    lockable = False
-
+class BlockerPage(Page):
+    lockable = True
+    template_name = 'trust/Blocker.html'
     def error_message(self, values):
         if not self.participant._is_bot:
             try:

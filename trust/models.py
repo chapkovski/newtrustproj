@@ -75,7 +75,8 @@ class Subsession(BaseSubsession):
         return set([self.session.config.get('city1'), self.session.config.get('city2')])
 
     def creating_session(self):
-        active_blockers = Constants.blocked_page_names
+        from .pages import page_sequence
+        active_blockers = [p.__name__ for p in page_sequence if getattr(p, 'lockable', False)]
         blockers = [Blocker(page=i, session=self.session, locked=True) for i in active_blockers]
         Blocker.objects.bulk_create(blockers)
         self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)

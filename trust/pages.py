@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range
 from typing import Union, List, Any, Optional
 from ._builtin import Page, WaitPage
-from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage, BlockablePage
+from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage, BlockerPage
 import random
 from .forms import (sender_formset, return_formset, returnbelief_formset, senderbelief_formset,
                     averagereturnbelief_formset, averagesendbelief_formset)
@@ -44,7 +44,8 @@ class StartWP(WaitPage):
             p.create_decisions()
             p.create_beliefs()
             p.create_averages()
-
+class ConfirmationInstructions(Page):
+    pass
 
 class SenderDecisionP(FormSetMixin, SenderPage, ):
     formset = sender_formset
@@ -80,12 +81,29 @@ class CQ2(CQPage):
 
 
 ########### BLOCK: STOPPERS ##############################################################
-class IntroStage1(BlockablePage):
-    lockable = True
+class CQ1Blocker(BlockerPage):
+    pass
+
+class Stage1Blocker(BlockerPage):
+    pass
+
+class CQ1Blocker(BlockerPage):
+    def is_displayed(self) -> bool:
+        return self.session.config.get('cq')
+
+class CQ2Blocker(BlockerPage):
+    def is_displayed(self) -> bool:
+        return self.session.config.get('cq')
 
 
-class IntroStage2(BlockablePage):
-    lockable = True
+class Stage2Blocker(BlockerPage):
+    pass
+
+class QuestionnaireBlocker(BlockerPage):
+    pass
+
+
+
 
 
 ############ END OF: STOPPERS #############################################################
@@ -104,15 +122,19 @@ class Average3(FormSetMixin, Page):
 
 page_sequence = [
     StartWP,
-    IntroStage1,
+    ConfirmationInstructions,
+    CQ1Blocker,
     CQ1,
+    Stage1Blocker,
     SenderDecisionP,
     ReturnDecisionP,
-    IntroStage2,
+    CQ2Blocker,
     CQ2,
+    Stage2Blocker,
     SenderBeliefP,
     ReturnerBeliefP,
     Average2,
     Average3,
     ResultsWaitPage,
+    QuestionnaireBlocker,
 ]
