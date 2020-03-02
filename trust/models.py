@@ -106,16 +106,6 @@ class Group(BaseGroup):
     receiver_decisions_dump = models.LongStringField()
     sender_beliefs_dump = models.LongStringField()
     receiver_beliefs_dump = models.LongStringField()
-    # extra average questions
-    sender_confident_return = models.IntegerField(
-        label='Please indicate the largest amount out of the 30 tokens about which you are 100% confident that Person B has been willing to return it to you. ',
-        min=0, max=Constants.endowment * Constants.coef, choices=Constants.receiver_choices,
-        widget=widgets.RadioSelectHorizontal)
-    receiver_confident_send = models.IntegerField(
-        label='Please indicate the decision of Person A (transfer the endowment/keep the endowment) about which you are 100% confident that Person A is willing to take it. ',
-        choices=((0, 'Not to send the endowment'),
-                 (Constants.endowment, 'To send the endowment')),
-        widget=widgets.RadioSelectHorizontal)
 
     def set_payoffs(self):
         sender = self.get_player_by_role('Sender')
@@ -158,6 +148,7 @@ class Group(BaseGroup):
         for p in self.get_players():
             p.average_beliefs_on_send_dump = serialize('json', p.averageonsendbeliefs.all())
             p.average_beliefs_on_return_dump = serialize('json', p.averageonreturnbeliefs.all())
+            p.participant_vars_dump = json.dumps(p.participant.vars, cls=MyEncoder)
 
 
 class Player(CQPlayer):
@@ -170,6 +161,7 @@ class Player(CQPlayer):
     city_order = models.BooleanField()
     average_beliefs_on_send_dump = models.LongStringField()
     average_beliefs_on_return_dump = models.LongStringField()
+    participant_vars_dump = models.LongStringField()
 
     @property
     def role_desc(self):

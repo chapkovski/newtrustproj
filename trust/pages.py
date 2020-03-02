@@ -6,6 +6,7 @@ import random
 from .forms import (sender_formset, return_formset, returnbelief_formset, senderbelief_formset,
                     averagereturnbelief_formset, averagesendbelief_formset)
 
+
 class StartWP(WaitPage):
     group_by_arrival_time = True
 
@@ -43,7 +44,6 @@ class StartWP(WaitPage):
             p.create_decisions()
             p.create_beliefs()
             p.create_averages()
-
 
 
 class SenderDecisionP(FormSetMixin, SenderPage, ):
@@ -91,16 +91,6 @@ class IntroStage2(BlockablePage):
 ############ END OF: STOPPERS #############################################################
 
 ########### BLOCK: AVERAGES ##############################################################
-class Average1(Page):
-    form_model = 'group'
-
-    def get_form_fields(self) -> List[str]:
-        if self.player.role() == 'Sender':
-            return ['sender_confident_return']
-        else:
-            return ['receiver_confident_send']
-
-
 class Average2(FormSetMixin, Page):
     formset = averagesendbelief_formset
 
@@ -122,7 +112,6 @@ page_sequence = [
     CQ2,
     SenderBeliefP,
     ReturnerBeliefP,
-    Average1,
     Average2,
     Average3,
     ResultsWaitPage,

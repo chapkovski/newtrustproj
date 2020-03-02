@@ -81,7 +81,6 @@ class PlayerBot(Bot):
                 Constants.receiver_choices)} if self.player.role() == 'Sender' else {
                 'receiver_confident_send': random.choice(
                     [0, Constants.endowment])})
-        yield Average1, average1_answer
         yield Average2, self._create_data(name='averageonsendbeliefs', field_name='average_belief_on_send',
                                           choice_set=range(0, 100))
         yield Average3, self._create_data(name='averageonreturnbeliefs', field_name='average_belief_on_return',
