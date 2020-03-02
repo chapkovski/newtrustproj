@@ -105,6 +105,15 @@ class Group(BaseGroup):
     receiver_decisions_dump = models.LongStringField()
     sender_beliefs_dump = models.LongStringField()
     receiver_beliefs_dump = models.LongStringField()
+    # extra average questions
+    sender_confident_return = models.IntegerField(
+        label='Please indicate the largest amount out of the 30 tokens about which you are 100% confident that Person B has been willing to return it to you. ',
+        min=0, max=Constants.endowment * Constants.coef)
+    receiver_confident_send = models.IntegerField(
+        label='Please indicate the decision of Person A (transfer the endowment/keep the endowment) about which you are 100% confident that Person A is willing to take it. ',
+        choices=((0, 'Not to send the endowment'),
+                 (Constants.endowment, 'To send the endowment')),
+        widget=widgets.RadioSelectHorizontal)
 
     def set_payoffs(self):
         sender = self.get_player_by_role('Sender')

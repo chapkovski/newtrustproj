@@ -55,7 +55,7 @@ class PlayerBot(Bot):
                 cq2_4=10,
                 cq2_5=20,
             )
-            cq2wronganswers = {k:v+1 for k,v in cq2answers.items()}
+            cq2wronganswers = {k: v + 1 for k, v in cq2answers.items()}
 
         if self.player.role() == 'Sender':
             yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='send',
@@ -63,7 +63,7 @@ class PlayerBot(Bot):
             yield IntroStage2
             if self.session.config.get('cq'):
                 # yield SubmissionMustFail(CQ2, cq2wronganswers)
-                yield CQ2,cq2answers
+                yield CQ2, cq2answers
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
                                                    choice_set=Constants.receiver_choices)
         else:
@@ -75,3 +75,12 @@ class PlayerBot(Bot):
                 yield CQ2, cq2answers
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
+
+        average1_answer = (
+            {'sender_confident_return': random.choice(
+                Constants.receiver_choices)} if self.player.role() == 'Sender' else {
+                'receiver_confident_send': random.choice(
+                    [0, Constants.endowment])})
+        yield Average1, average1_answer
+        yield Average2
+        yield Average3

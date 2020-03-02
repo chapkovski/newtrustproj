@@ -88,6 +88,27 @@ class IntroStage2(BlockablePage):
 
 ############ END OF: STOPPERS #############################################################
 
+########### BLOCK: AVERAGES ##############################################################
+class Average1(Page):
+    form_model = 'group'
+
+    def get_form_fields(self) -> List[str]:
+        if self.player.role() == 'Sender':
+            return ['sender_confident_return']
+        else:
+            return ['receiver_confident_send']
+
+
+class Average2(Page):
+    pass
+
+
+class Average3(Page):
+    pass
+
+
+############ END OF: AVERAGES #############################################################
+
 
 page_sequence = [
     StartWP,
@@ -99,5 +120,8 @@ page_sequence = [
     CQ2,
     SenderBeliefP,
     ReturnerBeliefP,
+    Average1,
+    Average2,
+    Average3,
     ResultsWaitPage,
 ]
