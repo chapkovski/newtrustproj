@@ -32,6 +32,7 @@ class PlayerBot(Bot):
         }
 
     def play_round(self):
+        yield IntroStage1
         if self.session.config.get('cq'):
             сc1answers = dict(
                 cq1_1=30,
@@ -59,6 +60,7 @@ class PlayerBot(Bot):
         if self.player.role() == 'Sender':
             yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='send',
                                                      choice_set=[0, Constants.endowment])
+            yield IntroStage2
             if self.session.config.get('cq'):
                 # yield SubmissionMustFail(CQ2, cq2wronganswers)
                 yield CQ2,cq2answers
@@ -67,6 +69,7 @@ class PlayerBot(Bot):
         else:
             yield ReturnDecisionP, self._create_data(name='returndecisions', field_name='send_back',
                                                      choice_set=Constants.receiver_choices)
+            yield IntroStage2
             if self.session.config.get('cq'):
                 # yield SubmissionMustFail(CQ2,cq2wronganswers)
                 yield CQ2, cq2answers
