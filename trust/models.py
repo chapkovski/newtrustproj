@@ -31,7 +31,7 @@ class Constants(BaseConstants):
     step = 3
     coef = 3
     max_return = endowment * coef
-    sender_choices = ((0, 'No'), (endowment, "Yes"))
+    sender_choices = ((endowment, "Yes"), (0, 'No'))
     receiver_choices = list(range(0, endowment * coef + 1, step))
     expanded_receiver_choices = list(zip(receiver_choices, receiver_choices))
     receiver_belief_bonus = 10
