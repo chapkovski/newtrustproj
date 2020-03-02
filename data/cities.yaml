@@ -1,26 +1,26 @@
-- code: MSK
+- code: 001
   name: Moscow
-- code: SPB
+- code: 002
   name: St. Petersburg
-- code: NSB
+- code: 003
   name: Novosibirsk (Novosibirsk oblast)
-- code: ARK
+- code: 004
   name: Arkhangelsk (Arkhangelsk oblast)
-- code: EKT
+- code: 005
   name: Ekaterinburg (Sverdlovsk oblast)
-- code: KZN
+- code: 006
   name: Kazan (Tatarstan)
-- code: KHB
+- code: 007
   name: Khabarovsk (Khabarovsk krai)
-- code: MKH
+- code: 008
   name: Makhachkala (Daghestan)
-- code: VRN
+- code: 009
   name: Voronezh (Voronezh oblast)
-- code: RPM
+- code: 010
   name: Perm (Perm krai)
-- code: ROD
+- code: 011
   name: Rostov-on-Don (Rostov oblast)
-- code: VLD
+- code: 012
   name: Vladivostok (Primorskiy krai)
 
 
