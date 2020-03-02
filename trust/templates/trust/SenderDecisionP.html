@@ -10,9 +10,9 @@
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th>If a Person B you will be interacting with, is a participant from…</th>
+        <th>If a Participant {{ player.other.role_desc }} you will be interacting with, is a participant from…</th>
 
-        <th>do you transfer your endowment to Person B?</th>
+        <th>do you transfer your endowment to Participant {{ player.other.role_desc }}?</th>
         </thead>
         <tbody>
         {% for f in formset %}

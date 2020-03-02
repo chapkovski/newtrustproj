@@ -97,6 +97,7 @@ class Group(BaseGroup):
     sender_decision_re_receiver = models.IntegerField()
     receiver_decision_re_sender = models.IntegerField()
     sender_belief_re_receiver = models.IntegerField()
+
     receiver_belief_re_receiver = models.IntegerField()
     receiver_correct_guess = models.BooleanField()
     sender_belief_diff = models.IntegerField()
@@ -108,7 +109,8 @@ class Group(BaseGroup):
     # extra average questions
     sender_confident_return = models.IntegerField(
         label='Please indicate the largest amount out of the 30 tokens about which you are 100% confident that Person B has been willing to return it to you. ',
-        min=0, max=Constants.endowment * Constants.coef)
+        min=0, max=Constants.endowment * Constants.coef, choices=Constants.receiver_choices,
+        widget=widgets.RadioSelectHorizontal)
     receiver_confident_send = models.IntegerField(
         label='Please indicate the decision of Person A (transfer the endowment/keep the endowment) about which you are 100% confident that Person A is willing to take it. ',
         choices=((0, 'Not to send the endowment'),

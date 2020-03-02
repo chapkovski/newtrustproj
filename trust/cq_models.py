@@ -64,7 +64,7 @@ class CQPlayer(BasePlayer):
     cq1_2 = CQ(
         label='A Person A transfers his initial endowment to Person B. What is the maximum amount Person B can return to Person A? ',
         correct_answer='cq1_2')
-    cq1_3 = CQ(label='Person B decides to return to Person A 20 points. How many points does Person A receive? ',
+    cq1_3 = CQ(label='Person B decides to return to Person A 20 points. How many points does Person A receive from this transfer?',
                correct_answer='cq1_3')
     cq1_4 = CQ(
         label='What is the payoff of Person B if Person A transfers his initial endowment and Person B sends back 9 points?'
@@ -82,7 +82,7 @@ class CQPlayer(BasePlayer):
         label='Imagine you have been randomly assigned to be Person A. For how many participants in the role of Person B your decision to transfer or not transfer your initial endowment will be payoff relevant?',
         choices=cq_1_8_choices, correct_answer='cq1_8', widget=widgets.RadioSelect)
     cq1_9 = CQ(
-        label='Imagine you have been randomly assigned to be Person B. How many participants in the role of Person A will decide on whether you actually receive their multiplied initial endowment?',
+        label='Imagine you have been randomly assigned to be Person B. How many participants in the role of Person A will decide on whether you actually receive a multiplied initial endowment?',
         choices=cq_1_9_choices, correct_answer='cq1_9', widget=widgets.RadioSelect)
 
     # cqs for part 1
