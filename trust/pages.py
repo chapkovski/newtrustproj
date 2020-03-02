@@ -3,8 +3,8 @@ from typing import Union, List, Any, Optional
 from ._builtin import Page, WaitPage
 from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage, BlockablePage
 import random
-from .forms import sender_formset, return_formset, returnbelief_formset, senderbelief_formset
-
+from .forms import (sender_formset, return_formset, returnbelief_formset, senderbelief_formset,
+                    averagereturnbelief_formset, averagesendbelief_formset)
 
 class StartWP(WaitPage):
     group_by_arrival_time = True
@@ -42,6 +42,8 @@ class StartWP(WaitPage):
             p.participant.vars['matched'] = True
             p.create_decisions()
             p.create_beliefs()
+            p.create_averages()
+
 
 
 class SenderDecisionP(FormSetMixin, SenderPage, ):
@@ -99,12 +101,12 @@ class Average1(Page):
             return ['receiver_confident_send']
 
 
-class Average2(Page):
-    pass
+class Average2(FormSetMixin, Page):
+    formset = averagesendbelief_formset
 
 
-class Average3(Page):
-    pass
+class Average3(FormSetMixin, Page):
+    formset = averagereturnbelief_formset
 
 
 ############ END OF: AVERAGES #############################################################

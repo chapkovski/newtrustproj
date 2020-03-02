@@ -153,6 +153,9 @@ class Group(BaseGroup):
         self.receiver_decisions_dump = serialize('json', receiver.returndecisions.all())
         self.sender_beliefs_dump = serialize('json', sender.senderbeliefs.all())
         self.receiver_beliefs_dump = serialize('json', receiver.returnerbeliefs.all())
+        for p in self.get_players():
+            p.average_beliefs_on_send_dump = serialize('json', p.averageonsendbeliefs.all())
+            p.average_beliefs_on_return_dump = serialize('json', p.averageonreturnbeliefs.all())
 
 
 class Player(CQPlayer):
@@ -163,6 +166,8 @@ class Player(CQPlayer):
     stage1payoff = models.CurrencyField(initial=0)
     stage2payoff = models.CurrencyField(initial=0)
     city_order = models.BooleanField()
+    average_beliefs_on_send_dump = models.LongStringField()
+    average_beliefs_on_return_dump = models.LongStringField()
 
     @property
     def role_desc(self):
@@ -234,6 +239,16 @@ class Player(CQPlayer):
         else:
             self.create_receiver_beliefs()
 
+    def create_averages(self):
+        self.create_sender_averages()
+        self.create_receiver_averages()
+
+    def create_sender_averages(self):
+        self._universal_creator(AverageOnReturnBelief)
+
+    def create_receiver_averages(self):
+        self._universal_creator(AverageOnSendBelief)
+
     def create_sender_decisions(self):
         self._universal_creator(SenderDecision)
 
@@ -277,6 +292,14 @@ class SenderBelief(Decision):
 
 class ReturnerBelief(Decision):
     belief_on_send = models.IntegerField()
+
+
+class AverageOnSendBelief(Decision):
+    average_belief_on_send = models.IntegerField(min=0, max=100)
+
+
+class AverageOnReturnBelief(Decision):
+    average_belief_on_return = models.IntegerField(min=0, max=Constants.endowment * Constants.coef)
 
 
 class Blocker(djmodels.Model):

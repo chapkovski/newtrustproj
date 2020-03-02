@@ -7,6 +7,43 @@
 
 {% block content %}
     {% include 'trust/includes/extra_block.html' %}
+    <div class="card my-3">
+        <div class="card-body">
+            <h5 class="card-title"> The following questions are about the average behavior of participants in this
+                experiment. </h5>
+            <p>
+                Assume that 100 randomly selected Persons B in each of the 12 Cities would have to decide on how many
+                out of the 30 tokens to return to Persons A. What is your estimate of the average amount Persons B in
+                each City will return? Please state the percentage in integer numbers.
+            </p>
+        </div>
+    </div>
+
+    {{ formset.management_form }}
+
+    <table class="table table-hover table-stripped table-sm ">
+        <thead>
+        <th>If the 100 randomly selected Persons B are participants from…
+        </th>
+
+        <th>
+            what is your estimate of the average amount Persons B in each City will return?
+        </th>
+        </thead>
+        <tbody>
+        {% for f in formset %}
+            <tr>
+                <td>  {{ f.instance.city.description }}</td>
+                <td>
+                    {% for field in f %}
+                        {% formfield field label='' %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
     {% next_button %}
 
 {% endblock %}

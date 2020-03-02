@@ -6,7 +6,46 @@
 {% endblock %}
 
 {% block content %}
-{% include 'trust/includes/extra_block.html' %}
+    {% include 'trust/includes/extra_block.html' %}
+
+    <div class="card my-3">
+        <div class="card-body">
+            <h5 class="card-title"> The following questions are about the average behavior of participants in this
+                experiment. </h5>
+            <p>
+                Assume that 100 randomly selected Persons A in each of the 12 Cities would have to decide on whether to
+                transfer their endowments to Persons B. What is your estimate of the percentage of them in each City
+                that would transfer their endowment to Persons B?
+            </p>
+        </div>
+    </div>
+
+
+
+    {{ formset.management_form }}
+    <table class="table table-hover table-stripped table-sm ">
+        <thead>
+        <th>If the randomly selected 100 Persons A are participants from…</th>
+
+        <th>
+            what is your estimate of the percentage of them in each city that would transfer their endowment to Persons
+            B?
+        </th>
+        </thead>
+        <tbody>
+        {% for f in formset %}
+            <tr>
+                <td>  {{ f.instance.city.description }}</td>
+                <td>
+                    {% for field in f %}
+                        {% formfield field label='' %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
     {% next_button %}
 
 {% endblock %}

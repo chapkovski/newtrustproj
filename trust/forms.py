@@ -1,5 +1,6 @@
 import django.forms as forms
-from .models import Player, SenderDecision, SenderBelief, ReturnerBelief, ReturnDecision, return_choices, Constants
+from .models import Player, SenderDecision, SenderBelief, ReturnerBelief, ReturnDecision, return_choices, Constants, \
+    AverageOnReturnBelief, AverageOnSendBelief
 from django.forms import inlineformset_factory
 from otree.api import widgets
 
@@ -29,6 +30,20 @@ class SenderBeliefForm(forms.ModelForm):
                                          required=True)
 
 
+class AverageOnReturnBeliefForm(forms.ModelForm):
+    average_belief_on_return = forms.IntegerField(widget=forms.NumberInput(attrs={'required': True}),
+                                                  min_value=0,
+                                                  max_value=Constants.endowment * Constants.coef,
+                                                  required=True)
+
+
+class AverageOnSendBeliefForm(forms.ModelForm):
+    average_belief_on_send = forms.IntegerField(widget=forms.NumberInput(attrs={'required': True}),
+                                                min_value=0,
+                                                max_value=100,
+                                                required=True)
+
+
 class SorterFormset(forms.BaseInlineFormSet):
     def get_queryset(self):
         initial_q = super().get_queryset()
@@ -51,3 +66,6 @@ sender_formset = get_player_formset(SenderDecision, ['send'], SenderForm)
 senderbelief_formset = get_player_formset(SenderBelief, ['belief_on_return'], SenderBeliefForm)
 return_formset = get_player_formset(ReturnDecision, ['send_back'], ReturnForm)
 returnbelief_formset = get_player_formset(ReturnerBelief, ['belief_on_send'], ReturnerBeliefForm)
+averagesendbelief_formset = get_player_formset(AverageOnSendBelief, ['average_belief_on_send'], AverageOnSendBeliefForm)
+averagereturnbelief_formset = get_player_formset(AverageOnReturnBelief, ['average_belief_on_return'],
+                                                 AverageOnReturnBeliefForm)

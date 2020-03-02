@@ -17,17 +17,11 @@ class TestListView(ListView):
 
         if q.exists():
 
-            df = read_frame(q, fieldnames=['owner__participant__code','city__code', 'send'])
-            # df = pd.DataFrame(q)
-            # print('JOPA', df.columns)
-            a = df.pivot( index='owner__participant__code',columns='city__code', values=['send', ])
+            df = read_frame(q, fieldnames=['owner__participant__code', 'city__code', 'send'])
 
-            # for i in a:
-            #     print(a.)
-            # d = pd.DataFrame(a)
-            # print('JOPA', d.size, d.ndim, d.shape)
-            print("JOPA", a.columns)
-            return {'records':a.to_records(), "columns": a.columns}
+            a = df.pivot(index='owner__participant__code', columns='city__code', values=['send', ])
+
+            return {'records': a.to_records(), "columns": a.columns}
         else:
             return 'Nothing here'
 

@@ -34,8 +34,7 @@ class CQ(models.IntegerField):
         if hasattr(self, 'correct_answer'):
             if value != correct_answers[self.correct_answer]:
                 raise ValidationError(f'Please check this answer')
-        else:
-            print("THIS MOTUERHFUCK HAS NO CORRECT ANSWER!!!", self)
+
 
     def __init__(self, *args, **kwargs):
         if 'correct_answer' in kwargs:
