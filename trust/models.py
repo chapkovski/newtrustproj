@@ -31,12 +31,12 @@ class Constants(BaseConstants):
     step = 3
     coef = 3
     max_return = endowment * coef
-    sender_choices = ((endowment, "Yes"), (0, 'No'))
+    sender_choices = ((endowment, "Да"), (0, 'Нет'))
     receiver_choices = list(range(0, endowment * coef + 1, step))
     expanded_receiver_choices = list(zip(receiver_choices, receiver_choices))
     receiver_belief_bonus = 10
     sender_belief_bonuses = {0: 20, 3: 10}
-    roles = {'Sender': 'A', 'Receiver': 'B'}
+    roles = {'Sender': 'А', 'Receiver': 'Б'}
     blocked_page_names = ['IntroStage1',
                           'IntroStage2',
                           ]

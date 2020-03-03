@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Часть 1. {{ player.role_desc }}: решения
+    Часть 1. Участник {{ player.role_desc }}: решения
 {% endblock %}
 
 {% block content %}
@@ -13,7 +13,7 @@
         <th>Если Участник {{ player.other.role_desc }}, с которым Вы взаимодействуете, из города</th>
 
         <th>сколько токенов Вы согласны вернуть Участнику {{ player.other.role_desc }} в том случае, если он(а) перевел Вам свою начальную сумму и Вы
-            получили {{ Constants.max_return|c }}?
+            получили {{ Constants.max_return}} токенов?
         </th>
         </thead>
         <tbody>

@@ -33,7 +33,7 @@ class CQ(models.IntegerField):
     def internal_validator(self, value):
         if hasattr(self, 'correct_answer'):
             if value != correct_answers[self.correct_answer]:
-                raise ValidationError(f'Please check this answer')
+                raise ValidationError(f'Пожалуйста, проверьте ваш ответ')
 
     def __init__(self, *args, **kwargs):
         if 'correct_answer' in kwargs:
