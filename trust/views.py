@@ -59,7 +59,10 @@ class ExportToCSV(ListView):
         response.write(t.render(c))
         return response
 
+
 from django_pivot.pivot import pivot
+
+
 class DecisionPivotView(ListView):
     url_name = 'decisions_wide'
     display_name = 'Decisions - wide format'
@@ -76,14 +79,10 @@ class DecisionPivotView(ListView):
 
     def get_queryset(self):
         q = self.queryset
-
-
         if q.exists():
             pivot_table = pivot(q, ['owner__participant__code', 'decision_type'], 'city__code', 'answer')
-            print('PIVAOT!', pivot_table)
-            fields = pivot_table.first().keys()
-            print("NAMES::", fields)
             return pivot_table
+
 
 class DecisionLongCSVExport(ExportToCSV):
     filename = 'decisions_long.csv'
