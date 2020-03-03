@@ -57,7 +57,7 @@ class PlayerBot(Bot):
                 cq2_2=10,
                 cq2_3=0,
                 cq2_4=10,
-                cq2_5=20,
+                cq2_5=0,
             )
             cq2wronganswers = {k: v + 1 for k, v in cq2answers.items()}
         yield Stage1Blocker
