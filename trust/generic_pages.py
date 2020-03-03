@@ -4,11 +4,8 @@ import otree.bots.browser as browser_bots
 from .cq_models import correct_answers
 from .models import Blocker
 
+
 class SenderPage(Page):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['formset'] = self.formset(instance=self.player)
-        return context
 
     def is_displayed(self) -> bool:
         return self.player.role() == 'Sender'
@@ -24,12 +21,11 @@ class FormSetMixin:
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['formset'] = self.formset(instance=self.player)
+        context['formset'] = self.formset( instance=self.player,  decision_type=self.decision_type)
         return context
 
     def get_form(self, data=None, files=None, **kwargs):
-        return self.formset(data, instance=self.player)
-
+        return self.formset(data=data, instance=self.player,  decision_type=self.decision_type)
 
 class CQPage(Page):
     form_model = 'player'
@@ -45,6 +41,7 @@ class CQPage(Page):
 class BlockerPage(Page):
     lockable = True
     template_name = 'trust/Blocker.html'
+
     def error_message(self, values):
         if not self.participant._is_bot:
             try:

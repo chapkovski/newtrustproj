@@ -10,6 +10,8 @@ class PlayerBot(Bot):
     def _create_data(self, name, field_name, choice_set):
         senderdecisions = getattr(self.player, name).all()
         ids = senderdecisions.values_list('id', flat=True)
+        name = 'decisions'
+        field_name = 'answer'
         ids_dct = dict()
         pls_dct = dict()
         for i, j in enumerate(ids):
@@ -60,7 +62,7 @@ class PlayerBot(Bot):
             cq2wronganswers = {k: v + 1 for k, v in cq2answers.items()}
         yield Stage1Blocker
         if self.player.role() == 'Sender':
-            yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='send',
+            yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='answer',
                                                      choice_set=[0, Constants.endowment])
             if self.session.config.get('cq'):
                 yield CQ2Blocker

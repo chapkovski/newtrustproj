@@ -115,9 +115,9 @@ class Group(BaseGroup):
         receiver_city = receiver.get_city_obj()
 
         def stage1_payoffs():
-            self.sender_decision_re_receiver = sender.senderdecisions.get(city=receiver_city).send
+            self.sender_decision_re_receiver = sender.senderdecisions.get(city=receiver_city).answer
             has_sender_sent = self.sender_decision_re_receiver != 0
-            self.receiver_decision_re_sender = receiver.returndecisions.get(city=sender_city).send_back
+            self.receiver_decision_re_sender = receiver.returndecisions.get(city=sender_city).answer
             sender.stage1payoff = sender.endowment + (
                     self.receiver_decision_re_sender - self.sender_decision_re_receiver) * has_sender_sent
 
@@ -125,8 +125,8 @@ class Group(BaseGroup):
                     self.sender_decision_re_receiver * Constants.coef - self.receiver_decision_re_sender) * has_sender_sent
 
         def stage2_payoffs():
-            self.sender_belief_re_receiver = sender.senderbeliefs.get(city=receiver_city).belief_on_return
-            self.receiver_belief_re_receiver = receiver.returnerbeliefs.get(city=sender_city).belief_on_send
+            self.sender_belief_re_receiver = sender.senderbeliefs.get(city=receiver_city).answer
+            self.receiver_belief_re_receiver = receiver.returnerbeliefs.get(city=sender_city).answer
             self.receiver_correct_guess = self.receiver_belief_re_receiver == self.sender_decision_re_receiver
             receiver.stage2payoff = self.receiver_correct_guess * Constants.receiver_belief_bonus
             self.sender_belief_diff = abs(self.receiver_decision_re_sender - self.sender_belief_re_receiver)
@@ -174,9 +174,9 @@ class Player(CQPlayer):
     @property
     def guess(self):
         if self.role() == 'Sender':
-            return self.senderbeliefs.get(city=self.other.get_city_obj()).belief_on_return
+            return self.senderbeliefs.get(city=self.other.get_city_obj()).answer
         else:
-            return self.returnerbeliefs.get(city=self.other.get_city_obj()).belief_on_send
+            return self.returnerbeliefs.get(city=self.other.get_city_obj()).answer
 
     @property
     def guess_desc(self):
@@ -188,9 +188,9 @@ class Player(CQPlayer):
     @property
     def decision(self):
         if self.role() == 'Sender':
-            return self.senderdecisions.get(city=self.other.get_city_obj()).send
+            return self.senderdecisions.get(city=self.other.get_city_obj()).answer
         else:
-            return self.returndecisions.get(city=self.other.get_city_obj()).send_back
+            return self.returndecisions.get(city=self.other.get_city_obj()).answer
 
     @property
     def decision_desc(self):
@@ -239,35 +239,63 @@ class Player(CQPlayer):
         self.create_receiver_averages()
 
     def create_sender_averages(self):
-        self._universal_creator(AverageOnReturnBelief)
+        self._universal_creator('average_on_return_belief')
 
     def create_receiver_averages(self):
-        self._universal_creator(AverageOnSendBelief)
+        self._universal_creator('average_on_send_belief')
 
     def create_sender_decisions(self):
-        self._universal_creator(SenderDecision)
+        self._universal_creator('sender_decision')
 
     def create_receiver_decisions(self):
-        self._universal_creator(ReturnDecision)
+        self._universal_creator('return_decision')
 
     def create_sender_beliefs(self):
-        self._universal_creator(SenderBelief)
+        self._universal_creator('sender_belief')
 
     def create_receiver_beliefs(self):
-        self._universal_creator(ReturnerBelief)
+        self._universal_creator('receiver_belief')
 
-    def _universal_creator(self, obj):
+    def _universal_creator(self, decision_type):
+        # todo: optimize with bulk_create
         for city in City.objects.all():
-            obj.objects.create(city=city, owner=self)
+            Decision.objects.create(city=city, owner=self, decision_type=decision_type)
+    def _decision_getter(self,decision_type):
+        return self.decisions.filter(decision_type=decision_type)
+    @property
+    def senderdecisions(self):
+        return self._decision_getter('sender_decision')
+
+    @property
+    def returndecisions(self):
+        return self._decision_getter('return_decision')
+
+    @property
+    def senderbeliefs(self):
+        return self._decision_getter('sender_belief')
+
+    @property
+    def returnerbeliefs(self):
+        return self._decision_getter('receiver_belief')
+
+    @property
+    def averageonsendbeliefs(self):
+        return self._decision_getter('average_on_send_belief')
+
+    @property
+    def averageonreturnbeliefs(self):
+        return self._decision_getter('average_on_return_belief')
+
+
+decision_types = ['sender_decision', 'return_decision', 'sender_belief', 'receiver_belief', 'average_on_send_belief',
+                  'average_on_return_belief']
 
 
 class Decision(djmodels.Model):
     city = djmodels.ForeignKey(to=City, on_delete=djmodels.CASCADE, null=True)
-    owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="%(class)ss")
-
-    class Meta:
-        abstract = True
-        unique_together = [['city', 'owner']]
+    owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="decisions")
+    decision_type = models.StringField(choices=decision_types)
+    answer = models.IntegerField()
 
 
 class SenderDecision(Decision):

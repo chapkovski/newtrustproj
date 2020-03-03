@@ -49,19 +49,19 @@ class ConfirmationInstructions(Page):
 
 class SenderDecisionP(FormSetMixin, SenderPage, ):
     formset = sender_formset
-
+    decision_type = 'sender_decision'
 
 class ReturnDecisionP(FormSetMixin, ReturnerPage):
     formset = return_formset
-
+    decision_type = 'return_decision'
 
 class SenderBeliefP(FormSetMixin, SenderPage):
     formset = senderbelief_formset
-
+    decision_type = 'sender_belief'
 
 class ReturnerBeliefP(FormSetMixin, ReturnerPage):
     formset = returnbelief_formset
-
+    decision_type = 'receiver_belief'
 
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
@@ -89,11 +89,11 @@ class Stage1Blocker(BlockerPage):
 
 class CQ1Blocker(BlockerPage):
     def is_displayed(self) -> bool:
-        return self.session.config.get('cq')
+        return self.session.config.get('cq', False)
 
 class CQ2Blocker(BlockerPage):
     def is_displayed(self) -> bool:
-        return self.session.config.get('cq')
+        return self.session.config.get('cq', False)
 
 
 class Stage2Blocker(BlockerPage):
@@ -111,11 +111,11 @@ class QuestionnaireBlocker(BlockerPage):
 ########### BLOCK: AVERAGES ##############################################################
 class Average2(FormSetMixin, Page):
     formset = averagesendbelief_formset
-
+    decision_type = 'average_on_send_belief'
 
 class Average3(FormSetMixin, Page):
     formset = averagereturnbelief_formset
-
+    decision_type = 'average_on_return_belief'
 
 ############ END OF: AVERAGES #############################################################
 
