@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td>В этой сессии Вы были в роли</td>
-            <td>Участника  {{ participant.vars.role_desc }}</td>
+            <td>Участника {{ participant.vars.role_desc }}</td>
         </tr>
 
         <tr>
@@ -28,7 +28,8 @@
         </tr>
         {% if participant.vars.role == 'Sender' %}
             <tr>
-                <td>В отношении Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, Вы приняли решение:
+                <td>В отношении Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, Вы
+                    приняли решение:
                 </td>
                 <td>{{ participant.vars.own_decision }}</td>
             </tr>
@@ -41,12 +42,13 @@
             {% endif %}
         {% else %}
             <tr>
-                <td>Решение Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, было: </td>
+                <td>Решение Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, было:</td>
                 <td>{{ participant.vars.partner_decision }}</td>
             </tr>
             {% if participant.vars.sender_decision %}
                 <tr>
-                    <td>В отношении Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, Вы приняли решение:
+                    <td>В отношении Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, Вы
+                        приняли решение:
                     </td>
                     <td>{{ participant.vars.own_decision }}</td>
                 </tr>
@@ -62,7 +64,8 @@
         </tr>
 
         <tr>
-            <td>Ваша оценка решения Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, была:
+            <td>Ваша оценка решения Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали,
+                была:
             </td>
             <td>{{ participant.vars.guess }}</td>
         </tr>
@@ -83,13 +86,19 @@
             <th>Ваш итоговый выигрыш:</th>
             <th>{{ participant.payoff }}</th>
         </tr>
+        <tr class="table-success">
+            <th>Итоговая сумма в рублях:</th>
+            <th>{{ participant.payoff_plus_participation_fee }}</th>
+        </tr>
+
 
         </tbody>
     </table>
 
 
-
-    {% next_button %}
+    <div class="d-none">
+        {% next_button %}
+    </div>
 {% endblock %}
 
 
