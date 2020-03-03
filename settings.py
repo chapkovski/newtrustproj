@@ -6,7 +6,7 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
+    real_world_currency_per_point=10.00, participation_fee=300.00, doc=""
 )
 
 import yaml
@@ -18,15 +18,15 @@ with open(r'./data/cities.yaml') as file:
 uni_trust = dict(
     name='trust',
     use_browser_bots=False,
-    display_name="trust: Moscow-SPB",
+    display_name="trust: Intercity Russia",
     num_demo_participants=2,
     app_sequence=[
         'sorter',
         'trust',
         'questionnaire',
         'results'],
-    city1='001',
-    city2='002',
+    city1='01',
+    city2='02',
 
 )
 SESSION_CONFIGS = [
@@ -49,11 +49,11 @@ SESSION_CONFIGS = [
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'ru'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
-USE_POINTS = True
+REAL_WORLD_CURRENCY_CODE = 'RUR'
+USE_POINTS = False
 
 ROOMS = []
 

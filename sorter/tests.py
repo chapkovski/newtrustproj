@@ -10,5 +10,5 @@ from django.db.utils import OperationalError
 
 class PlayerBot(Bot):
     def play_round(self):
-        yield pages.Code, {'city': random.choice(['001', '002'])}
+        yield pages.Code, {'city': random.choice(['01', '02'])}
         yield pages.Welcome, {'pc_id': self.player.id}

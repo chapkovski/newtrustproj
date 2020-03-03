@@ -10,7 +10,7 @@ class Code(Page):
 
     def city_error_message(self, value):
         if value not in self.subsession.cities:
-            return 'Please check the code!'
+            return 'Пожалуйста, проверьте код города'
 
     def before_next_page(self):
         self.participant.vars['city'] = self.player.city
