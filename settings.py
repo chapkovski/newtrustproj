@@ -31,20 +31,15 @@ uni_trust = dict(
 
 )
 SESSION_CONFIGS = [
-    uni_trust,
-    {**uni_trust,
-     'name': 'trust_bots',
-     'display_name': 'trust: Moscow-SPB - bots!',
-     'use_browser_bots': True},
     {**uni_trust,
      'name': 'trust_cq',
-     'display_name': 'trust: Moscow-SPB - with compehension questions!',
+     'display_name': 'trust: LAUNCH THIS FOR REAL STUDY!!!!!!',
      'cq': True,
      'use_browser_bots': False},
     {**uni_trust,
      'name': 'trust_cq_bots',
      'cq': True,
-     'display_name': 'trust: Moscow-SPB - bots + Comprehension questions!',
+     'display_name': 'DO NOT LAUNCH THIS: trust: Moscow-SPB - bots + Comprehension questions!',
      'use_browser_bots': True}
 ]
 

@@ -38,7 +38,7 @@
                 {{ form.non_field_errors|default_if_none:'' }}
             </div>
         {% elif view.lockable|default:False and form.errors %}
-            {% trans "Please wait for further Instructor's notice!" as modal_message %}
+            {% trans "Пожалуйста, дождитесь продолжения эксперимента" as modal_message %}
             {% include 'trust/includes/error_modal.html' with message=modal_message %}
 
         {% endif %}

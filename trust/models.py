@@ -183,7 +183,7 @@ class Player(CQPlayer):
         if self.role() == 'Sender':
             return c(self.guess)
         else:
-            return 'не передавать свою начальную сумму' if self.guess == 0 else 'передавать свою начальную сумму'
+            return 'не передать свою начальную сумму' if self.guess == 0 else 'передать свою начальную сумму'
 
     @property
     def decision(self):
@@ -195,7 +195,7 @@ class Player(CQPlayer):
     @property
     def decision_desc(self):
         if self.role() == 'Sender':
-            return 'не передавать свою начальную сумму' if self.decision == 0 else 'передавать свою начальную сумму'
+            return 'не передать свою начальную сумму' if self.decision == 0 else 'передать свою начальную сумму'
         else:
             return f'вернуть {c(self.decision)}'
 

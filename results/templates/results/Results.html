@@ -9,10 +9,7 @@
     <table class="table table-hover table-stripped table-sm ">
 
         <tbody>
-        <tr>
-            <td>Вы из города</td>
-            <td>{{ participant.vars.city }}</td>
-        </tr>
+
         <tr>
             <td>В этой сессии Вы были в роли</td>
             <td>Участника {{ participant.vars.role_desc }}</td>
@@ -24,7 +21,7 @@
         </tr>
         {# STAGE 1 PAYOFF#}
         <tr>
-            <td colspan="2" class="text-center">Stage 1 Payoff</td>
+            <td colspan="2" class="text-center">Часть 1: результаты</td>
         </tr>
         {% if participant.vars.role == 'Sender' %}
             <tr>
@@ -60,7 +57,7 @@
         </tr>
         {# STAGE 2 PAYOFF#}
         <tr>
-            <td colspan="2" class="text-center">Stage 2 Payoff</td>
+            <td colspan="2" class="text-center">Часть 2: результаты</td>
         </tr>
 
         <tr>
