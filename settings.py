@@ -54,7 +54,8 @@ LANGUAGE_CODE = 'ru'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'RUR'
-USE_POINTS = False
+USE_POINTS = True
+POINTS_CUSTOM_NAME = 'токены'
 
 ROOMS = [{'name': 'hse', 'display_name': 'HSE Study'}]
 
