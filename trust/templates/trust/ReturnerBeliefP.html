@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Stage 2. {{ player.role_desc }}: decision
+    Часть 2. {{ player.role_desc }}: оценки
 {% endblock %}
 
 {% block content %}
@@ -12,9 +12,9 @@
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th>If a Participant {{ player.other.role_desc }} you are interacting with is a participant from…..,</th>
+        <th>Если Участник {{ player.other.role_desc }} , с которым Вы взаимодействуете, из города</th>
 
-        <th>what is your estimate: will Participant {{ player.other.role_desc }} transfer his initial endowment to you or not?</th>
+        <th>о согласно Вашей оценке, передал ли Вам этот Участник {{ player.other.role_desc }} свою начальную сумму или нет?</th>
         </thead>
         <tbody>
         {% for f in formset %}
