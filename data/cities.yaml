@@ -1,27 +1,27 @@
-- code: '001'
+- code: '07'
   name: Москва
-- code: '002'
-  name: St. Petersburg
-- code: '003'
-  name: Novosibirsk (Novosibirsk oblast)
-- code: '004'
-  name: Arkhangelsk (Arkhangelsk oblast)
-- code: '005'
-  name: Ekaterinburg (Sverdlovsk oblast)
-- code: '006'
-  name: Kazan (Tatarstan)
-- code: '007'
-  name: Khabarovsk (Khabarovsk krai)
-- code: '008'
-  name: Makhachkala (Daghestan)
-- code: '009'
-  name: Voronezh (Voronezh oblast)
-- code: '010'
-  name: Perm (Perm krai)
-- code: '011'
-  name: Rostov-on-Don (Rostov oblast)
-- code: '012'
-  name: Vladivostok (Primorskiy krai)
+- code: '03'
+  name: Санкт-Петербург
+- code: '06'
+  name: Новосибирск (Новосибирская область)
+- code: '12'
+  name: Архангельск (Архангельская область)
+- code: '11'
+  name: Екатеринбург (Свердловская область)
+- code: '10'
+  name: Казань (Татарстан)
+- code: '09'
+  name: Хабаровск (Хабаровский край)
+- code: '08'
+  name: Махачкала (Дагестан)
+- code: '01'
+  name: Воронеж (Воронежская область)
+- code: '05'
+  name: Пермь (Пермский край)
+- code: '04'
+  name: Ростов-на-Дону (Ростовская область)
+- code: '02'
+  name: Владивосток (Приморский край)
 
 
 
