@@ -7,7 +7,7 @@ import time
 class Results(Page):
     def post(self):
         if self.participant.is_browser_bot:
-            time.sleep(5)
+            time.sleep(30)
         return super().post()
 
 

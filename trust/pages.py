@@ -123,20 +123,12 @@ class Average2(FormSetMixin, Page):
     formset = averagesendbelief_formset
     decision_type = 'average_on_send_belief'
 
-    def post(self):
-        if self.participant.is_browser_bot:
-            time.sleep(30)
-        return super().post()
 
 
 class Average3(FormSetMixin, Page):
     formset = averagereturnbelief_formset
     decision_type = 'average_on_return_belief'
 
-    def post(self):
-        if self.participant.is_browser_bot:
-            time.sleep(30)
-        return super().post()
 
 
 ############ END OF: AVERAGES #############################################################

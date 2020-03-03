@@ -212,6 +212,8 @@ class Player(CQPlayer):
             sender_decision=self.group.sender_decision_re_receiver != 0,
             stage1payoff=self.stage1payoff,
             stage2payoff=self.stage2payoff,
+            stage1payoff_rubles=c(self.stage1payoff).to_real_world_currency(self.session),
+            stage2payoff_rubles=c(self.stage2payoff).to_real_world_currency(self.session),
         )
         self.participant.vars = {**self.participant.vars, **dump}
 

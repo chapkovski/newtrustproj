@@ -52,8 +52,12 @@
             {% endif %}
         {% endif %}
         <tr>
-            <th>Ваш выигрыш в Части 1 составил:</th>
-            <th>{{ participant.vars.stage1payoff|c }}</th>
+            <th>Ваш выигрыш в токенах в Части 1 составил:</th>
+            <th>{{ participant.vars.stage1payoff }}</th>
+        </tr>
+        <tr>
+            <th>Ваш выигрыш в рублях в Части 1 составил:</th>
+            <th>{{ participant.vars.stage1payoff_rubles }}</th>
         </tr>
         {# STAGE 2 PAYOFF#}
         <tr>
@@ -77,11 +81,20 @@
             <th>{{ participant.vars.stage2payoff|c }}</th>
         </tr>
         <tr>
+            <th>Ваш выигрыш в рублях в Части 2 составил:</th>
+            <th>{{ participant.vars.stage2payoff_rubles }}</th>
+        </tr>
+        <tr>
             <td colspan="2">&nbsp;</td>
         </tr>
+
         <tr class="table-success">
-            <th>Ваш итоговый выигрыш:</th>
-            <th>{{ participant.payoff }}</th>
+            <th>Оплата за участие:</th>
+            <th>{{ session.config.participation_fee }}</th>
+        </tr>
+        <tr class="table-success">
+            <th>Оплата за заполнение вопросника:</th>
+            <th>{{ participant.vars.questionnaire_payoff }}</th>
         </tr>
         <tr class="table-success">
             <th>Итоговая сумма в рублях:</th>
