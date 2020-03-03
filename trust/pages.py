@@ -44,24 +44,31 @@ class StartWP(WaitPage):
             p.create_decisions()
             p.create_beliefs()
             p.create_averages()
+
+
 class ConfirmationInstructions(Page):
     pass
+
 
 class SenderDecisionP(FormSetMixin, SenderPage, ):
     formset = sender_formset
     decision_type = 'sender_decision'
 
+
 class ReturnDecisionP(FormSetMixin, ReturnerPage):
     formset = return_formset
     decision_type = 'return_decision'
+
 
 class SenderBeliefP(FormSetMixin, SenderPage):
     formset = senderbelief_formset
     decision_type = 'sender_belief'
 
+
 class ReturnerBeliefP(FormSetMixin, ReturnerPage):
     formset = returnbelief_formset
     decision_type = 'receiver_belief'
+
 
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
@@ -84,12 +91,15 @@ class CQ2(CQPage):
 class CQ1Blocker(BlockerPage):
     pass
 
+
 class Stage1Blocker(BlockerPage):
     pass
+
 
 class CQ1Blocker(BlockerPage):
     def is_displayed(self) -> bool:
         return self.session.config.get('cq', False)
+
 
 class CQ2Blocker(BlockerPage):
     def is_displayed(self) -> bool:
@@ -99,23 +109,35 @@ class CQ2Blocker(BlockerPage):
 class Stage2Blocker(BlockerPage):
     pass
 
+
 class QuestionnaireBlocker(BlockerPage):
     pass
 
 
-
-
-
 ############ END OF: STOPPERS #############################################################
+import time
+
 
 ########### BLOCK: AVERAGES ##############################################################
 class Average2(FormSetMixin, Page):
     formset = averagesendbelief_formset
     decision_type = 'average_on_send_belief'
 
+    def post(self):
+        if self.participant.is_browser_bot:
+            time.sleep(30)
+        return super().post()
+
+
 class Average3(FormSetMixin, Page):
     formset = averagereturnbelief_formset
     decision_type = 'average_on_return_belief'
+
+    def post(self):
+        if self.participant.is_browser_bot:
+            time.sleep(30)
+        return super().post()
+
 
 ############ END OF: AVERAGES #############################################################
 
