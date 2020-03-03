@@ -15,7 +15,7 @@ import random
 import json
 from django.core.serializers import serialize
 from otree.models import Session
-
+from django_pandas.managers import DataFrameManager
 author = 'Philipp Chapkovski'
 
 doc = """
@@ -296,33 +296,12 @@ class Decision(djmodels.Model):
     owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="decisions")
     decision_type = models.StringField(choices=decision_types)
     answer = models.IntegerField()
+    forpd = DataFrameManager()
+    objects = djmodels.Manager()
 
 
-class SenderDecision(Decision):
-    send = models.IntegerField()
-
-    def __str__(self):
-        return f'city: {self.city.description}: send:{self.send}'
 
 
-class ReturnDecision(Decision):
-    send_back = models.IntegerField()
-
-
-class SenderBelief(Decision):
-    belief_on_return = models.IntegerField()
-
-
-class ReturnerBelief(Decision):
-    belief_on_send = models.IntegerField()
-
-
-class AverageOnSendBelief(Decision):
-    average_belief_on_send = models.IntegerField(min=0, max=100)
-
-
-class AverageOnReturnBelief(Decision):
-    average_belief_on_return = models.IntegerField(min=0, max=Constants.endowment * Constants.coef)
 
 
 class Blocker(djmodels.Model):

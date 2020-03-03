@@ -1,0 +1,2 @@
+Session,Participant code,Decision type,City code,City name,Decision{% for s in data %}
+{{ s.owner.session.code }},{{ s.owner.participant.code }},{{ s.decision_type}},{{ s.city.code }},{{ s.city.description}},{{ s.answer }}{% endfor %}

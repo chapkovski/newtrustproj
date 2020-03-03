@@ -1,3 +1,4 @@
-from trust.views import TestListView
+from trust.views import DecisionListView, DecisionPivotView
 
-data_export_views = [TestListView]
+data_export_views = [DecisionListView,
+                     DecisionPivotView]

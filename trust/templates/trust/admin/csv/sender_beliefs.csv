@@ -1,4 +1,0 @@
-Session,Sender,Receiver,Sender City,Receiver City,Amount,Beliefs about amount sent back
-{% for s in data %}
-{{ s.sender.session.code }},{{ s.sender.participant.code }},{{ s.receiver.participant.code }},{{ s.sender.own_city }},{{ s.sender.city }},{{ s.amount }},{{ s.belief_back }}
-{% endfor %}

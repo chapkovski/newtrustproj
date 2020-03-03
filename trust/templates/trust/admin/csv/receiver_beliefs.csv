@@ -1,4 +1,0 @@
-Session,Sender,Receiver,Receiver City,Sender City,Beliefs about amount sent by Trustor
-{% for s in data %}
-{{ s.sender.session.code }},{{ s.sender.participant.code }},{{ s.receiver.participant.code }},{{ s.sender.own_city }},{{ s.sender.city }},{{ s.amount }}
-{% endfor %}
