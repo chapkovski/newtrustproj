@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Stage 1. {{ player.role_desc }}: decision
+    Часть 1. {{ player.role_desc }}: решения
 {% endblock %}
 
 {% block content %}
@@ -10,10 +10,10 @@
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th>If a Participant {{player.other.role_desc}} you will be interacting with, is a participant from …</th>
+        <th>Если Участник {{ player.other.role_desc }}, с которым Вы взаимодействуете, из города</th>
 
-        <th>how many tokens do you return in case Participant {{player.other.role_desc}} has transferred her endowment to you, i.e., you
-            received {{ Constants.max_return|c }}?
+        <th>сколько токенов Вы согласны вернуть Участнику {{ player.other.role_desc }} в том случае, если он(а) перевел Вам свою начальную сумму и Вы
+            получили {{ Constants.max_return|c }}?
         </th>
         </thead>
         <tbody>

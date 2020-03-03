@@ -2,19 +2,17 @@
 {% load otree static %}
 
 {% block title %}
-    Stage 2. {{ player.role_desc }}: decision
+    Часть 2. {{ player.role_desc }}: оценки
 {% endblock %}
 
 {% block content %}
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th>If you would have transferred your initial
-            endowment to a Participant {{ player.other.role_desc }}, who is a participant from …
+        <th>Если бы Вы передали Вашу начальную сумму Участнику  {{ player.other.role_desc }} из города
         </th>
 
-        <th>what is your estimate of how many out of the {{ Constants.max_return|c }} Participant {{ player.other.role_desc }} would
-            have returned to you:
+        <th>то как Вы оцениваете, сколько из {{ Constants.max_return|c }} токенов этот Участник {{ player.other.role_desc }} Б вернул бы Вам
         </th>
         </thead>
         <tbody>

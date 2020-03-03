@@ -39,4 +39,4 @@ class Player(BasePlayer):
     def pc_id_error_message(self, value):
         ids = self.subsession.player_set.filter(pc_id__isnull=False, city=self.city).values_list("pc_id", flat=True)
         if value in ids:
-            return 'Please check the number. This number has been already used'
+            return 'Пожалуйста, проверьте номер участника. Этот номер уже используется'
