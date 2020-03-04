@@ -80,7 +80,7 @@ class DecisionPivotView(ListView):
     def get_queryset(self):
         q = self.queryset
         if q.exists():
-            pivot_table = pivot(q, ['owner__participant__code', 'decision_type'], 'city__code', 'answer')
+            pivot_table = pivot(q, ['owner__participant__code', 'owner__city','decision_type'], 'city__description', 'answer')
             return pivot_table
 
 
