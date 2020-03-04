@@ -63,5 +63,5 @@ DEMO_PAGE_INTRO_HTML = """ """
 SECRET_KEY = 'm1e8fnwh3#$v6xbng%$!jn_onduh(22hmzx$kt=$ch6+m6*lcg'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree']
+INSTALLED_APPS = ['otree','django.contrib.admin','import_export']
 EXTENSION_APPS = ['trust']
