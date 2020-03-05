@@ -41,7 +41,7 @@ class PlayerBot(Bot):
             сc1answers = dict(
                 cq1_1=30,
                 cq1_2=30,
-                cq1_3=20,
+                cq1_3=21,
                 cq1_4=31,
                 cq1_5=9,
                 cq1_6=10,

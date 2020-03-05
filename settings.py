@@ -26,8 +26,8 @@ uni_trust = dict(
         'questionnaire',
         'results'],
 
-    city1='',
-    city2='',
+    city1='01',
+    city2='02',
 
 )
 SESSION_CONFIGS = [
