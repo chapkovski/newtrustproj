@@ -6,7 +6,7 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=10.00, participation_fee=300.00, doc=""
+    real_world_currency_per_point=10.00, participation_fee=150.00, doc=""
 )
 
 import yaml
@@ -25,26 +25,22 @@ uni_trust = dict(
         'trust',
         'questionnaire',
         'results'],
-    city1='01',
-    city2='02',
+
+    city1='',
+    city2='',
 
 )
 SESSION_CONFIGS = [
-    uni_trust,
-    {**uni_trust,
-     'name': 'trust_bots',
-     'display_name': 'trust: Moscow-SPB - bots!',
-     'use_browser_bots': True},
     {**uni_trust,
      'name': 'trust_cq',
-     'display_name': 'trust: Moscow-SPB - with compehension questions!',
+     'display_name': 'trust: LAUNCH THIS FOR REAL STUDY!!!!!!',
      'cq': True,
      'use_browser_bots': False},
-    {**uni_trust,
-     'name': 'trust_cq_bots',
-     'cq': True,
-     'display_name': 'trust: Moscow-SPB - bots + Comprehension questions!',
-     'use_browser_bots': True}
+    # {**uni_trust,
+    #  'name': 'trust_cq_bots',
+    #  'cq': True,
+    #  'display_name': 'DO NOT LAUNCH THIS: trust: Moscow-SPB - bots + Comprehension questions!',
+    #  'use_browser_bots': True}
 ]
 
 # ISO-639 code
@@ -53,9 +49,10 @@ LANGUAGE_CODE = 'ru'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'RUR'
-USE_POINTS = False
+USE_POINTS = True
+POINTS_CUSTOM_NAME = 'токен'
 
-ROOMS = []
+ROOMS = [{'name': 'hse', 'display_name': 'HSE Study'}]
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
@@ -66,5 +63,5 @@ DEMO_PAGE_INTRO_HTML = """ """
 SECRET_KEY = 'm1e8fnwh3#$v6xbng%$!jn_onduh(22hmzx$kt=$ch6+m6*lcg'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree']
+INSTALLED_APPS = ['otree', 'import_export']
 EXTENSION_APPS = ['trust']

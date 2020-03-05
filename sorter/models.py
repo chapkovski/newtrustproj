@@ -33,7 +33,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    city = models.StringField()
+    city = models.StringField(label='Код города:')
     pc_id = models.IntegerField(label='')
 
     def pc_id_error_message(self, value):

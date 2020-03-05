@@ -41,7 +41,7 @@ class PlayerBot(Bot):
             сc1answers = dict(
                 cq1_1=30,
                 cq1_2=30,
-                cq1_3=20,
+                cq1_3=21,
                 cq1_4=31,
                 cq1_5=9,
                 cq1_6=10,
@@ -57,7 +57,7 @@ class PlayerBot(Bot):
                 cq2_2=10,
                 cq2_3=0,
                 cq2_4=10,
-                cq2_5=20,
+                cq2_5=0,
             )
             cq2wronganswers = {k: v + 1 for k, v in cq2answers.items()}
         yield Stage1Blocker

@@ -6,6 +6,10 @@ import pandas as pd
 from django_pandas.io import read_frame
 from django.http import HttpResponse
 from django.template import loader
+from django.http import HttpResponse
+from .resources import DecisionResource
+
+
 
 
 class PaginatedListView(ListView):
@@ -50,15 +54,11 @@ class ExportToCSV(ListView):
     filename = None
 
     def get(self, request, *args, **kwargs):
-        response = HttpResponse(content_type=self.content_type)
+        person_resource = DecisionResource()
+        dataset = person_resource.export(self.queryset)
+        response = HttpResponse(dataset.xls,  content_type='application/vnd.ms-excel')
         response['Content-Disposition'] = f'attachment; filename="{self.filename}"'
-        t = loader.get_template(self.template_name)
-        c = {
-            'data': self.get_queryset(),
-        }
-        response.write(t.render(c))
         return response
-
 
 from django_pivot.pivot import pivot
 
@@ -80,13 +80,12 @@ class DecisionPivotView(ListView):
     def get_queryset(self):
         q = self.queryset
         if q.exists():
-            pivot_table = pivot(q, ['owner__participant__code', 'decision_type'], 'city__code', 'answer')
+            pivot_table = pivot(q, ['owner__participant__code', 'owner__city','decision_type'], 'city__description', 'answer')
             return pivot_table
 
 
 class DecisionLongCSVExport(ExportToCSV):
-    filename = 'decisions_long.csv'
-    template_name = 'trust/admin/csv/decisions_long.csv'
+    filename = 'decisions_long.xls'
     queryset = Decision.objects.filter(answer__isnull=False)
     url_name = 'decisions_long_csv'
     url_pattern = r'^export/trust/decisions/long/csv$'

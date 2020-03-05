@@ -5,10 +5,11 @@ import time
 
 
 class Results(Page):
-    def post(self):
-        if self.participant.is_browser_bot:
-            time.sleep(5)
-        return super().post()
+    pass
+    # def post(self):
+    #     if self.participant.is_browser_bot:
+    #         time.sleep(30)
+    #     return super().post()
 
 
 page_sequence = [Results]

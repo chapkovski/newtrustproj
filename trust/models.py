@@ -183,7 +183,7 @@ class Player(CQPlayer):
         if self.role() == 'Sender':
             return c(self.guess)
         else:
-            return 'not to send the endowment' if self.guess == 0 else 'to send the endowment'
+            return 'не передать свою начальную сумму' if self.guess == 0 else 'передать свою начальную сумму'
 
     @property
     def decision(self):
@@ -195,9 +195,9 @@ class Player(CQPlayer):
     @property
     def decision_desc(self):
         if self.role() == 'Sender':
-            return 'not to send the endowment' if self.decision == 0 else 'to send the endowment'
+            return 'не передать свою начальную сумму' if self.decision == 0 else 'передать свою начальную сумму'
         else:
-            return f'to send back {c(self.decision)}'
+            return f'вернуть {c(self.decision)}'
 
     def dump_vars(self):
         dump = dict(
@@ -212,6 +212,8 @@ class Player(CQPlayer):
             sender_decision=self.group.sender_decision_re_receiver != 0,
             stage1payoff=self.stage1payoff,
             stage2payoff=self.stage2payoff,
+            stage1payoff_rubles=c(self.stage1payoff).to_real_world_currency(self.session),
+            stage2payoff_rubles=c(self.stage2payoff).to_real_world_currency(self.session),
         )
         self.participant.vars = {**self.participant.vars, **dump}
 
