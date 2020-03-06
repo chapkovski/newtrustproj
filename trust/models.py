@@ -69,7 +69,30 @@ class Subsession(BaseSubsession):
 
     def vars_for_admin_report(self):
         blockers = Blocker.objects.filter(session=self.session).order_by('pk')
-        return {'blockers': blockers}
+        r = dict(blockers=blockers)
+        if self.session.vars.get('monitor_cubicles'):
+            try:
+                city1 = City.objects.get(code=self.session.config.get('city1'))
+                city2 = City.objects.get(code=self.session.config.get('city2'))
+                city1_players = [p for p in self.session.get_participants() if p.vars.get('city') == city1.code]
+                city2_players = [p for p in self.session.get_participants() if p.vars.get('city') == city2.code]
+                city1_busy_cubicles = [p.vars.get('pc_id') for p in city1_players if p.vars.get('pc_id')]
+                city2_busy_cubicles = [p.vars.get('pc_id') for p in city2_players if p.vars.get('pc_id')]
+                potential_cubicles_city1 = list(range(1, self.session.config.get('num_cubicles_city_1') + 1))
+                potential_cubicles_city2 = list(range(1, self.session.config.get('num_cubicles_city_2') + 1))
+                city1_free_cubicles = list(set(potential_cubicles_city1).difference(set(city1_busy_cubicles)))
+                city2_free_cubicles = list(set(potential_cubicles_city2).difference(set(city2_busy_cubicles)))
+
+                cubicle_data = dict(
+                    busy_cubicles=dict(city1=city1_busy_cubicles, city2=city2_busy_cubicles),
+                    free_cubicles=dict(city1=city1_free_cubicles, city2=city2_free_cubicles),
+                    city1=city1,
+                    city2=city2,
+                )
+                r = {**r, 'cubicle_data': cubicle_data}
+            except:  # bad idea but we just need to be 100% sure that it won't block the admin page under no circumstances
+                pass
+        return r
 
     @property
     def cities(self):

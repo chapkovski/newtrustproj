@@ -11,11 +11,7 @@ class PlayerBot(Bot):
     def play_round(self):
         bi = [True, False]
         proper_city = random.choice(['01', '02'])
-        skip_city = random.choice(bi)
-        if skip_city:
-            city = ''
-        else:
-            city = proper_city
-        yield Submission(pages.Code, {'city':city},
-                         timeout_happened=skip_city)
-        yield Submission(pages.Welcome, {'pc_id': self.player.id}, timeout_happened=False)
+
+        yield Submission(pages.Code, {'city': proper_city},
+                         timeout_happened=False)
+        yield Submission(pages.Welcome, {'pc_id': self.player.id_in_subsession}, timeout_happened=False)

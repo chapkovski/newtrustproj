@@ -8,8 +8,8 @@
 
 </body>
 </html>{% load otree %}
-{% if session.vars.monitor_cubicles|default_if_none:False %}
-    {% include 'trust/admin/cubicles.html' %}
+{% if session.vars.monitor_cubicles|default_if_none:False  and cubicle_data|default_if_none:False %}
+    {% include 'trust/admin/cubicles.html' with  data=cubicle_data %}
 {% endif %}
 <h3>Locked pages</h3>
 
