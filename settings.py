@@ -24,10 +24,13 @@ uni_trust = dict(
         'sorter',
         'trust',
         'questionnaire',
-        'results'],
+        'results'
+    ],
 
     city1='',
     city2='',
+    num_cubicles_city_1=24,
+    num_cubicles_city_2=24,
 
 )
 SESSION_CONFIGS = [

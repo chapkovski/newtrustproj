@@ -16,6 +16,7 @@ import json
 from django.core.serializers import serialize
 from otree.models import Session
 from django_pandas.managers import DataFrameManager
+
 author = 'Philipp Chapkovski'
 
 doc = """
@@ -68,11 +69,34 @@ class Subsession(BaseSubsession):
 
     def vars_for_admin_report(self):
         blockers = Blocker.objects.filter(session=self.session).order_by('pk')
-        return {'blockers': blockers}
+        r = dict(blockers=blockers)
+        if self.session.vars.get('monitor_cubicles'):
+            try:
+                city1 = City.objects.get(code=self.session.config.get('city1'))
+                city2 = City.objects.get(code=self.session.config.get('city2'))
+                city1_players = [p for p in self.session.get_participants() if p.vars.get('city') == city1.code]
+                city2_players = [p for p in self.session.get_participants() if p.vars.get('city') == city2.code]
+                city1_busy_cubicles = [p.vars.get('pc_id') for p in city1_players if p.vars.get('pc_id')]
+                city2_busy_cubicles = [p.vars.get('pc_id') for p in city2_players if p.vars.get('pc_id')]
+                potential_cubicles_city1 = list(range(1, self.session.config.get('num_cubicles_city_1') + 1))
+                potential_cubicles_city2 = list(range(1, self.session.config.get('num_cubicles_city_2') + 1))
+                city1_free_cubicles = list(set(potential_cubicles_city1).difference(set(city1_busy_cubicles)))
+                city2_free_cubicles = list(set(potential_cubicles_city2).difference(set(city2_busy_cubicles)))
+
+                cubicle_data = dict(
+                    busy_cubicles=dict(city1=city1_busy_cubicles, city2=city2_busy_cubicles),
+                    free_cubicles=dict(city1=city1_free_cubicles, city2=city2_free_cubicles),
+                    city1=city1,
+                    city2=city2,
+                )
+                r = {**r, 'cubicle_data': cubicle_data}
+            except:  # bad idea but we just need to be 100% sure that it won't block the admin page under no circumstances
+                pass
+        return r
 
     @property
     def cities(self):
-        return set([self.session.config.get('city1'), self.session.config.get('city2')])
+        return [self.session.config.get('city1'), self.session.config.get('city2')]
 
     def creating_session(self):
         from .pages import page_sequence
@@ -80,6 +104,15 @@ class Subsession(BaseSubsession):
         blockers = [Blocker(page=i, session=self.session, locked=True) for i in active_blockers]
         Blocker.objects.bulk_create(blockers)
         self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)
+
+        ########### BLOCK: monitor cubicles ##############################################################
+        # some sanity check to guarantee non crushing monitor
+        ncub1 = self.session.config.get('num_cubicles_city_1')
+        ncub2 = self.session.config.get('num_cubicles_city_2')
+        if isinstance(ncub1, int) and isinstance(ncub1, int) and ncub1 + ncub2 < 100:
+            self.session.vars['monitor_cubicles'] = True
+        ############ END OF: monitor cubicles #############################################################
+
         for p in self.get_players():
             p.participant.vars['city_order'] = random.choice([True, False])
             p.city_order = p.participant.vars['city_order']
@@ -87,11 +120,11 @@ class Subsession(BaseSubsession):
             raise Exception('Number of participants should be even!')
         for i in settings.CITIES:
             City.objects.get_or_create(code=i['code'], defaults={'description': i['name']})
-
-        if len(self.cities) != len(set(self.cities)): raise Exception('Вы ввели два одинаковых города! Не надо так.')
         registered_cities = set(City.objects.all().values_list('code', flat=True))
         if not set(self.cities).issubset(registered_cities):
             raise Exception('Вы ввели неверный код для одного из городов!')
+        if len(self.cities) != len(set(self.cities)):
+            raise Exception('Вы ввели два одинаковых города! Не надо так.')
 
 
 class Group(BaseGroup):
@@ -262,8 +295,10 @@ class Player(CQPlayer):
         # todo: optimize with bulk_create
         for city in City.objects.all():
             Decision.objects.create(city=city, owner=self, decision_type=decision_type)
-    def _decision_getter(self,decision_type):
+
+    def _decision_getter(self, decision_type):
         return self.decisions.filter(decision_type=decision_type)
+
     @property
     def senderdecisions(self):
         return self._decision_getter('sender_decision')
@@ -300,10 +335,6 @@ class Decision(djmodels.Model):
     answer = models.IntegerField()
     forpd = DataFrameManager()
     objects = djmodels.Manager()
-
-
-
-
 
 
 class Blocker(djmodels.Model):
