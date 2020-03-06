@@ -35,7 +35,7 @@ SESSION_CONFIGS = [
      'name': 'trust_cq',
      'display_name': 'trust: LAUNCH THIS FOR REAL STUDY!!!!!!',
      'cq': True,
-     'use_browser_bots': False},
+     'use_browser_bots': True},
     # {**uni_trust,
     #  'name': 'trust_cq_bots',
     #  'cq': True,
