@@ -96,7 +96,7 @@ class Subsession(BaseSubsession):
 
     @property
     def cities(self):
-        return set([self.session.config.get('city1'), self.session.config.get('city2')])
+        return [self.session.config.get('city1'), self.session.config.get('city2')]
 
     def creating_session(self):
         from .pages import page_sequence
@@ -120,11 +120,11 @@ class Subsession(BaseSubsession):
             raise Exception('Number of participants should be even!')
         for i in settings.CITIES:
             City.objects.get_or_create(code=i['code'], defaults={'description': i['name']})
-
-        if len(self.cities) != len(set(self.cities)): raise Exception('Вы ввели два одинаковых города! Не надо так.')
         registered_cities = set(City.objects.all().values_list('code', flat=True))
         if not set(self.cities).issubset(registered_cities):
             raise Exception('Вы ввели неверный код для одного из городов!')
+        if len(self.cities) != len(set(self.cities)):
+            raise Exception('Вы ввели два одинаковых города! Не надо так.')
 
 
 class Group(BaseGroup):
