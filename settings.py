@@ -23,11 +23,14 @@ uni_trust = dict(
     app_sequence=[
         'sorter',
         'trust',
-        'questionnaire',
-        'results'],
+        # 'questionnaire',
+        # 'results'
+    ],
 
     city1='01',
     city2='02',
+    num_cubicles_city_1=24,
+    num_cubicles_city_2=24,
 
 )
 SESSION_CONFIGS = [

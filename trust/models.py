@@ -16,6 +16,7 @@ import json
 from django.core.serializers import serialize
 from otree.models import Session
 from django_pandas.managers import DataFrameManager
+
 author = 'Philipp Chapkovski'
 
 doc = """
@@ -80,6 +81,15 @@ class Subsession(BaseSubsession):
         blockers = [Blocker(page=i, session=self.session, locked=True) for i in active_blockers]
         Blocker.objects.bulk_create(blockers)
         self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)
+
+        ########### BLOCK: monitor cubicles ##############################################################
+        # some sanity check to guarantee non crushing monitor
+        ncub1 = self.session.config.get('num_cubicles_city_1')
+        ncub2 = self.session.config.get('num_cubicles_city_2')
+        if isinstance(ncub1, int) and isinstance(ncub1, int) and ncub1 + ncub2 < 100:
+            self.session.vars['monitor_cubicles'] = True
+        ############ END OF: monitor cubicles #############################################################
+
         for p in self.get_players():
             p.participant.vars['city_order'] = random.choice([True, False])
             p.city_order = p.participant.vars['city_order']
@@ -262,8 +272,10 @@ class Player(CQPlayer):
         # todo: optimize with bulk_create
         for city in City.objects.all():
             Decision.objects.create(city=city, owner=self, decision_type=decision_type)
-    def _decision_getter(self,decision_type):
+
+    def _decision_getter(self, decision_type):
         return self.decisions.filter(decision_type=decision_type)
+
     @property
     def senderdecisions(self):
         return self._decision_getter('sender_decision')
@@ -300,10 +312,6 @@ class Decision(djmodels.Model):
     answer = models.IntegerField()
     forpd = DataFrameManager()
     objects = djmodels.Manager()
-
-
-
-
 
 
 class Blocker(djmodels.Model):
