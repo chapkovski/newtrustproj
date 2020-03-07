@@ -8,7 +8,7 @@
 
         <div class="row">
             <div class="col-6">
-                <h6>{{ data.city1.code }}: {{ data.city1.description }}</h6>
+                <h6>{{ data.city1.code }}:</h6>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         Occupied: {% for foo in data.busy_cubicles.city1|default:None %}
@@ -24,7 +24,7 @@
                 </ul>
             </div>
             <div class="col-6">
-                <h6>{{ data.city2.code }}: {{ data.city2.description }}</h6>
+                <h6>{{ data.city2.code }}: </h6>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                        Occupied: {% for foo in data.busy_cubicles.city2|default:None %}
