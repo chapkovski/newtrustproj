@@ -12,7 +12,9 @@ from channels.layers import get_channel_layer
 import time
 import asyncio
 
+
 async def download_ready(userid):
+
     await asyncio.sleep(5)
     print("JOPA!", userid)
     await get_channel_layer().group_send(
@@ -25,6 +27,7 @@ async def download_ready(userid):
 
 
 class ExportConsumer(AsyncJsonWebsocketConsumer):
+    groups = ['jopa']
     async def group_add(self):
         await self.channel_layer.group_add(
             self.room_group_name,
@@ -42,6 +45,7 @@ class ExportConsumer(AsyncJsonWebsocketConsumer):
         self.user_id = self.room_group_name = self.scope['url_route']['kwargs'].get('user_id')
         print("GROUP NAME", self.room_group_name)
         await self.group_add()
+        print(self.groups, 'GROUPS')
 
     async def disconnect(self, close_code):
         await self.group_discard()
@@ -51,14 +55,23 @@ class ExportConsumer(AsyncJsonWebsocketConsumer):
         request = text_data_json.get('request')
         print('message received!!!', request)
         # await download_ready(self.room_group_name)
-        asyncio.create_task(download_ready(self.user_id))
+        # asyncio.create_task(download_ready(self.user_id))
         await self.send_json(content='hello')
 
-    async def chat_message(self, event):
-        print("PIZDA!!!!")
-        message = event['message']
+    async def delayed_task(self):
+        await asyncio.sleep(5)
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'chat_message',
+                'message': 'LATER'
+            }
+        )
 
-        # Send message to WebSocket
-        await self.send(text_data=json.dumps({
-            'message': message
-        }))
+    async def delayed_message(self, event):
+        asyncio.create_task(self.delayed_task())
+        await self.send_json('NOW')
+
+    async def chat_message(self, event):
+        message = event['message']
+        await self.send_json(message)

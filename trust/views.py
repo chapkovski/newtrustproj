@@ -8,7 +8,8 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import HttpResponse
 from .resources import DecisionResource
-
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 
 
 class PaginatedListView(ListView):
@@ -46,6 +47,12 @@ class DecisionListView(PaginatedListView):
     export_link_name = 'decisions_long_csv'
     model = Decision
     queryset = Decision.objects.filter(answer__isnull=False)
+
+    def get(self, *args, **kwargs):
+        _group_send = get_channel_layer().group_send
+        _sync_group_send = async_to_sync(_group_send)
+        _sync_group_send('jopa', {"type": 'delayed_message', 'message': 'hello'})
+        return super().get(*args, **kwargs)
 
 
 class ExportToCSV(ListView):
