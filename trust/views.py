@@ -49,9 +49,9 @@ class DecisionListView(PaginatedListView):
     queryset = Decision.objects.filter(answer__isnull=False)
 
     def get(self, *args, **kwargs):
-        _group_send = get_channel_layer().group_send
-        _sync_group_send = async_to_sync(_group_send)
-        _sync_group_send('jopa', {"type": 'delayed_message', 'message': 'hello'})
+        # _group_send = get_channel_layer().group_send
+        # _sync_group_send = async_to_sync(_group_send)
+        # _sync_group_send('jopa', {"type": 'delayed_message', 'message': 'hello'})
         return super().get(*args, **kwargs)
 
 

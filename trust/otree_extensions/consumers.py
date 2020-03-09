@@ -11,10 +11,12 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 import time
 import asyncio
+import random
+from trust.models import Player
+from channels.db import database_sync_to_async
 
 
 async def download_ready(userid):
-
     await asyncio.sleep(5)
     print("JOPA!", userid)
     await get_channel_layer().group_send(
@@ -28,6 +30,7 @@ async def download_ready(userid):
 
 class ExportConsumer(AsyncJsonWebsocketConsumer):
     groups = ['jopa']
+
     async def group_add(self):
         await self.channel_layer.group_add(
             self.room_group_name,
@@ -55,18 +58,24 @@ class ExportConsumer(AsyncJsonWebsocketConsumer):
         request = text_data_json.get('request')
         print('message received!!!', request)
         # await download_ready(self.room_group_name)
-        # asyncio.create_task(download_ready(self.user_id))
+        asyncio.create_task(self.delayed_task())
         await self.send_json(content='hello')
 
+    @database_sync_to_async
+    def get_long_q(self):
+
+        maxp = Player.objects.all().count() - 1
+        ps = []
+        print('IN THE BGINING OF DEALY')
+        if maxp > 0:
+            for i in Player.objects.all():
+                ps.append(random.choice(Player.objects.all()).participant.code)
+        return random.choice(ps)
+
     async def delayed_task(self):
-        await asyncio.sleep(5)
-        await self.channel_layer.group_send(
-            self.room_group_name,
-            {
-                'type': 'chat_message',
-                'message': 'LATER'
-            }
-        )
+        q = await self.get_long_q()
+        print('DB', q)
+        await self.send_json({'a': q})
 
     async def delayed_message(self, event):
         asyncio.create_task(self.delayed_task())
