@@ -1,0 +1,47 @@
+<script>
+    const startbtn = $('#export_data_start');
+    const cancelbtn = $('#export_data_cancel');
+    const downloadbtn = $('#export_data_download');
+    startbtn.on('click', () => {
+        exportSocket.send(JSON.stringify({
+            'request': 'request',
+        }));
+    });
+    cancelbtn.on('click', () => {
+        exportSocket.send(JSON.stringify({
+           'request': 'cancel',
+
+        }));
+    });
+    downloadbtn.on('click', () => {
+        exportSocket.send(JSON.stringify({
+            'request': 'download',
+
+        }));
+    });
+
+    function uuidv4() {
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
+
+
+    if (!localStorage.getItem('admin_id')) localStorage.setItem('admin_id', uuidv4());
+    const admin_id = localStorage.getItem('admin_id');
+
+    const ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+    const exportSocketPath = ws_scheme + '://' + window.location.host + `/export/decisions/${admin_id}`;
+    const exportSocket = new WebSocket(exportSocketPath);
+
+    exportSocket.onopen = function (e) {
+
+    };
+    exportSocket.onmessage = function (e) {
+        {#const data = JSON.parse(e.data);#}
+        console.log('AAAA', e.data)
+    };
+    exportSocket.onclose = function (e) {
+        console.debug('Chat socket closed unexpectedly');
+    };
+</script>

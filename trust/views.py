@@ -11,7 +11,6 @@ from .resources import DecisionResource
 
 
 
-
 class PaginatedListView(ListView):
     navbar_active_tag = None
     export_link_name = None
@@ -56,9 +55,10 @@ class ExportToCSV(ListView):
     def get(self, request, *args, **kwargs):
         person_resource = DecisionResource()
         dataset = person_resource.export(self.queryset)
-        response = HttpResponse(dataset.xls,  content_type='application/vnd.ms-excel')
+        response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
         response['Content-Disposition'] = f'attachment; filename="{self.filename}"'
         return response
+
 
 from django_pivot.pivot import pivot
 
@@ -80,7 +80,8 @@ class DecisionPivotView(ListView):
     def get_queryset(self):
         q = self.queryset
         if q.exists():
-            pivot_table = pivot(q, ['owner__participant__code', 'owner__city','decision_type'], 'city__description', 'answer')
+            pivot_table = pivot(q, ['owner__participant__code', 'owner__city', 'decision_type'], 'city__description',
+                                'answer')
             return pivot_table
 
 

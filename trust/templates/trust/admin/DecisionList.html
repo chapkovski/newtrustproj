@@ -32,7 +32,7 @@
                         {{ s.decision_type }}
                     </td>
                     <td>
-                        {{ s.city.code}}
+                        {{ s.city.code }}
                     </td>
                     <td>
                         {{ s.city.description }}
@@ -50,4 +50,9 @@
         No data on decisions have been found.
     {% endif %}
 
+{% endblock %}
+
+{% block internal_scripts %}
+    {{ block.super }}
+    {% include 'trust/admin/includes/export_connector.html' %}
 {% endblock %}
