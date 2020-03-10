@@ -39,11 +39,11 @@ SESSION_CONFIGS = [
      'display_name': 'trust: LAUNCH THIS FOR REAL STUDY!!!!!!',
      'cq': True,
      'use_browser_bots': False},
-    # {**uni_trust,
-    #  'name': 'trust_cq_bots',
-    #  'cq': True,
-    #  'display_name': 'DO NOT LAUNCH THIS: trust: Moscow-SPB - bots + Comprehension questions!',
-    #  'use_browser_bots': True}
+    {
+     'name': 'questionnaire',
+     'app_sequence':['questionnaire'],
+     'display_name': 'Questionnaire only',
+     'use_browser_bots': False}
 ]
 
 # ISO-639 code
