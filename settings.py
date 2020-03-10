@@ -40,10 +40,11 @@ SESSION_CONFIGS = [
      'cq': True,
      'use_browser_bots': False},
     {
-     'name': 'questionnaire',
-     'app_sequence':['questionnaire'],
-     'display_name': 'Questionnaire only',
-     'use_browser_bots': False}
+        'name': 'questionnaire',
+        'app_sequence': ['questionnaire'],
+        'display_name': 'Questionnaire only',
+        'num_demo_participants': 1,
+        'use_browser_bots': False}
 ]
 
 # ISO-639 code
