@@ -34,7 +34,8 @@ def get_full_data():
                         '_role', 'city_order', 'participant__id_in_session', 'participant__label',
                         *curconverter.keys(), )))
         df.set_index('participant__code', inplace=True)
-        df['participant__time_started'] = pd.to_datetime(df['participant__time_started'], unit='s')
+        df['participant__time_started'] = pd.to_datetime(df['participant__time_started'], unit='s').dt.strftime(
+            '%B %d, %Y, %r')
         return df
 
     # get pivot table from decisions
