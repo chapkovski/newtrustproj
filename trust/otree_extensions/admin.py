@@ -1,4 +1,5 @@
-from trust.views import DecisionListView, DecisionPivotView
+from trust.views import DecisionListView, DecisionPivotView, PandasExport
 
 data_export_views = [DecisionListView,
-                     DecisionPivotView]
+                     DecisionPivotView,
+                     PandasExport]

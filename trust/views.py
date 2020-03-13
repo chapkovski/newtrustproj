@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, View
 from django.urls import reverse
 from .models import Decision
 from django.db.models import Q
@@ -8,8 +8,6 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import HttpResponse
 from .resources import DecisionResource
-
-
 
 
 class PaginatedListView(ListView):
@@ -56,9 +54,10 @@ class ExportToCSV(ListView):
     def get(self, request, *args, **kwargs):
         person_resource = DecisionResource()
         dataset = person_resource.export(self.queryset)
-        response = HttpResponse(dataset.xls,  content_type='application/vnd.ms-excel')
+        response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
         response['Content-Disposition'] = f'attachment; filename="{self.filename}"'
         return response
+
 
 from django_pivot.pivot import pivot
 
@@ -80,7 +79,8 @@ class DecisionPivotView(ListView):
     def get_queryset(self):
         q = self.queryset
         if q.exists():
-            pivot_table = pivot(q, ['owner__participant__code', 'owner__city','decision_type'], 'city__description', 'answer')
+            pivot_table = pivot(q, ['owner__participant__code', 'owner__city', 'decision_type'], 'city__description',
+                                'answer')
             return pivot_table
 
 
@@ -115,3 +115,34 @@ class AllowInstructions(UpdateView):
         obj.locked = not obj.locked
         obj.save()
         return HttpResponseRedirect(self.get_success_url())
+
+
+from io import StringIO as IO
+from otree.models import Participant
+import pandas as pd
+from trust.models import Decision
+from datetime import datetime
+
+
+class PandasExport(View):
+    url_name = 'export_pivot'
+    display_name = 'Export decisions (CSV)'
+    url_pattern = fr'export/wide/csv'
+    content_type = 'text/csv'
+
+    def get(self, request, *args, **kwargs):
+        q = Decision.objects.all()
+        df = pd.DataFrame(list(q.values('city__code', 'decision_type', 'owner__participant__code', 'answer')))
+        table = pd.pivot_table(df, values='answer', index=['owner__participant__code'],
+                               columns=['decision_type', 'city__code'])
+        table.reset_index(inplace=True)
+        table.columns = ['_'.join(col).strip() for col in table.columns.values]
+        csv_file = IO()
+        table.to_csv(csv_file, index=False, header=True)
+        csv_file.seek(0)
+        response = HttpResponse(csv_file.read(), content_type=self.content_type)
+        formatted_date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+        filename = f'decisions_wide_{formatted_date}.csv'
+        response['Content-Disposition'] = f'attachment; filename={filename}'
+
+        return response
