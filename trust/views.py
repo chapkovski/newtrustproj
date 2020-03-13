@@ -122,8 +122,11 @@ from otree.models import Participant
 import pandas as pd
 from trust.models import Decision
 from datetime import datetime
+from questionnaire.models import Player as QPlayer
+from django.utils import timezone
 
 
+from .pivot import get_full_data
 class PandasExport(View):
     url_name = 'export_pivot'
     display_name = 'Export decisions (CSV)'
@@ -131,14 +134,18 @@ class PandasExport(View):
     content_type = 'text/csv'
 
     def get(self, request, *args, **kwargs):
-        q = Decision.objects.all()
-        df = pd.DataFrame(list(q.values('city__code', 'decision_type', 'owner__participant__code', 'answer')))
-        table = pd.pivot_table(df, values='answer', index=['owner__participant__code'],
-                               columns=['decision_type', 'city__code'])
-        table.reset_index(inplace=True)
-        table.columns = ['_'.join(col).strip() for col in table.columns.values]
+        # q = Decision.objects.all()
+        # df = pd.DataFrame(list(q.values('city__code', 'decision_type', 'owner__participant__code', 'answer')))
+        # table = pd.pivot_table(df, values='answer', index=['owner__participant__code'],
+        #                        columns=['decision_type', 'city__code'])
+        # table.columns = ['_'.join(col).strip() for col in table.columns.values]
+        # qsdata = QPlayer.objects.all()
+        # dfq = pd.DataFrame(list(qsdata.values()))
+
         csv_file = IO()
-        table.to_csv(csv_file, index=False, header=True)
+
+        csv_data = get_full_data()
+        csv_data.to_csv(csv_file, index=False, header=True)
         csv_file.seek(0)
         response = HttpResponse(csv_file.read(), content_type=self.content_type)
         formatted_date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
