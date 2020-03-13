@@ -32,8 +32,9 @@ def get_full_data():
         data = Player.objects.all().annotate(**curconverter).values()
 
         df = pd.DataFrame(list(
-            data.values(*curconverter.keys(), 'participant__code', 'participant__time_started', 'city', 'partner_city',
-                        '_role', 'city_order', 'participant__id_in_session', 'participant__label')))
+            data.values('session__code', 'participant__code', 'participant__time_started', 'city', 'partner_city',
+                        '_role', 'city_order', 'participant__id_in_session', 'participant__label',
+                        *curconverter.keys(), )))
         df.set_index('participant__code', inplace=True)
         df['participant__time_started'] = pd.to_datetime(df['participant__time_started'], unit='s')
         return df
@@ -57,11 +58,17 @@ def get_full_data():
             '_id_in_subsession',
             'round_number',
             'id_in_group',
-
+            '_gbat_arrived',
+            '_gbat_grouped',
+            'id',
+            'participant',
+            'session',
+            'subsession',
+            'group',
         ]
         data = Player.objects.all()
-        fields = [q.name for q in Player._meta.get_fields()]
-        df = pd.DataFrame(list(data.values(*fields, 'participant__code', 'session__code')))
+        fields = [q.name for q in Player._meta.get_fields() if q.name not in skip_fields]
+        df = pd.DataFrame(list(data.values(*fields, 'participant__code', )))
         df.set_index('participant__code', inplace=True)
         return df
 
