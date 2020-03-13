@@ -118,36 +118,23 @@ class AllowInstructions(UpdateView):
 
 
 from io import StringIO as IO
-from otree.models import Participant
-import pandas as pd
-from trust.models import Decision
 from datetime import datetime
-from questionnaire.models import Player as QPlayer
-from django.utils import timezone
-
-
 from .pivot import get_full_data
+
+from django.utils.encoding import smart_str
 class PandasExport(View):
     url_name = 'export_pivot'
     display_name = 'Export decisions (CSV)'
     url_pattern = fr'export/wide/csv'
-    content_type = 'text/csv'
+    content_type = 'text/csv; charset=utf-8'
 
     def get(self, request, *args, **kwargs):
-        # q = Decision.objects.all()
-        # df = pd.DataFrame(list(q.values('city__code', 'decision_type', 'owner__participant__code', 'answer')))
-        # table = pd.pivot_table(df, values='answer', index=['owner__participant__code'],
-        #                        columns=['decision_type', 'city__code'])
-        # table.columns = ['_'.join(col).strip() for col in table.columns.values]
-        # qsdata = QPlayer.objects.all()
-        # dfq = pd.DataFrame(list(qsdata.values()))
-
         csv_file = IO()
-
         csv_data = get_full_data()
-        csv_data.to_csv(csv_file, index=False, header=True)
+        csv_data.to_csv(csv_file, index=False, header=True, encoding='utf-8-sig')
         csv_file.seek(0)
-        response = HttpResponse(csv_file.read(), content_type=self.content_type)
+
+        response = HttpResponse(smart_str(csv_file.read()), content_type=self.content_type)
         formatted_date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         filename = f'decisions_wide_{formatted_date}.csv'
         response['Content-Disposition'] = f'attachment; filename={filename}'

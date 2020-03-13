@@ -14,6 +14,7 @@ def renamer(fields):
         if f in fields:
             return f'trustgame_{f}'
         return f
+
     return inner
 
 
@@ -30,7 +31,9 @@ def get_full_data():
             curconverter[f'trustgame_{p}'] = Cast(p, output_field=IntegerField())
         data = Player.objects.all().annotate(**curconverter).values()
 
-        df = pd.DataFrame(list(data.values(*curconverter.keys(), 'participant__code', 'participant__time_started')))
+        df = pd.DataFrame(list(
+            data.values(*curconverter.keys(), 'participant__code', 'participant__time_started', 'city', 'partner_city',
+                        '_role', 'city_order', 'participant__id_in_session', 'participant__label')))
         df.set_index('participant__code', inplace=True)
         df['participant__time_started'] = pd.to_datetime(df['participant__time_started'], unit='s')
         return df
@@ -49,6 +52,13 @@ def get_full_data():
 
     # get questionnaire
     def get_q_data(Player):
+        skip_fields = [
+            '_payoff',
+            '_id_in_subsession',
+            'round_number',
+            'id_in_group',
+
+        ]
         data = Player.objects.all()
         fields = [q.name for q in Player._meta.get_fields()]
         df = pd.DataFrame(list(data.values(*fields, 'participant__code', 'session__code')))
@@ -60,9 +70,10 @@ def get_full_data():
     q = get_q_data(QPlayer)
 
     merged = pd.concat([
-        decisions,
         trust_data,
-        q
+        q,
+        decisions,
+
     ], sort=False, join='inner', axis=1)
     merged.reset_index(inplace=True)
 
