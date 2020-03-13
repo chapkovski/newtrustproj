@@ -1,12 +1,10 @@
 import pandas as pd
 from trust.models import Decision
-from datetime import datetime
 from questionnaire.models import Player as QPlayer
 from trust.models import Player as TPlayer
 from django.db.models import Value, IntegerField, F, DecimalField
 from django.db.models.functions import Cast
-
-from otree.models import CurrencyField
+from otree.models_concrete import PageCompletion
 
 
 def renamer(fields):
@@ -72,14 +70,30 @@ def get_full_data():
         df.set_index('participant__code', inplace=True)
         return df
 
+    # get time completion as pivot
+    def get_time():
+        pages = ['CQ1', 'CQ2', 'SenderDecisionP', 'SenderBeliefP', 'ReturnDecisionP', 'ReturnerBeliefP', 'Average2',
+                 'Average3',
+                 'Motivation', ]
+        q = PageCompletion.objects.filter(page_name__in=pages)
+        ps = q.values('participant__code', 'page_name', 'seconds_on_page')
+
+        df = pd.DataFrame(list(ps))
+        df['page_name'] = df['page_name'].apply(lambda x: f'time_{x}')
+        table = pd.pivot_table(df, values='seconds_on_page', index=['participant__code'],
+                               columns=['page_name'])
+
+        return table
+
     trust_data = get_trust_data_df(TPlayer)
     decisions = get_decisions_wide_df(Decision)
     q = get_q_data(QPlayer)
-
+    completion_time = get_time()
     merged = pd.concat([
         trust_data,
         q,
         decisions,
+        completion_time
 
     ], sort=False, join='inner', axis=1)
     merged.reset_index(inplace=True)
