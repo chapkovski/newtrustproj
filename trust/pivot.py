@@ -14,10 +14,7 @@ def renamer(oldname):
 
 def reshuffle_data(data):
     data.rename(renamer, axis='columns', inplace=True)
-    filtered_columns = data.dtypes[data.dtypes == 'bool']
-    list_column_names = list(filtered_columns.index)
-    for i in list_column_names:
-        data[i] = data[i].replace({True: 1, False: 0})
+    data = data * 1
     return data
 
 
