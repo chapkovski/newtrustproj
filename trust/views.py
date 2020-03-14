@@ -126,7 +126,7 @@ from django.utils.encoding import smart_str
 
 class PandasExport(View):
     url_name = 'export_pivot'
-    display_name = 'Export decisions (CSV)'
+    display_name = 'Export decisions (Excel)'
     url_pattern = fr'export/wide/csv'
     content_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 

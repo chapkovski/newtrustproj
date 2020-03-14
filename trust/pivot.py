@@ -7,13 +7,18 @@ from django.db.models.functions import Cast
 from otree.models_concrete import PageCompletion
 
 
-def renamer(fields):
-    def inner(f):
-        if f in fields:
-            return f'trustgame_{f}'
-        return f
+def renamer(oldname):
+    newname = oldname.strip('_').replace('__', '_')
+    return newname
 
-    return inner
+
+def reshuffle_data(data):
+    data.rename(renamer, axis='columns', inplace=True)
+    filtered_columns = data.dtypes[data.dtypes == 'bool']
+    list_column_names = list(filtered_columns.index)
+    for i in list_column_names:
+        data[i] = data[i].astype(int)
+    return data
 
 
 def get_full_data():
@@ -97,6 +102,7 @@ def get_full_data():
         completion_time
 
     ], sort=False, join='inner', axis=1)
+    merged = reshuffle_data(merged)
     merged.reset_index(inplace=True)
 
     return merged
