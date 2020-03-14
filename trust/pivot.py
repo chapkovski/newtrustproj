@@ -15,6 +15,7 @@ def renamer(oldname):
 def reshuffle_data(data):
     data.rename(renamer, axis='columns', inplace=True)
     data = data * 1
+    data['role'] = data['role'].replace({'Receiver': 1, 'Sender': 0, }).fillna('')
     return data
 
 
