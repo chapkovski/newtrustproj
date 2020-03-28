@@ -100,9 +100,10 @@ class Subsession(BaseSubsession):
 
     def creating_session(self):
         from .pages import page_sequence
-        active_blockers = [p.__name__ for p in page_sequence if getattr(p, 'lockable', False)]
-        blockers = [Blocker(page=i, session=self.session, locked=True) for i in active_blockers]
-        Blocker.objects.bulk_create(blockers)
+        if not self.session.config.get('debug'):
+            active_blockers = [p.__name__ for p in page_sequence if getattr(p, 'lockable', False)]
+            blockers = [Blocker(page=i, session=self.session, locked=True) for i in active_blockers]
+            Blocker.objects.bulk_create(blockers)
         self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)
 
         ########### BLOCK: monitor cubicles ##############################################################
