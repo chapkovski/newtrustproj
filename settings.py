@@ -35,10 +35,18 @@ uni_trust = dict(
 )
 SESSION_CONFIGS = [
     {**uni_trust,
-     'name': 'trust_cq',
-     'display_name': 'trust: LAUNCH THIS FOR REAL STUDY!!!!!!',
+     'city1': '01',
+     'city2': '02',
+     'name': 'trust_demo',
+     'display_name': 'trust: DEMO! Moscow-St.Petersburg',
      'cq': True,
+     'debug': True,
      'use_browser_bots': False},
+    # {**uni_trust,
+    #  'name': 'trust_cq',
+    #  'display_name': 'trust: LAUNCH THIS FOR REAL STUDY!!!!!!',
+    #  'cq': True,
+    #  'use_browser_bots': False},
     {
         'name': 'questionnaire',
         'app_sequence': ['questionnaire'],
