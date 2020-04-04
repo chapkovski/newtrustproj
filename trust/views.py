@@ -7,7 +7,7 @@ from django_pandas.io import read_frame
 from django.http import HttpResponse
 from django.template import loader
 from django.http import HttpResponse
-from .resources import DecisionResource
+
 
 
 class PaginatedListView(ListView):
@@ -47,16 +47,6 @@ class DecisionListView(PaginatedListView):
     queryset = Decision.objects.filter(answer__isnull=False)
 
 
-class ExportToCSV(ListView):
-    content_type = 'text/csv'
-    filename = None
-
-    def get(self, request, *args, **kwargs):
-        person_resource = DecisionResource()
-        dataset = person_resource.export(self.queryset)
-        response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
-        response['Content-Disposition'] = f'attachment; filename="{self.filename}"'
-        return response
 
 
 from django_pivot.pivot import pivot
@@ -84,11 +74,6 @@ class DecisionPivotView(ListView):
             return pivot_table
 
 
-class DecisionLongCSVExport(ExportToCSV):
-    filename = 'decisions_long.xls'
-    queryset = Decision.objects.filter(answer__isnull=False)
-    url_name = 'decisions_long_csv'
-    url_pattern = r'^export/trust/decisions/long/csv$'
 
 
 """
