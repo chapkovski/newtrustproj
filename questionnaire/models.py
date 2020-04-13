@@ -375,8 +375,7 @@ class Player(BasePlayer):
     # )
 
     trust_church = models.IntegerField(
-        verbose_name='''Скажите пожалуйста, насколько Вы доверяете следующим организациям и институтам:
-        
+        verbose_name='''
         Церковь''',
         choices=Constants.Trust4DNK
     )

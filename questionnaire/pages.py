@@ -70,7 +70,27 @@ class Trust(Page):
                                  'trust_stranger',
                                  'trust_other_faith',
                                  'trust_fiends',
-                                 'trust_politicians', ]}]
+                                 'trust_politicians', ]},
+                     {"title": 'Скажите пожалуйста, насколько Вы доверяете следующим организациям и институтам:',
+                      "fields": [
+                          'trust_church',
+                          'trust_army',
+                          'trust_press',
+                          'trust_tv',
+                          'trust_tradeunion',
+                          'trust_police',
+                          'trust_courts',
+                          'trust_government',
+                          'trust_parties',
+                          'trust_president',
+                          'trust_parliament',
+                          'trust_regional_authorities',
+                          'trust_local_authorities',
+                          'trust_charity',
+                          'trust_CIS',
+                          'trust_UN',
+                      ]}
+                     ]
 
     def get_form_class(self):
         form_model = self._get_form_model()
