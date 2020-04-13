@@ -333,34 +333,39 @@ class Player(BasePlayer):
     # )
 
     trust_family = models.IntegerField(
-        verbose_name='''Скажите пожалуйста, насколько Вы доверяете следующим категориям людей: 
-        
-        Ваша семья''',
-        choices=Constants.Trust4DNK
+        verbose_name='''Ваша семья''',
+        choices=Constants.Trust4DNK,
+        widget=widgets.RadioSelectHorizontal
     )
     trust_neighbours = models.IntegerField(
         verbose_name='''Ваши соседи''',
-        choices=Constants.Trust4DNK
+        choices=Constants.Trust4DNK,
+        widget=widgets.RadioSelectHorizontal
     )
     trust_acquant = models.IntegerField(
         verbose_name='''Люди, с которыми Вы лично знакомы''',
-        choices=Constants.Trust4DNK
+        choices=Constants.Trust4DNK,
+        widget=widgets.RadioSelectHorizontal
     )
     trust_stranger = models.IntegerField(
         verbose_name='''Люди, с которыми Вы не знакомы''',
-        choices=Constants.Trust4DNK
+        choices=Constants.Trust4DNK,
+        widget=widgets.RadioSelectHorizontal
     )
     trust_other_faith = models.IntegerField(
         verbose_name='''Люди другой веры''',
-        choices=Constants.Trust4DNK
+        choices=Constants.Trust4DNK,
+        widget=widgets.RadioSelectHorizontal
     )
     trust_fiends = models.IntegerField(
         verbose_name='''Ваши друзья''',
-        choices=Constants.Trust4DNK
+        choices=Constants.Trust4DNK,
+        widget=widgets.RadioSelectHorizontal
     )
     trust_politicians = models.IntegerField(
         verbose_name='''Политики''',
-        choices=Constants.Trust4DNK
+        choices=Constants.Trust4DNK,
+        widget=widgets.RadioSelectHorizontal
     )
 
     # catrust_institutions=models.CharField(blank=True,
