@@ -116,17 +116,12 @@ class PandasExport(View):
     content_type = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 
     def get(self, request, *args, **kwargs):
-        # csv_file = IO()
         bytes = BytesIO()
         csv_data = get_full_data()
         xlwriter = pd.ExcelWriter(bytes, engine='xlsxwriter')
-        # csv_data.to_csv(csv_file, index=False, header=True, encoding='utf-8-sig')
         csv_data.to_excel(xlwriter, sheet_name='Sheet1', index=False, header=True)
-        # csv_file.seek(0)
         xlwriter.save()
         xlwriter.close()
-        # important step, rewind the buffer or when it is read() you'll get nothing
-        # but an error message when you try to open your zero length file in Excel
         bytes.seek(0)
 
         response = HttpResponse(bytes.read(), content_type=self.content_type)
