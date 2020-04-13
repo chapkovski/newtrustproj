@@ -19,13 +19,19 @@ class ReturnerPage(Page):
 class FormSetMixin:
     formset = None
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['formset'] = self.formset( instance=self.player,  decision_type=self.decision_type)
+        context['formset'] = self.formset(instance=self.player, decision_type=self.decision_type)
         return context
 
     def get_form(self, data=None, files=None, **kwargs):
-        return self.formset(data=data, instance=self.player,  decision_type=self.decision_type)
+        # here if this page was forced by admin to continue we just submit an empty form (with no formset data)
+        # if we need this data later on that can create some problems. But that's the price we pay for autosubmission
+        if data.get('timeout_happened'):
+            return super().get_form(data, files, **kwargs)
+        return self.formset(data=data, instance=self.player, decision_type=self.decision_type)
+
 
 class CQPage(Page):
     form_model = 'player'

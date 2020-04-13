@@ -136,10 +136,10 @@ class Average3(FormSetMixin, Page):
 
 page_sequence = [
     StartWP,
-    ConfirmationInstructions,
-    CQ1Blocker,
-    CQ1,
-    Stage1Blocker,
+    # ConfirmationInstructions,
+    # CQ1Blocker,
+    # CQ1,
+    # Stage1Blocker,
     SenderDecisionP,
     ReturnDecisionP,
     CQ2Blocker,
