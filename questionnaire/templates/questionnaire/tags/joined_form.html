@@ -1,7 +1,14 @@
 {% load otree %}
+<style>
+    .joined-table  .form-check-input {
+        position: relative;
+        margin-top: inherit;
+        margin-left:  inherit;
+    }
+</style>
 {% for jfield in form.joined_fields|default_if_none:None %}
-    <h1>{{ jfield.title }}</h1>
-    <table class="table">
+    <h5>{{ jfield.title }}</h5>
+    <table class="table joined-table">
         <thead>
         <tr>
             <th></th>

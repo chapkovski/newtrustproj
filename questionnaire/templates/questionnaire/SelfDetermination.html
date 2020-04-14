@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load otree static hse %}
 
 {% block title %}
     Анкета
@@ -7,7 +7,7 @@
 
 {% block content %}
 
-    {% formfields %}
+    {% joined_form form %}
 
     {% next_button %}
 

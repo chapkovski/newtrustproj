@@ -91,7 +91,7 @@ class Constants(BaseConstants):
     Trust4DNK = TrustChoices4DNK
     # Surveys4
     Similar6DNK = SimilarChoices6DNK
-    # Survey5
+    # Survey5similar_newideas
     Agree5DNK = AgreementChoices4DNK
     # Survery6
     Sib4 = Sibling4
@@ -444,9 +444,7 @@ class Player(BasePlayer):
     # Values
 
     similar_newideas = models.IntegerField(
-        verbose_name='''Ниже представлены краткие описание некоторых людей. До какой степени каждый из описанных людей похож или не похож на вас?:
-
-           Для этого человека важно предлагать новые идеи, быть творческой личностью, идти своим путем''',
+        verbose_name='''Для этого человека важно предлагать новые идеи, быть творческой личностью, идти своим путем''',
         choices=Constants.Similar6DNK
     )
 
@@ -491,11 +489,7 @@ class Player(BasePlayer):
     )
 
     justified_subsidies = models.IntegerField(
-        verbose_name='''Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
-        где 0 означает "никогда не заслуживает оправдания", а 10 означает "всегда заслуживает оправдания".
-        
-        Получение государственных пособий, на которые у человека нет права
-        ''',
+        verbose_name='''Получение государственных пособий, на которые у человека нет права''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         widget=widgets.RadioSelectHorizontal()
     )
