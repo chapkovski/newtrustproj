@@ -368,11 +368,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelectHorizontal
     )
 
-    # catrust_institutions=models.CharField(blank=True,
-    #     verbose_name='''Скажите пожалуйста, насколько Вы доверяете следующим организациям и институтам''',
-    #     widget=widgets.TextInput(attrs={'readonly': 'readonly'}
-    #     )
-    # )
+
 
     trust_church = models.IntegerField(
         verbose_name='''

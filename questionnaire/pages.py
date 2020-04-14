@@ -1,20 +1,8 @@
 from otree.api import Currency as c, currency_range
-from ._builtin import Page, WaitPage
+from ._builtin import WaitPage
 from .models import Constants
+from .generic_pages import Page
 
-
-# from otreeutils.surveys import SurveyPage
-#
-# class SurveyPage1(SurveyPage):
-#     pass
-#
-# from otreeutils.surveys import setup_survey_pages
-#
-# survey_pages = [
-#     SurveyPage1
-# ]
-#
-# setup_survey_pages(Player, survey_pages)   # Player from "models"
 
 class Motivation(Page):
     form_model = 'player'
@@ -58,8 +46,6 @@ class SelfDetermination(Page):
     ]
 
 
-from .forms import TrustForm
-from django.forms.models import modelform_factory
 
 
 class Trust(Page):
@@ -91,15 +77,6 @@ class Trust(Page):
                           'trust_UN',
                       ]}
                      ]
-
-    def get_form_class(self):
-        form_model = self._get_form_model()
-        fields = self.get_form_fields()
-        return modelform_factory(form_model, fields=fields, form=TrustForm)
-
-    def get_form(self, data=None, files=None, **kwargs):
-        cls = self.get_form_class()
-        return cls(self.joined_fields, data=data, files=files, view=self, **kwargs)
 
     form_model = 'player'
     form_fields = [

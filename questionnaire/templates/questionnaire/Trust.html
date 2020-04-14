@@ -8,7 +8,7 @@
 {% block content %}
 
 
-    {% for jfield in form.joined_fields %}
+    {% for jfield in form.joined_fields|default_if_none:None %}
         <h1>{{ jfield.title }}</h1>
         <table class="table">
             <thead>
