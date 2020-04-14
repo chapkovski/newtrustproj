@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load otree static  hse %}
 
 {% block title %}
     Анкета
@@ -7,40 +7,7 @@
 
 {% block content %}
 
-
-    {% for jfield in form.joined_fields|default_if_none:None %}
-        <h1>{{ jfield.title }}</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th></th>
-                {% for choice in jfield.choices %}
-                    <th class="text-center">{{ choice.1 }}</th>
-                {% endfor %}
-
-            </tr>
-            </thead>
-            {% for field in form %}
-                <tr>
-                    {% if field.name in jfield.fields %}
-                        <td><span class="font-weight-bold">{{ field.label }}:</span></td>
-                        {% for choice in field %}
-                            <td class="text-center">{{ choice.tag }}</td>
-                        {% endfor %}
-                    {% endif %}
-                </tr>
-            {% endfor %}
-        </table>
-    {% endfor %}
-
-    {% for foo in form %}
-        {% if foo.name in form.non_joined_fields %}
-            {% formfield foo %}
-        {% endif %}
-
-    {% endfor %}
-
-
+    {% joined_form form %}
 
 
     {% next_button %}
