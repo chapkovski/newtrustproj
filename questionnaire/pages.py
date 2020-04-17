@@ -220,6 +220,41 @@ class Region(Page):
         'SPb_rank',
         'Khb_rank',
     ]
+    joined_fields = [{"title": """Бывали ли Вы когда-нибудь в следующих регионах России:
+        """,
+                      "fields": [
+                          'Ark_been',
+                          'Vlk_been',
+                          'Vor_been',
+                          'Ekb_been',
+                          'Kaz_been',
+                          'Mak_been',
+                          'Mos_been',
+                          'Nsk_been',
+                          'Per_been',
+                          'Ros_been',
+                          'SPb_been',
+                          'Khb_been',
+                          'abroad_been',
+                      ]},
+                     {"title": """Из каких источников Вы получали информацию о следующих регионах России (если получали):
+                             """,
+                      "fields": [
+                          'Ark_source',
+                          'Vlk_source',
+                          'Vor_source',
+                          'Ekb_source',
+                          'Kaz_source',
+                          'Mak_source',
+                          'Mos_source',
+                          'Nsk_source',
+                          'Per_source',
+                          'Ros_source',
+                          'SPb_source',
+                          'Khb_source',
+                      ]},
+                     ]
+
     form_fields = [
         'Ark_been',
         'Vlk_been',
@@ -283,13 +318,13 @@ class Personal2(Page):
 
 
 page_sequence = [
-    # Motivation,
-    # Personal1,
-    # SelfDetermination,
-    # Trust,
-    # Values,
-    # Risk,
-    # StatedPreferences,
+    Motivation,
+    Personal1,
+    SelfDetermination,
+    Trust,
+    Values,
+    Risk,
+    StatedPreferences,
     Region,
-    # Personal2
+    Personal2
 ]

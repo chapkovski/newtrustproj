@@ -105,6 +105,7 @@ class Subsession(BaseSubsession):
             p.payoff = 15
             p.participant.vars['questionnaire_payoff'] = p.payoff.to_real_world_currency(self.session)
 
+
 class Group(BaseGroup):
     pass
 
@@ -137,7 +138,7 @@ class Player(BasePlayer):
 
     # Motivation
     motivation_part1 = models.TextField(
-        verbose_name='''Пожалуйста, вспомните ваши решения в части 1 эксперимента.
+        label='''Пожалуйста, вспомните ваши решения в части 1 эксперимента.
             Участник А: передать ли начальную сумму участнику В.
             Участник В: ничего не возвращать, вернуть все или вернуть лишь часть 30 токенов
             Чем Вы руководствовались, принимая эти решения?
@@ -145,14 +146,14 @@ class Player(BasePlayer):
     )
 
     motivation_part2 = models.TextField(
-        verbose_name='''Пожалуйста, вспомните ваши решения в части 2 эксперимента.
+        label='''Пожалуйста, вспомните ваши решения в части 2 эксперимента.
             Участник А: оценить, какую часть 30 токенов участник В захочет вернуть.
             Участник В: оценить, хотел ли участник А передать Вам его начальную сумму.
             Чем Вы руководствовались, принимая эти решения?
             Почему Вы решили именно так?'''
     )
 
-    field = models.PositiveIntegerField(verbose_name='Ваша специализация',
+    field = models.PositiveIntegerField(label='Ваша специализация',
                                         choices=[[1, 'Экономика, финансы, менеджмент'],
                                                  [2, 'Социальные науки, психология, политология'], [3, 'Право'],
                                                  [4, 'Международные отношения'],
@@ -164,11 +165,11 @@ class Player(BasePlayer):
                                         widget=widgets.RadioSelect())
 
     field_other = models.CharField(
-        verbose_name='''Если другое, то что именно?''',
+        label='''Если другое, то что именно?''',
         blank=True
     )
 
-    degree = models.PositiveIntegerField(verbose_name='На какой программе Вы учитесь',
+    degree = models.PositiveIntegerField(label='На какой программе Вы учитесь',
                                          choices=[[1, 'Бакалавриат'],
                                                   [2, 'Специалитет'], [3, 'Магистратура'],
                                                   [4, 'Аспирантура'],
@@ -176,34 +177,34 @@ class Player(BasePlayer):
                                          widget=widgets.RadioSelect())
 
     degree_other = models.CharField(blank=True,
-                                    verbose_name='''Если другое, то что именно?'''
+                                    label='''Если другое, то что именно?'''
                                     )
 
     studyear = models.PositiveIntegerField(
-        verbose_name='''
+        label='''
            Год обучения (курс)''',
         min=0, max=8,
         initial=None)
 
     gender = models.BooleanField(initial=None,
                                  choices=[[0, 'Мужской'], [1, 'Женский']],
-                                 verbose_name='Ваш пол',
+                                 label='Ваш пол',
                                  widget=widgets.RadioSelect())
 
-    age = models.PositiveIntegerField(verbose_name='Ваш возраст (полных лет)',
+    age = models.PositiveIntegerField(label='Ваш возраст (полных лет)',
                                       min=13, max=95,
                                       initial=None)
 
     birthplace = models.CharField(
-        verbose_name='''Место рождения (населенный пункт, регион)'''
+        label='''Место рождения (населенный пункт, регион)'''
     )
 
     GPA = models.CharField(
-        verbose_name='''Ваш средний балл за все время учебы на программе (из 5)'''
+        label='''Ваш средний балл за все время учебы на программе (из 5)'''
     )
 
     marital_status = models.PositiveIntegerField(
-        verbose_name='Ваш семейный статус',
+        label='Ваш семейный статус',
         choices=[
             [1, 'Не женаты/не замужем'],
             [2, 'Женаты/замужем'],
@@ -217,7 +218,7 @@ class Player(BasePlayer):
     )
 
     language = models.BooleanField(
-        verbose_name='На каком языке Вы обычно говорите дома?',
+        label='На каком языке Вы обычно говорите дома?',
         choices=[
             [0, 'Русский'],
             [1, 'Другой (какой именно)']
@@ -226,11 +227,11 @@ class Player(BasePlayer):
     )
 
     language_other = models.CharField(blank=True,
-                                      verbose_name='''Если на другом языке, то на каком именно?'''
+                                      label='''Если на другом языке, то на каком именно?'''
                                       )
 
     living = models.PositiveIntegerField(
-        verbose_name='Вы живете...',
+        label='Вы живете...',
         choices=[
             [1, 'С родителями'],
             [2, 'В общежитии'],
@@ -242,22 +243,22 @@ class Player(BasePlayer):
     )
 
     living_other = models.CharField(blank=True,
-                                    verbose_name='''Уточните где именно'''
+                                    label='''Уточните где именно'''
                                     )
 
     city = models.PositiveIntegerField(
-        verbose_name='''    Сколько человек (приблизительно) проживало в том населенном пункте, где Вы жили в возрасте 16 лет?''',
+        label='''    Сколько человек (приблизительно) проживало в том населенном пункте, где Вы жили в возрасте 16 лет?''',
         min=1, max=30000000,
         initial=None)
 
     # Self-Determination
 
     nationality = models.CharField(
-        verbose_name='''К какой национальности Вы себя относите?'''
+        label='''К какой национальности Вы себя относите?'''
     )
 
     religion = models.PositiveIntegerField(
-        verbose_name='Какую религию Вы исповедуете?',
+        label='Какую религию Вы исповедуете?',
         choices=[
             [1, 'Не исповедую никакой религии (атеист)'],
             [2, 'Католицизм'],
@@ -273,11 +274,11 @@ class Player(BasePlayer):
     )
 
     religion_other = models.CharField(blank=True,
-                                      verbose_name='''Уточните какую именно'''
+                                      label='''Уточните какую именно'''
                                       )
 
     religion_moral = models.PositiveIntegerField(
-        verbose_name='''Насколько Вы согласны со следующим утверждением? "Люди, исповедующие другие религии, вероятно, 
+        label='''Насколько Вы согласны со следующим утверждением? "Люди, исповедующие другие религии, вероятно, 
         такие же глубоко моральные люди, как и те, что исповедуют Вашу религию."''',
         choices=[
             [1, 'Совершенно согласен'],
@@ -292,7 +293,7 @@ class Player(BasePlayer):
     )
 
     religion_service = models.PositiveIntegerField(
-        verbose_name='''Как часто Вы посещаете храм''',
+        label='''Как часто Вы посещаете храм''',
         choices=[
             [0, 'Вообще не бываю'],
             [1, '1 раз в месяц или реже'],
@@ -305,19 +306,19 @@ class Player(BasePlayer):
     )
 
     community_local = models.PositiveIntegerField(
-        verbose_name='''Я считаю себя членом местной общины (сообщества) жителей моего города''',
+        label='''Я считаю себя членом местной общины (сообщества) жителей моего города''',
         choices=Constants.Agree4DNK
     )
 
     community_russian = models.PositiveIntegerField(
-        verbose_name='''Я считаю себя россиянином''',
+        label='''Я считаю себя россиянином''',
         choices=Constants.Agree4DNK
     )
 
     # Trust
 
     trust = models.PositiveIntegerField(
-        verbose_name='''Как Вы считаете, в целом большинству людей можно доверять, или же при общении с другими людьми 
+        label='''Как Вы считаете, в целом большинству людей можно доверять, или же при общении с другими людьми 
             осторожность никогда не повредит?''',
         choices=[
             [0, "Нужно быть очень осторожным с другими людьми"],
@@ -327,112 +328,110 @@ class Player(BasePlayer):
     )
 
     # catrust=models.CharField(blank=True,
-    #     verbose_name='''Скажите пожалуйста, насколько Вы доверяете следующим категориям людей''',
+    #     label='''Скажите пожалуйста, насколько Вы доверяете следующим категориям людей''',
     #     widget=widgets.TextInput(attrs={'readonly': 'readonly'}
     #     )
     # )
 
     trust_family = models.IntegerField(
-        verbose_name='''Ваша семья''',
+        label='''Ваша семья''',
         choices=Constants.Trust4DNK,
         widget=widgets.RadioSelectHorizontal
     )
     trust_neighbours = models.IntegerField(
-        verbose_name='''Ваши соседи''',
+        label='''Ваши соседи''',
         choices=Constants.Trust4DNK,
         widget=widgets.RadioSelectHorizontal
     )
     trust_acquant = models.IntegerField(
-        verbose_name='''Люди, с которыми Вы лично знакомы''',
+        label='''Люди, с которыми Вы лично знакомы''',
         choices=Constants.Trust4DNK,
         widget=widgets.RadioSelectHorizontal
     )
     trust_stranger = models.IntegerField(
-        verbose_name='''Люди, с которыми Вы не знакомы''',
+        label='''Люди, с которыми Вы не знакомы''',
         choices=Constants.Trust4DNK,
         widget=widgets.RadioSelectHorizontal
     )
     trust_other_faith = models.IntegerField(
-        verbose_name='''Люди другой веры''',
+        label='''Люди другой веры''',
         choices=Constants.Trust4DNK,
         widget=widgets.RadioSelectHorizontal
     )
     trust_fiends = models.IntegerField(
-        verbose_name='''Ваши друзья''',
+        label='''Ваши друзья''',
         choices=Constants.Trust4DNK,
         widget=widgets.RadioSelectHorizontal
     )
     trust_politicians = models.IntegerField(
-        verbose_name='''Политики''',
+        label='''Политики''',
         choices=Constants.Trust4DNK,
         widget=widgets.RadioSelectHorizontal
     )
 
-
-
     trust_church = models.IntegerField(
-        verbose_name='''
+        label='''
         Церковь''',
         choices=Constants.Trust4DNK
     )
     trust_army = models.IntegerField(
-        verbose_name='''Армия''',
+        label='''Армия''',
         choices=Constants.Trust4DNK
     )
     trust_press = models.IntegerField(
-        verbose_name='''Пресса (печатные медиа)''',
+        label='''Пресса (печатные медиа)''',
         choices=Constants.Trust4DNK
     )
     trust_tv = models.IntegerField(
-        verbose_name='''Телевидение''',
+        label='''Телевидение''',
         choices=Constants.Trust4DNK
     )
     trust_tradeunion = models.IntegerField(
-        verbose_name='''Профсоюзы''',
+        label='''Профсоюзы''',
         choices=Constants.Trust4DNK
     )
     trust_police = models.IntegerField(
-        verbose_name='''Полиция''',
+        label='''Полиция''',
         choices=Constants.Trust4DNK
     )
     trust_courts = models.IntegerField(
-        verbose_name='''Суды''',
+        label='''Суды''',
         choices=Constants.Trust4DNK
     )
     trust_government = models.IntegerField(
-        verbose_name='''Правительство России''',
+        label='''Правительство России''',
         choices=Constants.Trust4DNK
     )
     trust_parties = models.IntegerField(
-        verbose_name='''Политические партии''',
+        label='''Политические партии''',
         choices=Constants.Trust4DNK
     )
     trust_president = models.IntegerField(
-        verbose_name='''Президент''',
+        label='''Президент''',
         choices=Constants.Trust4DNK
     )
     trust_parliament = models.IntegerField(
-        verbose_name='''Парламент России''',
+        label='''Парламент России''',
         choices=Constants.Trust4DNK
     )
     trust_regional_authorities = models.IntegerField(
-        verbose_name='''Региональная власть''',
+        label='''Региональная власть''',
         choices=Constants.Trust4DNK
     )
     trust_local_authorities = models.IntegerField(
-        verbose_name='''Местная власть''',
+        label='''Местная власть''',
         choices=Constants.Trust4DNK
     )
     trust_charity = models.IntegerField(
-        verbose_name='''Гуманитарные и благотворительные организации''',
+        label='''Гуманитарные и благотворительные организации''',
         choices=Constants.Trust4DNK
     )
     trust_CIS = models.IntegerField(
-        verbose_name='''Содружество независимых государств (СНГ)''',
+        label='''Содружество независимых государств (СНГ)''',
         choices=Constants.Trust4DNK
     )
     trust_UN = models.IntegerField(
-        verbose_name='''Организация объединенных наций (ООН)''',
+        label='''Организация объединенных наций (ООН)''',
         choices=Constants.Trust4DNK
     )
 
@@ -444,47 +443,47 @@ class Player(BasePlayer):
     # Values
 
     similar_newideas = models.IntegerField(
-        verbose_name='''Для этого человека важно предлагать новые идеи, быть творческой личностью, идти своим путем''',
+        label='''Для этого человека важно предлагать новые идеи, быть творческой личностью, идти своим путем''',
         choices=Constants.Similar6DNK
     )
 
     similar_wealthy = models.IntegerField(
-        verbose_name='''Для этого человека важно быть богатым,  иметь много денег и дорогих вещей''',
+        label='''Для этого человека важно быть богатым,  иметь много денег и дорогих вещей''',
         choices=Constants.Similar6DNK
     )
 
     similar_safety = models.IntegerField(
-        verbose_name='''Для этого человека важно жить в безопасности, избегать всего, что может сулить опасность''',
+        label='''Для этого человека важно жить в безопасности, избегать всего, что может сулить опасность''',
         choices=Constants.Similar6DNK
     )
 
     similar_hedonic = models.IntegerField(
-        verbose_name='''Для этого человека важно хорошо проводить время, баловать себя''',
+        label='''Для этого человека важно хорошо проводить время, баловать себя''',
         choices=Constants.Similar6DNK
     )
 
     similar_renowned = models.IntegerField(
-        verbose_name='''Для этого человека важно быть очень успешным, чтобы окружающие знали о его достижениях''',
+        label='''Для этого человека важно быть очень успешным, чтобы окружающие знали о его достижениях''',
         choices=Constants.Similar6DNK
     )
 
     similar_adventurous = models.IntegerField(
-        verbose_name='''Приключения и риск очень важны для этого человека, он стремится к жизни, полной захватывающих событий''',
+        label='''Приключения и риск очень важны для этого человека, он стремится к жизни, полной захватывающих событий''',
         choices=Constants.Similar6DNK
     )
 
     similar_correct = models.IntegerField(
-        verbose_name='''Для этого человека важно всегда вести себя правильно, не совершать поступков, которые люди не одобрили ''',
+        label='''Для этого человека важно всегда вести себя правильно, не совершать поступков, которые люди не одобрили ''',
         choices=Constants.Similar6DNK
     )
 
     similar_care_environment = models.IntegerField(
-        verbose_name='''Для этого человека важно заботиться об окружающей среде и природе''',
+        label='''Для этого человека важно заботиться об окружающей среде и природе''',
         choices=Constants.Similar6DNK
     )
 
     similar_tradition = models.IntegerField(
-        verbose_name='''Для этого человека важно следовать традициям и обычаям, принятым в его семье или религии''',
+        label='''Для этого человека важно следовать традициям и обычаям, принятым в его семье или религии''',
         choices=Constants.Similar6DNK
     )
 
@@ -495,38 +494,38 @@ class Player(BasePlayer):
     )
 
     justified_freeride = models.IntegerField(
-        verbose_name='''Проезд без оплаты в общественном транспорте''',
+        label='''Проезд без оплаты в общественном транспорте''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         widget=widgets.RadioSelectHorizontal()
     )
 
     justified_theft = models.IntegerField(
-        verbose_name='''Кража чужой собственности''',
+        label='''Кража чужой собственности''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         widget=widgets.RadioSelectHorizontal()
     )
 
     justified_tax_evasion = models.IntegerField(
-        verbose_name='''Неуплата налогов, если есть такая возможность''',
+        label='''Неуплата налогов, если есть такая возможность''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         widget=widgets.RadioSelectHorizontal()
     )
 
     justified_corruption = models.IntegerField(
-        verbose_name='''Получение взятки''',
+        label='''Получение взятки''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         widget=widgets.RadioSelectHorizontal()
     )
 
     justified_violence = models.IntegerField(
-        verbose_name='''Применение насилия в отношении других людей''',
+        label='''Применение насилия в отношении других людей''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         widget=widgets.RadioSelectHorizontal()
     )
 
     # Risk
     riskat = models.PositiveIntegerField(
-        verbose_name='''Скажите, пожалуйста, насколько Вы в целом любите рисковать? ''',
+        label='''Скажите, пожалуйста, насколько Вы в целом любите рисковать? ''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  # [0, ''],
                  # [1, ''], [2, ''], [3, ''], [4, ''],
@@ -536,37 +535,36 @@ class Player(BasePlayer):
         widget=widgets.RadioSelectHorizontal()
     )
 
-
     riskfin = models.PositiveIntegerField(
-        verbose_name='''В финансовых вопросах''',
+        label='''В финансовых вопросах''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
         widget=widgets.RadioSelectHorizontal()
     )
 
     risksport = models.PositiveIntegerField(
-        verbose_name='''В свободное время и во время занятий спортом''',
+        label='''В свободное время и во время занятий спортом''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
         widget=widgets.RadioSelectHorizontal()
     )
 
     riskprof = models.PositiveIntegerField(
-        verbose_name='''В вашей профессии''',
+        label='''В вашей профессии''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
         widget=widgets.RadioSelectHorizontal()
     )
 
     riskhealth = models.PositiveIntegerField(
-        verbose_name='''В том что касается вашего здоровья''',
+        label='''В том что касается вашего здоровья''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
         widget=widgets.RadioSelectHorizontal()
     )
 
     riskstran = models.PositiveIntegerField(
-        verbose_name='''В отношениях с незнакомыми людьми''',
+        label='''В отношениях с незнакомыми людьми''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
         widget=widgets.RadioSelectHorizontal()
@@ -574,7 +572,7 @@ class Player(BasePlayer):
 
     # StatedPreferences
     moreagreement = models.PositiveIntegerField(
-        verbose_name='''Как Вы думаете, сегодня в нашей стране среди людей больше согласия, сплоченности или несогласия, разобщенности?''',
+        label='''Как Вы думаете, сегодня в нашей стране среди людей больше согласия, сплоченности или несогласия, разобщенности?''',
         choices=[
             [1, 'Безусловно согласия, сплоченности'],
             [2, 'Скорее согласия, сплоченности'],
@@ -586,7 +584,7 @@ class Player(BasePlayer):
     )
 
     similar_trust = models.PositiveIntegerField(
-        verbose_name='''Людям, с которыми у Вас много общего, Вы доверяете больше, чем всем остальным, меньше чем остальным или же одинаково?''',
+        label='''Людям, с которыми у Вас много общего, Вы доверяете больше, чем всем остальным, меньше чем остальным или же одинаково?''',
         choices=[
             [1, 'Безусловно больше'],
             [2, 'Скорее больше'],
@@ -599,7 +597,7 @@ class Player(BasePlayer):
     )
 
     trustful = models.PositiveIntegerField(
-        verbose_name='''Можете ли Вы сказать о себе, что Вы доверчивый человек?''',
+        label='''Можете ли Вы сказать о себе, что Вы доверчивый человек?''',
         choices=[
             [1, 'Вы доверчивы'],
             [2, 'Вы скорее доверчивы чем нет'],
@@ -612,7 +610,7 @@ class Player(BasePlayer):
     )
 
     ready_help = models.PositiveIntegerField(
-        verbose_name='''Готовы ли Вы тратить свои ресурсы на благое дело, даже если не рассчитываете ничего получить взамен?''',
+        label='''Готовы ли Вы тратить свои ресурсы на благое дело, даже если не рассчитываете ничего получить взамен?''',
         choices=[
             [1, 'Да'],
             [2, 'Скорее да чем нет'],
@@ -629,7 +627,7 @@ class Player(BasePlayer):
     )
 
     freedom = models.PositiveIntegerField(
-        verbose_name='''Некоторые люди чувствуют, что они обладают полной свободой выбора и контролируют свою жизнь, в
+        label='''Некоторые люди чувствуют, что они обладают полной свободой выбора и контролируют свою жизнь, в
          то время как другие люди чувствуют, что то, что они делают, не имеет реального влияния на происходящее с ними. До какой степени эти
          характеристики применимы к Вам и Вашей жизни? Для ответа выберите значение на шкале от 0 до 10, где 0 означает "у меня нет свободы выбора", а 10
          означает "у меня полная свобода выбора":.
@@ -639,7 +637,7 @@ class Player(BasePlayer):
     )
 
     positive_reciprocity = models.PositiveIntegerField(
-        verbose_name='''"Когда кто-либо мне помогает я стараюсь ответить тем же." Справедливо ли это суждение в отношении Вас? Для ответа выберите значение на шкале от 0 до 10,
+        label='''"Когда кто-либо мне помогает я стараюсь ответить тем же." Справедливо ли это суждение в отношении Вас? Для ответа выберите значение на шкале от 0 до 10,
          где 0 означает, что Вы «совершенно не готовы так поступать», а 10 означает, что Вы «готовы поступать именно так»:''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
@@ -647,7 +645,7 @@ class Player(BasePlayer):
     )
 
     negative_reciprocity = models.PositiveIntegerField(
-        verbose_name='''"Если со мной поступили несправедливо, я отомщу при первом же удобном случае, даже если это дорого мне обойдется."  Справедливо ли это суждение в отношении Вас? Для ответа выберите значение на шкале от 0 до 10,
+        label='''"Если со мной поступили несправедливо, я отомщу при первом же удобном случае, даже если это дорого мне обойдется."  Справедливо ли это суждение в отношении Вас? Для ответа выберите значение на шкале от 0 до 10,
          где 0 означает, что Вы «совершенно не готовы так поступать», а 10 означает, что Вы «готовы поступать именно так»''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
@@ -655,7 +653,7 @@ class Player(BasePlayer):
     )
 
     abuse_you = models.PositiveIntegerField(
-        verbose_name='''Как Вы думаете, если представится возможность, большинство людей попытались бы использовать вас в своих интересах, или вели бы себя порядочно?
+        label='''Как Вы думаете, если представится возможность, большинство людей попытались бы использовать вас в своих интересах, или вели бы себя порядочно?
          Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди обязательно попытаются вас использовать», а 10 означает, что «люди поведут себя порядочно»''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
@@ -663,7 +661,7 @@ class Player(BasePlayer):
     )
 
     competition = models.PositiveIntegerField(
-        verbose_name='''Как Вы думаете, конкуренция - это зло или благо?
+        label='''Как Вы думаете, конкуренция - это зло или благо?
              Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «конкуренция вредна, поскольку она побуждает у людей худшие качества», 
              а 10 означает, что «конкуренция - это благо, поскольку она побуждает людей лучше трудиться»''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
@@ -672,18 +670,18 @@ class Player(BasePlayer):
     )
 
     fairness_general = models.PositiveIntegerField(
-        verbose_name='''Как Вы думаете, могут ли люди в современном обществе разбогатеть только за счет других людей, или уровень благосостояния может вырасти у всех?
+        label='''Как Вы думаете, могут ли люди в современном обществе разбогатеть только за счет других людей, или уровень благосостояния может вырасти у всех?
          Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди могут разбогатеть только за счет других», а 10 означает, что «благосостояние может вырасти у всех»''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
         widget=widgets.RadioSelectHorizontal()
     )
     fairness_russian = models.PositiveIntegerField(
-        verbose_name='''Социальные различия между людьми в нашей стране в целом оправданны и справедливы''',
+        label='''Социальные различия между людьми в нашей стране в целом оправданны и справедливы''',
         choices=Constants.Agree5DNK
     )
     separation_power = models.PositiveIntegerField(
-        verbose_name='''Как Вы считаете, в нашей стране сейчас имеет место разделение властей (законодательной, исполнительной и судебной) или же нет?''',
+        label='''Как Вы считаете, в нашей стране сейчас имеет место разделение властей (законодательной, исполнительной и судебной) или же нет?''',
         choices=[
             [1, 'Разделение властей существует, система сдержек и противовесов реально работает'],
             [2, 'Разделение властей существует, несмотря на отдельные попытки нарушить систему сдержек и противовесов'],
@@ -696,7 +694,7 @@ class Player(BasePlayer):
     )
 
     independent_judiciary = models.PositiveIntegerField(
-        verbose_name='''Как Вы считаете, независимы ли в нашей стране суды?''',
+        label='''Как Вы считаете, независимы ли в нашей стране суды?''',
         choices=[
             [1, 'Суды независимы от других общественных институтов и некоррумпированы'],
             [2,
@@ -711,7 +709,7 @@ class Player(BasePlayer):
     )
 
     corruption = models.PositiveIntegerField(
-        verbose_name='''Что Вы думаете про борьбу с коррупцией в нашей стране?''',
+        label='''Что Вы думаете про борьбу с коррупцией в нашей стране?''',
         choices=[
             [1, 'Коррупция строго преследуется в соответствии с законом и подвергается публичному осуждению'],
             [2,
@@ -725,7 +723,7 @@ class Player(BasePlayer):
     )
 
     civil_rights = models.PositiveIntegerField(
-        verbose_name='''До какой степени у нас в стране защищены гражданские права?''',
+        label='''До какой степени у нас в стране защищены гражданские права?''',
         choices=[
             [1, 'Гражданские права эффективно защищены законом, а их нарушение карается'],
             [2,
@@ -742,9 +740,7 @@ class Player(BasePlayer):
     # Regions
 
     Ark_been = models.BooleanField(
-        verbose_name='''Бывали ли Вы когда-нибудь в следующих регионах России:
-            
-            Архангельск и Архангельская область''',
+        label='''Архангельск и Архангельская область''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -753,7 +749,7 @@ class Player(BasePlayer):
     )
 
     Vlk_been = models.BooleanField(
-        verbose_name='''Владивосток и Приморский край''',
+        label='''Владивосток и Приморский край''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -762,7 +758,7 @@ class Player(BasePlayer):
     )
 
     Vor_been = models.BooleanField(
-        verbose_name='''Воронеж и Воронежская область''',
+        label='''Воронеж и Воронежская область''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -771,7 +767,7 @@ class Player(BasePlayer):
     )
 
     Ekb_been = models.BooleanField(
-        verbose_name='''Екатеринбург и Свердловская область''',
+        label='''Екатеринбург и Свердловская область''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -780,7 +776,7 @@ class Player(BasePlayer):
     )
 
     Kaz_been = models.BooleanField(
-        verbose_name='''Казань и республика Татарстан''',
+        label='''Казань и республика Татарстан''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -789,7 +785,7 @@ class Player(BasePlayer):
     )
 
     Mak_been = models.BooleanField(
-        verbose_name='''Махачкала и республика Дагестан''',
+        label='''Махачкала и республика Дагестан''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -798,7 +794,7 @@ class Player(BasePlayer):
     )
 
     Mos_been = models.BooleanField(
-        verbose_name='''Москва''',
+        label='''Москва''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -807,7 +803,7 @@ class Player(BasePlayer):
     )
 
     Nsk_been = models.BooleanField(
-        verbose_name='''Новосибирск и Новосибирская область''',
+        label='''Новосибирск и Новосибирская область''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -816,7 +812,7 @@ class Player(BasePlayer):
     )
 
     Per_been = models.BooleanField(
-        verbose_name='''Пермь и Пермский край''',
+        label='''Пермь и Пермский край''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -825,7 +821,7 @@ class Player(BasePlayer):
     )
 
     Ros_been = models.BooleanField(
-        verbose_name='''Ростов-на-Дону и Ростовская область''',
+        label='''Ростов-на-Дону и Ростовская область''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -834,7 +830,7 @@ class Player(BasePlayer):
     )
 
     SPb_been = models.BooleanField(
-        verbose_name='''Санкт-Петербург''',
+        label='''Санкт-Петербург''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -843,7 +839,7 @@ class Player(BasePlayer):
     )
 
     Khb_been = models.BooleanField(
-        verbose_name='''Харабовск и Хабаровский край''',
+        label='''Харабовск и Хабаровский край''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -852,7 +848,7 @@ class Player(BasePlayer):
     )
 
     abroad_been = models.BooleanField(
-        verbose_name='''Бывали ли Вы когда-либо за границей?''',
+        label='''Бывали ли Вы когда-либо за границей?''',
         choices=[
             [0, 'Да'],
             [1, 'Нет'],
@@ -861,9 +857,7 @@ class Player(BasePlayer):
     )
 
     Ark_source = models.PositiveIntegerField(
-        verbose_name='''Из каких источников Вы получали информацию о следующих регионах России (если получали):
-
-            Архангельск и Архангельская область''',
+        label='''Архангельск и Архангельская область''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -876,7 +870,7 @@ class Player(BasePlayer):
     )
 
     Vlk_source = models.PositiveIntegerField(
-        verbose_name='''Владивосток и Приморский край''',
+        label='''Владивосток и Приморский край''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -889,7 +883,7 @@ class Player(BasePlayer):
     )
 
     Vor_source = models.PositiveIntegerField(
-        verbose_name='''Воронеж и Воронежская область''',
+        label='''Воронеж и Воронежская область''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -902,7 +896,7 @@ class Player(BasePlayer):
     )
 
     Ekb_source = models.PositiveIntegerField(
-        verbose_name='''Екатеринбург и Свердловская область''',
+        label='''Екатеринбург и Свердловская область''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -915,7 +909,7 @@ class Player(BasePlayer):
     )
 
     Kaz_source = models.PositiveIntegerField(
-        verbose_name='''Казань и республика Татарстан''',
+        label='''Казань и республика Татарстан''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -928,7 +922,7 @@ class Player(BasePlayer):
     )
 
     Mak_source = models.PositiveIntegerField(
-        verbose_name='''Махачкала и республика Дагестан''',
+        label='''Махачкала и республика Дагестан''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -941,7 +935,7 @@ class Player(BasePlayer):
     )
 
     Mos_source = models.PositiveIntegerField(
-        verbose_name='''Москва''',
+        label='''Москва''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -954,7 +948,7 @@ class Player(BasePlayer):
     )
 
     Nsk_source = models.PositiveIntegerField(
-        verbose_name='''Новосибирск и Новосибирская область''',
+        label='''Новосибирск и Новосибирская область''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -967,7 +961,7 @@ class Player(BasePlayer):
     )
 
     Per_source = models.PositiveIntegerField(
-        verbose_name='''Пермь и Пермский край''',
+        label='''Пермь и Пермский край''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -980,7 +974,7 @@ class Player(BasePlayer):
     )
 
     Ros_source = models.PositiveIntegerField(
-        verbose_name='''Ростов-на-Дону и Ростовская область''',
+        label='''Ростов-на-Дону и Ростовская область''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -993,7 +987,7 @@ class Player(BasePlayer):
     )
 
     SPb_source = models.PositiveIntegerField(
-        verbose_name='''Санкт-Петербург''',
+        label='''Санкт-Петербург''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -1006,7 +1000,7 @@ class Player(BasePlayer):
     )
 
     Khb_source = models.PositiveIntegerField(
-        verbose_name='''Харабовск и Хабаровский край''',
+        label='''Харабовск и Хабаровский край''',
         choices=[
             [0, 'Ничего не знаю о регионе'],
             [1, 'От родственников и друзей'],
@@ -1019,75 +1013,70 @@ class Player(BasePlayer):
     )
 
     Ark_rank = models.CharField(
-        verbose_name='''Посмотрите пожалуйста на список регионов России, включающий и Ваш. Проранжируйте пожалуйста эти
-         регионы по убыванию среднемесячного дохода их жителей, поставив цифру 1 напротив региона, жителей которого
-          Вы считаете самыми богатыми, 2 напротив следующего, и так далее до 12
-
-            Архангельск и Архангельская область'''
+        label='''Архангельск и Архангельская область'''
     )
 
     Vlk_rank = models.CharField(
-        verbose_name='''Владивосток и Приморский край'''
+        label='''Владивосток и Приморский край'''
     )
 
     Vor_rank = models.CharField(
-        verbose_name='''Воронеж и Воронежская область'''
+        label='''Воронеж и Воронежская область'''
     )
 
     Ekb_rank = models.CharField(
-        verbose_name='''Екатеринбург и Свердловская область'''
+        label='''Екатеринбург и Свердловская область'''
     )
 
     Kaz_rank = models.CharField(
-        verbose_name='''Казань и республика Татарстан'''
+        label='''Казань и республика Татарстан'''
     )
 
     Mak_rank = models.CharField(
-        verbose_name='''Махачкала и республика Дагестан'''
+        label='''Махачкала и республика Дагестан'''
     )
 
     Mos_rank = models.CharField(
-        verbose_name='''Москва'''
+        label='''Москва'''
     )
 
     Nsk_rank = models.CharField(
-        verbose_name='''Новосибирск и Новосибирская область''')
+        label='''Новосибирск и Новосибирская область''')
 
     Per_rank = models.CharField(
-        verbose_name='''Пермь и Пермский край'''
+        label='''Пермь и Пермский край'''
     )
 
     Ros_rank = models.CharField(
-        verbose_name='''Ростов-на-Дону и Ростовская область'''
+        label='''Ростов-на-Дону и Ростовская область'''
     )
 
     SPb_rank = models.CharField(
-        verbose_name='''Санкт-Петербург'''
+        label='''Санкт-Петербург'''
     )
 
     Khb_rank = models.CharField(
-        verbose_name='''Харабовск и Хабаровский край'''
+        label='''Харабовск и Хабаровский край'''
     )
 
     regional_income = models.CharField(
-        verbose_name='''Как Вы считаете, каков среднемесячный доход жителей Вашего региона? Напишите пожалуйста Вашу оценку (в рублях в месяц)'''
+        label='''Как Вы считаете, каков среднемесячный доход жителей Вашего региона? Напишите пожалуйста Вашу оценку (в рублях в месяц)'''
     )
 
     regional_differences = models.PositiveIntegerField(
-        verbose_name='''Согласны ли Вы с утверждением, что различия в уровне доходов между регионами России неоправданно велики''',
+        label='''Согласны ли Вы с утверждением, что различия в уровне доходов между регионами России неоправданно велики''',
         choices=Constants.Agree5DNK
     )
 
-
     satis = models.PositiveIntegerField(
-        verbose_name='''Учитывая все обстоятельства, насколько Вы удовлетворены вашей жизнью в целом в эти дни?  Для ответа выберите значение на шкале от 0 до 10,
+        label='''Учитывая все обстоятельства, насколько Вы удовлетворены вашей жизнью в целом в эти дни?  Для ответа выберите значение на шкале от 0 до 10,
          где 0 означает «совершенно не удовлетворен», а 10 - «полностью удовлетворен»)''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Затрудняюсь ответить'],
         widget=widgets.RadioSelectHorizontal()
     )
 
     happy = models.BooleanField(
-        verbose_name='''В целом я могу сказать, что я''',
+        label='''В целом я могу сказать, что я''',
         choices=[
             [0, 'Несчастливый человек'],
             [1, 'Счастливый человек'],
@@ -1096,7 +1085,7 @@ class Player(BasePlayer):
     )
 
     happy_relative = models.PositiveIntegerField(
-        verbose_name='''По сравнению с большинством окружающих вас людей, вы''',
+        label='''По сравнению с большинством окружающих вас людей, вы''',
         choices=[
             [0, 'Менее счастливы чем они'],
             [1, 'В среднем так же счастлив, как и они'],
@@ -1106,7 +1095,7 @@ class Player(BasePlayer):
     )
 
     income = models.PositiveIntegerField(
-        verbose_name='''Какое высказывание наиболее точно описывает финансовое положение вашей семьи?''',
+        label='''Какое высказывание наиболее точно описывает финансовое положение вашей семьи?''',
         choices=[
             [1, 'Не хватает денег даже на еду'],
             [2, 'Хватает на еду, но не хватает на покупку одежды и обуви'],
@@ -1121,35 +1110,35 @@ class Player(BasePlayer):
     )
 
     elder_sibling = models.PositiveIntegerField(
-        verbose_name='''Сколько у вас старших братьев или сестер?''',
+        label='''Сколько у вас старших братьев или сестер?''',
         choices=Constants.Sib4
     )
 
     younger_sibling = models.PositiveIntegerField(
-        verbose_name='''Сколько у вас младших братьев или сестер?''',
+        label='''Сколько у вас младших братьев или сестер?''',
         choices=Constants.Sib4
     )
 
     father_born = models.CharField(blank=True,
-                                   verbose_name='''В каком регионе родился Ваш отец (если не знаете оставьте поле пустым)?''',
+                                   label='''В каком регионе родился Ваш отец (если не знаете оставьте поле пустым)?''',
                                    )
 
     mother_born = models.CharField(blank=True,
-                                   verbose_name='''В каком регионе родилась Ваша мать (если не знаете оставьте поле пустым)?''',
+                                   label='''В каком регионе родилась Ваша мать (если не знаете оставьте поле пустым)?''',
                                    )
 
     regions_been = models.PositiveIntegerField(
-        verbose_name='''В скольких регионах России (не считая вашего) вам случалось бывать)?''',
+        label='''В скольких регионах России (не считая вашего) вам случалось бывать)?''',
         choices=Constants.Reg6
     )
 
     honest_Russia = models.PositiveIntegerField(
-        verbose_name='''В нынешней России честному человеку трудно достичь каких-то высот, занять высокое положение в обществе''',
+        label='''В нынешней России честному человеку трудно достичь каких-то высот, занять высокое положение в обществе''',
         choices=Constants.Agree5DNK
     )
 
     party_Russia = models.PositiveIntegerField(
-        verbose_name='''Сторонником какой политической партии вы являетесь, или по крайней мере,симпатизируете ей? ''',
+        label='''Сторонником какой политической партии вы являетесь, или по крайней мере,симпатизируете ей? ''',
         choices=[
             [1, 'Единая Россия'],
             [2, 'КПРФ'],
@@ -1165,12 +1154,13 @@ class Player(BasePlayer):
     )
 
     party_other = models.CharField(blank=True,
-                                   verbose_name='''Если Вы сторонник другой партии, укажите какой именно''',
+                                   label='''Если Вы сторонник другой партии, укажите какой именно''',
                                    )
 
     other_city = models.CharField(
-        verbose_name='''Как Вы думаете, со студентами из какого города вы взаимодействовали в ходе этой экспериментальной сессии?'''
+        label='''Как Вы думаете, со студентами из какого города вы взаимодействовали в ходе этой экспериментальной сессии?'''
     )
+
     def get_rank_fields(self):
         # not the best decision if someone adds other fields ending with _rank... thoough
         r = [dict(name=f.name, label=f.verbose_name) for f in self._meta.get_fields() if

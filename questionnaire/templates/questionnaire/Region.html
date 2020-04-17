@@ -7,21 +7,26 @@
 
 {% block content %}
     {% include 'questionnaire/includes/ranking.html' %}
-    {% for foo in form %}
-        {% if  foo.name not in view.rankqs %}
-            {% formfield foo %}
-        {% endif %}
 
-
+    {% for jfield in form.joined_fields|default_if_none:None %}
+        {% include 'questionnaire/includes/joined_field.html' with jfield=jfield form=form %}
     {% endfor %}
 
+
+    {% for foo in form %}
+        {% if  foo.name not in view.rankqs and foo.name in form.non_joined_fields %}
+            {% formfield foo %}
+        {% endif %}
+    {% endfor %}
 
     {% next_button %}
 
 {% endblock %}
 {% block scripts %}
+
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.min.js"

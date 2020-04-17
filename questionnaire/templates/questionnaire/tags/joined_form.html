@@ -7,28 +7,7 @@
     }
 </style>
 {% for jfield in form.joined_fields|default_if_none:None %}
-    <h5>{{ jfield.title }}</h5>
-    <table class="table joined-table">
-        <thead>
-        <tr>
-            <th></th>
-            {% for choice in jfield.choices %}
-                <th class="text-center">{{ choice.1 }}</th>
-            {% endfor %}
-
-        </tr>
-        </thead>
-        {% for field in form %}
-            <tr>
-                {% if field.name in jfield.fields %}
-                    <td><span class="font-weight-bold">{{ field.label }}:</span></td>
-                    {% for choice in field %}
-                        <td class="text-center">{{ choice.tag }}</td>
-                    {% endfor %}
-                {% endif %}
-            </tr>
-        {% endfor %}
-    </table>
+    {% include 'questionnaire/includes/joined_field.html' with jfield=jfield form=form %}
 {% endfor %}
 
 {% for foo in form %}

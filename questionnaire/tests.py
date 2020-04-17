@@ -1,4 +1,4 @@
-from otree.api import Currency as c, currency_range
+from otree.api import Currency as c, currency_range, Submission
 from .pages import *
 from ._builtin import Bot
 from .models import Constants, Player
@@ -13,4 +13,7 @@ class PlayerBot(Bot):
                     fields[i] = 13
                 else:
                     fields[i] = 1
-            yield page, fields
+            if page.__name__ == 'Region':
+                yield Submission(page, fields, check_html=False)
+            else:
+                yield page, fields
