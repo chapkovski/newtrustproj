@@ -1171,3 +1171,8 @@ class Player(BasePlayer):
     other_city = models.CharField(
         verbose_name='''Как Вы думаете, со студентами из какого города вы взаимодействовали в ходе этой экспериментальной сессии?'''
     )
+    def get_rank_fields(self):
+        # not the best decision if someone adds other fields ending with _rank... thoough
+        r = [dict(name=f.name, label=f.verbose_name) for f in self._meta.get_fields() if
+             f.name.endswith('_rank')]
+        return r

@@ -1,14 +1,154 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load otree %}
 
 {% block title %}
     Анкета
 {% endblock %}
 
 {% block content %}
+    {% include 'questionnaire/includes/ranking.html' %}
+    {% for foo in form %}
+        {% if  foo.name not in view.rankqs %}
+            {% formfield foo %}
+        {% endif %}
 
-    {% formfields %}
+
+    {% endfor %}
+
 
     {% next_button %}
+
+{% endblock %}
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.min.js"
+            integrity="sha256-yEkk5ZYVs/fZgvxWU+sCb8bHTk9jScxIaZQD+CZ4vcg=" crossorigin="anonymous"></script>
+    <script>
+        var originalList =
+        {{ player.get_rank_fields|json }}
+        var listFilled = false;
+        $('.otree-btn-next').click((event) => {
+            if (!listFilled) {
+                event.preventDefault();
+                app.error = true;
+                var pos = $('#vue-app').offset();
+                $("html, body").animate({scrollTop: pos.top - 10});
+
+            }
+            ;
+        })
+        $('#form').submit((event) => {
+            {# we need this to double check that form has not been submitted by other methods#}
+            {# and to bypass stupid otree disabling of otree btn#}
+            if (!listFilled) event.preventDefault();
+
+        })
+        var app = new Vue({
+            el: '#vue-app',
+            components: {
+                vuedraggable,
+            },
+            delimiters: ['[[', ']]'],
+            data: {
+                error: false,
+                list1: _.clone(originalList),
+                list2: [],
+                options: {
+                    group: 'people',
+                    ghostClass: "ghost"
+                }
+
+            },
+            methods: {
+                listchanged: function (evt) {
+                    this.error = false;
+                    listFilled = this.list2.length === originalList.length
+                }
+            }
+
+        });
+    </script>
+
+
+{% endblock %}
+{% block styles %}
+
+    <style>
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .item-wrapper {
+            margin: -2px !important;
+            padding: 2px;
+            flex-grow: 1;
+            border: 0.5px solid lightgray;
+            -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.75);
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: .25rem;;
+        }
+
+        .ghost {
+            opacity: 0.5;
+            background: blue;
+            color: white;
+        }
+
+        .citylist {
+            display: flex;
+            flex-direction: column;
+            border: 0.05rem solid lightgrey;
+            border-radius: 0.25rem;
+            min-height: 589px;
+            flex-grow: 1;
+        }
+
+        .sortable-drag {
+            cursor: move
+        }
+
+        .city-label {
+            flex-grow: 1;
+            margin-left: 5px;
+        }
+
+        .draggable-item {
+            cursor: pointer
+        }
+
+        .draggable-item .drag-handler {
+            cursor: move;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            margin-left: 10px;
+            margin-right: -10px;
+        }
+
+        .drag-handler * {
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+
+        .badger {
+            padding: 0px;
+
+            justify-content: center;
+            align-content: center;
+            min-width: 25px;
+        }
+
+        .citylist-container {
+            flex-grow: 1
+        }
+    </style>
 
 {% endblock %}

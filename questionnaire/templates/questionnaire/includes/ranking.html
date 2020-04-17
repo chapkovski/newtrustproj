@@ -1,0 +1,63 @@
+{% load otree  %}
+
+
+
+<div id="vue-app" v-cloak class="my-3">
+    <div id='rank-error' class="alert alert-danger " v-if="error">Пожалуйста, перенесите все города в новый список
+    </div>
+    <div class="row">
+        <div class="col-6"><h6>Выберите город</h6></div>
+        <div class="col-6"><h6>Поместите его в этот список в нужном порядке:</h6></div>
+    </div>
+    <div class="row d-flex">
+        <div class="col-6 d-flex flex-column citylist-container">
+
+            <draggable class="list-group source citylist" :list="list1" v-bind='options' @change="listchanged">
+                <div
+                        class="list-group-item draggable-item d-flex"
+                        v-for="(element, index) in list1"
+                        :key="element.name"
+                >
+                    <div class="item-wrapper d-flex">
+
+
+                        <div class="city-label">[[ element.label ]]</div>
+                    </div>
+
+
+                </div>
+            </draggable>
+        </div>
+
+        <div class="col-6 d-flex flex-column citylist-container">
+
+            <draggable class="list-group destination citylist " :list="list2" @change="listchanged" v-bind='options'>
+                <div
+                        class="list-group-item draggable-item d-flex"
+                        v-for="(element, index) in list2"
+                        :key="element.name"
+                >
+                    <div class="item-wrapper d-flex">
+                        <div class="badge badge-secondary d-flex flex-column m-0 p-0 badger">
+                            <div>[[ index +1 ]]</div>
+                        </div>
+
+
+                        <div class="city-label">[[ element.label ]]</div>
+                    </div>
+                    <div class="drag-handler">
+
+                        <ion-icon name="move-outline"></ion-icon>
+                    </div>
+                </div>
+            </draggable>
+        </div>
+
+
+    </div>
+
+    <div v-for='(input, index) in list2'>
+        <input v-model="index" :name="input.name" type="hidden">
+    </div>
+</div>
+

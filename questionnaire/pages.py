@@ -115,29 +115,29 @@ class Trust(Page):
 
 class Values(Page):
     joined_fields = [{
-                         "title": 'Ниже представлены краткие описание некоторых людей. До какой степени каждый из описанных людей похож или не похож на вас?:',
-                         "fields": [
-                             'similar_newideas',
-                             'similar_wealthy',
-                             'similar_safety',
-                             'similar_hedonic',
-                             'similar_renowned',
-                             'similar_adventurous',
-                             'similar_correct',
-                             'similar_care_environment',
-                             'similar_tradition',
-                         ]},
-                     {"title": """Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
+        "title": 'Ниже представлены краткие описание некоторых людей. До какой степени каждый из описанных людей похож или не похож на вас?:',
+        "fields": [
+            'similar_newideas',
+            'similar_wealthy',
+            'similar_safety',
+            'similar_hedonic',
+            'similar_renowned',
+            'similar_adventurous',
+            'similar_correct',
+            'similar_care_environment',
+            'similar_tradition',
+        ]},
+        {"title": """Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
         где 0 означает "никогда не заслуживает оправдания", а 10 означает "всегда заслуживает оправдания".""",
-                      "fields": [
-                          'justified_subsidies',
-                          'justified_freeride',
-                          'justified_theft',
-                          'justified_tax_evasion',
-                          'justified_corruption',
-                          'justified_violence'
-                      ]},
-                     ]
+         "fields": [
+             'justified_subsidies',
+             'justified_freeride',
+             'justified_theft',
+             'justified_tax_evasion',
+             'justified_corruption',
+             'justified_violence'
+         ]},
+    ]
 
     form_model = 'player'
     form_fields = [
@@ -206,6 +206,20 @@ class StatedPreferences(Page):
 
 class Region(Page):
     form_model = 'player'
+    rankqs = [
+        'Ark_rank',
+        'Vlk_rank',
+        'Vor_rank',
+        'Ekb_rank',
+        'Kaz_rank',
+        'Mak_rank',
+        'Mos_rank',
+        'Nsk_rank',
+        'Per_rank',
+        'Ros_rank',
+        'SPb_rank',
+        'Khb_rank',
+    ]
     form_fields = [
         'Ark_been',
         'Vlk_been',
@@ -273,8 +287,8 @@ page_sequence = [
     # Personal1,
     # SelfDetermination,
     # Trust,
-    Values,
-    Risk,
+    # Values,
+    # Risk,
     # StatedPreferences,
     Region,
     # Personal2
