@@ -28,7 +28,7 @@ class FormSetMixin:
     def get_form(self, data=None, files=None, **kwargs):
         # here if this page was forced by admin to continue we just submit an empty form (with no formset data)
         # if we need this data later on that can create some problems. But that's the price we pay for autosubmission
-        if data.get('timeout_happened'):
+        if data and data.get('timeout_happened'):
             return super().get_form(data, files, **kwargs)
         return self.formset(data=data, instance=self.player, decision_type=self.decision_type)
 
