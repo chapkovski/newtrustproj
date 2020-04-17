@@ -489,7 +489,7 @@ class Player(BasePlayer):
     )
 
     justified_subsidies = models.IntegerField(
-        verbose_name='''Получение государственных пособий, на которые у человека нет права''',
+        label='''Получение государственных пособий, на которые у человека нет права''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         widget=widgets.RadioSelectHorizontal()
     )
@@ -526,8 +526,7 @@ class Player(BasePlayer):
 
     # Risk
     riskat = models.PositiveIntegerField(
-        verbose_name='''Скажите, пожалуйста, насколько Вы в целом любите рисковать? Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что Вы «совершенно не готовы
-        рисковать», а 10 означает, что Вы «охотно идете на риск».''',
+        verbose_name='''Скажите, пожалуйста, насколько Вы в целом любите рисковать? ''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  # [0, ''],
                  # [1, ''], [2, ''], [3, ''], [4, ''],
@@ -537,19 +536,9 @@ class Player(BasePlayer):
         widget=widgets.RadioSelectHorizontal()
     )
 
-    # catrisk=models.CharField(
-    #     verbose_name='''Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях?
-    #     Для ответа используйте шкалу от 0 до 10, где 0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
-    #     Используйте любое число на шкале от 0 до 10''',
-    #     widget=widgets.TextInput(attrs={'readonly': 'readonly'}, blank=True
-    #     )
-    # )
 
     riskfin = models.PositiveIntegerField(
-        verbose_name='''Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях? 
-        Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
-        
-        В финансовых вопросах''',
+        verbose_name='''В финансовых вопросах''',
         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                  ],
         widget=widgets.RadioSelectHorizontal()
@@ -1089,30 +1078,6 @@ class Player(BasePlayer):
         choices=Constants.Agree5DNK
     )
 
-    # SURVEY_DEFINITIONS = (
-    # {
-    #     'survey_fields': [
-    #         generate_likert_table(likert_12_labels, [
-    #                                   ('riskfinance', 'В финансовых вопросах'),
-    #                                   ('risksport','В свободное время и во время занятий спортом'),
-    #                                   ('riskstranger','В отношении незнакомых людей'),
-    #                               ],
-    #                               form_help_initial='<p>Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях? 0 - Совершенно не склонен к риску, - 10 Очень склонен к риску</p>'
-    #         )
-    #     ]
-    # }
-    # )
-    #
-    # from otreeutils.surveys import create_player_model_for_survey
-    #
-    # Player = create_player_model_for_survey('my_survey_app.models',
-    #                                         SURVEY_DEFINITIONS)
-
-    # height = models.PositiveIntegerField(verbose_name='Ваш рост (в сантиметрах)',
-    #                                     min=100, max=240,
-    #                                     initial=None)
-
-    # Personal2
 
     satis = models.PositiveIntegerField(
         verbose_name='''Учитывая все обстоятельства, насколько Вы удовлетворены вашей жизнью в целом в эти дни?  Для ответа выберите значение на шкале от 0 до 10,

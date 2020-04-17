@@ -114,18 +114,19 @@ class Trust(Page):
 
 
 class Values(Page):
-    joined_fields = [{"title": 'Ниже представлены краткие описание некоторых людей. До какой степени каждый из описанных людей похож или не похож на вас?:',
-                      "fields": [
-                          'similar_newideas',
-                          'similar_wealthy',
-                          'similar_safety',
-                          'similar_hedonic',
-                          'similar_renowned',
-                          'similar_adventurous',
-                          'similar_correct',
-                          'similar_care_environment',
-                          'similar_tradition',
-                      ]},
+    joined_fields = [{
+                         "title": 'Ниже представлены краткие описание некоторых людей. До какой степени каждый из описанных людей похож или не похож на вас?:',
+                         "fields": [
+                             'similar_newideas',
+                             'similar_wealthy',
+                             'similar_safety',
+                             'similar_hedonic',
+                             'similar_renowned',
+                             'similar_adventurous',
+                             'similar_correct',
+                             'similar_care_environment',
+                             'similar_tradition',
+                         ]},
                      {"title": """Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
         где 0 означает "никогда не заслуживает оправдания", а 10 означает "всегда заслуживает оправдания".""",
                       "fields": [
@@ -160,9 +161,19 @@ class Values(Page):
 
 class Risk(Page):
     form_model = 'player'
+    joined_fields = [{"title": """Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях? 
+        Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
+        """,
+                      "fields": [
+                          'riskfin',
+                          'risksport',
+                          'riskprof',
+                          'riskhealth',
+                          'riskstran',
+                          'riskat',
+                      ]}, ]
     form_fields = [
         'riskat',
-        #    'catrisk',
         'riskfin',
         'risksport',
         'riskprof',
