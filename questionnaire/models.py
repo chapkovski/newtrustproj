@@ -24,7 +24,23 @@ class Constants(BaseConstants):
     players_per_group = None
     surveys = ['1', '2', '3', '4', '5', '6', '7']
     num_rounds = 1  # len(surveys)
-
+    GENDER_CHOICES = [[0, 'Мужской'], [1, 'Женский']]
+    MARITAL_STATUS_CHOICES = [
+        [1, 'Не женаты/не замужем'],
+        [2, 'Женаты/замужем'],
+        [3, 'В отношениях, но официально не состоите в браке'],
+        [4, 'Разведены'],
+        [5, 'Живете отдельно от супруга/и'],
+        [6, 'Вдовец/Вдова'],
+        [7, 'Затрудняюсь ответить']
+    ]
+    LIVING_CHOICES = [
+        [1, 'С родителями'],
+        [2, 'В общежитии'],
+        [3, 'В съемной квартире'],
+        [4, 'В отдельной квартитре'],
+        [5, 'Другое']
+    ]
     IncrementChoices5DNK = [
         [1, 'Безусловно увеличился'],
         [2, 'Скорее увеличился'],
@@ -33,7 +49,26 @@ class Constants(BaseConstants):
         [5, 'Безусловно уменьшился'],
         [6, 'Затрудняюсь ответить'],
     ]
-
+    RELIGION_CHOICES = [
+        [1, 'Не исповедую никакой религии (атеист)'],
+        [2, 'Католицизм'],
+        [3, 'Протестантизм'],
+        [4, 'Православие'],
+        [5, 'Иудаизм'],
+        [6, 'Ислам'],
+        [7, 'Индуизм'],
+        [8, 'Буддизм'],
+        [9, 'Другую религию']
+    ]
+    SAME_MORAL_CHOICES = [
+        [1, 'Совершенно согласен'],
+        [2, 'Скорее согласен'],
+        [3, 'И да и нет'],
+        [4, 'Скорее не согласен'],
+        [5, 'Совершенно не согласен'],
+        [6, 'Затрудняюсь ответить'],
+        [7, 'Без ответа, я атеист']
+    ]
     AgreementChoices4DNK = [
         [1, 'Совершенно согласен'],
         [2, 'Скорее согласен'],
@@ -98,6 +133,18 @@ class Constants(BaseConstants):
     Sib4 = Sibling4
     # Survery7
     Reg6 = Region6
+    SOURCE_CHOICES = [
+        [0, 'Ничего не знаю о регионе'],
+        [1, 'От родственников и друзей'],
+        [2, 'Из социальных сетей (vk, instagram и др.'],
+        [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
+        [4, 'В школе или университете'],
+        [5, 'Другие источники'],
+    ]
+    BEEN_CHOICES = [
+        [0, 'Да'],
+        [1, 'Нет'],
+    ]
 
 
 class Subsession(BaseSubsession):
@@ -115,27 +162,6 @@ class Player(BasePlayer):
     def set_payoff(self):
         """Calculate payoff, which is zero for the survey"""
         self.payoff = 0
-
-    # correct_statements = tool_models.MultipleChoiceModelField(label="Пожалуйста выберите все подходящие варианты",
-    #                                                           min_choices=3, max_choices=3)
-    # likert_12_labels = (
-    #     '0','1','2','3','4','5','6','7','8','9','10','Затрудняюсь ответить'
-    #      )
-    #
-    # likert_12point_field = generate_likert_field(likert_12_labels)
-    #
-    # q0 = make_field('0')
-    # q1 = make_field('1')
-    # q2 = make_field('2')
-    # q3 = make_field('3')
-    # q4 = make_field('4')
-    # q5 = make_field('5')
-    # q6 = make_field('6')
-    # q7 = make_field('7')
-    # q8 = make_field('8')
-    # q9 = make_field('9')
-    # q10 = make_field('10')
-    # q99 = make_field('Затрудняюсь ответить')
 
     # Motivation
     motivation_part1 = models.TextField(
@@ -171,10 +197,13 @@ class Player(BasePlayer):
     )
 
     degree = models.PositiveIntegerField(label='На какой программе Вы учитесь',
-                                         choices=[[1, 'Бакалавриат'],
-                                                  [2, 'Специалитет'], [3, 'Магистратура'],
-                                                  [4, 'Аспирантура'],
-                                                  [5, 'Другое']],
+                                         choices=[
+                                             [1, 'Бакалавриат'],
+                                             [2, 'Специалитет'],
+                                             [3, 'Магистратура'],
+                                             [4, 'Аспирантура'],
+                                             [5, 'Другое']
+                                         ],
                                          widget=OtherRadioSelect(other=(5, 'degree_other')))
 
     degree_other = models.CharField(blank=True,
@@ -188,7 +217,7 @@ class Player(BasePlayer):
         initial=None)
 
     gender = models.BooleanField(initial=None,
-                                 choices=[[0, 'Мужской'], [1, 'Женский']],
+                                 choices=Constants.GENDER_CHOICES,
                                  label='Ваш пол',
                                  widget=widgets.RadioSelect())
 
@@ -206,15 +235,7 @@ class Player(BasePlayer):
 
     marital_status = models.PositiveIntegerField(
         label='Ваш семейный статус',
-        choices=[
-            [1, 'Не женаты/не замужем'],
-            [2, 'Женаты/замужем'],
-            [3, 'В отношениях, но официально не состоите в браке'],
-            [4, 'Разведены'],
-            [5, 'Живете отдельно от супруга/и'],
-            [6, 'Вдовец/Вдова'],
-            [7, 'Затрудняюсь ответить']
-        ],
+        choices=Constants.MARITAL_STATUS_CHOICES,
         widget=widgets.RadioSelect()
     )
 
@@ -233,13 +254,7 @@ class Player(BasePlayer):
 
     living = models.PositiveIntegerField(
         label='Вы живете...',
-        choices=[
-            [1, 'С родителями'],
-            [2, 'В общежитии'],
-            [3, 'В съемной квартире'],
-            [4, 'В отдельной квартитре'],
-            [5, 'Другое']
-        ],
+        choices=Constants.LIVING_CHOICES,
         widget=OtherRadioSelect(other=(5, 'living_other'))
     )
 
@@ -260,17 +275,7 @@ class Player(BasePlayer):
 
     religion = models.PositiveIntegerField(
         label='Какую религию Вы исповедуете?',
-        choices=[
-            [1, 'Не исповедую никакой религии (атеист)'],
-            [2, 'Католицизм'],
-            [3, 'Протестантизм'],
-            [4, 'Православие'],
-            [5, 'Иудаизм'],
-            [6, 'Ислам'],
-            [7, 'Индуизм'],
-            [8, 'Буддизм'],
-            [9, 'Другую религию']
-        ],
+        choices=Constants.RELIGION_CHOICES,
         widget=OtherRadioSelect(other=(9, 'religion_other'))
     )
 
@@ -281,15 +286,7 @@ class Player(BasePlayer):
     religion_moral = models.PositiveIntegerField(
         label='''Насколько Вы согласны со следующим утверждением? "Люди, исповедующие другие религии, вероятно, 
         такие же глубоко моральные люди, как и те, что исповедуют Вашу религию."''',
-        choices=[
-            [1, 'Совершенно согласен'],
-            [2, 'Скорее согласен'],
-            [3, 'И да и нет'],
-            [4, 'Скорее не согласен'],
-            [5, 'Совершенно не согласен'],
-            [6, 'Затрудняюсь ответить'],
-            [7, 'Без ответа, я атеист']
-        ],
+        choices=Constants.SAME_MORAL_CHOICES,
         widget=widgets.RadioSelect()
     )
 
@@ -327,12 +324,6 @@ class Player(BasePlayer):
         ],
         widget=widgets.RadioSelect()
     )
-
-    # catrust=models.CharField(blank=True,
-    #     label='''Скажите пожалуйста, насколько Вы доверяете следующим категориям людей''',
-    #     widget=widgets.TextInput(attrs={'readonly': 'readonly'}
-    #     )
-    # )
 
     trust_family = models.IntegerField(
         label='''Ваша семья''',
@@ -742,274 +733,151 @@ class Player(BasePlayer):
 
     Ark_been = models.BooleanField(
         label='''Архангельск и Архангельская область''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Vlk_been = models.BooleanField(
         label='''Владивосток и Приморский край''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Vor_been = models.BooleanField(
         label='''Воронеж и Воронежская область''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Ekb_been = models.BooleanField(
         label='''Екатеринбург и Свердловская область''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Kaz_been = models.BooleanField(
         label='''Казань и республика Татарстан''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Mak_been = models.BooleanField(
         label='''Махачкала и республика Дагестан''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Mos_been = models.BooleanField(
         label='''Москва''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Nsk_been = models.BooleanField(
         label='''Новосибирск и Новосибирская область''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Per_been = models.BooleanField(
         label='''Пермь и Пермский край''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Ros_been = models.BooleanField(
         label='''Ростов-на-Дону и Ростовская область''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     SPb_been = models.BooleanField(
         label='''Санкт-Петербург''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Khb_been = models.BooleanField(
         label='''Харабовск и Хабаровский край''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     abroad_been = models.BooleanField(
         label='''Бывали ли Вы когда-либо за границей?''',
-        choices=[
-            [0, 'Да'],
-            [1, 'Нет'],
-        ],
+        choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Ark_source = models.PositiveIntegerField(
         label='''Архангельск и Архангельская область''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Vlk_source = models.PositiveIntegerField(
         label='''Владивосток и Приморский край''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Vor_source = models.PositiveIntegerField(
         label='''Воронеж и Воронежская область''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Ekb_source = models.PositiveIntegerField(
         label='''Екатеринбург и Свердловская область''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Kaz_source = models.PositiveIntegerField(
         label='''Казань и республика Татарстан''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Mak_source = models.PositiveIntegerField(
         label='''Махачкала и республика Дагестан''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Mos_source = models.PositiveIntegerField(
         label='''Москва''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Nsk_source = models.PositiveIntegerField(
         label='''Новосибирск и Новосибирская область''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Per_source = models.PositiveIntegerField(
         label='''Пермь и Пермский край''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Ros_source = models.PositiveIntegerField(
         label='''Ростов-на-Дону и Ростовская область''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     SPb_source = models.PositiveIntegerField(
         label='''Санкт-Петербург''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
     Khb_source = models.PositiveIntegerField(
         label='''Харабовск и Хабаровский край''',
-        choices=[
-            [0, 'Ничего не знаю о регионе'],
-            [1, 'От родственников и друзей'],
-            [2, 'Из социальных сетей (vk, instagram и др.'],
-            [3, 'Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)'],
-            [4, 'В школе или университете'],
-            [5, 'Другие источники'],
-        ],
+        choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
