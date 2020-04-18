@@ -22,8 +22,7 @@ Post-experimental questionnaire for interregional project.
 class Constants(BaseConstants):
     name_in_url = 'Questionnaire'
     players_per_group = None
-    surveys = ['1', '2', '3', '4', '5', '6', '7']
-    num_rounds = 1  # len(surveys)
+    num_rounds = 1
     GENDER_CHOICES = [[0, 'Мужской'], [1, 'Женский']]
     MARITAL_STATUS_CHOICES = [
         [1, 'Не женаты/не замужем'],
