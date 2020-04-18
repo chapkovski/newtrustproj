@@ -1,0 +1,20 @@
+
+{% include "django/forms/widgets/multiple_input.html" %}
+<script>
+    var other_field_{{ other.1 }};
+    $(() => {
+            other_field_{{ other.1 }} = $('input[name="{{ other.1 }}"]').parent().parent();
+            other_field_{{ other.1 }}.hide()
+        }
+    )
+    $('input[type=radio][name={{widget.name}}]').change(function () {
+        if (this.value == {{other.0}}) {
+            other_field_{{ other.1 }}.show()
+            $('input[name="{{ other.1 }}"]').attr('required', true);
+        } else {
+            other_field_{{ other.1 }}.hide();
+            $('input[name="{{ other.1 }}"]').attr('required', false);
+        }
+    });
+
+</script>

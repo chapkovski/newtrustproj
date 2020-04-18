@@ -8,6 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
+from .widgets import OtherRadioSelect
 
 # from otree_tools.models import fields as tool_models
 
@@ -162,7 +163,7 @@ class Player(BasePlayer):
                                                  [7, 'Филология, гуманитарные науки'],
                                                  [8, 'Медиа, журналистика, дизайн'],
                                                  [9, 'Другое']],
-                                        widget=widgets.RadioSelect())
+                                        widget=OtherRadioSelect(other=(9, 'field_other')))
 
     field_other = models.CharField(
         label='''Если другое, то что именно?''',
@@ -174,7 +175,7 @@ class Player(BasePlayer):
                                                   [2, 'Специалитет'], [3, 'Магистратура'],
                                                   [4, 'Аспирантура'],
                                                   [5, 'Другое']],
-                                         widget=widgets.RadioSelect())
+                                         widget=OtherRadioSelect(other=(5, 'degree_other')))
 
     degree_other = models.CharField(blank=True,
                                     label='''Если другое, то что именно?'''
@@ -223,7 +224,7 @@ class Player(BasePlayer):
             [0, 'Русский'],
             [1, 'Другой (какой именно)']
         ],
-        widget=widgets.RadioSelect()
+        widget=OtherRadioSelect(other=(1, 'language_other'))
     )
 
     language_other = models.CharField(blank=True,
@@ -239,7 +240,7 @@ class Player(BasePlayer):
             [4, 'В отдельной квартитре'],
             [5, 'Другое']
         ],
-        widget=widgets.RadioSelect()
+        widget=OtherRadioSelect(other=(5, 'living_other'))
     )
 
     living_other = models.CharField(blank=True,
@@ -270,7 +271,7 @@ class Player(BasePlayer):
             [8, 'Буддизм'],
             [9, 'Другую религию']
         ],
-        widget=widgets.RadioSelect()
+        widget=OtherRadioSelect(other=(9, 'religion_other'))
     )
 
     religion_other = models.CharField(blank=True,
@@ -1145,12 +1146,12 @@ class Player(BasePlayer):
             [3, 'ЛДПР'],
             [4, 'Справедливая Россия'],
             [5, 'Яблоко'],
-            [6, 'Другая партия (укажите ниже какая именно)'],
+            [6, 'Другая партия'],
             [7, 'В России нет партии, которой  я симпатизирую'],
             [8, 'Я не интересуюсь политикой'],
             [9, 'Затрудняюсь ответить']
         ],
-        widget=widgets.RadioSelect()
+        widget=OtherRadioSelect(other=(6, 'party_other'))
     )
 
     party_other = models.CharField(blank=True,
