@@ -78,7 +78,8 @@ SECRET_KEY = 'm1e8fnwh3#$v6xbng%$!jn_onduh(22hmzx$kt=$ch6+m6*lcg'
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = [
     'otree',
-    'django.contrib.admin'
+    'django.contrib.admin',
+
 ]
 EXTENSION_APPS = ['trust']
 MIDDLEWARE_CLASSES = ['django.middleware.locale.LocaleMiddleware', ]
