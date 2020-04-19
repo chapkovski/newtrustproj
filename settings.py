@@ -49,9 +49,9 @@ SESSION_CONFIGS = [
     #  'cq': True,
     #  'use_browser_bots': False},
     {
-        'name': 'questionnaire',
+        'name': 'questionnaire_ru',
         'app_sequence': ['questionnaire'],
-        'display_name': 'Questionnaire only',
+        'display_name': 'Questionnaire only - RUSSIAN',
         'num_demo_participants': 1,
         'use_browser_bots': False,
         'language': 'ru'},
