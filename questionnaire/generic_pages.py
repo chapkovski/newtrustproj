@@ -1,12 +1,19 @@
-
 from ._builtin import Page as oTreePage
-
 
 from .forms import UpdatedOtreeForm
 from django.forms.models import modelform_factory
+from django.conf import settings
+from django.utils import translation
 
 
-class Page(oTreePage):
+class TransMixin:
+    def get_context_data(self, **context):
+        user_language = self.session.config.get('language', settings.LANGUAGE_CODE)
+        translation.activate(user_language)
+        return super().get_context_data(**context)
+
+
+class Page(TransMixin, oTreePage):
     joined_fields = None
 
     def get_form_class(self):

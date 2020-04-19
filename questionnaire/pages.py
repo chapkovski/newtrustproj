@@ -1,6 +1,4 @@
-from otree.api import Currency as c, currency_range
-from ._builtin import WaitPage
-from .models import Constants
+from django.utils.translation import gettext_lazy as _
 from .generic_pages import Page
 
 
@@ -220,8 +218,8 @@ class Region(Page):
         'SPb_rank',
         'Khb_rank',
     ]
-    joined_fields = [{"title": """Бывали ли Вы когда-нибудь в следующих регионах России:
-        """,
+    joined_fields = [{"title": _("""Бывали ли Вы когда-нибудь в следующих регионах России:
+        """),
                       "fields": [
                           'Ark_been',
                           'Vlk_been',
@@ -237,8 +235,8 @@ class Region(Page):
                           'Khb_been',
                           'abroad_been',
                       ]},
-                     {"title": """Из каких источников Вы получали информацию о следующих регионах России (если получали):
-                             """,
+                     {"title": _("""Из каких источников Вы получали информацию о следующих регионах России (если получали):
+                             """),
                       "fields": [
                           'Ark_source',
                           'Vlk_source',
@@ -318,13 +316,13 @@ class Personal2(Page):
 
 
 page_sequence = [
-    Motivation,
-    Personal1,
-    SelfDetermination,
-    Trust,
-    Values,
-    Risk,
-    StatedPreferences,
+    # Motivation,
+    # Personal1,
+    # SelfDetermination,
+    # Trust,
+    # Values,
+    # Risk,
+    # StatedPreferences,
     Region,
     Personal2
 ]

@@ -53,7 +53,15 @@ SESSION_CONFIGS = [
         'app_sequence': ['questionnaire'],
         'display_name': 'Questionnaire only',
         'num_demo_participants': 1,
-        'use_browser_bots': False}
+        'use_browser_bots': False,
+        'language': 'ru'},
+    {
+        'name': 'questionnaire_en',
+        'app_sequence': ['questionnaire'],
+        'display_name': 'Questionnaire only - ENGLISH',
+        'num_demo_participants': 1,
+        'use_browser_bots': False,
+        'language': 'en'}
 ]
 
 # ISO-639 code
