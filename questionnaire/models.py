@@ -9,9 +9,16 @@ from otree.api import (
     currency_range,
 )
 from .widgets import OtherRadioSelect
+from django.utils.translation import gettext_lazy as _
 
-# from otree_tools.models import fields as tool_models
 
+def __(l):
+    for i,j in l:
+        print(_(j))
+    return [(i, _(j)) for i, j in l]
+
+a = [_('ф'),'ы']
+b = [_(i) for i in a]
 author = 'Philipp Chapkovski, HSE-Moscow'
 
 doc = """
@@ -24,7 +31,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     GENDER_CHOICES = [[0, 'Мужской'], [1, 'Женский']]
-    MARITAL_STATUS_CHOICES = [
+    MARITAL_STATUS_CHOICES =__([
         [1, 'Не женаты/не замужем'],
         [2, 'Женаты/замужем'],
         [3, 'В отношениях, но официально не состоите в браке'],
@@ -32,7 +39,8 @@ class Constants(BaseConstants):
         [5, 'Живете отдельно от супруга/и'],
         [6, 'Вдовец/Вдова'],
         [7, 'Затрудняюсь ответить']
-    ]
+    ])
+
     LIVING_CHOICES = [
         [1, 'С родителями'],
         [2, 'В общежитии'],

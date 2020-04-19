@@ -9,6 +9,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=10.00, participation_fee=150.00, doc=""
 )
 
+LANGUAGE_SESSION_KEY = '_language'
 import yaml
 
 with open(r'./data/cities.yaml') as file:
@@ -80,3 +81,5 @@ INSTALLED_APPS = [
     'django.contrib.admin'
 ]
 EXTENSION_APPS = ['trust']
+MIDDLEWARE_CLASSES = ['django.middleware.locale.LocaleMiddleware', ]
+USE_I18N = True
