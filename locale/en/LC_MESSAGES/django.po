@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-18 23:52-0400\n"
+"POT-Creation-Date: 2020-04-19 18:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -281,23 +281,30 @@ msgstr "No"
 msgid ""
 "Разделение властей существует, система сдержек и противовесов реально "
 "работает"
-msgstr "The separation of powers exists, the system of checks and balances is real"
+msgstr ""
+"The separation of powers exists, the system of checks and balances is real"
 
 #: questionnaire/models.py:115
 msgid ""
 "Разделение властей существует, несмотря на отдельные попытки нарушить "
 "систему сдержек и противовесов"
-msgstr "The separation of powers exists despite separate attempts to violate system of checks and balances"
+msgstr ""
+"The separation of powers exists despite separate attempts to violate system "
+"of checks and balances"
 
 #: questionnaire/models.py:116
 msgid ""
 "Разделение властей существует формально, на практике система сдержек и "
 "противовесов работает плохо"
-msgstr "The separation of powers exists formally, in practice, a system of checks and counterweights do not work well"
+msgstr ""
+"The separation of powers exists formally, in practice, a system of checks "
+"and counterweights do not work well"
 
 #: questionnaire/models.py:117
 msgid "Разделения властей нет, система сдержек и противовесов не работает"
-msgstr "There is no separation of powers, the system of checks and balances does not work"
+msgstr ""
+"There is no separation of powers, the system of checks and balances does not "
+"work"
 
 #: questionnaire/models.py:119 questionnaire/models.py:131
 #: questionnaire/models.py:141 questionnaire/models.py:153
@@ -312,13 +319,17 @@ msgstr "Courts are independent from other public institutions and not corrupt"
 msgid ""
 "Суды в основном независимы, хотя иногда подвержены воздействию других "
 "общественных институтов и бывают случаи коррупции"
-msgstr "Courts are mostly independent, although sometimes affected by other public institutions and there are cases of corruption"
+msgstr ""
+"Courts are mostly independent, although sometimes affected by other public "
+"institutions and there are cases of corruption"
 
 #: questionnaire/models.py:128
 msgid ""
 "Независимость судов в значительной степени подорвана: они находятся во "
 "влиянием других общественных институтов и коррупции"
-msgstr "The independence of the courts is largely undermined: they are in the influence of other public institutions and corruption"
+msgstr ""
+"The independence of the courts is largely undermined: they are in the "
+"influence of other public institutions and corruption"
 
 #: questionnaire/models.py:129
 msgid "Независимых судов в нашей стране нет"
@@ -334,13 +345,17 @@ msgstr "Corruption is strictly prosecuted and exposed to public condemnation"
 msgid ""
 "Коррупция в целом преследуется по закону и осуждается, однако иногда "
 "вовлеченным в нее людям удается найти лазейки и уйти от ответственности"
-msgstr "Corruption as a whole is prosecuted and condemned, but sometimes the people involved in it manage to find loopholes and evade responsibility"
+msgstr ""
+"Corruption as a whole is prosecuted and condemned, but sometimes the people "
+"involved in it manage to find loopholes and evade responsibility"
 
 #: questionnaire/models.py:138
 msgid ""
 "Коррупция недостаточно преследуется по закону, и иногда подвергается "
 "публичному осуждению"
-msgstr "Corruption is not sufficiently prosecuted, and is sometimes exposed public condemnation"
+msgstr ""
+"Corruption is not sufficiently prosecuted, and is sometimes exposed public "
+"condemnation"
 
 #: questionnaire/models.py:139
 msgid "Коррупция практически безнаказанна, и не осуждается публично"
@@ -348,29 +363,33 @@ msgstr "Corruption is practically unpunished, and not publicly condemned"
 
 #: questionnaire/models.py:144
 msgid "Гражданские права эффективно защищены законом, а их нарушение карается"
-msgstr "Civil rights are effectively protected by law, and their violation is punishable"
+msgstr ""
+"Civil rights are effectively protected by law, and their violation is "
+"punishable"
 
 #: questionnaire/models.py:147
 msgid ""
 "Гражданские права охраняются законом, но защита недостаточна, и нарушение "
 "этих прав не всегда преследуется"
-msgstr "Civil rights are protected by law, but protection is inadequate and violation of "
-"these rights are not always prosecuted"
+msgstr ""
+"Civil rights are protected by law, but protection is inadequate and "
+"violation of these rights are not always prosecuted"
 
 #: questionnaire/models.py:150
 msgid ""
 "Гражданские права обозначены в законе, но на практике нарушаются, и "
 "механизмы их защиты, как правило, неэффективны"
-msgstr "Civil rights are specified in law, but in practice are violated, and "
+msgstr ""
+"Civil rights are specified in law, but in practice are violated, and "
 "mechanisms for their protection are generally ineffective"
-
 
 #: questionnaire/models.py:151
 msgid ""
 "Гражданские права систематически нарушаются, и механизмы их защиты "
 "отсутствуют"
-msgstr "Civil rights are systematically violated, and mechanisms for their protection are "
-"absent"
+msgstr ""
+"Civil rights are systematically violated, and mechanisms for their "
+"protection are absent"
 
 #: questionnaire/models.py:157
 msgid "Несчастливый человек"
@@ -403,21 +422,25 @@ msgstr "Enough for food, but not enough to buy clothes and shoes"
 #: questionnaire/models.py:168
 msgid ""
 "Хватает на одежду и обувь, но не хватает на покупку мелкой бытовой техники"
-msgstr "Enough for clothes and shoes, but not enough for the purchase of small household appliances"
+msgstr ""
+"Enough for clothes and shoes, but not enough for the purchase of small "
+"household appliances"
 
 #: questionnaire/models.py:171
 msgid ""
 "Хватает денег на небольшие покупки, но покупка дорогих вещей (компьютера, "
 "стиральной машины, холодильника) требует накоплений или кредита"
-msgstr "Enough money for small purchases, but buying expensive things (a computer, "
+msgstr ""
+"Enough money for small purchases, but buying expensive things (a computer, "
 "washing machine, refrigerator) requires savings or credit"
 
 #: questionnaire/models.py:174
 msgid ""
 "Хватает денег на покупки для дома, но на покупку машины, дачи, квартиры "
 "необходимо копить или брать кредит"
-msgstr "There is enough money to buy for a house, but to buy a car, a summer residence, an apartment "
-"you need to save or take a loan"
+msgstr ""
+"There is enough money to buy for a house, but to buy a car, a summer "
+"residence, an apartment you need to save or take a loan"
 
 #: questionnaire/models.py:175
 msgid "Можем позволить себе любые покупки без ограничений и кредитов"
@@ -495,11 +518,33 @@ msgstr "Doesn't look like me"
 msgid "Совсем не похож на меня"
 msgstr "Not at all like me"
 
+#: questionnaire/models.py:224 questionnaire/models.py:232
+msgid "0"
+msgstr ""
+
+#: questionnaire/models.py:225 questionnaire/models.py:233
+msgid "1"
+msgstr ""
+
+#: questionnaire/models.py:226
+msgid "2"
+msgstr ""
+
+#: questionnaire/models.py:227
+msgid "3"
+msgstr ""
+
 #: questionnaire/models.py:228
 msgid "4 или более"
 msgstr "4 or more"
 
+#: questionnaire/models.py:234
+msgid "2-3"
+msgstr ""
 
+#: questionnaire/models.py:235
+msgid "4-6"
+msgstr ""
 
 #: questionnaire/models.py:236
 msgid "7 или более"
@@ -539,12 +584,11 @@ msgid ""
 "часть 30 токенов\n"
 "            Чем Вы руководствовались, принимая эти решения?\n"
 "            Почему Вы решили именно так?"
-msgstr "Please recall your decisions in Part 1 of the experiment. \ N"
-"Participant A: whether to transfer the initial amount to participant B. \ n"
-"Member B: do not return anything, return everything or return only"
-"part 30 tokens \ n"
-"What were you guided by when making these decisions? \ N"
-"Why did you decide that way?"
+msgstr ""
+"Please recall your decisions in Part 1 of the experiment. Participant A: "
+"whether to transfer the initial amount to participant B. Member B: do not "
+"return anything, return everything or return only part of 30 tokens. What "
+"were you guided by when making these decisions? Why did you decide that way?"
 
 #: questionnaire/models.py:292
 msgid ""
@@ -556,14 +600,10 @@ msgid ""
 "            Чем Вы руководствовались, принимая эти решения?\n"
 "            Почему Вы решили именно так?"
 msgstr ""
-"Please recall your decisions in part 2 of the experiment. \ N"
-"Member A: evaluate which part of the 30 tokens will participant B want"
-"return. \ n"
-"Member B: Evaluate if Member A wanted to pass it on to you."
-"initial amount. \ n"
-"What were you guided by when making these decisions? \ N"
-"Why did you decide that way?"
-
+"Please recall your decisions in part 2 of the experiment. Member A: evaluate "
+"which part of the 30 tokens will participant B want to return. Member B: "
+"Evaluate if Member A wanted to pass it on to you.initial amount. What were "
+"you guided by when making these decisions? Why did you decide that way?"
 
 #: questionnaire/models.py:299
 msgid "Ваша специализация"
@@ -626,9 +666,6 @@ msgstr ""
 msgid "Аспирантура"
 msgstr ""
 
-#: questionnaire/models.py:323
-msgid "degree_other"
-msgstr ""
 
 #: questionnaire/models.py:330
 msgid ""
@@ -668,7 +705,9 @@ msgstr ""
 msgid "Другой (какой именно)"
 msgstr ""
 
-
+#: questionnaire/models.py:364
+msgid "language_other"
+msgstr ""
 
 #: questionnaire/models.py:368
 msgid "Если на другом языке, то на каком именно?"
@@ -678,6 +717,9 @@ msgstr ""
 msgid "Вы живете..."
 msgstr ""
 
+#: questionnaire/models.py:374
+msgid "living_other"
+msgstr ""
 
 #: questionnaire/models.py:378
 msgid "Уточните где именно"
@@ -697,7 +739,9 @@ msgstr ""
 msgid "Какую религию Вы исповедуете?"
 msgstr ""
 
-
+#: questionnaire/models.py:396
+msgid "religion_other"
+msgstr ""
 
 #: questionnaire/models.py:400
 msgid "Уточните какую именно"
@@ -1177,6 +1221,9 @@ msgid ""
 "симпатизируете ей? "
 msgstr ""
 
+#: questionnaire/models.py:1044
+msgid "party_other"
+msgstr ""
 
 #: questionnaire/models.py:1048
 msgid "Если Вы сторонник другой партии, укажите какой именно"
@@ -1200,6 +1247,10 @@ msgid ""
 "получали):\n"
 "                             "
 msgstr ""
+
+#: questionnaire/templates/questionnaire/Motivation.html:5
+msgid "Анкета"
+msgstr "Questionnaire"
 
 #: questionnaire/templates/questionnaire/includes/ranking.html:10
 msgid ""

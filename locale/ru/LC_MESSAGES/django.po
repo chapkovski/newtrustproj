@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-18 22:15-0400\n"
+"POT-Creation-Date: 2020-04-19 18:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -532,7 +532,7 @@ msgid "От родственников и друзей"
 msgstr ""
 
 #: questionnaire/models.py:255
-msgid "Из социальных сетей (vk, instagram и др."
+msgid "Из социальных сетей (vk, instagram и др.)"
 msgstr ""
 
 #: questionnaire/models.py:256
@@ -1211,6 +1211,38 @@ msgstr ""
 msgid ""
 "Как Вы думаете, со студентами из какого города вы взаимодействовали в ходе "
 "этой экспериментальной сессии?"
+msgstr ""
+
+#: questionnaire/pages.py:221
+msgid ""
+"Бывали ли Вы когда-нибудь в следующих регионах России:\n"
+"        "
+msgstr ""
+
+#: questionnaire/pages.py:238
+msgid ""
+"Из каких источников Вы получали информацию о следующих регионах России (если "
+"получали):\n"
+"                             "
+msgstr ""
+
+#: questionnaire/templates/questionnaire/Motivation.html:5
+msgid "Анкета"
+msgstr ""
+
+#: questionnaire/templates/questionnaire/includes/ranking.html:10
+msgid ""
+"Посмотрите пожалуйста на список регионов России, включающий и Ваш. "
+"Проранжируйте пожалуйста эти\n"
+"                регионы по убыванию среднемесячного дохода их жителей."
+msgstr ""
+
+#: questionnaire/templates/questionnaire/includes/ranking.html:16
+msgid "Выберите город:"
+msgstr ""
+
+#: questionnaire/templates/questionnaire/includes/ranking.html:17
+msgid "Поместите его в этот список в нужном порядке:"
 msgstr ""
 
 #: trust/templates/trust/includes/error_modal.html:16
