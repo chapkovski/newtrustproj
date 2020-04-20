@@ -120,8 +120,7 @@ class Values(Page):
             'similar_care_nearby',
         ]},
 
-
-    {"title": _("""Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
+        {"title": _("""Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
         где 0 означает "никогда не заслуживает оправдания", а 10 означает "всегда заслуживает оправдания"."""),
          "fields": [
              'justified_subsidies',
@@ -158,23 +157,25 @@ class Values(Page):
 class Risk(Page):
     form_model = 'player'
     joined_fields = [{"title": _("""Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях? 
-        Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
+        Для ответа выберите значение на шкале от 10 до 0, где  10 означает, что Вы «охотно идете на риск», а 0 означает, что Вы «совершенно не готовы рисковать».
         """),
                       "fields": [
-                          'riskfin',
-                          'risksport',
-                          'riskprof',
-                          'riskhealth',
-                          'riskstran',
-                          'riskat',
+                          'risk_general',
+                          'risk_fin',
+                          'risk_sport',
+                          'risk_prof',
+                          'risk_health',
+                          'risk_strangers',
+                          'risk_drive'
                       ]}, ]
     form_fields = [
-        'riskat',
-        'riskfin',
-        'risksport',
-        'riskprof',
-        'riskhealth',
-        'riskstran'
+        'risk_general',
+        'risk_fin',
+        'risk_sport',
+        'risk_prof',
+        'risk_health',
+        'risk_strangers',
+        'risk_drive'
     ]
 
 
@@ -187,11 +188,11 @@ class StatedPreferences(Page):
         'ready_help',
         'dreadyhelp',
         'freedom',
+        'competition',
+        'fairness_general',
         'positive_reciprocity',
         'negative_reciprocity',
         'abuse_you',
-        'competition',
-        'fairness_general',
         'fairness_russian',
         'separation_power',
         'independent_judiciary',
@@ -320,7 +321,7 @@ page_sequence = [
     # StatedPreferences,
     # Personal1,
     # SelfDetermination,
-    Values,
+    # Values,
     # Risk,
-    # Personal2
+    Personal2
 ]

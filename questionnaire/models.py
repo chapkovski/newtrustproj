@@ -75,9 +75,9 @@ class Constants(BaseConstants):
         [4, _('Затрудняюсь ответить')],
         [5, _('Без ответа, я атеист')]
     ]
-    JUSTIFIED_CHOICES = range(0, 11)
+    JUSTIFIED_CHOICES = range(1, 11)
     RISK_CHOICES = range(10, -1, -1)
-    AGREEEMENT_CHOICES = [
+    AGREEMENT_CHOICES = [
         [1, _('Безусловно согласия, сплоченности')],
         [2, _('Скорее согласия, сплоченности')],
         [3, _('Скорее несогласия, разобщенности')],
@@ -108,13 +108,14 @@ class Constants(BaseConstants):
         [5, _('Затрудняюсь ответить')]
     ]
     FEATURE_CHOICES = range(0, 11)
+    FEATURE_CHOICES_1_10 = range(1, 11)
     SEPARATION_POWER_CHOICES = [
         [1, _('Разделение властей существует, система сдержек и противовесов реально работает')],
         [2, _('Разделение властей существует, несмотря на отдельные попытки нарушить систему сдержек и противовесов')],
         [3, _('Разделение властей существует формально, на практике система сдержек и противовесов работает плохо')],
         [4, _('Разделения властей нет, система сдержек и противовесов не работает')],
         [5, _('Затрудняюсь ответить')],
-        [6, _('Отказ от ответа')]
+
     ]
     INDEPENDENT_JUD_CHOICES = [
         [1, _('Суды независимы от других общественных институтов и некоррумпированы')],
@@ -126,7 +127,7 @@ class Constants(BaseConstants):
              'Независимость судов в значительной степени подорвана: они находятся во влиянием других общественных институтов и коррупции')],
         [4, _('Независимых судов в нашей стране нет')],
         [5, _('Затрудняюсь ответить')],
-        [6, _('Отказ от ответа')]
+
     ]
     CORRUPTION_CHOICES = [
         [1, _('Коррупция строго преследуется в соответствии с законом и подвергается публичному осуждению')],
@@ -136,7 +137,6 @@ class Constants(BaseConstants):
         [3, _('Коррупция недостаточно преследуется по закону, и иногда подвергается публичному осуждению')],
         [4, _('Коррупция практически безнаказанна, и не осуждается публично')],
         [5, _('Затрудняюсь ответить')],
-        [6, _('Отказ от ответа')]
     ]
     CIVIL_RIGHTS_CHOICES = [
         [1, _('Гражданские права эффективно защищены законом, а их нарушение карается')],
@@ -148,7 +148,6 @@ class Constants(BaseConstants):
              'Гражданские права обозначены в законе, но на практике нарушаются, и механизмы их защиты, как правило, неэффективны')],
         [4, _('Гражданские права систематически нарушаются, и механизмы их защиты отсутствуют')],
         [5, _('Затрудняюсь ответить')],
-        [6, _('Отказ от ответа')]
     ]
     SATIS_CHOICES = range(0, 11)
     HAPPY_CHOICES = [
@@ -156,9 +155,13 @@ class Constants(BaseConstants):
         [1, _('Счастливый человек')],
     ]
     RELATIVE_HAPPY_CHOICES = [
-        [0, _('Менее счастливы чем они')],
-        [1, _('В среднем так же счастлив, как и они')],
-        [2, _('Более счастлив чем они')]
+        [1, _('1 - Менее счастливы чем они')],
+        [2, '2'],
+        [3, '3'],
+        [4, _('4 - В среднем так же счастлив, как и они')],
+        [5, '5'],
+        [6, '6'],
+        [7, _('7 - Более счастлив чем они')]
     ]
     INCOME_CHOICES = [
         [1, _('Не хватает денег даже на еду')],
@@ -598,38 +601,43 @@ class Player(BasePlayer):
     )
 
     # Risk
-    riskat = models.PositiveIntegerField(
+    risk_general = models.PositiveIntegerField(
         label=_("""Скажите, пожалуйста, насколько Вы в целом любите рисковать? """),
         choices=Constants.RISK_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
-    riskfin = models.PositiveIntegerField(
+    risk_fin = models.PositiveIntegerField(
         label=_("""В финансовых вопросах"""),
         choices=Constants.RISK_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
-    risksport = models.PositiveIntegerField(
+    risk_sport = models.PositiveIntegerField(
         label=_("""В свободное время и во время занятий спортом"""),
         choices=Constants.RISK_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
-    riskprof = models.PositiveIntegerField(
+    risk_prof = models.PositiveIntegerField(
         label=_("""В вашей профессии"""),
         choices=Constants.RISK_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
-    riskhealth = models.PositiveIntegerField(
+    risk_health = models.PositiveIntegerField(
         label=_("""В том что касается вашего здоровья"""),
         choices=Constants.RISK_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
 
-    riskstran = models.PositiveIntegerField(
+    risk_strangers = models.PositiveIntegerField(
         label=_("""В отношениях с незнакомыми людьми"""),
+        choices=Constants.RISK_CHOICES,
+        widget=widgets.RadioSelectHorizontal()
+    )
+    risk_drive = models.PositiveIntegerField(
+        label=_("""Во время езды за рулем"""),
         choices=Constants.RISK_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
@@ -638,7 +646,7 @@ class Player(BasePlayer):
     moreagreement = models.PositiveIntegerField(
         label=_(
             """Как Вы думаете, сегодня в нашей стране среди людей больше согласия, сплоченности или несогласия, разобщенности?"""),
-        choices=Constants.AGREEEMENT_CHOICES,
+        choices=Constants.AGREEMENT_CHOICES,
         widget=widgets.RadioSelect()
     )
 
@@ -674,7 +682,21 @@ class Player(BasePlayer):
          характеристики применимы к Вам и Вашей жизни? Для ответа выберите значение на шкале от 0 до 10, где 0 означает "у меня нет свободы выбора", а 10
          означает "у меня полная свобода выбора":.
          """),
-        choices=Constants.FEATURE_CHOICES,
+        choices=Constants.FEATURE_CHOICES_1_10,
+        widget=widgets.RadioSelectHorizontal()
+    )
+    competition = models.PositiveIntegerField(
+        label=_("""Как Вы думаете, конкуренция - это зло или благо?
+             Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «конкуренция вредна, поскольку она побуждает у людей худшие качества», 
+             а 10 означает, что «конкуренция - это благо, поскольку она побуждает людей лучше трудиться»"""),
+        choices=Constants.FEATURE_CHOICES_1_10,
+        widget=widgets.RadioSelectHorizontal()
+    )
+
+    fairness_general = models.PositiveIntegerField(
+        label=_("""Как Вы думаете, могут ли люди в современном обществе разбогатеть только за счет других людей, или уровень благосостояния может вырасти у всех?
+         Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди могут разбогатеть только за счет других», а 10 означает, что «благосостояние может вырасти у всех»"""),
+        choices=Constants.FEATURE_CHOICES_1_10,
         widget=widgets.RadioSelectHorizontal()
     )
 
@@ -699,23 +721,10 @@ class Player(BasePlayer):
         widget=widgets.RadioSelectHorizontal()
     )
 
-    competition = models.PositiveIntegerField(
-        label=_("""Как Вы думаете, конкуренция - это зло или благо?
-             Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «конкуренция вредна, поскольку она побуждает у людей худшие качества», 
-             а 10 означает, что «конкуренция - это благо, поскольку она побуждает людей лучше трудиться»"""),
-        choices=Constants.FEATURE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
-    )
-
-    fairness_general = models.PositiveIntegerField(
-        label=_("""Как Вы думаете, могут ли люди в современном обществе разбогатеть только за счет других людей, или уровень благосостояния может вырасти у всех?
-         Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди могут разбогатеть только за счет других», а 10 означает, что «благосостояние может вырасти у всех»"""),
-        choices=Constants.FEATURE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
-    )
     fairness_russian = models.PositiveIntegerField(
         label=_("""Социальные различия между людьми в нашей стране в целом оправданны и справедливы"""),
-        choices=Constants.Agree5DNK
+        choices=Constants.Agree5DNK,
+        widget=widgets.RadioSelect()
     )
     separation_power = models.PositiveIntegerField(
         label=_(
@@ -966,7 +975,7 @@ class Player(BasePlayer):
     happy_relative = models.PositiveIntegerField(
         label=_("""По сравнению с большинством окружающих вас людей, вы"""),
         choices=Constants.RELATIVE_HAPPY_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+        widget=widgets.RadioSelect()
     )
 
     income = models.PositiveIntegerField(
@@ -1017,8 +1026,7 @@ class Player(BasePlayer):
                                    )
 
     other_city = models.CharField(
-        label=_(
-            """Как Вы думаете, со студентами из какого города вы взаимодействовали в ходе этой экспериментальной сессии?""")
+        label=_("Как Вы думаете, с участником из какого города вы взаимодействовали в ходе этого исследования?")
     )
 
     def get_rank_fields(self):
