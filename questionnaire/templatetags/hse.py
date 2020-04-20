@@ -28,6 +28,10 @@ def rubl(value):
     return value
 
 
-@register.inclusion_tag('questionnaire/tags/joined_form.html', name='joined_form')
-def render_joined_form(form):
-    return {'form': form}
+@register.inclusion_tag('questionnaire/tags/joined_form.html', name='joined_form', takes_context=True)
+def render_joined_form(context, form):
+
+
+    return dict(form=form,
+                fields_order=getattr(context['view'], 'jfields_order', [])
+                )

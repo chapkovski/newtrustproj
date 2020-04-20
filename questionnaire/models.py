@@ -11,7 +11,6 @@ from otree.api import (
 from .widgets import OtherRadioSelect
 from django.utils.translation import gettext_lazy as _
 
-
 author = _('Philipp Chapkovski, HSE-Moscow')
 
 doc = _("""
@@ -63,11 +62,10 @@ class Constants(BaseConstants):
     SAME_MORAL_CHOICES = [
         [1, _('Совершенно согласен')],
         [2, _('Скорее согласен')],
-        [3, _('И да и нет')],
-        [4, _('Скорее не согласен')],
-        [5, _('Совершенно не согласен')],
-        [6, _('Затрудняюсь ответить')],
-        [7, _('Без ответа, я атеист')]
+        [3, _('Скорее не согласен')],
+        [4, _('Совершенно не согласен')],
+        [5, _('Затрудняюсь ответить')],
+        [6, _('Без ответа, я атеист')]
     ]
     CHURCH_ATTENDANCE_CHOICES = [
         [0, _('Вообще не бываю')],
@@ -78,7 +76,7 @@ class Constants(BaseConstants):
         [5, _('Без ответа, я атеист')]
     ]
     JUSTIFIED_CHOICES = range(0, 11)
-    RISK_CHOICES = range(10, -1,-1)
+    RISK_CHOICES = range(10, -1, -1)
     AGREEEMENT_CHOICES = [
         [1, _('Безусловно согласия, сплоченности')],
         [2, _('Скорее согласия, сплоченности')],
@@ -296,41 +294,6 @@ class Player(BasePlayer):
             Почему Вы решили именно так?""")
     )
 
-    field = models.PositiveIntegerField(label=_('Ваша специализация'),
-                                        choices=[[1, _('Экономика, финансы, менеджмент')],
-                                                 [2, _('Социальные науки, психология, политология')], [3, _('Право')],
-                                                 [4, _('Международные отношения')],
-                                                 [5, _('Математика, информатика, анализ данных')],
-                                                 [6, _('Естественные науки, инженерное дело')],
-                                                 [7, _('Филология, гуманитарные науки')],
-                                                 [8, _('Медиа, журналистика, дизайн')],
-                                                 [9, _('Другое')]],
-                                        widget=OtherRadioSelect(other=(9, _('field_other'))))
-
-    field_other = models.CharField(
-        label=_("""Если другое, то что именно?"""),
-        blank=True
-    )
-
-    degree = models.PositiveIntegerField(label=_('На какой программе Вы учитесь'),
-                                         choices=[
-                                             [1, _('Бакалавриат')],
-                                             [2, _('Специалитет')],
-                                             [3, _('Магистратура')],
-                                             [4, _('Аспирантура')],
-                                             [5, _('Другое')]
-                                         ],
-                                         widget=OtherRadioSelect(other=(5, _('degree_other'))))
-
-    degree_other = models.CharField(blank=True,
-                                    label=_("""Если другое, то что именно?""")
-                                    )
-
-    studyear = models.PositiveIntegerField(
-        label=_("Год обучения (курс)"),
-        min=0, max=8,
-        initial=None)
-
     gender = models.BooleanField(initial=None,
                                  choices=Constants.GENDER_CHOICES,
                                  label=_('Ваш пол'),
@@ -342,10 +305,6 @@ class Player(BasePlayer):
 
     birthplace = models.CharField(
         label=_("""Место рождения (населенный пункт, регион)""")
-    )
-
-    GPA = models.CharField(
-        label=_("""Ваш средний балл за все время учебы на программе (из 5)""")
     )
 
     marital_status = models.PositiveIntegerField(
@@ -425,11 +384,11 @@ class Player(BasePlayer):
 
     # Trust
 
-    trust = models.PositiveIntegerField(
+    general_trust = models.PositiveIntegerField(
         label=_("""Как Вы считаете, в целом большинству людей можно доверять, или же при общении с другими людьми 
             осторожность никогда не повредит?"""),
         choices=[
-            [0, _("Нужно быть очень осторожным с другими людьми")],
+            [2, _("Нужно быть очень осторожным с другими людьми")],
             [1, _("Большинству людей можно вполне доверять")],
         ],
         widget=widgets.RadioSelect()
@@ -539,7 +498,8 @@ class Player(BasePlayer):
     dtrust = models.IntegerField(
         label=_(
             'По Вашему мнению, за последние годы изменился или не изменился уровень доверия людей друг к другу? Если изменился, то увеличился или уменьшился?'),
-        choices=Constants.Inc5DNK
+        choices=Constants.Inc5DNK,
+        widget=widgets.RadioSelect()
     )
 
     # Values
@@ -588,6 +548,16 @@ class Player(BasePlayer):
 
     similar_tradition = models.IntegerField(
         label=_("""Для этого человека важно следовать традициям и обычаям, принятым в его семье или религии"""),
+        choices=Constants.Similar6DNK
+    )
+
+    similar_care_society = models.IntegerField(
+        label=_("""Для этого человека важно делать что-то хорошее для общества."""),
+        choices=Constants.Similar6DNK
+    )
+
+    similar_care_nearby = models.IntegerField(
+        label=_("""Для этого человека важно  заботиться о близких ему людях"""),
         choices=Constants.Similar6DNK
     )
 

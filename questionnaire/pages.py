@@ -13,15 +13,7 @@ class Personal1(Page):
     form_model = 'player'
     form_fields = ['age',
                    'gender',
-                   'field',
-                   'field_other',
-                   'degree',
-                   'degree_other',
-                   'studyear',
-                   'gender',
-                   'age',
                    'birthplace',
-                   'GPA',
                    'marital_status',
                    'language',
                    'language_other',
@@ -50,6 +42,7 @@ class SelfDetermination(Page):
 
 
 class Trust(Page):
+    # jfields_order = [1, 2, 3]
     joined_fields = [{"title": _('Скажите пожалуйста, насколько Вы доверяете следующим категориям людей:'),
                       "fields": ['trust_family',
                                  'trust_neighbours',
@@ -81,8 +74,7 @@ class Trust(Page):
 
     form_model = 'player'
     form_fields = [
-        'trust',
-        #    'catrust',
+        'general_trust',
         'trust_family',
         'trust_neighbours',
         'trust_acquant',
@@ -90,7 +82,6 @@ class Trust(Page):
         'trust_other_faith',
         'trust_fiends',
         'trust_politicians',
-        #     'catrust_institutions',
         'trust_church',
         'trust_army',
         'trust_press',
@@ -125,8 +116,12 @@ class Values(Page):
             'similar_correct',
             'similar_care_environment',
             'similar_tradition',
+            'similar_care_society',
+            'similar_care_nearby',
         ]},
-        {"title": _("""Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
+
+
+    {"title": _("""Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
         где 0 означает "никогда не заслуживает оправдания", а 10 означает "всегда заслуживает оправдания"."""),
          "fields": [
              'justified_subsidies',
@@ -149,6 +144,8 @@ class Values(Page):
         'similar_correct',
         'similar_care_environment',
         'similar_tradition',
+        'similar_care_society',
+        'similar_care_nearby',
         'justified_subsidies',
         'justified_freeride',
         'justified_theft',
@@ -317,13 +314,13 @@ class Personal2(Page):
 
 
 page_sequence = [
-    Motivation,
-    Region,
-    Trust,
-    StatedPreferences,
-    Personal1,
-    SelfDetermination,
+    # Motivation,
+    # Region,
+    # Trust,
+    # StatedPreferences,
+    # Personal1,
+    # SelfDetermination,
     Values,
-    Risk,
-    Personal2
+    # Risk,
+    # Personal2
 ]
