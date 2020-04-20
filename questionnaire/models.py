@@ -78,7 +78,7 @@ class Constants(BaseConstants):
         [5, _('Без ответа, я атеист')]
     ]
     JUSTIFIED_CHOICES = range(0, 11)
-    RISK_CHOICES = range(0, 11)
+    RISK_CHOICES = range(10, -1,-1)
     AGREEEMENT_CHOICES = [
         [1, _('Безусловно согласия, сплоченности')],
         [2, _('Скорее согласия, сплоченности')],

@@ -113,7 +113,8 @@ class Trust(Page):
 
 class Values(Page):
     joined_fields = [{
-        "title": _('Ниже представлены краткие описание некоторых людей. До какой степени каждый из описанных людей похож или не похож на вас?:'),
+        "title": _(
+            'Ниже представлены краткие описание некоторых людей. До какой степени каждый из описанных людей похож или не похож на вас?:'),
         "fields": [
             'similar_newideas',
             'similar_wealthy',
@@ -317,12 +318,12 @@ class Personal2(Page):
 
 page_sequence = [
     Motivation,
+    Region,
+    Trust,
+    StatedPreferences,
     Personal1,
     SelfDetermination,
-    Trust,
     Values,
     Risk,
-    StatedPreferences,
-    Region,
     Personal2
 ]
