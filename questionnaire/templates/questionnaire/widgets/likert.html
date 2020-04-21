@@ -1,0 +1,26 @@
+<input type="hidden" value='{{widget.value.0}}' id="id_{{ widget.name }}" name="{{ widget.name }}"/>
+<div class="row owned_by_{{ widget.name }}">
+    <div class="col-xs-12">
+        <p class="page-header">1 is good, 10 is bad (i.e., "How much pain are you in right now?")</p>
+        <div class="chart-scale">
+            {% for foo in choices %}
+                <button class="btn btn-scale " role="button" type="button" data-value="{{ foo.0 }}">
+                    {{ foo.1 }}
+                </button>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script>
+    $('.owned_by_{{ widget.name }} .btn-scale').each(function () {
+        if (parseInt($('#id_{{ widget.name }}').val()) === $(this).data('value')) {
+            $(this).addClass("btn-scale-checked");
+        }
+
+    });
+    $('.owned_by_{{ widget.name }}  .btn-scale').on('click', function () {
+        $('.owned_by_{{ widget.name }} .btn-scale').removeClass("btn-scale-checked");
+        $(this).addClass("btn-scale-checked");
+        $('#id_{{ widget.name }}').val($(this).data('value'))
+    })
+</script>

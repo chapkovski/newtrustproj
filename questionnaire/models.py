@@ -10,6 +10,7 @@ from otree.api import (
 )
 from .widgets import OtherRadioSelect
 from django.utils.translation import gettext_lazy as _
+from .widgets import LikertWidget
 
 author = _('Philipp Chapkovski, HSE-Moscow')
 
@@ -326,6 +327,7 @@ class Player(BasePlayer):
     def set_payoff(self):
         _("""Calculate payoff, which is zero for the survey""")
         self.payoff = 0
+
 
     # Motivation
     motivation_part1 = models.TextField(
@@ -739,15 +741,27 @@ class Player(BasePlayer):
         choices=Constants.Inc5DNK,
         widget=widgets.RadioSelect()
     )
+    q_lusardi_mitchell = models.IntegerField(
+        choices=list(range(0, 5)),
+        label="""Suppose you had £1000 in a savings account and the interest rate was 3% per year. 
+              After 5 years, how much do you think you would have in the account if you left the money to grow?""",
 
+        widget=LikertWidget(
+            left='something on the left',
+            right='something on the right',
+        )
+    )
     freedom = models.PositiveIntegerField(
-        label=_("""Некоторые люди чувствуют, что они обладают полной свободой выбора и контролируют свою жизнь, в
+        label=_("""<i>Некоторые люди чувствуют, что они обладают полной свободой выбора и контролируют свою жизнь, в
          то время как другие люди чувствуют, что то, что они делают, не имеет реального влияния на происходящее с ними. До какой степени эти
          характеристики применимы к Вам и Вашей жизни? Для ответа выберите значение на шкале от 0 до 10, где 0 означает "у меня нет свободы выбора", а 10
          означает "у меня полная свобода выбора":.
          """),
         choices=Constants.FEATURE_CHOICES_1_10,
-        widget=widgets.RadioSelectHorizontal()
+        widget=LikertWidget(
+            left=_('У меня нет свободы выбора'),
+            right=_('у меня полная свобода выбора'),
+        )
     )
     competition = models.PositiveIntegerField(
         label=_("""Как Вы думаете, конкуренция - это зло или благо?
@@ -1015,8 +1029,6 @@ class Player(BasePlayer):
     Khb_rank = models.CharField(
         label=_("""Харабовск и Хабаровский край""")
     )
-
-
 
     regional_income = models.CharField(
         label=_(

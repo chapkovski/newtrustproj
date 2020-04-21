@@ -12,3 +12,32 @@ class OtherRadioSelect(RadioSelect):
         c = super().get_context(name, value, attrs)
         c['other'] = self.other
         return c
+
+
+from django import forms
+
+
+class LikertWidget(forms.RadioSelect):
+    template_name = 'questionnaire/widgets/likert.html'
+
+    class Media:
+        css = {
+            'all': ('likert.css',)
+        }
+
+    def __init__(self, left, right,  *args, **kwargs):
+        self.left = left
+        self.right = right
+
+        super().__init__(*args, **kwargs)
+
+    def get_context(self, *args, **kwargs):
+        context = super().get_context(*args, **kwargs)
+
+        context.update({'choices': self.choices,
+                        'left': self.left,
+                        'right': self.right,
+                        'optimal_width': round(85 / len(self.choices), 2),
+
+                        })
+        return context

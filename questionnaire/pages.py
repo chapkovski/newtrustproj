@@ -200,18 +200,21 @@ class StatedPreferences1(Page):
 
 
 class StatedPreferences2(Page):
-    template_name = 'questionnaire/StatedPreferences.html'
     form_model = 'player'
     form_fields = [
-
+        'q_lusardi_mitchell',
         'freedom',
-        'competition',
-        'fairness_general',
-        'positive_reciprocity',
-        'negative_reciprocity',
-        'abuse_you',
+        # 'competition',
+        # 'fairness_general',
+        # 'positive_reciprocity',
+        # 'negative_reciprocity',
+        # 'abuse_you',
 
     ]
+
+    def vars_for_template(self) -> dict:
+        return {'range110': range(1, 11),
+                'range1010': range(0, 11)}
 
 
 class StatedPreferences3(Page):
@@ -345,16 +348,16 @@ class Personal2(Page):
 
 
 page_sequence = [
-    Motivation,
-    Personal1,
-    RegionsKnowledge,
-    RegionsIncome,
-    Trust,
-    StatedPreferences1,
+    # Motivation,
+    # Personal1,
+    # RegionsKnowledge,
+    # RegionsIncome,
+    # Trust,
+    # StatedPreferences1,
     StatedPreferences2,
-    StatedPreferences3,
-    SelfDetermination,
-    Values,
-    Risk,
-    Personal2
+    # StatedPreferences3,
+    # SelfDetermination,
+    # Values,
+    # Risk,
+    # Personal2
 ]
