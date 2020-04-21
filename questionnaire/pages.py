@@ -22,7 +22,7 @@ class Personal1(Page):
                    'language_other',
                    'living',
                    'living_other',
-                   'city'
+                   'city_size'
                    ]
 
 

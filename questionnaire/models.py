@@ -58,7 +58,17 @@ class Constants(BaseConstants):
         [6, _('Вдовец/Вдова')],
         HARD_TO_SAY_CHOICE
     ]
-
+    CITY_SIZE_CHOICES = [
+        (1, '< 2,000'),
+        (2, '2,000 - 5,000'),
+        (3, '5,001- 10,000'),
+        (4, '10,001 - 20,000'),
+        (5, '20,001 - 50,000'),
+        (6, '50,001 - 100,000'),
+        (7, '100,001 - 500,000'),
+        (8, '> 500,000'),
+        (9, _('1 млн. и более')),
+    ]
     LIVING_CHOICES = [
         [1, _('С родителями')],
         [2, _('В общежитии')],
@@ -377,11 +387,10 @@ class Player(BasePlayer):
                                     label=_("""Уточните где именно""")
                                     )
 
-    city = models.PositiveIntegerField(
+    city_size = models.PositiveIntegerField(
         label=_(
             """    Сколько человек (приблизительно) проживало в том населенном пункте, где Вы жили в возрасте 16 лет?"""),
-        min=1, max=30000000,
-        initial=None)
+        choices=Constants.CITY_SIZE_CHOICES, )
 
     # Self-Determination
 
