@@ -13,7 +13,7 @@ class PlayerBot(Bot):
                     fields[i] = 13
                 else:
                     fields[i] = 1
-            if page.__name__ == 'Region':
+            if page.__name__.startswith('RegionsIncome'):
                 yield Submission(page, fields, check_html=False)
             else:
                 yield page, fields

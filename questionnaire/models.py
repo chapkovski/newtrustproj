@@ -24,6 +24,17 @@ class Constants(BaseConstants):
     num_rounds = 1
     HARD_TO_SAY_CHOICE = [999, _('Затрудняюсь ответить')]
     GENDER_CHOICES = [[0, _('Мужской')], [1, _('Женский')]]
+    RELATIVE_POSITION_CHOICES = [
+        (1, _('...ниже, чем в среднем в вашем городе')),
+        (2, _('...такой же, как в среднем в вашем городе')),
+        (3, _('...выше, чем в среднем в вашем городе')),
+        HARD_TO_SAY_CHOICE
+    ]
+    ETHNICITY_CHOICES = [
+        (1, _('Русской')),
+        (2, _('Другой')),
+        HARD_TO_SAY_CHOICE
+    ]
     EDUCATION_CHOICES = [
         [1, _('Средняя школа')],
         [2, _('Среднее профессиональное образование')],
@@ -394,8 +405,13 @@ class Player(BasePlayer):
 
     # Self-Determination
 
-    nationality = models.CharField(
-        label=_("""К какой национальности Вы себя относите?""")
+    ethnicity = models.CharField(
+        label=_("""К какой национальности Вы себя относите?"""),
+        choices=Constants.ETHNICITY_CHOICES,
+        widget=OtherRadioSelect(other=(2, _('ethnicity_other')))
+    )
+    ethnicity_other = models.CharField(
+        label=_("""Укажите к какой""")
     )
 
     religion = models.PositiveIntegerField(
@@ -948,7 +964,11 @@ class Player(BasePlayer):
         choices=Constants.SOURCE_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
-
+    relative_position_in_region = models.IntegerField(
+        label=_('Ваш средний ежемесячный доход'),
+        choices=Constants.RELATIVE_POSITION_CHOICES,
+        widget=widgets.RadioSelect()
+    )
     Ark_rank = models.CharField(
         label=_("""Архангельск и Архангельская область""")
     )
@@ -995,6 +1015,8 @@ class Player(BasePlayer):
     Khb_rank = models.CharField(
         label=_("""Харабовск и Хабаровский край""")
     )
+
+
 
     regional_income = models.CharField(
         label=_(
@@ -1073,7 +1095,7 @@ class Player(BasePlayer):
                                    label=_("""Если Вы сторонник другой партии, укажите какой именно"""),
                                    )
 
-    other_city = models.CharField(
+    who_was_other_city = models.CharField(
         label=_("Как Вы думаете, с участником из какого города вы взаимодействовали в ходе этого исследования?")
     )
 

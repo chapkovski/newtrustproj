@@ -6,6 +6,7 @@ class Motivation(Page):
     form_model = 'player'
     form_fields = ['motivation_part1',
                    'motivation_part2',
+                   'who_was_other_city'
                    ]
 
 
@@ -20,6 +21,8 @@ class Personal1(Page):
                    'marital_status',
                    'language',
                    'language_other',
+                   'ethnicity',
+                   'ethnicity_other',
                    'living',
                    'living_other',
                    'city_size'
@@ -29,7 +32,7 @@ class Personal1(Page):
 class SelfDetermination(Page):
     form_model = 'player'
     form_fields = [
-        'nationality',
+
         'religion',
         'religion_other',
         'religion_moral',
@@ -115,16 +118,16 @@ class Values(Page):
             'similar_safety',
             'similar_hedonic',
             'similar_renowned',
+            'similar_care_nearby',
             'similar_adventurous',
             'similar_correct',
             'similar_care_environment',
             'similar_tradition',
             'similar_care_society',
-            'similar_care_nearby',
         ]},
 
-        {"title": _("""Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 0 до 10, 
-        где 0 означает "никогда не заслуживает оправдания", а 10 означает "всегда заслуживает оправдания"."""),
+        {"title": _("""Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 1 до 10, 
+        где 1 означает "никогда не заслуживает оправдания", а 10 означает "всегда заслуживает оправдания"."""),
          "fields": [
              'justified_subsidies',
              'justified_freeride',
@@ -142,12 +145,13 @@ class Values(Page):
         'similar_safety',
         'similar_hedonic',
         'similar_renowned',
+        'similar_care_nearby',
         'similar_adventurous',
         'similar_correct',
         'similar_care_environment',
         'similar_tradition',
         'similar_care_society',
-        'similar_care_nearby',
+
         'justified_subsidies',
         'justified_freeride',
         'justified_theft',
@@ -222,22 +226,9 @@ class StatedPreferences3(Page):
     ]
 
 
-class Region(Page):
+class RegionsKnowledge(Page):
     form_model = 'player'
-    rankqs = [
-        'Ark_rank',
-        'Vlk_rank',
-        'Vor_rank',
-        'Ekb_rank',
-        'Kaz_rank',
-        'Mak_rank',
-        'Mos_rank',
-        'Nsk_rank',
-        'Per_rank',
-        'Ros_rank',
-        'SPb_rank',
-        'Khb_rank',
-    ]
+
     joined_fields = [{"title": _("""Бывали ли Вы когда-нибудь в следующих регионах России:
         """),
                       "fields": [
@@ -274,6 +265,7 @@ class Region(Page):
                      ]
 
     form_fields = [
+        'regions_been',
         'Ark_been',
         'Vlk_been',
         'Vor_been',
@@ -299,6 +291,28 @@ class Region(Page):
         'Ros_source',
         'SPb_source',
         'Khb_source',
+    ]
+
+
+class RegionsIncome(Page):
+    form_model = 'player'
+    rankqs = [
+        'Ark_rank',
+        'Vlk_rank',
+        'Vor_rank',
+        'Ekb_rank',
+        'Kaz_rank',
+        'Mak_rank',
+        'Mos_rank',
+        'Nsk_rank',
+        'Per_rank',
+        'Ros_rank',
+        'SPb_rank',
+        'Khb_rank',
+    ]
+
+    form_fields = [
+        'relative_position_in_region',
         'Ark_rank',
         'Vlk_rank',
         'Vor_rank',
@@ -323,28 +337,24 @@ class Personal2(Page):
         'happy',
         'happy_relative',
         'income',
-        'elder_sibling',
-        'younger_sibling',
-        'father_born',
-        'mother_born',
-        'regions_been',
         'honest_Russia',
         'party_Russia',
         'party_other',
-        'other_city'
+
     ]
 
 
 page_sequence = [
-    Motivation,
-    Personal1,
-    Region,
-    Trust,
-    StatedPreferences1,
-    StatedPreferences2,
-    StatedPreferences3,
-    SelfDetermination,
+    # Motivation,
+    # Personal1,
+    # RegionsKnowledge,
+    # RegionsIncome,
+    # Trust,
+    # StatedPreferences1,
+    # StatedPreferences2,
+    # StatedPreferences3,
+    # SelfDetermination,
     Values,
-    Risk,
-    Personal2
+    # Risk,
+    # Personal2
 ]

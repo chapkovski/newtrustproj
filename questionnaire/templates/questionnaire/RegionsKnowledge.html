@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load i18n otree %}
+
+{% block title %}
+    {% trans 'Анкета' %}
+{% endblock %}
+
+{% block content %}
+
+    {% for jfield in form.joined_fields|default_if_none:None %}
+        {% include 'questionnaire/includes/joined_field.html' with jfield=jfield form=form %}
+    {% endfor %}
+
+
+    {% for foo in form %}
+        {% if   foo.name in form.non_joined_fields %}
+            {% formfield foo %}
+        {% endif %}
+    {% endfor %}
+
+    {% next_button %}
+
+{% endblock %}
