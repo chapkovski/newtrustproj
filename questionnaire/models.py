@@ -327,12 +327,12 @@ class Player(BasePlayer):
                                  choices=Constants.GENDER_CHOICES,
                                  label=_('Ваш пол'),
                                  widget=widgets.RadioSelect())
-    education = models.BooleanField(initial=None,
+    education = models.IntegerField(initial=None,
                                     choices=Constants.EDUCATION_CHOICES,
                                     label=_(
                                         """Какой у Вас самый высокий уровень образования, по которому Вы получили аттестат, свидетельство, диплом? """),
                                     widget=widgets.RadioSelect())
-    occupation_status = models.BooleanField(initial=None,
+    occupation_status = models.IntegerField(initial=None,
                                             choices=Constants.OCCUPATION_STATUS_CHOICES,
                                             label=_(
                                                 """Какой ответ лучше всего описывает Ваше основное занятие в настоящее время?"""),
@@ -711,7 +711,8 @@ class Player(BasePlayer):
     dreadyhelp = models.IntegerField(
         label=_(
             'По Вашему мнению, за последние годы изменился или не изменился уровень готовности людей помогать друг другу? Если изменился, то увеличился или уменьшился?'),
-        choices=Constants.Inc5DNK
+        choices=Constants.Inc5DNK,
+        widget=widgets.RadioSelect()
     )
 
     freedom = models.PositiveIntegerField(

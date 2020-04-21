@@ -697,7 +697,7 @@ msgstr ""
 msgid ""
 "Какой ответ лучше всего описывает Ваше основное занятие в настоящее время?"
 msgstr ""
-"Which statement most accurately describes your family’s financial situation?"
+"Which answer best describes your primary occupation at the present time?"
 
 #: questionnaire/models.py:339
 msgid "occupation_status_other"

@@ -182,7 +182,8 @@ class Risk(Page):
     ]
 
 
-class StatedPreferences(Page):
+class StatedPreferences1(Page):
+    template_name = 'questionnaire/StatedPreferences.html'
     form_model = 'player'
     form_fields = [
         'moreagreement',
@@ -190,12 +191,29 @@ class StatedPreferences(Page):
         'trustful',
         'ready_help',
         'dreadyhelp',
+
+    ]
+
+
+class StatedPreferences2(Page):
+    template_name = 'questionnaire/StatedPreferences.html'
+    form_model = 'player'
+    form_fields = [
+
         'freedom',
         'competition',
         'fairness_general',
         'positive_reciprocity',
         'negative_reciprocity',
         'abuse_you',
+
+    ]
+
+
+class StatedPreferences3(Page):
+    template_name = 'questionnaire/StatedPreferences.html'
+    form_model = 'player'
+    form_fields = [
         'fairness_russian',
         'separation_power',
         'independent_judiciary',
@@ -319,10 +337,12 @@ class Personal2(Page):
 
 page_sequence = [
     Motivation,
+    Personal1,
     Region,
     Trust,
-    StatedPreferences,
-    Personal1,
+    StatedPreferences1,
+    StatedPreferences2,
+    StatedPreferences3,
     SelfDetermination,
     Values,
     Risk,
