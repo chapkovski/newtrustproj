@@ -14,6 +14,8 @@ class Personal1(Page):
     form_fields = ['age',
                    'gender',
                    'education',
+                   'occupation_status',
+                   'occupation_status_other',
                    'birthplace',
                    'marital_status',
                    'language',
