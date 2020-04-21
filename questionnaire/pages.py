@@ -202,13 +202,12 @@ class StatedPreferences1(Page):
 class StatedPreferences2(Page):
     form_model = 'player'
     form_fields = [
-        'q_lusardi_mitchell',
         'freedom',
-        # 'competition',
-        # 'fairness_general',
-        # 'positive_reciprocity',
-        # 'negative_reciprocity',
-        # 'abuse_you',
+        'competition',
+        'fairness_general',
+        'positive_reciprocity',
+        'negative_reciprocity',
+        'abuse_you',
 
     ]
 

@@ -328,7 +328,6 @@ class Player(BasePlayer):
         _("""Calculate payoff, which is zero for the survey""")
         self.payoff = 0
 
-
     # Motivation
     motivation_part1 = models.TextField(
         label=_("""Пожалуйста, вспомните ваши решения в части 1 эксперимента.
@@ -760,7 +759,7 @@ class Player(BasePlayer):
         choices=Constants.FEATURE_CHOICES_1_10,
         widget=LikertWidget(
             left=_('У меня нет свободы выбора'),
-            right=_('у меня полная свобода выбора'),
+            right=_('У меня полная свобода выбора'),
         )
     )
     competition = models.PositiveIntegerField(
@@ -768,35 +767,50 @@ class Player(BasePlayer):
              Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «конкуренция вредна, поскольку она побуждает у людей худшие качества», 
              а 10 означает, что «конкуренция - это благо, поскольку она побуждает людей лучше трудиться»"""),
         choices=Constants.FEATURE_CHOICES_1_10,
-        widget=widgets.RadioSelectHorizontal()
+        widget=LikertWidget(
+            left=_('Конкуренция вредна, поскольку она побуждает у людей худшие качества'),
+            right=_('Конкуренция - это благо, поскольку она побуждает людей лучше трудиться'),
+        )
     )
 
     fairness_general = models.PositiveIntegerField(
         label=_("""Как Вы думаете, могут ли люди в современном обществе разбогатеть только за счет других людей, или уровень благосостояния может вырасти у всех?
          Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди могут разбогатеть только за счет других», а 10 означает, что «благосостояние может вырасти у всех»"""),
         choices=Constants.FEATURE_CHOICES_1_10,
-        widget=widgets.RadioSelectHorizontal()
+        widget=LikertWidget(
+            left=_('Люди могут разбогатеть только за счет других'),
+            right=_('Благосостояние может вырасти у всех'),
+        )
     )
 
     positive_reciprocity = models.PositiveIntegerField(
         label=_(""""Когда кто-либо мне помогает я стараюсь ответить тем же." Справедливо ли это суждение в отношении Вас? Для ответа выберите значение на шкале от 0 до 10,
          где 0 означает, что Вы «совершенно не готовы так поступать», а 10 означает, что Вы «готовы поступать именно так»:"""),
         choices=Constants.FEATURE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+        widget=LikertWidget(
+            left=_('У меня нет свободы выбора'),
+            right=_('У меня полная свобода выбора'),
+        )
     )
 
     negative_reciprocity = models.PositiveIntegerField(
         label=_(""""Если со мной поступили несправедливо, я отомщу при первом же удобном случае, даже если это дорого мне обойдется."  Справедливо ли это суждение в отношении Вас? Для ответа выберите значение на шкале от 0 до 10,
          где 0 означает, что Вы «совершенно не готовы так поступать», а 10 означает, что Вы «готовы поступать именно так»"""),
         choices=Constants.FEATURE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+        widget=LikertWidget(
+            left=_('У меня нет свободы выбора'),
+            right=_('У меня полная свобода выбора'),
+        )
     )
 
     abuse_you = models.PositiveIntegerField(
         label=_("""Как Вы думаете, если представится возможность, большинство людей попытались бы использовать вас в своих интересах, или вели бы себя порядочно?
          Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди обязательно попытаются вас использовать», а 10 означает, что «люди поведут себя порядочно»"""),
         choices=Constants.FEATURE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+        widget=LikertWidget(
+            left=_('У меня нет свободы выбора'),
+            right=_('У меня полная свобода выбора'),
+        )
     )
 
     fairness_russian = models.PositiveIntegerField(
