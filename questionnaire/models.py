@@ -23,6 +23,13 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     GENDER_CHOICES = [[0, _('Мужской')], [1, _('Женский')]]
+    EDUCATION_CHOICES = [
+        [1, _('Средняя школа')],
+        [2, _('Среднее профессиональное образование')],
+        [3, _('Незаконченное высшее образование')],
+        [4, _('Высшее образование')],
+        [5, _('Два и более диплома / Ученая степень')],
+    ]
     HARD_TO_SAY_CHOICE = [999, _('Затрудняюсь ответить')]
     MARITAL_STATUS_CHOICES = [
         [1, _('Не женаты/не замужем')],
@@ -302,7 +309,11 @@ class Player(BasePlayer):
                                  choices=Constants.GENDER_CHOICES,
                                  label=_('Ваш пол'),
                                  widget=widgets.RadioSelect())
-
+    education = models.BooleanField(initial=None,
+                                    choices=Constants.EDUCATION_CHOICES,
+                                    label=_(
+                                        'Какой у Вас самый высокий уровень образования, по которому Вы получили аттестат, свидетельство, диплом? '),
+                                    widget=widgets.RadioSelect())
     age = models.PositiveIntegerField(label=_('Ваш возраст (полных лет)'),
                                       min=13, max=95,
                                       initial=None)

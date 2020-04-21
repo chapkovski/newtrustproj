@@ -13,6 +13,7 @@ class Personal1(Page):
     form_model = 'player'
     form_fields = ['age',
                    'gender',
+                   'education',
                    'birthplace',
                    'marital_status',
                    'language',
@@ -319,9 +320,9 @@ page_sequence = [
     # Region,
     # Trust,
     # StatedPreferences,
-    # Personal1,
+    Personal1,
     # SelfDetermination,
     # Values,
     # Risk,
-    Personal2
+    # Personal2
 ]
