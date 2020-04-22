@@ -1,3 +1,5 @@
+<div class="lead">{{ quote }}</div>
+<div><small>{{ label }}</small></div>
 <input type="hidden" value='{{ widget.value.0 }}' id="id_{{ widget.name }}" name="{{ widget.name }}"/>
 <div class="row owned_by_{{ widget.name }} row-likert-wrapper">
     <div class="col-xs-12 likert-wrapper">
@@ -7,8 +9,6 @@
             </div>
         </div>
         <div class="chart-scale">
-
-
             {% for foo in choices %}
                 <button class="btn btn-scale " role="button" type="button" data-value="{{ foo.0 }}">
                     {{ foo.1 }}

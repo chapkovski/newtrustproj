@@ -1,10 +1,15 @@
 from django import template
-
+from otree.templatetags.otree_forms import FormFieldNode
 from django.utils.safestring import mark_safe
 
 register = template.Library()
 import re
 
+
+class HSEFormField(FormFieldNode):
+    default_template = 'questionnaire/tags/hsefield.html'
+
+register.tag('hsefield', HSEFormField.parse)
 
 @register.filter
 def rubl(value):

@@ -1,15 +1,15 @@
 {% extends "global/Page.html" %}
-{% load otree i18n %}
+{% load otree i18n hse %}
 
 {% block title %}
     {% trans 'Анкета' %}
 {% endblock %}
 
 {% block content %}
-<div>
+    {% for foo in form %}
+        {% hsefield foo %}
+    {% endfor %}
 
-</div>
-    {% formfields %}
 
     {% next_button %}
 
