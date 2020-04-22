@@ -412,7 +412,7 @@ class Player(BasePlayer):
         widget=OtherRadioSelect(other=(2, _('ethnicity_other')))
     )
     ethnicity_other = models.CharField(
-        label=_("""Укажите к какой""")
+        label=_("""Укажите к какой"""), blank=True
     )
 
     religion = models.PositiveIntegerField(
