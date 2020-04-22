@@ -7,7 +7,7 @@
             {% if field.is_hidden %}
                 {{ field.as_hidden }}
             {% else %}
-                {% if label %}{% if field|id %}<label class="col-form-label" for="{{ field|id }}">{% endif %}{{ label|safe }}
+                {% if label %}{% if field|id %}<label class="col-form-label" for="{{ field|id }}">{% endif %}{{ label }}
                 {% if label|last not in ".:!?" %}:{% endif %}{% if field|id %}</label>{% endif %}{% endif %}
                 <div class="controls {{ classes }} field-{{ field.name }}">
                     {{ field }}

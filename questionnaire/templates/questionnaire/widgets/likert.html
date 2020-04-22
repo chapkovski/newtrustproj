@@ -1,10 +1,10 @@
-<div class="lead">{{ quote }}</div>
+<div class="col-form-label text-center">{{ quote }}</div>
 <div><small>{{ label }}</small></div>
 <input type="hidden" value='{{ widget.value.0 }}' id="id_{{ widget.name }}" name="{{ widget.name }}"/>
 <div class="row owned_by_{{ widget.name }} row-likert-wrapper">
     <div class="col-xs-12 likert-wrapper">
         <div class=" likert-header likert-left-header">
-            <div  class="text-right font-italic">
+            <div  class="text-right ">
                 {{ left }}
             </div>
         </div>
@@ -17,12 +17,13 @@
 
         </div>
         <div class=" likert-header likert-right-header">
-            <div class="text-left font-italic">
+            <div class="text-left ">
                 {{ right }}
             </div>
         </div>
     </div>
 </div>
+<hr>
 <script>
     $('.owned_by_{{ widget.name }} .btn-scale').each(function () {
         if (parseInt($('#id_{{ widget.name }}').val()) === $(this).data('value')) {
