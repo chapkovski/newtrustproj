@@ -57,7 +57,8 @@ class BlockedCheckbox(forms.RadioSelect):
         js = ('https://cdn.jsdelivr.net/npm/vue@2.6.11',
               'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.min.js')
 
-    def __init__(self, choices, blocked, *args, **kwargs):
+    def __init__(self, label, choices, blocked, *args, **kwargs):
+        self.label = label
         self.inner_choices = choices
         self.blocked = blocked
         super().__init__(*args, **kwargs)
@@ -67,5 +68,6 @@ class BlockedCheckbox(forms.RadioSelect):
 
     def get_context(self, *args, **kwargs):
         context = super().get_context(*args, **kwargs)
-        context.update(dict(inner_choices=self.choices_for_vue(), blocked=self.blocked))
+
+        context.update(dict(inner_choices=self.choices_for_vue(), blocked=self.blocked, label=self.label))
         return context

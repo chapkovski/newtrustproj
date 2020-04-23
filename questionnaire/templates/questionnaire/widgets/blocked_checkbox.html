@@ -1,19 +1,17 @@
 {% load otree %}
-<h3>From where do you know about this city?</h3>
-<div id="app1">
-    <div v-for='(ch, index) in checkboxes' :key='index'>
-        <input type="checkbox" :id="index" :checked="ch.checked" @change="setCheckbox($event.target)">
-        <label :for="index">[[ch.text]]
-
-        </label>
-
-    </div>
+<tr id="app_{{ widget.name }}">
+    <td>{{ label }}</td>
+    <template v-for='(ch, index) in checkboxes' :key='index'>
+        <td class="text-center">
+            <input class="styled-checkbox" type="checkbox" :id="index" :checked="ch.checked" @change="setCheckbox($event.target)">
+        </td>
+    </template>
 
     <input type="hidden" :name="owner" class="form-control" :value='pureed'>
-</div>
+</tr>
 <script>
     var app = new Vue({
-        el: "#app1",
+        el: "#app_{{ widget.name }}",
         delimiters: ['[[', ']]'],
         data: {
             blocked: {{ blocked }},

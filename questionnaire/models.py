@@ -11,6 +11,7 @@ from otree.api import (
 from .widgets import OtherRadioSelect
 from django.utils.translation import gettext_lazy as _
 from .widgets import LikertWidget, BlockedCheckbox
+from .fields import MultiBlocker
 
 author = _('Philipp Chapkovski, HSE-Moscow')
 
@@ -943,74 +944,80 @@ class Player(BasePlayer):
     )
 
     Ark_source = models.StringField(
-        label=_("""Архангельск и Архангельская область"""),
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0)
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Архангельск и Архангельская область"""))
     )
 
-    Vlk_source = models.PositiveIntegerField(
-        label=_("""Владивосток и Приморский край"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Vlk_source = models.StringField(
+
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Владивосток и Приморский край"""),
+                               )
     )
 
-    Vor_source = models.PositiveIntegerField(
-        label=_("""Воронеж и Воронежская область"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Vor_source = models.StringField(
+
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Воронеж и Воронежская область"""),
+                               )
     )
 
-    Ekb_source = models.PositiveIntegerField(
-        label=_("""Екатеринбург и Свердловская область"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Ekb_source = models.StringField(
+
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Екатеринбург и Свердловская область"""),
+                               )
     )
 
-    Kaz_source = models.PositiveIntegerField(
-        label=_("""Казань и республика Татарстан"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Kaz_source = models.StringField(
+
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Казань и республика Татарстан"""),
+                               )
     )
 
-    Mak_source = models.PositiveIntegerField(
-        label=_("""Махачкала и республика Дагестан"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Mak_source = models.StringField(
+
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Махачкала и республика Дагестан"""),
+                               )
     )
 
-    Mos_source = models.PositiveIntegerField(
+    Mos_source = models.StringField(
         label=_("""Москва"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Москва"""),
+                               )
     )
 
-    Nsk_source = models.PositiveIntegerField(
-        label=_("""Новосибирск и Новосибирская область"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Nsk_source = models.StringField(
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Новосибирск и Новосибирская область"""),
+                               )
     )
 
-    Per_source = models.PositiveIntegerField(
-        label=_("""Пермь и Пермский край"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Per_source = models.StringField(
+
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Пермь и Пермский край"""),
+                               )
     )
 
-    Ros_source = models.PositiveIntegerField(
-        label=_("""Ростов-на-Дону и Ростовская область"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Ros_source = models.StringField(
+
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Ростов-на-Дону и Ростовская область"""),
+                               )
     )
 
-    SPb_source = models.PositiveIntegerField(
-        label=_("""Санкт-Петербург"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    SPb_source = models.StringField(
+
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+                               label=_("""Санкт-Петербург"""), )
     )
 
-    Khb_source = models.PositiveIntegerField(
-        label=_("""Харабовск и Хабаровский край"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+    Khb_source = models.StringField(
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0, label=_("""Харабовск и Хабаровский край"""))
     )
     relative_position_in_region = models.IntegerField(
         label=_('Ваш средний ежемесячный доход'),
@@ -1122,7 +1129,8 @@ class Player(BasePlayer):
 
     regions_been = models.PositiveIntegerField(
         label=_("""В скольких регионах России (не считая вашего) вам случалось бывать)?"""),
-        choices=Constants.Reg6
+        choices=Constants.Reg6,
+        widget=widgets.RadioSelectHorizontal
     )
 
     honest_Russia = models.PositiveIntegerField(
