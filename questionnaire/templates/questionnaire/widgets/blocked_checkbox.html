@@ -1,0 +1,55 @@
+{% load otree %}
+<h3>From where do you know about this city?</h3>
+<div id="app1">
+    <div v-for='(ch, index) in checkboxes' :key='index'>
+        <input type="checkbox" :id="index" :checked="ch.checked" @change="setCheckbox($event.target)">
+        <label :for="index">[[ch.text]]
+
+        </label>
+
+    </div>
+
+    <input type="hidden" :name="owner" class="form-control" :value='pureed'>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app1",
+        delimiters: ['[[', ']]'],
+        data: {
+            blocked: {{ blocked }},
+            owner: "{{widget.name}}",
+            checkboxes: {{inner_choices|json}},
+            chvalue: []
+        },
+        computed: {
+            pureed: function () {
+                return this.chvalue.join("");
+            }
+        },
+        methods: {
+            setCheckbox: function (target) {
+                const innerId = target.id;
+                const carVal = this.checkboxes[innerId].value;
+
+                this.checkboxes[innerId].checked = !this.checkboxes[innerId].checked;
+                if (
+                    carVal == this.blocked &&
+                    this.checkboxes[innerId].checked
+                ) {
+                    this.checkboxes.forEach((el, ind) => {
+                        if (ind !== parseInt(innerId)) {
+                            el.checked = false;
+                        }
+                    });
+                } else {
+                    _.filter(this.checkboxes, {value: this.blocked}).forEach((el) => {
+                        el.checked = false;
+                    });
+                }
+
+                this.chvalue = _.map(_.filter(this.checkboxes, "checked"), "value");
+            }
+        }
+    });
+
+</script>

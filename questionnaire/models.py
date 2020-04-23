@@ -10,7 +10,7 @@ from otree.api import (
 )
 from .widgets import OtherRadioSelect
 from django.utils.translation import gettext_lazy as _
-from .widgets import LikertWidget
+from .widgets import LikertWidget, BlockedCheckbox
 
 author = _('Philipp Chapkovski, HSE-Moscow')
 
@@ -942,10 +942,9 @@ class Player(BasePlayer):
         widget=widgets.RadioSelectHorizontal()
     )
 
-    Ark_source = models.PositiveIntegerField(
+    Ark_source = models.StringField(
         label=_("""Архангельск и Архангельская область"""),
-        choices=Constants.SOURCE_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0)
     )
 
     Vlk_source = models.PositiveIntegerField(

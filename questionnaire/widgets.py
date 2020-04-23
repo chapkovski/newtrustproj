@@ -25,7 +25,7 @@ class LikertWidget(forms.RadioSelect):
             'all': ('likert.css',)
         }
 
-    def __init__(self, quote, label, left, right,  *args, **kwargs):
+    def __init__(self, quote, label, left, right, *args, **kwargs):
         self.quote = quote
         self.label = label
         self.left = left
@@ -36,7 +36,6 @@ class LikertWidget(forms.RadioSelect):
     def get_context(self, *args, **kwargs):
         context = super().get_context(*args, **kwargs)
 
-
         context.update({'choices': self.choices,
                         'quote': self.quote,
                         'label': self.label,
@@ -45,4 +44,28 @@ class LikertWidget(forms.RadioSelect):
                         'optimal_width': round(85 / len(self.choices), 2),
 
                         })
+        return context
+
+
+class BlockedCheckbox(forms.RadioSelect):
+    template_name = 'questionnaire/widgets/blocked_checkbox.html'
+
+    class Media:
+        css = {
+            'all': ('blocked_checkbox.css',)
+        }
+        js = ('https://cdn.jsdelivr.net/npm/vue@2.6.11',
+              'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.min.js')
+
+    def __init__(self, choices, blocked, *args, **kwargs):
+        self.inner_choices = choices
+        self.blocked = blocked
+        super().__init__(*args, **kwargs)
+
+    def choices_for_vue(self):
+        return [dict(value=int(value), text=str(text)) for value, text in self.inner_choices]
+
+    def get_context(self, *args, **kwargs):
+        context = super().get_context(*args, **kwargs)
+        context.update(dict(inner_choices=self.choices_for_vue(), blocked=self.blocked))
         return context
