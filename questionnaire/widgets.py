@@ -50,12 +50,15 @@ class LikertWidget(forms.RadioSelect):
 class BlockedCheckbox(forms.RadioSelect):
     template_name = 'questionnaire/widgets/blocked_checkbox.html'
 
+
     class Media:
         css = {
-            'all': ('blocked_checkbox.css',)
+            'all': ('blocked_checkbox.css',
+                    "https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css")
         }
         js = ('https://cdn.jsdelivr.net/npm/vue@2.6.11',
-              'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.min.js')
+              'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.min.js',
+              "https://cdn.jsdelivr.net/npm/pretty-checkbox-vue@1.1/dist/pretty-checkbox-vue.min.js")
 
     def __init__(self, label, choices, blocked, *args, **kwargs):
         self.label = label
