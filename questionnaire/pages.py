@@ -166,7 +166,7 @@ class Values(Page):
 class Risk(Page):
     form_model = 'player'
     joined_fields = [{"title": _("""Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях? 
-        Для ответа выберите значение на шкале от 10 до 0, где  10 означает, что Вы «охотно идете на риск», а 0 означает, что Вы «совершенно не готовы рисковать».
+        Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
         """),
                       "fields": [
                           'risk_general',
@@ -346,16 +346,16 @@ class Personal2(Page):
 
 
 page_sequence = [
-    Motivation,
-    Personal1,
-    RegionsKnowledge,
-    RegionsIncome,
-    Trust,
-    StatedPreferences1,
-    StatedPreferences2,
-    StatedPreferences3,
-    SelfDetermination,
-    Values,
+    # Motivation,
+    # Personal1,
+    # RegionsKnowledge,
+    # RegionsIncome,
+    # Trust,
+    # StatedPreferences1,
+    # StatedPreferences2,
+    # StatedPreferences3,
+    # SelfDetermination,
+    # Values,
     Risk,
-    Personal2
+    # Personal2
 ]
