@@ -47,6 +47,8 @@ class SelfDetermination(Page):
                       ]}, ]
 
 
+
+
 class Trust(Page):
     # jfields_order = [1, 2, 3]
     joined_fields = [{"title": _('Скажите пожалуйста, насколько Вы доверяете следующим категориям людей:'),

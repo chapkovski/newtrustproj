@@ -437,8 +437,11 @@ class Player(BasePlayer):
     religion_service = models.PositiveIntegerField(
         label=_("""Как часто Вы посещаете храм"""),
         choices=Constants.CHURCH_ATTENDANCE_CHOICES,
-        widget=widgets.RadioSelect()
+        widget=widgets.RadioSelect(),
+        blank=True
     )
+
+
 
     community_local = models.PositiveIntegerField(
         label=_("""Я считаю себя членом местной общины (сообщества) жителей моего города"""),
