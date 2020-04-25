@@ -6,17 +6,22 @@ class Motivation(Page):
     form_model = 'player'
     form_fields = ['motivation_part1',
                    'motivation_part2',
-                   'who_was_other_city'
+                   'who_was_other_city',
+                   'who_was_other_city_other'
                    ]
 
 
 class Personal1(Page):
+    occupation_fields = ['occupation_parent',
+                         'occupation_child', ]
     form_model = 'player'
     form_fields = ['age',
                    'gender',
                    'education',
                    'occupation_status',
                    'occupation_status_other',
+                   'occupation_parent',
+                   'occupation_child',
                    'birthplace',
                    'marital_status',
                    'language',
@@ -47,10 +52,7 @@ class SelfDetermination(Page):
                       ]}, ]
 
 
-
-
 class Trust(Page):
-    # jfields_order = [1, 2, 3]
     joined_fields = [{"title": _('Скажите пожалуйста, насколько Вы доверяете следующим категориям людей:'),
                       "fields": ['trust_family',
                                  'trust_neighbours',

@@ -7,7 +7,16 @@
 
 {% block content %}
 
-    {% formfields %}
+
+    {% for foo in form %}
+        {% if foo.name not in  view.occupation_fields %}
+            {% formfield foo %}
+        {% elif foo.name == 'occupation_parent' %}
+            {% include 'questionnaire/includes/occupation.html' %}
+        {% endif %}
+
+    {% endfor %}
+
 
     {% next_button %}
 

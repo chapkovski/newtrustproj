@@ -3,7 +3,9 @@ from .pages import *
 from ._builtin import Bot
 from .models import Constants, Player
 
-pass_html = ['RegionsIncome', 'RegionsKnowledge']
+pass_html = ['RegionsIncome', 'RegionsKnowledge','Personal1']
+specific_values = dict(age=13,
+                       occupation_child=11)
 class PlayerBot(Bot):
 
     def play_round(self):
@@ -11,8 +13,8 @@ class PlayerBot(Bot):
         for page in page_sequence:
             fields = {}
             for i in page.form_fields:
-                if i == 'age':
-                    fields[i] = 13
+                if i in specific_values.keys():
+                    fields[i] = specific_values[i]
                 else:
                     fields[i] = 1
             if page.__name__ in pass_html:

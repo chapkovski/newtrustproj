@@ -12,6 +12,7 @@ from .widgets import OtherRadioSelect
 from django.utils.translation import gettext_lazy as _
 from .widgets import LikertWidget, BlockedCheckbox
 from .fields import MultiBlocker
+from django.conf import settings
 
 author = _('Philipp Chapkovski, HSE-Moscow')
 
@@ -25,7 +26,65 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     HARD_TO_SAY_CHOICE = [999, _('Затрудняюсь ответить')]
+    CITIES = [(int(i.get('code')), i.get('name')) for i in settings.CITIES] + [(13, _('Другой город'))]
     GENDER_CHOICES = [[0, _('Мужской')], [1, _('Женский')]]
+    OCCUPATION_PARENT_CHOICES = [
+        [1, "Legislators, Senior Managers, Officials"],
+        [2, "Professionals"],
+        [3, "Technicians and Associate Professionals"],
+        [4, "Clerks"],
+        [5, "Service Workers and Market Workers"],
+        [6, "Skilled Agricultural and Fishery Workers"],
+        [7, "Craft and Related Trades"],
+        [8, "Plant and Machine Operators and Assemblers"],
+        [9, "Elementary (Unskilled) Occupations"],
+        [0, "Army"]
+    ]
+    OCCUPATION_CHILD_CHOICES = [
+        [11, "Chief Executives, Senior Officials and Legislators"],
+        [12, "Administrative and Commercial Managers"],
+        [13, "Production and Specialized Services Managers"],
+        [14, "Hospitality, Retail and Other Services Managers"],
+        [21, "Science and Engineering Professionals"],
+        [22, "Health Professionals"],
+        [23, "Teaching Professionals"],
+        [24, "Business and Administration Professionals"],
+        [25, "Information and Communications Technology Professionals"],
+        [26, "Legal, Social and Cultural Professionals"],
+        [31, "Science and Engineering Associate Professionals"],
+        [32, "Health Associate Professionals"],
+        [33, "Business and Administration Associate Professionals"],
+        [34, "Legal, Social, Cultural and Related Associate Professionals"],
+        [35, "Information and Communications Technicians"],
+        [41, "General and Keyboard Clerks"],
+        [42, "Customer Services Clerks"],
+        [43, "Numerical and Material Recording Clerks"],
+        [44, "Other Clerical Support Workers"],
+        [51, "Personal Services Workers"],
+        [52, "Sales Workers"],
+        [53, "Personal Care Workers"],
+        [54, "Protective Services Workers"],
+        [61, "Market-oriented Skilled Agricultural Workers"],
+        [62, "Market-oriented Skilled Forestry, Fishery and Hunting Workers"],
+        [63, "Subsistence Farmers, Fishers, Hunters and Gatherers"],
+        [71, "Building and Related Trades Workers (excluding Electricians)"],
+        [72, "Metal, Machinery and Related Trades Workers"],
+        [73, "Handicraft and Printing Workers"],
+        [74, "Electrical and Electronic Trades Workers"],
+        [
+            75,
+            "Food Processing, Woodworking, Garment and Other Craft and Related Trades Workers"
+        ],
+        [81, "Stationary Plant and Machine Operators"],
+        [82, "Assemblers"],
+        [83, "Drivers and Mobile Plant Operators"],
+        [91, "Cleaners and Helpers"],
+        [92, "Agricultural, Forestry and Fishery Labourers"],
+        [93, "Labourers in Mining, Construction, Manufacturing and Transport"],
+        [94, "Food Preparation Assistants"],
+        [95, "Street and Related Sales and Services Workers"],
+        [96, "Refuse Workers and Other Elementary Workers"]
+    ]
     RELATIVE_POSITION_CHOICES = [
         (1, _('...ниже, чем в среднем в вашем городе')),
         (2, _('...такой же, как в среднем в вашем городе')),
@@ -37,6 +96,7 @@ class Constants(BaseConstants):
         (2, _('Другой')),
         HARD_TO_SAY_CHOICE
     ]
+
     EDUCATION_CHOICES = [
         [1, _('Средняя школа')],
         [2, _('Среднее профессиональное образование')],
@@ -403,7 +463,8 @@ class Player(BasePlayer):
     city_size = models.PositiveIntegerField(
         label=_(
             """    Сколько человек (приблизительно) проживало в том населенном пункте, где Вы жили в возрасте 16 лет?"""),
-        choices=Constants.CITY_SIZE_CHOICES, )
+        choices=Constants.CITY_SIZE_CHOICES,
+        widget=widgets.RadioSelect())
 
     # Self-Determination
 
@@ -440,8 +501,6 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect(),
         blank=True
     )
-
-
 
     community_local = models.PositiveIntegerField(
         label=_("""Я считаю себя членом местной общины (сообщества) жителей моего города"""),
@@ -1152,8 +1211,13 @@ class Player(BasePlayer):
                                    label=_("""Если Вы сторонник другой партии, укажите какой именно"""),
                                    )
 
-    who_was_other_city = models.CharField(
-        label=_("Как Вы думаете, с участником из какого города вы взаимодействовали в ходе этого исследования?")
+    who_was_other_city = models.IntegerField(
+        label=_("Как Вы думаете, с участником из какого города вы взаимодействовали в ходе этого исследования?"),
+        choices=Constants.CITIES,
+        widget=OtherRadioSelect(other=(13, _('who_was_other_city_other')))
+    )
+    who_was_other_city_other = models.CharField(
+        label=""
     )
 
     def get_rank_fields(self):
@@ -1161,3 +1225,6 @@ class Player(BasePlayer):
         r = [dict(name=f.name, label=str(f.verbose_name)) for f in self._meta.get_fields() if
              f.name.endswith('_rank')]
         return r
+
+    occupation_parent = models.IntegerField(choices=Constants.OCCUPATION_PARENT_CHOICES)
+    occupation_child = models.IntegerField(choices=Constants.OCCUPATION_CHILD_CHOICES, blank=True)

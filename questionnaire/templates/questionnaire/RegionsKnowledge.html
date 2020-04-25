@@ -39,8 +39,7 @@
         {% for jfield in form.joined_fields|default_if_none:None %}
             {% include 'questionnaire/includes/joined_field.html' with jfield=jfield form=form %}
         {% endfor %}
-    {##}
-    {##}
+
 
 
     {% next_button %}
