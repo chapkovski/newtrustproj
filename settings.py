@@ -75,7 +75,7 @@ USE_POINTS = True
 POINTS_CUSTOM_NAME = 'токен'
 
 ROOMS = [{'name': 'hse', 'display_name': 'HSE Study'}]
-
+GOOGLE_API_KEY = environ.get('GOOGLE_API_KEY')
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')

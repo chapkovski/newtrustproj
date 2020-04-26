@@ -1,6 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from .generic_pages import Page
-
+from django.conf import settings
 
 class Motivation(Page):
     form_model = 'player'
@@ -34,7 +34,8 @@ class Personal1(Page):
                    'living_other',
                    'city_size'
                    ]
-
+    def vars_for_template(self):
+        return dict(GOOGLE_API_KEY=settings.GOOGLE_API_KEY)
 
 class SelfDetermination(Page):
     form_model = 'player'
