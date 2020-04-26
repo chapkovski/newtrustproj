@@ -7,13 +7,13 @@
     }
 </style>
 
-<h5>{{ jfield.title }}</h5>
+<div class="col-form-label">{{ jfield.title }}</div>
 <table class="table joined-table">
     <thead>
     <tr>
         <th></th>
         {% for choice in jfield.choices %}
-            <th class="text-center">{{ choice.1 }}</th>
+            <td class="text-center">{{ choice.1 }}</td>
         {% endfor %}
 
     </tr>
@@ -21,7 +21,7 @@
     {% for field in form %}
         <tr>
             {% if field.name in jfield.fields %}
-                <td><span class="font-weight-bold">{{ field.label }}:</span></td>
+                <td><span class=" ">{{ field.label }}:</span></td>
                 {% for choice in field %}
                     <td class="text-center">{{ choice.tag }}</td>
                 {% endfor %}

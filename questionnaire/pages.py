@@ -351,16 +351,16 @@ class Personal2(Page):
 
 
 page_sequence = [
-    # Motivation,
+    Motivation,
     Personal1,
-    # RegionsKnowledge,
-    # RegionsIncome,
-    # Trust,
-    # StatedPreferences1,
-    # StatedPreferences2,
-    # StatedPreferences3,
-    # SelfDetermination,
-    # Values,
-    # Risk,
-    # Personal2
+    RegionsKnowledge,
+    RegionsIncome,
+    Trust,
+    StatedPreferences1,
+    StatedPreferences2,
+    StatedPreferences3,
+    SelfDetermination,
+    Values,
+    Risk,
+    Personal2
 ]

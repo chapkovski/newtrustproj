@@ -1137,7 +1137,8 @@ class Player(BasePlayer):
     regional_differences = models.PositiveIntegerField(
         label=_(
             """Согласны ли Вы с утверждением, что различия в уровне доходов между регионами России неоправданно велики"""),
-        choices=Constants.Agree5DNK
+        choices=Constants.Agree5DNK,
+        widget=widgets.RadioSelect
     )
 
     satis = models.PositiveIntegerField(
@@ -1194,7 +1195,8 @@ class Player(BasePlayer):
     honest_Russia = models.PositiveIntegerField(
         label=_(
             """В нынешней России честному человеку трудно достичь каких-то высот, занять высокое положение в обществе"""),
-        choices=Constants.Agree5DNK
+        choices=Constants.Agree5DNK,
+        widget=widgets.RadioSelect
     )
 
     party_Russia = models.PositiveIntegerField(
