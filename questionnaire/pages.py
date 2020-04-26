@@ -12,10 +12,12 @@ class Motivation(Page):
 
 
 class Personal1(Page):
-    occupation_fields = ['occupation_parent',
-                         'occupation_child', ]
+    special_fields = ['occupation_parent',
+                         'occupation_child',
+                      'birthplace']
     form_model = 'player'
-    form_fields = ['age',
+    form_fields = [
+        'age',
                    'gender',
                    'education',
                    'occupation_status',
@@ -348,16 +350,16 @@ class Personal2(Page):
 
 
 page_sequence = [
-    Motivation,
+    # Motivation,
     Personal1,
-    RegionsKnowledge,
-    RegionsIncome,
-    Trust,
-    StatedPreferences1,
-    StatedPreferences2,
-    StatedPreferences3,
-    SelfDetermination,
-    Values,
-    Risk,
-    Personal2
+    # RegionsKnowledge,
+    # RegionsIncome,
+    # Trust,
+    # StatedPreferences1,
+    # StatedPreferences2,
+    # StatedPreferences3,
+    # SelfDetermination,
+    # Values,
+    # Risk,
+    # Personal2
 ]

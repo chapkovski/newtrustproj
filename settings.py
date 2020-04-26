@@ -1,4 +1,5 @@
 from os import environ
+import os
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
@@ -87,8 +88,22 @@ SECRET_KEY = 'm1e8fnwh3#$v6xbng%$!jn_onduh(22hmzx$kt=$ch6+m6*lcg'
 INSTALLED_APPS = [
     'otree',
     'django.contrib.admin',
+    'webpack_loader'
 
 ]
 EXTENSION_APPS = ['trust']
 MIDDLEWARE_CLASSES = ['django.middleware.locale.LocaleMiddleware', ]
 USE_I18N = True
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        # 'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'vue/',  # must end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'vue_frontend', 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.3,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
+    }
+}
