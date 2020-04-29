@@ -1,17 +1,16 @@
 <template>
   <div>
     <div
-      
+      class="alert alert-info"
       :class="{ flashing: animated }"
-      @animationend="disanimate"
-      @transitionend="disanimate"
-      @click="animate"
+      @animationend="animated = false"
+      v-html='currentKey'
     >
-      {{currentKey}}
+      
     </div>
   </div>
 </template>
- 
+
 <script>
 export default {
   created() {
@@ -22,7 +21,7 @@ export default {
   },
   data() {
     return {
-      currentKey:'',
+      currentKey: "&nbsp;",
       show: true,
       animated: false,
     };
@@ -31,13 +30,6 @@ export default {
   methods: {
     doCommand(e) {
       this.currentKey = String.fromCharCode(e.keyCode).toLowerCase();
-      this.animated = true;
-    },
-    disanimate() {
-      console.debug("animation ends!");
-      this.animated = false;
-    },
-    animate() {
       this.animated = true;
     },
   },
