@@ -1,0 +1,16 @@
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
+
+.y2014 .background {
+    animation: 10s linear y2014-background-animation;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes y2014-background-animation {
+    from {
+      background-position: 0% 0%;
+    }
+    to {
+      background-position: 114.2857% 0%;
+    }
+  }
