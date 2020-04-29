@@ -22,7 +22,7 @@
         style="z-index: 2000;"
         variant="danger"
         dismissible
-        >asdf</b-alert
+        >Wrong answer!</b-alert
       >
     </b-row>
   </b-container>
