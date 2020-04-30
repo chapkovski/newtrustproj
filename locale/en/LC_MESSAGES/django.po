@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 17:19-0400\n"
+"POT-Creation-Date: 2020-04-30 17:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,10 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: _templates/global/Page.html:49
+#: questionnaire/templates/questionnaire/Page.html:19
 msgid "Please fix the errors in the form."
 msgstr ""
 
 #: _templates/global/Page.html:53
+#: questionnaire/templates/questionnaire/Page.html:23
 msgid "Пожалуйста, дождитесь продолжения эксперимента"
 msgstr ""
 
@@ -1567,6 +1569,10 @@ msgstr ""
 #: questionnaire/templates/questionnaire/Results.html:5
 msgid "Результаты"
 msgstr ""
+
+#: questionnaire/templates/questionnaire/includes/progress.html:10
+msgid "готово"
+msgstr "done"
 
 #: questionnaire/templates/questionnaire/includes/ranking.html:5
 msgid "Пожалуйста, перенесите все города в новый список"
