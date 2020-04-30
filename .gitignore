@@ -13,3 +13,4 @@ __pycache__/
 *.otreezip
 latest.dump*
 vue_frontend/node_modules/*
+.env

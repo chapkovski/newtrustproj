@@ -5,7 +5,8 @@ import os
 # in SESSION_CONFIGS, except those that explicitly override it.
 # the session config can be accessed from methods in your apps as self.session.config,
 # e.g. self.session.config['participation_fee']
-
+GOOGLE_API_KEY = environ.get('GOOGLE_API_KEY')
+print('GOOGLE_API', GOOGLE_API_KEY)
 SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=10.00, participation_fee=150.00, doc=""
 )

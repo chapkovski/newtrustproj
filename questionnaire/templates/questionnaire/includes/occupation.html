@@ -10,6 +10,7 @@
                     <p-radio :id="index" name='occupation_parent' v-model='selectedParent' @change='changeParent'
                              :value='getItem(ch).value' :required="true">[[getItem(ch).text]]
                     </p-radio>
+                    <div v-if="selectedParent === getItem(ch).value">[[selectedParent]]</div>
                 </div>
             </template>
         </div>

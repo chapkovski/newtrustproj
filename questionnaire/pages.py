@@ -362,5 +362,5 @@ page_sequence = [
     # SelfDetermination,
     # Values,
     # Risk,
-    Personal2
+    # Personal2
 ]
