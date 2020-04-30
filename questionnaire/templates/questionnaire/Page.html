@@ -1,0 +1,38 @@
+{% extends "global/Page.html" %}
+{% load otree static i18n %}
+
+
+
+{% block body_main %}
+    {% if view.progress|default_if_none:True %}
+        {% block progress %}
+            {% include 'questionnaire/includes/progress.html' %}
+        {% endblock %}
+    {% endif %}
+    <div class="otree-body container">
+        <h2 class="otree-title page-header">{% block title %}{% endblock %}</h2>
+        {% if view.remaining_timeout_seconds != None %}
+            {% include 'otree/includes/TimeLimit.html' with form_element_id="form" %}
+        {% endif %}
+        {% if form.errors and not view.lockable|default:False %}
+            <div class="otree-form-errors alert alert-danger">
+                {% blocktrans trimmed %}Please fix the errors in the form.{% endblocktrans %}
+                {{ form.non_field_errors|default_if_none:'' }}
+            </div>
+        {% elif view.lockable|default:False and form.errors %}
+            {% trans "Пожалуйста, дождитесь продолжения эксперимента" as modal_message %}
+            {% include 'trust/includes/error_modal.html' with message=modal_message %}
+
+        {% endif %}
+        <form action="" method="post" role="form" id="form" autocomplete="off">{% csrf_token %}
+
+            <div class="_otree-content">{% block content %}{% endblock %}</div>
+        </form>
+        <br/>
+        {# need the default:False for projects with old MTurkLandingPage #}
+        {% if view.is_debug|default:False %}
+            <br>
+            {% include 'otree/includes/debug_info.html' %}
+        {% endif %}
+    </div>
+{% endblock %}

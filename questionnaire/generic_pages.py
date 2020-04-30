@@ -16,6 +16,11 @@ class TransMixin:
 class Page(TransMixin, oTreePage):
     joined_fields = None
 
+    def get_progress(self):
+        totpages = self.participant._max_page_index
+        curpage = self.participant._index_in_pages
+        return f"{curpage / totpages * 100:.0f}"
+
     def get_form_class(self):
         form_model = self._get_form_model()
         fields = self.get_form_fields()

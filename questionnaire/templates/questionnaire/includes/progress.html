@@ -1,0 +1,43 @@
+{% load otree  %}
+
+
+
+<div class="progress progress2 fixed-top">
+    <div class="progress-bar   " role="progressbar" style="width: {{ view.get_progress }}%"
+         aria-valuenow="{{ view.get_progress }}" aria-valuemin="0" aria-valuemax="100">
+    </div>
+    <div class="justify-content-center d-flex position-absolute w-100 align-items-center align-self-center">
+        <div>{{ view.get_progress }}% done</div>
+    </div>
+</div>
+
+
+<style>
+    .innerprogcont {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+    }
+
+    .progress2 {
+        height: 30px;
+    }
+
+    .progress1 {
+        height: 30px;
+    }
+
+    .item {
+        font-size: 15px;
+        text-align: center;
+        height: 30px;
+        border: 1px solid rgba(0, 0, 0, .125);
+        width: 100%
+
+    }
+
+    .item.active {
+        color: white;
+        background: #007bff !important;
+    }
+</style>
