@@ -328,6 +328,14 @@ class RegionsIncome(Page):
 class Personal2(Page):
     form_model = 'player'
     form_fields = [
+
+        'satis',
+        'happy',
+        'happy_relative',
+        'income',
+        'honest_Russia',
+        'party_Russia',
+        'party_other',
         'birthplace',
         'marital_status',
         'language',
@@ -337,14 +345,6 @@ class Personal2(Page):
         'living',
         'living_other',
         'city_size',
-        'satis',
-        'happy',
-        'happy_relative',
-        'income',
-        'honest_Russia',
-        'party_Russia',
-        'party_other',
-
     ]
 
 
@@ -355,11 +355,11 @@ page_sequence = [
     # RegionsIncome,
     # Trust,
     # StatedPreferences1,
-    # StatedPreferences2_1,
+    StatedPreferences2_1,
     # StatedPreferences2_2,
     # StatedPreferences3,
     # SelfDetermination,
     # Values,
-    Risk,
-    # Personal2
+    # Risk,
+    Personal2
 ]
