@@ -346,7 +346,7 @@ page_sequence = [
     # StatedPreferences2_1,
     # StatedPreferences2_2,
     # StatedPreferences3,
-    SelfDetermination,
+    # SelfDetermination,
     Values,
     # Risk,
     # Personal2

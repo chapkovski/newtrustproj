@@ -314,7 +314,6 @@ class Constants(BaseConstants):
         [4, _('Немного похож на меня')],
         [5, _('Не похож на меня')],
         [6, _('Совсем не похож на меня')],
-        HARD_TO_SAY_CHOICE
     ]
 
     AgreementChoices5DNK = [
