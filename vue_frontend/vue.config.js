@@ -6,6 +6,10 @@ const pages = {
     'main': {
         entry: './src/main.js',
         chunks: ['chunk-vendors']
+    },
+    'rank': {
+        entry:'./src/rank.js',
+        chunks:['chunk-vendors']
     }
 };
 

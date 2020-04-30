@@ -1,11 +1,19 @@
 {% extends "questionnaire/Page.html" %}
 {% load i18n otree %}
-
+{% load render_bundle from webpack_loader %}
 {% block title %}
     {% trans 'Анкета' %}
 {% endblock %}
 
 {% block content %}
+    <script>
+     window.originalList =
+        {{ player.get_rank_fields|json }}
+        window.listFilled = false;
+    </script>
+    <div id="rank_app"></div>
+     {% render_bundle 'chunk-vendors' %}
+            {% render_bundle 'rank' %}
     {% include 'questionnaire/includes/ranking.html' %}
 
     {% formfield player.regional_differences %}
