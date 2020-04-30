@@ -26,7 +26,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
     HARD_TO_SAY_CHOICE = [999, _('Затрудняюсь ответить')]
-    CITIES = [(int(i.get('code')), i.get('name')) for i in settings.CITIES] + [(13, _('Другой город'))]
+    CITIES = [(int(i.get('code')), i.get('name')) for i in settings.CITIES] + [(13, _('Другой'))]
     GENDER_CHOICES = [[0, _('Мужской')], [1, _('Женский')]]
     OCCUPATION_PARENT_CHOICES = [
         [1, "Legislators, Senior Managers, Officials"],
