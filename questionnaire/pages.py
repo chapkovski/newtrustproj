@@ -15,12 +15,13 @@ class Motivation(Page):
 class Personal1(Page):
     special_fields = ['occupation_parent',
                       'occupation_child',
-                      'birthplace']
+                      ]
     form_model = 'player'
     form_fields = [
         'age',
         'gender',
         'education',
+        'is_occupied',
         'occupation_status',
         'occupation_status_other',
         'occupation_parent',

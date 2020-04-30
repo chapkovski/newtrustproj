@@ -23,3 +23,56 @@
     {% next_button %}
 
 {% endblock %}
+{% block scripts %}
+
+
+    <script>
+        $(() => {
+            var other_occupation_status = $('#id_occupation_status').parent().parent();
+            var other_occupation_status_items = $('input:radio[name="occupation_status"]');
+            other_occupation_status_items.attr('required', false);
+            var occupation_parent_items = $('input:radio[name="occupation_parent"]');
+            var occupation_child_items = $('input:radio[name="occupation_child"]');
+            var main_occupation = $('#occupation_app');
+            var form = $('form#form');
+            form.unbind('submit');
+            var is_occupied = $('input:radio[name="is_occupied"]');
+            var curval = $('input:radio[name="is_occupied"]:checked').val();
+            if (curval === 'False') {
+                other_occupation_status.hide();
+                main_occupation.show();
+            }
+            form.submit(function (e) {
+                e.preventDefault();
+                if (is_occupied.val() === 'False') {
+                    occupation_parent_items.attr('required', false);
+                    occupation_child_items.attr('required', false);
+                    other_occupation_status_items.attr('required', true);
+                } else {
+                    occupation_parent_items.attr('required', true);
+                    occupation_child_items.attr('required', true);
+                    other_occupation_status_items.attr('required', false);
+                }
+                this.submit();
+            })
+            is_occupied.change(function (e) {
+                if (e.target.value === 'False') {
+                    other_occupation_status_items.attr('required', true);
+                    other_occupation_status.show();
+                    main_occupation.hide();
+                    occupation_parent_items.attr('required', false);
+                    occupation_child_items.attr('required', false);
+
+                } else {
+                    other_occupation_status.hide();
+                    other_occupation_status_items.attr('required', false);
+                    main_occupation.show();
+                    occupation_parent_items.attr('required', true);
+                    occupation_child_items.attr('required', true);
+                }
+                ;
+            });
+        })
+
+    </script>
+{% endblock %}

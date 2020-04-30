@@ -28,6 +28,7 @@ class Constants(BaseConstants):
     HARD_TO_SAY_CHOICE = [999, _('Затрудняюсь ответить')]
     CITIES = [(int(i.get('code')), i.get('name')) for i in settings.CITIES] + [(13, _('Другой'))]
     GENDER_CHOICES = [[0, _('Мужской')], [1, _('Женский')]]
+    IS_OCCUPIED_CHOICES = [[False, _('Нет')], [True, _('Да')]]
     OCCUPATION_PARENT_CHOICES = [
         [1, "Legislators, Senior Managers, Officials"],
         [2, "Professionals"],
@@ -412,6 +413,7 @@ class Player(BasePlayer):
                                         """Какой у Вас самый высокий уровень образования, по которому Вы получили аттестат, свидетельство, диплом? """),
                                     widget=widgets.RadioSelect())
     occupation_status = models.IntegerField(initial=None,
+                                            blank=True,
                                             choices=Constants.OCCUPATION_STATUS_CHOICES,
                                             label=_(
                                                 """Какой ответ лучше всего описывает Ваше основное занятие в настоящее время?"""),
@@ -1076,7 +1078,8 @@ class Player(BasePlayer):
     )
 
     Khb_source = models.StringField(
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999, label=_("""Харабовск и Хабаровский край"""))
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                               label=_("""Харабовск и Хабаровский край"""))
     )
     relative_position_in_region = models.IntegerField(
         label=_('Ваш средний ежемесячный доход'),
@@ -1231,5 +1234,8 @@ class Player(BasePlayer):
              f.name.endswith('_rank')]
         return r
 
-    occupation_parent = models.IntegerField(choices=Constants.OCCUPATION_PARENT_CHOICES)
+    is_occupied = models.BooleanField(label=_("В настоящее время вы трудоустроены?"),
+                                      choices=Constants.IS_OCCUPIED_CHOICES,
+                                      widget=widgets.RadioSelectHorizontal)
+    occupation_parent = models.IntegerField(choices=Constants.OCCUPATION_PARENT_CHOICES,blank=True)
     occupation_child = models.IntegerField(choices=Constants.OCCUPATION_CHILD_CHOICES, blank=True)
