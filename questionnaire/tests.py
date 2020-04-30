@@ -3,7 +3,7 @@ from .pages import *
 from ._builtin import Bot
 from .models import Constants, Player
 
-pass_html = ['RegionsIncome', 'RegionsKnowledge','Personal1']
+pass_html = ['RegionsIncome', 'RegionsKnowledge','Personal1', 'Personal2']
 specific_values = dict(age=13,
                        occupation_child=11)
 class PlayerBot(Bot):
