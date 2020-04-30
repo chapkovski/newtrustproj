@@ -28,8 +28,6 @@ class Personal1(Page):
 
     ]
 
-    def vars_for_template(self):
-        return dict(GOOGLE_API_KEY=settings.GOOGLE_API_KEY)
 
 
 class SelfDetermination(Page):
@@ -347,16 +345,19 @@ class Personal2(Page):
         'city_size',
     ]
 
+    def vars_for_template(self):
+        return dict(GOOGLE_API_KEY=settings.GOOGLE_API_KEY)
+
 
 page_sequence = [
     # Motivation,
-    # Personal1,
+    Personal1,
     # RegionsKnowledge,
     # RegionsIncome,
     # Trust,
     # StatedPreferences1,
     # StatedPreferences2_1,
-    StatedPreferences2_2,
+    # StatedPreferences2_2,
     # StatedPreferences3,
     # SelfDetermination,
     # Values,

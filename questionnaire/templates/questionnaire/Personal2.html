@@ -1,13 +1,32 @@
 {% extends "global/Page.html" %}
 {% load otree i18n  hse %}
-
+{% load render_bundle from webpack_loader %}
 {% block title %}
     {% trans 'Анкета' %}
 {% endblock %}
 
 {% block content %}
 
-    {% formfields %}
+
+
+    {% for foo in form %}
+        {% if  foo.name == 'birthplace' %}
+
+            <label class="col-form-label"
+                   for="id_birthplace">{% trans 'Место рождения (населенный пункт, регион)' %}</label>
+            {{ form.birthplace.errors }}
+            <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=places"></script>
+            <div id="birthplace_app">
+            </div>
+            {% render_bundle 'chunk-vendors' %}
+            {% render_bundle 'main' %}
+        {% else %}
+            {% formfield foo %}
+
+
+        {% endif %}
+
+    {% endfor %}
 
     {% next_button %}
 
