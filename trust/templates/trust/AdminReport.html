@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>{% load otree %}
+{% if session.vars.monitor_cubicles|default_if_none:False  and cubicle_data|default_if_none:False %}
+    {% include 'trust/admin/cubicles.html' with  data=cubicle_data %}
+{% endif %}
+<h3>Locked pages</h3>
+
+
+<table class="table table-stripped table-hover">
+    {% for b in blockers %}
+        <tr>
+            <td>
+                Page: "{{ b.page }}":
+            </td>
+            <td>
+                <i class="fas   {% if b.locked %}fa-lock red{% else %}fa-lock-open green{% endif %}"></i>
+                ({% if b.locked %}
+                Locked
+            {% else %}
+                Unlocked
+            {% endif %}
+                )
+            </td>
+            <td>
+
+                <form action="{% url 'change_lock' b.pk %}" method="post" role="form" id="form" class="form-inline"
+                      autocomplete="off">{% csrf_token %}
+
+                    {% if b.locked %}
+                        <button class="btn btn-mini btn-danger">Unlock</button>
+
+                    {% else %}
+                        <button class="btn btn-mini btn-success">Lock</button>
+                    {% endif %}
+
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+
+
+</table>
+
+<style>
+    .form-inline {
+        display: inline-block;
+    }
+
+    .red {
+        font-size: 25px;
+        color: #dc3545;
+    }
+
+    .green {
+        font-size: 25px;
+        color: #28a745;
+    }
+
+</style>
+<script src="https://kit.fontawesome.com/2c4c52c9d3.js"></script>

@@ -1,0 +1,39 @@
+<div class="col-form-label text-center">{{ quote }}</div>
+<div><small>{{ label }}</small></div>
+<input type="hidden" value='{{ widget.value.0 }}' id="id_{{ widget.name }}" name="{{ widget.name }}"/>
+<div class="row owned_by_{{ widget.name }} row-likert-wrapper">
+    <div class="col-xs-12 likert-wrapper">
+        <div class=" likert-header likert-left-header">
+            <div  class="text-right ">
+                {{ left }}
+            </div>
+        </div>
+        <div class="chart-scale">
+            {% for foo in choices %}
+                <button class="btn btn-scale " role="button" type="button" data-value="{{ foo.0 }}">
+                    {{ foo.1 }}
+                </button>
+            {% endfor %}
+
+        </div>
+        <div class=" likert-header likert-right-header">
+            <div class="text-left ">
+                {{ right }}
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<script>
+    $('.owned_by_{{ widget.name }} .btn-scale').each(function () {
+        if (parseInt($('#id_{{ widget.name }}').val()) === $(this).data('value')) {
+            $(this).addClass("btn-scale-checked");
+        }
+
+    });
+    $('.owned_by_{{ widget.name }}  .btn-scale').on('click', function () {
+        $('.owned_by_{{ widget.name }} .btn-scale').removeClass("btn-scale-checked");
+        $(this).addClass("btn-scale-checked");
+        $('#id_{{ widget.name }}').val($(this).data('value'))
+    })
+</script>

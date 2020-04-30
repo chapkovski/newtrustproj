@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree i18n hse %}
+
+{% block title %}
+    {% trans 'Анкета' %}
+{% endblock %}
+
+{% block content %}
+
+    {% joined_form form %}
+
+    <script>
+        var church = $('#id_religion_service').parent().parent();
+        var churchitems = $('input:radio[name="religion_service"]')
+        var curval = $('input:radio[name="religion"]:checked').val();
+        if (parseInt(curval) === 1) {
+            church.hide();
+        }
+        $('input:radio[name="religion"]').change(function () {
+            if (parseInt(this.value) === 1) {
+                church.hide();
+                churchitems.attr('required', false);
+            } else {
+                church.show();
+                churchitems.attr('required', true);
+            }
+            ;
+        });
+    </script>
+
+    {% next_button %}
+
+{% endblock %}

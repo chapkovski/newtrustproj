@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load otree i18n %}
+
+{% block title %}
+    {% trans 'Анкета' %}
+{% endblock %}
+
+{% block content %}
+
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}

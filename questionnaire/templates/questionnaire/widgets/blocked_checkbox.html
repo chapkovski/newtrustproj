@@ -1,0 +1,64 @@
+{% load otree %}
+<tr id="app_{{ widget.name }}">
+    <td>{{ label }}</td>
+    <template v-for='(ch, index) in checkboxes' :key='index'>
+        <td class="text-center">
+            <p-check :class="defineClass(index)"
+                     :id="index" :checked="ch.checked" @change="setCheckbox(index)"
+            >
+            </p-check>
+        </td>
+    </template>
+
+    <input type="hidden" :name="owner" class="form-control" :value='pureed'>
+</tr>
+<script>
+    Vue.use(PrettyCheckbox);
+    var app = new Vue({
+        el: "#app_{{ widget.name }}",
+        delimiters: ['[[', ']]'],
+        data: {
+            defaultClass: 'blocked-item',
+            blocked: {{ blocked }},
+            owner: "{{widget.name}}",
+            checkboxes: {{inner_choices|json}},
+            chvalue: []
+        },
+        computed: {
+            pureed: function () {
+                return this.chvalue.join("");
+            }
+        },
+        methods: {
+            defineClass: function (id) {
+
+                if (parseInt(this.checkboxes[id].value) === this.blocked)
+                    return this.defaultClass + " p-round  ";
+                return this.defaultClass;
+            },
+            setCheckbox: function (target) {
+                const innerId = target;
+                const carVal = this.checkboxes[innerId].value;
+
+                this.checkboxes[innerId].checked = !this.checkboxes[innerId].checked;
+                if (
+                    carVal == this.blocked &&
+                    this.checkboxes[innerId].checked
+                ) {
+                    this.checkboxes.forEach((el, ind) => {
+                        if (ind !== parseInt(innerId)) {
+                            el.checked = false;
+                        }
+                    });
+                } else {
+                    _.filter(this.checkboxes, {value: this.blocked}).forEach((el) => {
+                        el.checked = false;
+                    });
+                }
+
+                this.chvalue = _.map(_.filter(this.checkboxes, "checked"), "value");
+            }
+        }
+    });
+
+</script>

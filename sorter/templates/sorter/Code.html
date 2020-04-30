@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   Пожалуйста, введите код города:
+{% endblock %}
+
+{% block content %}
+    {% if session.is_demo %}
+        <div class="alert alert-primary">
+            <div>
+                DEBUG: <b>THIS BLOCK WILL NOT BE SHOWN IN THE REAL GAME</b>
+            </div>
+            <div>insert one of the following codes: {{ session.config.city1 }}, {{ session.config.city2 }}</div>
+            <div>
+                DEBUG: <b>THIS BLOCK WILL NOT BE SHOWN IN THE REAL GAME</b>
+            </div>
+        </div>
+
+    {% endif %}
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}

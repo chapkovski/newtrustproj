@@ -1,0 +1,114 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Результаты
+{% endblock %}
+
+{% block content %}
+    <table class="table table-hover table-stripped table-sm ">
+
+        <tbody>
+
+        <tr>
+            <td>В этой сессии Вы были в роли</td>
+            <td>Участника {{ participant.vars.role_desc }}</td>
+        </tr>
+
+        <tr>
+            <td>Вы взаимодействовали с Участником</td>
+            <td>{{ participant.vars.other_role_desc }}</td>
+        </tr>
+        {# STAGE 1 PAYOFF#}
+        <tr>
+            <td colspan="2" class="text-center">Часть 1: результаты</td>
+        </tr>
+        {% if participant.vars.role == 'Sender' %}
+            <tr>
+                <td>В отношении Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, Вы
+                    приняли решение:
+                </td>
+                <td>{{ participant.vars.own_decision }}</td>
+            </tr>
+            {% if participant.vars.sender_decision %}
+                <tr>
+                    <td>Решение Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, было:
+                    </td>
+                    <td>{{ participant.vars.partner_decision }}</td>
+                </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td>Решение Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, было:</td>
+                <td>{{ participant.vars.partner_decision }}</td>
+            </tr>
+            {% if participant.vars.sender_decision %}
+                <tr>
+                    <td>В отношении Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали, Вы
+                        приняли решение:
+                    </td>
+                    <td>{{ participant.vars.own_decision }}</td>
+                </tr>
+            {% endif %}
+        {% endif %}
+        <tr>
+            <th>Ваш выигрыш в токенах в Части 1 составил:</th>
+            <th>{{ participant.vars.stage1payoff }}</th>
+        </tr>
+        <tr>
+            <th>Ваш выигрыш в рублях в Части 1 составил:</th>
+            <th>{{ participant.vars.stage1payoff_rubles }}</th>
+        </tr>
+        {# STAGE 2 PAYOFF#}
+        <tr>
+            <td colspan="2" class="text-center">Часть 2: результаты</td>
+        </tr>
+
+        <tr>
+            <td>Ваша оценка решения Участника {{ participant.vars.other_role_desc }}, с которым Вы взаимодействовали,
+                была:
+            </td>
+            <td>{{ participant.vars.guess }}</td>
+        </tr>
+
+        <tr>
+            <td>Его решение было:</td>
+            <td>{{ participant.vars.partner_decision }}</td>
+        </tr>
+
+        <tr>
+            <th>Ваш выигрыш в Части 2 составил:</th>
+            <th>{{ participant.vars.stage2payoff|c }}</th>
+        </tr>
+        <tr>
+            <th>Ваш выигрыш в рублях в Части 2 составил:</th>
+            <th>{{ participant.vars.stage2payoff_rubles }}</th>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+
+        <tr class="table-success">
+            <th>Оплата за участие:</th>
+            <th>{{ session.config.participation_fee }}</th>
+        </tr>
+        <tr class="table-success">
+            <th>Оплата за заполнение вопросника:</th>
+            <th>{{ participant.vars.questionnaire_payoff }}</th>
+        </tr>
+        <tr class="table-success">
+            <th>Итоговая сумма в рублях:</th>
+            <th>{{ participant.payoff_plus_participation_fee }}</th>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+
+    <div class="d-none">
+        {% next_button %}
+    </div>
+{% endblock %}
+
+

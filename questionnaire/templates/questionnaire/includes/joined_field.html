@@ -1,0 +1,31 @@
+{% load otree %}
+<style>
+    .joined-table .form-check-input {
+        position: relative;
+        margin-top: inherit;
+        margin-left: inherit;
+    }
+</style>
+
+<div class="col-form-label">{{ jfield.title }}</div>
+<table class="table joined-table">
+    <thead>
+    <tr>
+        <th></th>
+        {% for choice in jfield.choices %}
+            <td class="text-center">{{ choice.1 }}</td>
+        {% endfor %}
+
+    </tr>
+    </thead>
+    {% for field in form %}
+        <tr>
+            {% if field.name in jfield.fields %}
+                <td><span class=" ">{{ field.label }}:</span></td>
+                {% for choice in field %}
+                    <td class="text-center">{{ choice.tag }}</td>
+                {% endfor %}
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,66 @@
+{% load otree %}
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css'>
+
+<div id="occupation_app" class="my-3 form-group required">
+    <div class="row">
+        <div class="col-sm-6 col-12">
+            <label for="id_occupation_parent" class="col-form-label">Main occupation</label>
+            <template v-for='(ch, index) in parents' :key='index'>
+                <div>
+                    <p-radio :id="index" name='occupation_parent' v-model='selectedParent' @change='changeParent'
+                             :value='getItem(ch).value' :required="true">[[getItem(ch).text]]
+                    </p-radio>
+                </div>
+            </template>
+        </div>
+        <div class="col-sm-6 col-12">
+            <label for="id_occupation_child" class="col-form-label">Detailed occupation</label>
+            <div v-for='(child, index) in selectedChildren'>
+
+                <p-radio :id="index" name='occupation_child' v-model='selectedChild' :value='getItem(child).value' :required="true">
+                    [[getItem(child).text]]
+                </p-radio>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/pretty-checkbox-vue@1.1/dist/pretty-checkbox-vue.min.js'></script>
+<script>
+    Vue.use(PrettyCheckbox);
+
+    var app = new Vue({
+        el: "#occupation_app",
+        delimiters: ["[[", "]]"],
+        data: {
+            parents: {{Constants.OCCUPATION_PARENT_CHOICES|json}},
+            children: {{Constants.OCCUPATION_CHILD_CHOICES|json}},
+            selectedParent: null,
+            selectedChild: null
+        },
+        computed: {
+            selectedChildren: function () {
+                if (this.selectedParent) {
+                    const selectedKids = _.filter(
+                        this.children,
+                        (i) => i[0].toString()[0] === this.selectedParent.toString()
+                    );
+                    return selectedKids;
+                }
+
+                return [];
+            }
+        },
+        methods: {
+            changeParent: function () {
+                this.selectedChild = null;
+            },
+            getItem: function (child) {
+                return {text: child[1], value: child[0]};
+            }
+        }
+    });
+
+</script>

@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Часть 2. Дополнительные вопросы
+{% endblock %}
+
+{% block content %}
+    {% include 'trust/includes/extra_block.html' %}
+    <p>
+        Представьте себе, что 100 случайным образом выбранных Участников Б из каждого из 12 городов примут
+        решения о том, сколько из 30 токенов они вернут Участникам А. Как Вы думаете, сколько в среднем вернут
+        эти Участники Б из каждого из 12 городов? Впишите в каждую строку таблицы соответствующее число (от 0 до
+        30).
+    </p>
+
+    {{ formset.management_form }}
+
+    <table class="table table-hover table-stripped table-sm ">
+        <thead>
+        <th>100 случайно выбранных Участников Б из города
+        </th>
+
+        <th>
+            по Вашему мнению, в среднем вернут Участникам А сумму
+        </th>
+        </thead>
+        <tbody>
+        {% for f in formset %}
+            <tr>
+                <td>  {{ f.instance.city.description }}</td>
+                <td>
+                    {% for field in f %}
+                        {% formfield field label='' %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% next_button %}
+
+{% endblock %}
