@@ -726,7 +726,7 @@ class Player(BasePlayer):
 
     # Risk
     risk_general = models.PositiveIntegerField(
-        label=_("""Скажите, пожалуйста, насколько Вы в целом любите рисковать? """),
+        label='',
         choices=Constants.RISK_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )

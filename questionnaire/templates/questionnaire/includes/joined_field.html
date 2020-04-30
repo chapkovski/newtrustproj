@@ -21,7 +21,7 @@
     {% for field in form %}
         <tr>
             {% if field.name in jfield.fields %}
-                <td><span class=" ">{{ field.label }}:</span></td>
+                <td><span class=" ">{{ field.label }}{% if field.label %}:{% endif %} </span></td>
                 {% for choice in field %}
                     <td class="text-center">{{ choice.tag }}</td>
                 {% endfor %}

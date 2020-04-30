@@ -2,6 +2,7 @@ from django.utils.translation import gettext_lazy as _
 from .generic_pages import Page
 from django.conf import settings
 
+
 class Motivation(Page):
     form_model = 'player'
     form_fields = ['motivation_part1',
@@ -13,21 +14,23 @@ class Motivation(Page):
 
 class Personal1(Page):
     special_fields = ['occupation_parent',
-                         'occupation_child',
+                      'occupation_child',
                       'birthplace']
     form_model = 'player'
     form_fields = [
         'age',
-                   'gender',
-                   'education',
-                   'occupation_status',
-                   'occupation_status_other',
-                   'occupation_parent',
-                   'occupation_child',
+        'gender',
+        'education',
+        'occupation_status',
+        'occupation_status_other',
+        'occupation_parent',
+        'occupation_child',
 
-                   ]
+    ]
+
     def vars_for_template(self):
         return dict(GOOGLE_API_KEY=settings.GOOGLE_API_KEY)
+
 
 class SelfDetermination(Page):
     form_model = 'player'
@@ -40,7 +43,8 @@ class SelfDetermination(Page):
         'community_local',
         'community_russian'
     ]
-    joined_fields = [{"title": _('Насколько вы согласны или не согласны с каждым из следующих утверждений о том, как вы видите себя?'),
+    joined_fields = [{"title": _(
+        'Насколько вы согласны или не согласны с каждым из следующих утверждений о том, как вы видите себя?'),
                       "fields": [
                           'community_local',
                           'community_russian'
@@ -162,18 +166,27 @@ class Values(Page):
 
 class Risk(Page):
     form_model = 'player'
-    joined_fields = [{"title": _("""Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях? 
+    joined_fields = [
+        {"title": _("""Скажите, пожалуйста, насколько Вы в целом любите рисковать?  
         Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
         """),
-                      "fields": [
-                          'risk_general',
-                          'risk_fin',
-                          'risk_sport',
-                          'risk_prof',
-                          'risk_health',
-                          'risk_strangers',
-                          'risk_drive'
-                      ]}, ]
+         "fields": [
+             'risk_general',
+
+         ]},
+        {"title": _("""Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях? 
+            Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
+            """),
+         "fields": [
+
+             'risk_fin',
+             'risk_sport',
+             'risk_prof',
+             'risk_health',
+             'risk_strangers',
+             'risk_drive'
+         ]},
+    ]
     form_fields = [
         'risk_general',
         'risk_fin',
@@ -206,12 +219,12 @@ class StatedPreferences2_1(Page):
         'competition',
         'fairness_general',
 
-
     ]
 
     def vars_for_template(self) -> dict:
         return {'range110': range(1, 11),
                 }
+
 
 class StatedPreferences2_2(Page):
     template_name = 'questionnaire/StatedPreferences2.html'
@@ -226,7 +239,7 @@ class StatedPreferences2_2(Page):
 
     def vars_for_template(self) -> dict:
         return {
-                'range1010': range(0, 11)}
+            'range1010': range(0, 11)}
 
 
 class StatedPreferences3(Page):
@@ -255,7 +268,6 @@ class RegionsKnowledge(Page):
                       'Ros_source',
                       'SPb_source',
                       'Khb_source', ]
-
 
     form_fields = [
         'regions_been',
@@ -347,7 +359,7 @@ page_sequence = [
     # StatedPreferences2_2,
     # StatedPreferences3,
     # SelfDetermination,
-    Values,
-    # Risk,
+    # Values,
+    Risk,
     # Personal2
 ]

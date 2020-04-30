@@ -6,10 +6,9 @@
         margin-left: inherit;
     }
 </style>
-{#{{ fields_order }}#}
+
 {% if fields_order|default_if_none:False %}
-{#    do something based on order#}
-{#    <div class="jopa">JOPA</div>#}
+
 {% else %}
     {% for jfield in form.joined_fields|default_if_none:None %}
         {% include 'questionnaire/includes/joined_field.html' with jfield=jfield form=form %}

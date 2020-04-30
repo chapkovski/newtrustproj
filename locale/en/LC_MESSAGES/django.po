@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 11:27-0400\n"
+"POT-Creation-Date: 2020-04-30 11:49-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -238,22 +238,22 @@ msgid "Другую религию"
 msgstr "Other religion"
 
 #: questionnaire/models.py:168 questionnaire/models.py:295
-#: questionnaire/models.py:321
+#: questionnaire/models.py:320
 msgid "Совершенно согласен"
 msgstr "Absolutely agree"
 
 #: questionnaire/models.py:169 questionnaire/models.py:296
-#: questionnaire/models.py:322
+#: questionnaire/models.py:321
 msgid "Скорее согласен"
 msgstr "Somewhat agree"
 
 #: questionnaire/models.py:170 questionnaire/models.py:297
-#: questionnaire/models.py:324
+#: questionnaire/models.py:323
 msgid "Скорее не согласен"
 msgstr "Somewhat disagree"
 
 #: questionnaire/models.py:171 questionnaire/models.py:298
-#: questionnaire/models.py:325
+#: questionnaire/models.py:324
 msgid "Совершенно не согласен"
 msgstr "Absolutely disagree"
 
@@ -333,7 +333,7 @@ msgstr "You are rather distrustful"
 msgid "Вы недоверчивы"
 msgstr "You are distrustful"
 
-#: questionnaire/models.py:209 questionnaire/models.py:368
+#: questionnaire/models.py:209 questionnaire/models.py:367
 msgid "Да"
 msgstr "Yes"
 
@@ -345,7 +345,7 @@ msgstr "Rather yes than no"
 msgid "Скорее нет чем да"
 msgstr "More likely no than yes"
 
-#: questionnaire/models.py:212 questionnaire/models.py:369
+#: questionnaire/models.py:212 questionnaire/models.py:368
 msgid "Нет"
 msgstr "No"
 
@@ -585,80 +585,80 @@ msgstr "Doesn't look like me"
 msgid "Совсем не похож на меня"
 msgstr "Not at all like me"
 
-#: questionnaire/models.py:323
+#: questionnaire/models.py:322
 msgid "И да и нет"
 msgstr "50-50"
 
-#: questionnaire/models.py:330 questionnaire/models.py:338
+#: questionnaire/models.py:329 questionnaire/models.py:337
 msgid "0"
 msgstr ""
 
-#: questionnaire/models.py:331 questionnaire/models.py:339
+#: questionnaire/models.py:330 questionnaire/models.py:338
 msgid "1"
 msgstr ""
 
-#: questionnaire/models.py:332
+#: questionnaire/models.py:331
 msgid "2"
 msgstr ""
 
-#: questionnaire/models.py:333
+#: questionnaire/models.py:332
 msgid "3"
 msgstr ""
 
-#: questionnaire/models.py:334
+#: questionnaire/models.py:333
 msgid "4 или более"
 msgstr "4 or more"
 
-#: questionnaire/models.py:340
+#: questionnaire/models.py:339
 msgid "2-3"
 msgstr ""
 
-#: questionnaire/models.py:341
+#: questionnaire/models.py:340
 msgid "4-6"
 msgstr ""
 
-#: questionnaire/models.py:342
+#: questionnaire/models.py:341
 msgid "7 или более"
 msgstr "7 or more"
 
-#: questionnaire/models.py:359
+#: questionnaire/models.py:358
 msgid "Я там живу/жил"
 msgstr "I live(d) there"
 
-#: questionnaire/models.py:360
+#: questionnaire/models.py:359
 msgid "От родственников и друзей"
 msgstr "From relatives and friends"
 
-#: questionnaire/models.py:361
+#: questionnaire/models.py:360
 msgid "Из социальных сетей (vk, instagram и др.)"
 msgstr "From social networks (vk, instagram, etc.)"
 
-#: questionnaire/models.py:362
+#: questionnaire/models.py:361
 msgid ""
 "Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)"
 msgstr "From the media (newspapers, television, online media, etc.)"
 
-#: questionnaire/models.py:363
+#: questionnaire/models.py:362
 msgid "В школе или университете"
 msgstr "At school or university"
 
-#: questionnaire/models.py:364
+#: questionnaire/models.py:363
 msgid "Другие источники"
 msgstr "Other sources"
 
-#: questionnaire/models.py:365
+#: questionnaire/models.py:364
 msgid "Ничего не знаю о регионе"
 msgstr "Don't know anything about the region"
 
-#: questionnaire/models.py:377
+#: questionnaire/models.py:376
 msgid "questionnaire_payoff"
 msgstr ""
 
-#: questionnaire/models.py:386
+#: questionnaire/models.py:385
 msgid "Calculate payoff, which is zero for the survey"
 msgstr ""
 
-#: questionnaire/models.py:391
+#: questionnaire/models.py:390
 msgid ""
 "Пожалуйста, вспомните ваши решения в части 1 эксперимента.\n"
 "            Участник А: передать ли начальную сумму участнику В.\n"
@@ -672,7 +672,7 @@ msgstr ""
 "return anything, return everything or return only part of 30 tokens. What "
 "were you guided by when making these decisions? Why did you decide that way?"
 
-#: questionnaire/models.py:399
+#: questionnaire/models.py:398
 msgid ""
 "Пожалуйста, вспомните ваши решения в части 2 эксперимента.\n"
 "            Участник А: оценить, какую часть 30 токенов участник В захочет "
@@ -687,11 +687,11 @@ msgstr ""
 "Evaluate if Member A wanted to pass it on to you.initial amount. What were "
 "you guided by when making these decisions? Why did you decide that way?"
 
-#: questionnaire/models.py:408
+#: questionnaire/models.py:407
 msgid "Ваш пол"
 msgstr "your gender"
 
-#: questionnaire/models.py:413
+#: questionnaire/models.py:412
 msgid ""
 "Какой у Вас самый высокий уровень образования, по которому Вы получили "
 "аттестат, свидетельство, диплом? "
@@ -699,66 +699,66 @@ msgstr ""
 "What is your highest educational level which is confirmed by certificate or "
 "diploma?"
 
-#: questionnaire/models.py:418
+#: questionnaire/models.py:417
 msgid ""
 "Какой ответ лучше всего описывает Ваше основное занятие в настоящее время?"
 msgstr ""
 "Which answer best describes your primary occupation at the present time?"
 
-#: questionnaire/models.py:419
+#: questionnaire/models.py:418
 msgid "occupation_status_other"
 msgstr ""
 
-#: questionnaire/models.py:421
+#: questionnaire/models.py:420
 msgid "Уточните какое именно"
 msgstr "Specify which one"
 
-#: questionnaire/models.py:423
+#: questionnaire/models.py:422
 msgid "Ваш возраст (полных лет)"
 msgstr "Your age (full years)"
 
-#: questionnaire/models.py:428
+#: questionnaire/models.py:427
 #: questionnaire/templates/questionnaire/Personal1.html:18
 msgid "Место рождения (населенный пункт, регион)"
 msgstr "Place of birth (locality, region)"
 
-#: questionnaire/models.py:432
+#: questionnaire/models.py:431
 msgid "Ваш семейный статус"
 msgstr "your marital status"
 
-#: questionnaire/models.py:438
+#: questionnaire/models.py:437
 msgid "На каком языке Вы обычно говорите дома?"
 msgstr "What language do you usually speak at home?"
 
-#: questionnaire/models.py:440
+#: questionnaire/models.py:439
 msgid "Русский"
 msgstr "Russian"
 
-#: questionnaire/models.py:441
+#: questionnaire/models.py:440
 msgid "Другой (какой именно)"
 msgstr "Other (which one)"
 
-#: questionnaire/models.py:443
+#: questionnaire/models.py:442
 msgid "language_other"
 msgstr ""
 
-#: questionnaire/models.py:447
+#: questionnaire/models.py:446
 msgid "Если на другом языке, то на каком именно?"
 msgstr "If in another language, then in which one?"
 
-#: questionnaire/models.py:451
+#: questionnaire/models.py:450
 msgid "Вы живете..."
 msgstr "Do you live ..."
 
-#: questionnaire/models.py:453
+#: questionnaire/models.py:452
 msgid "living_other"
 msgstr ""
 
-#: questionnaire/models.py:457
+#: questionnaire/models.py:456
 msgid "Уточните где именно"
 msgstr "Specify exactly where"
 
-#: questionnaire/models.py:462
+#: questionnaire/models.py:461
 msgid ""
 "    Сколько человек (приблизительно) проживало в том населенном пункте, где "
 "Вы жили в возрасте 16 лет?"
@@ -766,31 +766,31 @@ msgstr ""
 "How many people (approximately) lived in that village where did you live at "
 "the age of 16?"
 
-#: questionnaire/models.py:469
+#: questionnaire/models.py:468
 msgid "К какой национальности Вы себя относите?"
 msgstr "What nationality do you belong to?"
 
-#: questionnaire/models.py:471
+#: questionnaire/models.py:470
 msgid "ethnicity_other"
 msgstr ""
 
-#: questionnaire/models.py:474
+#: questionnaire/models.py:473
 msgid "Укажите к какой"
 msgstr "Which one"
 
-#: questionnaire/models.py:478
+#: questionnaire/models.py:477
 msgid "Какую религию Вы исповедуете?"
 msgstr "What religion do you profess?"
 
-#: questionnaire/models.py:480
+#: questionnaire/models.py:479
 msgid "religion_other"
 msgstr ""
 
-#: questionnaire/models.py:484
+#: questionnaire/models.py:483
 msgid "Уточните какую именно"
 msgstr "Specify which one"
 
-#: questionnaire/models.py:488
+#: questionnaire/models.py:487
 msgid ""
 "Насколько Вы согласны со следующим утверждением? \"Люди, исповедующие другие "
 "религии, вероятно, \n"
@@ -1450,24 +1450,26 @@ msgstr ""
 msgid "who_was_other_city_other"
 msgstr ""
 
-#: questionnaire/pages.py:43
+#: questionnaire/pages.py:47
 msgid ""
 "Насколько вы согласны или не согласны с каждым из следующих утверждений о "
 "том, как вы видите себя?"
-msgstr "How strongly you agree or disagree with each of the following statements about how you see yourself?"
+msgstr ""
+"How strongly you agree or disagree with each of the following statements "
+"about how you see yourself?"
 
-#: questionnaire/pages.py:51
+#: questionnaire/pages.py:55
 msgid "Скажите пожалуйста, насколько Вы доверяете следующим категориям людей:"
 msgstr "Please tell me how much you trust the following categories of people:"
 
-#: questionnaire/pages.py:59
+#: questionnaire/pages.py:63
 msgid ""
 "Скажите пожалуйста, насколько Вы доверяете следующим организациям и "
 "институтам:"
 msgstr ""
 "Please tell me how much you trust the following organizations and institutes:"
 
-#: questionnaire/pages.py:113
+#: questionnaire/pages.py:117
 msgid ""
 "Ниже представлены краткие описание некоторых людей. До какой степени каждый "
 "из описанных людей похож или не похож на вас?:"
@@ -1475,7 +1477,7 @@ msgstr ""
 "Below is a brief description of some people. To what extent does each of "
 "these people resemble or not resemble you?"
 
-#: questionnaire/pages.py:128
+#: questionnaire/pages.py:132
 msgid ""
 "Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для "
 "ответа выберите значение на шкале от 1 до 10, \n"
@@ -1486,19 +1488,32 @@ msgstr ""
 "answer, select a value on a scale from 1 to 10, where 1 means \"never "
 "deserves excuse\" and 10 means \"always deserves excuse.\""
 
-#: questionnaire/pages.py:165
+#: questionnaire/pages.py:170
 msgid ""
-"Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё "
-"желание брать на себя риски в следующих ситуациях? \n"
+"Скажите, пожалуйста, насколько Вы в целом любите рисковать?  \n"
 "        Для ответа выберите значение на шкале от 0 до 10, где  0 означает, "
 "что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете "
 "на риск».\n"
 "        "
 msgstr ""
+"Please tell me how much do you generally like to take risks? "
+"To answer, select a "
+"value on a scale from 0 to 10, where 0 means that you are \"completely not "
+"willing to take risks,\" and 10 means that you are \"completely willing to take  risks.\""
+
+#: questionnaire/pages.py:177
+msgid ""
+"Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё "
+"желание брать на себя риски в следующих ситуациях? \n"
+"            Для ответа выберите значение на шкале от 0 до 10, где  0 "
+"означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы "
+"«охотно идете на риск».\n"
+"            "
+msgstr ""
 "People can behave differently in different situations. How would you rate "
 "your desire to take risks in the following situations? To answer, select a "
 "value on a scale from 0 to 10, where 0 means that you are \"completely not "
-"willing to take risks,\" and 10 means that you are \"willing to torisks.\""
+"willing to take risks,\" and 10 means that you are \"completely willing to take risks.\""
 
 #: questionnaire/templates/questionnaire/Motivation.html:5
 #: questionnaire/templates/questionnaire/Personal1.html:5
