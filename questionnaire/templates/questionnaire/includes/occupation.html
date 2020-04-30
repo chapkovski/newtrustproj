@@ -1,28 +1,35 @@
 {% load otree %}
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css'>
+<style>
+    .children-choice {
+        margin-left: 20px;
 
+    }
+    .choice-el {margin-top:5px}
+</style>
 <div id="occupation_app" class="my-3 form-group required">
     <div class="row">
-        <div class="col-sm-6 col-12">
+        <div class="col">
             <label for="id_occupation_parent" class="col-form-label">Main occupation</label>
             <template v-for='(ch, index) in parents' :key='index'>
-                <div>
+                <div class="parent-el choice-el">
                     <p-radio :id="index" name='occupation_parent' v-model='selectedParent' @change='changeParent'
                              :value='getItem(ch).value' :required="true">[[getItem(ch).text]]
                     </p-radio>
-                    <div v-if="selectedParent === getItem(ch).value">[[selectedParent]]</div>
+                    <div v-if="selectedParent === getItem(ch).value && selectedChildren.length >0 " class="children-choice">
+
+                        <div v-for='(child, index) in selectedChildren'  class="child-el choice-el">
+
+                            <p-radio :id="index" name='occupation_child' v-model='selectedChild'
+                                     :value='getItem(child).value' :required="true">
+                                [[getItem(child).text]]
+                            </p-radio>
+                        </div>
+                    </div>
                 </div>
             </template>
         </div>
-        <div class="col-sm-6 col-12">
-            <label for="id_occupation_child" class="col-form-label">Detailed occupation</label>
-            <div v-for='(child, index) in selectedChildren'>
 
-                <p-radio :id="index" name='occupation_child' v-model='selectedChild' :value='getItem(child).value' :required="true">
-                    [[getItem(child).text]]
-                </p-radio>
-            </div>
-        </div>
     </div>
 
 </div>
