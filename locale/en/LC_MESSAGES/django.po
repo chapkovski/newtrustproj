@@ -1231,8 +1231,7 @@ msgid ""
 "Как Вы думаете, если представится возможность, большинство людей попытались "
 "бы использовать вас в своих интересах, или вели бы себя порядочно?"
 msgstr ""
-"What do you think, if the opportunity presents itself, most people have "
-"tried would use you to your advantage, or would you behave decently?"
+"Do you think most people would try to take advantage of you if they got a chance, or would they try to be fair?"
 
 #: questionnaire/models.py:891
 msgid ""
@@ -1240,17 +1239,17 @@ msgid ""
 "обязательно попытаются вас использовать», а 10 означает, что «люди поведут "
 "себя порядочно»"
 msgstr ""
-"To answer, select a value on a scale from 0 to 10, where 0 meansthat "
-"\"people will definitely try to use you,\" and 10 means that \"people behave "
-"decently\" "
+"To answer, select a value on a scale from 0 to 10, where 0 means that "
+"\"people will definitely try to take advantage of you,\" and 10 means that \"people will "
+"try to be fair\" "
 
 #: questionnaire/models.py:892
 msgid "Люди обязательно попытаются вас использовать"
-msgstr "People will definitely try to use you."
+msgstr "People will definitely try to take advantage of you."
 
 #: questionnaire/models.py:893
 msgid "Люди поведут себя порядочно"
-msgstr "People will behave decently"
+msgstr "People will try to be fair"
 
 #: questionnaire/models.py:898
 msgid ""
