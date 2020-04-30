@@ -1,6 +1,5 @@
-
 {% extends "global/Page.html" %}
-{% load i18n otree%}
+{% load i18n otree %}
 
 {% block title %}
     {% trans 'Анкета' %}
@@ -9,23 +8,16 @@
 {% block content %}
     {% include 'questionnaire/includes/ranking.html' %}
 
-    {% for jfield in form.joined_fields|default_if_none:None %}
-        {% include 'questionnaire/includes/joined_field.html' with jfield=jfield form=form %}
-    {% endfor %}
-
-
-    {% for foo in form %}
-        {% if  foo.name not in view.rankqs and foo.name in form.non_joined_fields %}
-            {% formfield foo %}
-        {% endif %}
-    {% endfor %}
+    {% formfield player.regional_differences %}
+    {% formfield player.regional_income %}
+    {% formfield player.relative_position_in_region %}
 
     {% next_button %}
 
 {% endblock %}
 {% block scripts %}
 
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js" ></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>

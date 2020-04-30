@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block content %}
-         {% for foo in form %}
-            {% if   foo.name in form.non_joined_fields and foo.name not in view.blocked_fields %}
-                {% formfield foo %}
-            {% endif %}
-        {% endfor %}
+     {% formfield player.regions_been %}
+     {% formfield player.abroad_been  %}
     {{ form.media }}
-
+    <div class="col-form-label">
+        {% blocktrans %}Из каких источников вам известно о следующих регионах России (возможно выбрать  несколько ответов):
+        {% endblocktrans %}
+    </div>
     <table class="table">
         <thead>
         <th></th>
@@ -21,24 +21,21 @@
         {% endfor %}
 
         </thead>
-        {{form.Ark_source}}
-        {{form.Vlk_source}}
-        {{form.Vor_source}}
-        {{form.Ekb_source}}
-        {{form.Kaz_source}}
-        {{form.Mak_source}}
-        {{form.Mos_source}}
-        {{form.Nsk_source}}
-        {{form.Per_source}}
-        {{form.Ros_source}}
-        {{form.SPb_source}}
-        {{form.Khb_source}}
+        {{ form.Ark_source }}
+        {{ form.Vlk_source }}
+        {{ form.Vor_source }}
+        {{ form.Ekb_source }}
+        {{ form.Kaz_source }}
+        {{ form.Mak_source }}
+        {{ form.Mos_source }}
+        {{ form.Nsk_source }}
+        {{ form.Per_source }}
+        {{ form.Ros_source }}
+        {{ form.SPb_source }}
+        {{ form.Khb_source }}
 
     </table>
 
-        {% for jfield in form.joined_fields|default_if_none:None %}
-            {% include 'questionnaire/includes/joined_field.html' with jfield=jfield form=form %}
-        {% endfor %}
 
 
 

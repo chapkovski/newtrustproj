@@ -356,12 +356,13 @@ class Constants(BaseConstants):
     # Survery7
     Reg6 = Region6
     SOURCE_CHOICES = [
-        [0, _('Ничего не знаю о регионе')],
+        [0, _('Я там живу/жил')],
         [1, _('От родственников и друзей')],
         [2, _('Из социальных сетей (vk, instagram и др.)')],
         [3, _('Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)')],
         [4, _('В школе или университете')],
         [5, _('Другие источники')],
+        [999, _('Ничего не знаю о регионе')],
     ]
     BEEN_CHOICES = [
         [0, _('Да')],
@@ -1002,80 +1003,80 @@ class Player(BasePlayer):
     )
 
     Ark_source = models.StringField(
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Архангельск и Архангельская область"""))
     )
 
     Vlk_source = models.StringField(
 
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Владивосток и Приморский край"""),
                                )
     )
 
     Vor_source = models.StringField(
 
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Воронеж и Воронежская область"""),
                                )
     )
 
     Ekb_source = models.StringField(
 
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Екатеринбург и Свердловская область"""),
                                )
     )
 
     Kaz_source = models.StringField(
 
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Казань и республика Татарстан"""),
                                )
     )
 
     Mak_source = models.StringField(
 
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Махачкала и республика Дагестан"""),
                                )
     )
 
     Mos_source = models.StringField(
         label=_("""Москва"""),
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Москва"""),
                                )
     )
 
     Nsk_source = models.StringField(
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Новосибирск и Новосибирская область"""),
                                )
     )
 
     Per_source = models.StringField(
 
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Пермь и Пермский край"""),
                                )
     )
 
     Ros_source = models.StringField(
 
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Ростов-на-Дону и Ростовская область"""),
                                )
     )
 
     SPb_source = models.StringField(
 
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0,
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
                                label=_("""Санкт-Петербург"""), )
     )
 
     Khb_source = models.StringField(
-        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=0, label=_("""Харабовск и Хабаровский край"""))
+        widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999, label=_("""Харабовск и Хабаровский край"""))
     )
     relative_position_in_region = models.IntegerField(
         label=_('Ваш средний ежемесячный доход'),

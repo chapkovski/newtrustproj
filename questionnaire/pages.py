@@ -24,15 +24,7 @@ class Personal1(Page):
                    'occupation_status_other',
                    'occupation_parent',
                    'occupation_child',
-                   'birthplace',
-                   'marital_status',
-                   'language',
-                   'language_other',
-                   'ethnicity',
-                   'ethnicity_other',
-                   'living',
-                   'living_other',
-                   'city_size'
+
                    ]
     def vars_for_template(self):
         return dict(GOOGLE_API_KEY=settings.GOOGLE_API_KEY)
@@ -249,41 +241,10 @@ class RegionsKnowledge(Page):
                       'Ros_source',
                       'SPb_source',
                       'Khb_source', ]
-    joined_fields = [
-        {"title": _("""Бывали ли Вы когда-нибудь в следующих регионах России:
-        """),
-         "fields": [
-             'Ark_been',
-             'Vlk_been',
-             'Vor_been',
-             'Ekb_been',
-             'Kaz_been',
-             'Mak_been',
-             'Mos_been',
-             'Nsk_been',
-             'Per_been',
-             'Ros_been',
-             'SPb_been',
-             'Khb_been',
-             'abroad_been',
-         ]},
 
-    ]
 
     form_fields = [
         'regions_been',
-        'Ark_been',
-        'Vlk_been',
-        'Vor_been',
-        'Ekb_been',
-        'Kaz_been',
-        'Mak_been',
-        'Mos_been',
-        'Nsk_been',
-        'Per_been',
-        'Ros_been',
-        'SPb_been',
-        'Khb_been',
         'abroad_been',
         'Ark_source',
         'Vlk_source',
@@ -318,7 +279,7 @@ class RegionsIncome(Page):
     ]
 
     form_fields = [
-        'relative_position_in_region',
+
         'Ark_rank',
         'Vlk_rank',
         'Vor_rank',
@@ -331,14 +292,25 @@ class RegionsIncome(Page):
         'Ros_rank',
         'SPb_rank',
         'Khb_rank',
+        'regional_differences',
         'regional_income',
-        'regional_differences'
+        'relative_position_in_region',
+
     ]
 
 
 class Personal2(Page):
     form_model = 'player'
     form_fields = [
+        'birthplace',
+        'marital_status',
+        'language',
+        'language_other',
+        'ethnicity',
+        'ethnicity_other',
+        'living',
+        'living_other',
+        'city_size',
         'satis',
         'happy',
         'happy_relative',
@@ -351,16 +323,16 @@ class Personal2(Page):
 
 
 page_sequence = [
-    Motivation,
-    Personal1,
-    RegionsKnowledge,
+    # Motivation,
+    # Personal1,
+    # RegionsKnowledge,
     RegionsIncome,
-    Trust,
-    StatedPreferences1,
-    StatedPreferences2,
-    StatedPreferences3,
-    SelfDetermination,
-    Values,
-    Risk,
-    Personal2
+    # Trust,
+    # StatedPreferences1,
+    # StatedPreferences2,
+    # StatedPreferences3,
+    # SelfDetermination,
+    # Values,
+    # Risk,
+    # Personal2
 ]
