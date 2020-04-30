@@ -40,7 +40,7 @@ class SelfDetermination(Page):
         'community_local',
         'community_russian'
     ]
-    joined_fields = [{"title": '',
+    joined_fields = [{"title": _('Насколько вы согласны или не согласны с каждым из следующих утверждений о том, как вы видите себя?'),
                       "fields": [
                           'community_local',
                           'community_russian'
@@ -198,12 +198,26 @@ class StatedPreferences1(Page):
     ]
 
 
-class StatedPreferences2(Page):
+class StatedPreferences2_1(Page):
+    template_name = 'questionnaire/StatedPreferences2.html'
     form_model = 'player'
     form_fields = [
         'freedom',
         'competition',
         'fairness_general',
+
+
+    ]
+
+    def vars_for_template(self) -> dict:
+        return {'range110': range(1, 11),
+                }
+
+class StatedPreferences2_2(Page):
+    template_name = 'questionnaire/StatedPreferences2.html'
+    form_model = 'player'
+    form_fields = [
+
         'positive_reciprocity',
         'negative_reciprocity',
         'abuse_you',
@@ -211,7 +225,7 @@ class StatedPreferences2(Page):
     ]
 
     def vars_for_template(self) -> dict:
-        return {'range110': range(1, 11),
+        return {
                 'range1010': range(0, 11)}
 
 
@@ -326,13 +340,14 @@ page_sequence = [
     # Motivation,
     # Personal1,
     # RegionsKnowledge,
-    RegionsIncome,
+    # RegionsIncome,
     # Trust,
     # StatedPreferences1,
-    # StatedPreferences2,
+    # StatedPreferences2_1,
+    # StatedPreferences2_2,
     # StatedPreferences3,
-    # SelfDetermination,
-    # Values,
+    SelfDetermination,
+    Values,
     # Risk,
     # Personal2
 ]

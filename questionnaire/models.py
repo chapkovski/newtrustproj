@@ -489,7 +489,8 @@ class Player(BasePlayer):
         такие же глубоко моральные люди, как и те, что исповедуют Вашу религию."""),
 
         choices=Constants.SAME_MORAL_CHOICES,
-        widget=widgets.RadioSelect()
+        widget=widgets.RadioSelect(),
+        blank=True
     )
 
     religion_service = models.PositiveIntegerField(

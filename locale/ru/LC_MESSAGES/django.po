@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 11:00-0400\n"
+"POT-Creation-Date: 2020-04-30 11:27-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1322,6 +1322,12 @@ msgstr ""
 msgid "who_was_other_city_other"
 msgstr ""
 
+#: questionnaire/pages.py:43
+msgid ""
+"Насколько вы согласны или не согласны с каждым из следующих утверждений о "
+"том, как вы видите себя?"
+msgstr ""
+
 #: questionnaire/pages.py:51
 msgid "Скажите пожалуйста, насколько Вы доверяете следующим категориям людей:"
 msgstr ""
@@ -1356,19 +1362,12 @@ msgid ""
 "        "
 msgstr ""
 
-#: questionnaire/pages.py:245
-msgid ""
-"Бывали ли Вы когда-нибудь в следующих регионах России (возможно выбрать "
-"несколько вариантов):\n"
-"        "
-msgstr ""
-
 #: questionnaire/templates/questionnaire/Motivation.html:5
 #: questionnaire/templates/questionnaire/Personal1.html:5
 #: questionnaire/templates/questionnaire/Personal2.html:5
 #: questionnaire/templates/questionnaire/QuestionPage1.html:5
 #: questionnaire/templates/questionnaire/Region.html:6
-#: questionnaire/templates/questionnaire/RegionsIncome.html:6
+#: questionnaire/templates/questionnaire/RegionsIncome.html:5
 #: questionnaire/templates/questionnaire/RegionsKnowledge.html:5
 #: questionnaire/templates/questionnaire/Risk.html:5
 #: questionnaire/templates/questionnaire/SelfDetermination.html:5
@@ -1379,7 +1378,7 @@ msgstr ""
 msgid "Анкета"
 msgstr ""
 
-#: questionnaire/templates/questionnaire/RegionsKnowledge.html:16
+#: questionnaire/templates/questionnaire/RegionsKnowledge.html:13
 msgid ""
 "Из каких источников вам известно о следующих регионах России (возможно "
 "выбрать  несколько ответов):\n"

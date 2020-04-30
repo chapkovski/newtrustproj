@@ -11,18 +11,31 @@
 
     <script>
         var church = $('#id_religion_service').parent().parent();
-        var churchitems = $('input:radio[name="religion_service"]')
+        var church_items = $('input:radio[name="religion_service"]');
+        var same_moral = $('#id_religion_moral').parent().parent();
+        var same_moral_items = $('input:radio[name="religion_moral"]');
+        var choices_to_hide = [church, same_moral];
+        var choices_to_require = [church_items, same_moral_items];
         var curval = $('input:radio[name="religion"]:checked').val();
         if (parseInt(curval) === 1) {
             church.hide();
         }
         $('input:radio[name="religion"]').change(function () {
             if (parseInt(this.value) === 1) {
-                church.hide();
-                churchitems.attr('required', false);
+                choices_to_hide.forEach(v => {
+                    v.hide();
+                })
+                choices_to_require.forEach(v => {
+                    v.attr('required', false);
+                })
+
             } else {
-                church.show();
-                churchitems.attr('required', true);
+                choices_to_hide.forEach(v => {
+                    v.show();
+                })
+                choices_to_require.forEach(v => {
+                    v.attr('required', true);
+                })
             }
             ;
         });
