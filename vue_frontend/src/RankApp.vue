@@ -1,82 +1,57 @@
 <template>
-  <div class="row d-flex">
-    <div class="col-6 d-flex flex-column citylist-container">
-      <draggable
-        class="list-group source citylist"
-        :list="list1"
-        v-bind="options"
-        @change="listchanged"
-      >
-        <div
-          class="list-group-item draggable-item d-flex"
-          v-for="(element) in list1"
-          :key="element.name"
-        >
-          <div class="item-wrapper d-flex">
-            <div class="city-label">{{ element.label }}</div>
-          </div>
-          <div class="drag-handler">
-            <ion-icon name="move-outline"></ion-icon>
-          </div>
-        </div>
-      </draggable>
+  <div>
+     <div class='alert alert-danger' v-if='error'>Перенесите все города в один из двух списков</div>
+    <div class="row d-flex align-items-end ">
+      <div class="col-4 ">{{originalListTitle}}</div>
+      <div class="col-4">{{rankedListTitle}}</div>
+      <div class="col-4">{{DNKListTitle}}</div>
     </div>
+    <div class="row d-flex ">
+      <RankList :itemslist="list1" @childlistchanged="listchanged"></RankList>
 
-    <div class="col-6 d-flex flex-column citylist-container">
-      <draggable
-        class="list-group destination citylist "
-        :list="list2"
-        @change="listchanged"
-        v-bind="options"
-      >
-        <div
-          class="list-group-item draggable-item d-flex"
-          v-for="(element, index) in list2"
-          :key="element.name"
-        >
-          <div class="item-wrapper d-flex">
-            <div
-              class="badge badge-secondary d-flex flex-column m-0 p-0 badger"
-            >
-              <div>{{ index +1 }}</div>
-            </div>
-
-            <div class="city-label"> {{ element.label }}</div>
-          </div>
-          <div class="drag-handler">
-            <ion-icon name="move-outline"></ion-icon>
-          </div>
-        </div>
-      </draggable>
+      <RankList
+        :itemslist="list2"
+        :showRank="true"
+        @childlistchanged="listchanged"
+      ></RankList>
+      <RankList :itemslist="list3" @childlistchanged="listchanged"></RankList>
+      <div v-for="(input, index) in list2" :key="index">
+        <input :value="index" :name="input.name" type="hidden" />
+      </div>
+      <div v-for="(input, index) in list3" :key="index + 1000">
+        <input :value="999" :name="input.name" type="hidden" />
+      </div>
     </div>
-    <div v-for="(input, index) in list2" :key="index">
-      <input :value="index" :name="input.name" type="hidden" />
-    </div>
-  </div> 
+  </div>
 </template>
 
 <script>
-import draggable from "vuedraggable";
-import ionIcon from 'ionicons'
 import _ from "lodash";
+import RankList from "./RankList";
 export default {
-  components: { draggable, ionIcon },
+  components: { RankList },
   name: "Rank",
   data() {
     return {
-      error: false,
+      error:false,
       list1: _.clone(this.originalList),
       list2: [],
+      list3: [],
+      originalListTitle: window.originalListTitle,
+      rankedListTitle: window.rankedListTitle,
+      DNKListTitle: window.DNKListTitle,
       options: {
         group: "people",
         ghostClass: "ghost",
       },
     };
   },
+  
   methods: {
+  
     listchanged() {
       this.error = false;
-      window.listFilled = this.list2.length === this. originalList.length;
+      window.listFilled = this.list1.length === 0;
     },
   },
 };

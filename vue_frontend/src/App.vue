@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+   
        <TypeAhead></TypeAhead>
   </div>
 </template>

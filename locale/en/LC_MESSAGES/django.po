@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 17:42-0400\n"
+"POT-Creation-Date: 2020-04-30 20:23-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1557,6 +1557,20 @@ msgstr ""
 msgid "Анкета"
 msgstr "Questionnaire"
 
+#: questionnaire/templates/questionnaire/RegionsIncome.html:12
+#: questionnaire/templates/questionnaire/includes/ranking.html:16
+msgid "Выберите город:"
+msgstr "Choose city:"
+
+#: questionnaire/templates/questionnaire/RegionsIncome.html:13
+#: questionnaire/templates/questionnaire/includes/ranking.html:17
+msgid "Поместите его в этот список в нужном порядке:"
+msgstr "Put it to this list in the order you find correct:"
+
+#: questionnaire/templates/questionnaire/RegionsIncome.html:14
+msgid "Если вы затрудняетесь ответить, поместите город в этот список:"
+msgstr "If you don't know, put the city in this list:"
+
 #: questionnaire/templates/questionnaire/RegionsKnowledge.html:13
 msgid ""
 "Из каких источников вам известно о следующих регионах России (возможно "
@@ -1568,7 +1582,7 @@ msgstr ""
 
 #: questionnaire/templates/questionnaire/Results.html:5
 msgid "Результаты"
-msgstr ""
+msgstr "Results"
 
 #: questionnaire/templates/questionnaire/includes/progress.html:10
 msgid "готово"
@@ -1587,14 +1601,6 @@ msgstr ""
 "Please look at the list of Russian regions, including yours. Please rank "
 "these regions in descending order of the average monthly income of their "
 "inhabitants."
-
-#: questionnaire/templates/questionnaire/includes/ranking.html:16
-msgid "Выберите город:"
-msgstr "Choose city:"
-
-#: questionnaire/templates/questionnaire/includes/ranking.html:17
-msgid "Поместите его в этот список в нужном порядке:"
-msgstr "Put it to this list in the order you find correct:"
 
 #: trust/templates/trust/includes/error_modal.html:16
 msgid "Внимание!"
