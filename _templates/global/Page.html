@@ -3,17 +3,20 @@
 
 {% block global_styles %}
     <style>
-    .col-form-label{
-        font-weight: bold;
-    }
-    .otree-body{
-        max-width: 1140px;
-    }
-    .controls.field-answer{
-        display: flex;
-        flex-wrap:nowrap;
-        justify-content: center;
-    }
+        .col-form-label {
+            font-weight: bold;
+        }
+
+        .otree-body {
+            max-width: 1140px;
+        }
+
+        .controls.field-answer {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
         .shadow {
             box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
         }
@@ -38,7 +41,9 @@
 
 
 {% block body_main %}
-
+    {% block progress %}
+        {% include 'global/includes/progress.html' %}
+    {% endblock %}
     <div class="otree-body container">
         <h2 class="otree-title page-header">{% block title %}{% endblock %}</h2>
         {% if view.remaining_timeout_seconds != None %}
@@ -59,7 +64,9 @@
             <div class="_otree-content">{% block content %}{% endblock %}</div>
         </form>
         <br/>
-        {# need the default:False for projects with old MTurkLandingPage #}
+        {% block footer %}
+            {% include 'global/includes/footer.html' %}
+        {% endblock %}
         {% if view.is_debug|default:False %}
             <br>
             {% include 'otree/includes/debug_info.html' %}

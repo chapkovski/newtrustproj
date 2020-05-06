@@ -317,6 +317,7 @@ class RegionsIncome(Page):
         'Ros_rank',
         'SPb_rank',
         'Khb_rank',
+        'rank_comment',
         'regional_differences',
         'regional_income',
         'relative_position_in_region',
@@ -351,17 +352,17 @@ class Personal2(Page):
 
 
 page_sequence = [
-    Motivation,
-    Personal1,
-    RegionsKnowledge,
+    # Motivation,
+    # Personal1,
+    # RegionsKnowledge,
     RegionsIncome,
-    Trust,
-    StatedPreferences1,
-    StatedPreferences2_1,
-    StatedPreferences2_2,
-    StatedPreferences3,
-    SelfDetermination,
-    Values,
-    Risk,
-    Personal2
+    # Trust,
+    # StatedPreferences1,
+    # StatedPreferences2_1,
+    # StatedPreferences2_2,
+    # StatedPreferences3,
+    # SelfDetermination,
+    # Values,
+    # Risk,
+    # Personal2
 ]

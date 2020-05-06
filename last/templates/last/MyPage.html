@@ -1,12 +1,11 @@
 {% extends "global/Page.html" %}
-{% load otree i18n hse %}
+{% load otree static %}
 
 {% block title %}
-    {% trans 'Анкета' %}
+    Page title
 {% endblock %}
 
 {% block content %}
-    {% joined_form form %}
 
     {% next_button %}
 

@@ -1,4 +1,4 @@
-{% extends "questionnaire/Page.html" %}
+{% extends "global/Page.html" %}
 {% load i18n otree %}
 {% load render_bundle from webpack_loader %}
 {% block title %}
@@ -29,6 +29,7 @@
     {% render_bundle 'rank' %}
 
 
+    {% formfield player.rank_comment %}
     {% formfield player.regional_differences %}
     {% formfield player.regional_income %}
     {% formfield player.relative_position_in_region %}

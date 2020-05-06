@@ -356,7 +356,7 @@ class Constants(BaseConstants):
     # Survery7
     Reg6 = Region6
     SOURCE_CHOICES = [
-        [0, _('Я там живу/жил')],
+        [0, _('Я живу/жил/посещал этот регион')],
         [1, _('От родственников и друзей')],
         [2, _('Из социальных сетей (vk, instagram и др.)')],
         [3, _('Из средств массовой информации (газеты, телевидение, интернет-медиа и др.)')],
@@ -1132,7 +1132,7 @@ class Player(BasePlayer):
     Khb_rank = models.CharField(
         label=_("""Харабовск и Хабаровский край""")
     )
-
+    rank_comment = models.LongStringField(label=_('Комментарий к вашему рейтингу'), blank=True)
     regional_income = models.CharField(
         label=_(
             """Как Вы считаете, каков среднемесячный доход жителей Вашего региона? Напишите пожалуйста Вашу оценку (в рублях в месяц)""")

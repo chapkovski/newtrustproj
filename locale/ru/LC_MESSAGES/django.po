@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 20:23-0400\n"
+"POT-Creation-Date: 2020-05-06 12:59-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,14 +20,51 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: _templates/global/Page.html:49
+#: _templates/global/Page.html:54
 #: questionnaire/templates/questionnaire/Page.html:19
 msgid "Please fix the errors in the form."
 msgstr ""
 
-#: _templates/global/Page.html:53
+#: _templates/global/Page.html:58
 #: questionnaire/templates/questionnaire/Page.html:23
 msgid "Пожалуйста, дождитесь продолжения эксперимента"
+msgstr ""
+
+#: _templates/global/includes/footer.html:10
+msgid "Это исследование проводится на базе"
+msgstr ""
+
+#: _templates/global/includes/footer.html:11
+msgid "НИУ \"Высшая Школа Экономики\", Москва"
+msgstr ""
+
+#: _templates/global/includes/footer.html:14
+msgid ""
+"Если у вас возникли какие-либо вопросы или технические неполадки, "
+"пожалуйста,\n"
+"                    свяжитесь с нами либо через связь Яндекс.Толока, либо по "
+"адресу\n"
+"                "
+msgstr ""
+
+#: _templates/global/includes/progress.html:10
+msgid "готово"
+msgstr ""
+
+#: last/templates/last/Results.html:5
+msgid "Благодарим за участие!"
+msgstr ""
+
+#: last/templates/last/Results.html:14
+msgid "Ваш код"
+msgstr ""
+
+#: last/templates/last/Results.html:19
+msgid ""
+"Для того, чтобы задание считалось выполненным, пожалуйста скопируйте его и "
+"вставьте на\n"
+"                    страницу\n"
+"                    задания в Толоке."
 msgstr ""
 
 #: questionnaire/models.py:17
@@ -597,7 +634,7 @@ msgid "7 или более"
 msgstr ""
 
 #: questionnaire/models.py:359
-msgid "Я там живу/жил"
+msgid "Я живу/жил/посещал этот регион"
 msgstr ""
 
 #: questionnaire/models.py:360
@@ -1238,6 +1275,10 @@ msgstr ""
 msgid "Ваш средний ежемесячный доход"
 msgstr ""
 
+#: questionnaire/models.py:1135
+msgid "Комментарий к вашему рейтингу"
+msgstr ""
+
 #: questionnaire/models.py:1138
 msgid ""
 "Как Вы считаете, каков среднемесячный доход жителей Вашего региона? Напишите "
@@ -1403,18 +1444,29 @@ msgstr ""
 msgid "Анкета"
 msgstr ""
 
-#: questionnaire/templates/questionnaire/RegionsIncome.html:12
+#: questionnaire/templates/questionnaire/RegionsIncome.html:14
 #: questionnaire/templates/questionnaire/includes/ranking.html:16
 msgid "Выберите город:"
 msgstr ""
 
-#: questionnaire/templates/questionnaire/RegionsIncome.html:13
+#: questionnaire/templates/questionnaire/RegionsIncome.html:15
 #: questionnaire/templates/questionnaire/includes/ranking.html:17
 msgid "Поместите его в этот список в нужном порядке:"
 msgstr ""
 
-#: questionnaire/templates/questionnaire/RegionsIncome.html:14
+#: questionnaire/templates/questionnaire/RegionsIncome.html:16
 msgid "Если вы затрудняетесь ответить, поместите город в этот список:"
+msgstr ""
+
+#: questionnaire/templates/questionnaire/RegionsIncome.html:20
+msgid ""
+"\n"
+"            Please look at the list of Russian regions, including yours in "
+"Column (1). Please rank these regions in\n"
+"            descending order of the average monthly income of their "
+"inhabitants in the Column (2). In case you have no\n"
+"            clear idea move the regions to Column (3).\n"
+"        "
 msgstr ""
 
 #: questionnaire/templates/questionnaire/RegionsKnowledge.html:13
@@ -1426,10 +1478,6 @@ msgstr ""
 
 #: questionnaire/templates/questionnaire/Results.html:5
 msgid "Результаты"
-msgstr ""
-
-#: questionnaire/templates/questionnaire/includes/progress.html:10
-msgid "готово"
 msgstr ""
 
 #: questionnaire/templates/questionnaire/includes/ranking.html:5

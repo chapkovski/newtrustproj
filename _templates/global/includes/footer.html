@@ -1,0 +1,25 @@
+{% load otree i18n %}
+<div class="card my-3">
+    <div class="card-body">
+        <div class="media">
+           <img src="{% static 'global/img/hse_logo.jpg' %}" class="align-self-center  " alt="hse_logo"
+                 style="width: 200px; height:auto;">
+            <div class="media-body  ">
+
+
+                <p>{% trans 'Это исследование проводится на базе' %}
+                    <a href="http://www.hse.ru">{% trans 'НИУ "Высшая Школа Экономики", Москва' %}</a>.
+
+                </p>
+                <p> {% blocktrans %}Если у вас возникли какие-либо вопросы или технические неполадки, пожалуйста,
+                    свяжитесь с нами либо через связь Яндекс.Толока, либо по адресу
+                {% endblocktrans %}
+                    <a href="mailto:fchapkovskiy@hse.ru">fchapkovskiy@hse.ru</a>.
+                </p>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

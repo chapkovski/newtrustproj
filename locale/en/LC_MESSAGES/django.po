@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 20:23-0400\n"
+"POT-Creation-Date: 2020-05-06 12:59-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: _templates/global/Page.html:49
+#: _templates/global/Page.html:54
 #: questionnaire/templates/questionnaire/Page.html:19
 msgid "Please fix the errors in the form."
 msgstr ""
 
-#: _templates/global/Page.html:53
+#: _templates/global/Page.html:58
 #: questionnaire/templates/questionnaire/Page.html:23
 msgid "Пожалуйста, дождитесь продолжения эксперимента"
 msgstr ""
+
+#: _templates/global/includes/footer.html:10
+msgid "Это исследование проводится на базе"
+msgstr "This study is conducted by "
+
+#: _templates/global/includes/footer.html:11
+msgid "НИУ \"Высшая Школа Экономики\", Москва"
+msgstr "the Higher School of Economics, Moscow"
+
+#: _templates/global/includes/footer.html:14
+msgid ""
+"Если у вас возникли какие-либо вопросы или технические неполадки, "
+"пожалуйста,\n"
+"                    свяжитесь с нами либо через связь Яндекс.Толока, либо по "
+"адресу\n"
+"                "
+msgstr ""
+"If you have any questions or technical problems, please contact us either "
+"via  Yandex.Toloka or "
+
+#: _templates/global/includes/progress.html:10
+msgid "готово"
+msgstr "done"
+
+#: last/templates/last/Results.html:5
+msgid "Благодарим за участие!"
+msgstr "Thanks for the participation!"
+
+#: last/templates/last/Results.html:14
+msgid "Ваш код"
+msgstr "Your code"
+
+#: last/templates/last/Results.html:19
+msgid ""
+"Для того, чтобы задание считалось выполненным, пожалуйста скопируйте его и "
+"вставьте на\n"
+"                    страницу\n"
+"                    задания в Толоке."
+msgstr ""
+"In order for the task to be considered completed, please copy it and paste "
+"it on the task page in Toloka."
 
 #: questionnaire/models.py:17
 msgid "Philipp Chapkovski, HSE-Moscow"
@@ -626,8 +667,8 @@ msgid "7 или более"
 msgstr "7 or more"
 
 #: questionnaire/models.py:359
-msgid "Я там живу/жил"
-msgstr "I live(d) there"
+msgid "Я живу/жил/посещал этот регион"
+msgstr "I live(d) there/visited that region"
 
 #: questionnaire/models.py:360
 msgid "От родственников и друзей"
@@ -706,8 +747,7 @@ msgstr ""
 #: questionnaire/models.py:419
 msgid ""
 "Какой ответ лучше всего описывает Ваше основное занятие в настоящее время?"
-msgstr ""
-"Which answer best describes your primary occupation at the present time?"
+msgstr "Which answer best describes your status at the present time?"
 
 #: questionnaire/models.py:420
 msgid "occupation_status_other"
@@ -1348,6 +1388,10 @@ msgstr "Have you ever been abroad?"
 msgid "Ваш средний ежемесячный доход"
 msgstr "Your average monthly income is"
 
+#: questionnaire/models.py:1135
+msgid "Комментарий к вашему рейтингу"
+msgstr "Your comment for the ranking above"
+
 #: questionnaire/models.py:1138
 msgid ""
 "Как Вы считаете, каков среднемесячный доход жителей Вашего региона? Напишите "
@@ -1557,19 +1601,30 @@ msgstr ""
 msgid "Анкета"
 msgstr "Questionnaire"
 
-#: questionnaire/templates/questionnaire/RegionsIncome.html:12
+#: questionnaire/templates/questionnaire/RegionsIncome.html:14
 #: questionnaire/templates/questionnaire/includes/ranking.html:16
 msgid "Выберите город:"
 msgstr "Choose city:"
 
-#: questionnaire/templates/questionnaire/RegionsIncome.html:13
+#: questionnaire/templates/questionnaire/RegionsIncome.html:15
 #: questionnaire/templates/questionnaire/includes/ranking.html:17
 msgid "Поместите его в этот список в нужном порядке:"
 msgstr "Put it to this list in the order you find correct:"
 
-#: questionnaire/templates/questionnaire/RegionsIncome.html:14
+#: questionnaire/templates/questionnaire/RegionsIncome.html:16
 msgid "Если вы затрудняетесь ответить, поместите город в этот список:"
 msgstr "If you don't know, put the city in this list:"
+
+#: questionnaire/templates/questionnaire/RegionsIncome.html:20
+msgid ""
+"\n"
+"            Please look at the list of Russian regions, including yours in "
+"Column (1). Please rank these regions in\n"
+"            descending order of the average monthly income of their "
+"inhabitants in the Column (2). In case you have no\n"
+"            clear idea move the regions to Column (3).\n"
+"        "
+msgstr ""
 
 #: questionnaire/templates/questionnaire/RegionsKnowledge.html:13
 msgid ""
@@ -1583,10 +1638,6 @@ msgstr ""
 #: questionnaire/templates/questionnaire/Results.html:5
 msgid "Результаты"
 msgstr "Results"
-
-#: questionnaire/templates/questionnaire/includes/progress.html:10
-msgid "готово"
-msgstr "done"
 
 #: questionnaire/templates/questionnaire/includes/ranking.html:5
 msgid "Пожалуйста, перенесите все города в новый список"
@@ -1605,6 +1656,12 @@ msgstr ""
 #: trust/templates/trust/includes/error_modal.html:16
 msgid "Внимание!"
 msgstr "Attention!"
+
+#~ msgid "Я там живу/жил"
+#~ msgstr "I live(d) there"
+
+#~ msgid "Код"
+#~ msgstr "Code"
 
 #~ msgid "Скажите, пожалуйста, насколько Вы в целом любите рисковать? "
 #~ msgstr "Please tell me how much do you generally like to take risks?"

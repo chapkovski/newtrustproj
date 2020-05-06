@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load otree  i18n %}
+
+{% block title %}
+    {% trans 'Благодарим за участие!' %}
+{% endblock %}
+{% block progress %}
+
+{% endblock %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+            <div class="lead text-center">{% trans 'Ваш код' %}
+                <div class="text-center"><span class="font-weight-bold display-4">{{ participant.code }}</span>
+                </div>
+            </div>
+            <div class="lead my-3  ">
+                {% blocktrans %}Для того, чтобы задание считалось выполненным, пожалуйста скопируйте его и вставьте на
+                    страницу
+                    задания в Толоке.{% endblocktrans %}
+            </div>
+        </div>
+    </div>
+
+    <button class="d-none">Next</button>
+{% endblock %}
+
+

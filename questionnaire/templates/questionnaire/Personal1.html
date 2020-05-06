@@ -1,4 +1,4 @@
-{% extends "questionnaire/Page.html" %}
+{% extends "global/Page.html" %}
 {% load otree i18n %}
 
 {% block title %}
@@ -28,12 +28,14 @@
 
     <script>
         $(() => {
-            var other_occupation_status = $('#id_occupation_status').parent().parent();
+            const other_occupation_status = $('#id_occupation_status').parent().parent();
+            other_occupation_status.hide();
             var other_occupation_status_items = $('input:radio[name="occupation_status"]');
             other_occupation_status_items.attr('required', false);
             var occupation_parent_items = $('input:radio[name="occupation_parent"]');
             var occupation_child_items = $('input:radio[name="occupation_child"]');
-            var main_occupation = $('#occupation_app');
+            const main_occupation = $('#occupation_app');
+            main_occupation.hide();
             var form = $('form#form');
             form.unbind('submit');
             var is_occupied = $('input:radio[name="is_occupied"]');

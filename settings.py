@@ -45,21 +45,23 @@ SESSION_CONFIGS = [
      'cq': True,
      'debug': True,
      'use_browser_bots': False},
-    # {**uni_trust,
-    #  'name': 'trust_cq',
-    #  'display_name': 'trust: LAUNCH THIS FOR REAL STUDY!!!!!!',
-    #  'cq': True,
-    #  'use_browser_bots': False},
+
     {
         'name': 'questionnaire_ru',
-        'app_sequence': ['questionnaire'],
+         'app_sequence': [
+            'questionnaire',
+            'last'
+        ],
         'display_name': 'Questionnaire only - RUSSIAN',
         'num_demo_participants': 1,
         'use_browser_bots': False,
         'language': 'ru'},
     {
         'name': 'questionnaire_en',
-        'app_sequence': ['questionnaire'],
+        'app_sequence': [
+            'questionnaire',
+            'last'
+        ],
         'display_name': 'Questionnaire only - ENGLISH',
         'num_demo_participants': 1,
         'use_browser_bots': False,
@@ -89,7 +91,8 @@ SECRET_KEY = 'm1e8fnwh3#$v6xbng%$!jn_onduh(22hmzx$kt=$ch6+m6*lcg'
 INSTALLED_APPS = [
     'otree',
     'django.contrib.admin',
-    'webpack_loader'
+    'webpack_loader',
+    'questionnaire', # we need this only because we use generic pages from there.
 
 ]
 EXTENSION_APPS = ['trust']
