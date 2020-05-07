@@ -40,3 +40,26 @@ def render_joined_form(context, form):
     return dict(form=form,
                 fields_order=getattr(context['view'], 'jfields_order', [])
                 )
+
+import json
+from django.utils.safestring import mark_safe
+from otree.currency import Currency, RealWorldCurrency
+from django.utils.functional import Promise
+
+
+class _CurrencyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, (Currency, RealWorldCurrency)):
+            if obj.get_num_decimal_places() == 0:
+                return int(obj)
+            return float(obj)
+        if isinstance(obj, Promise):
+            return str(obj)
+        return json.JSONEncoder.default(self, obj)
+
+def json_dumps(obj):
+    return json.dumps(obj, cls=_CurrencyEncoder)
+
+@register.filter(name='myjson')
+def safe_json(obj):
+    return mark_safe(json_dumps(obj))

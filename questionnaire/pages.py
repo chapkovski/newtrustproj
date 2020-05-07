@@ -346,7 +346,7 @@ class Personal2(Page):
 
 page_sequence = [
     # Motivation,
-    # Personal1,
+    Personal1,
     # RegionsKnowledge,
     # RegionsIncome,
     # Trust,
@@ -357,5 +357,5 @@ page_sequence = [
     # SelfDetermination,
     # Values,
     # Risk,
-    Personal2
+    # Personal2
 ]

@@ -1,4 +1,4 @@
-{% load otree %}
+{% load otree hse %}
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css'>
 <style>
     .children-choice {
@@ -43,8 +43,8 @@
         el: "#occupation_app",
         delimiters: ["[[", "]]"],
         data: {
-            parents: {{Constants.OCCUPATION_PARENT_CHOICES|json}},
-            children: {{Constants.OCCUPATION_CHILD_CHOICES|json}},
+            parents: {{Constants.OCCUPATION_PARENT_CHOICES|myjson}},
+            children: {{Constants.OCCUPATION_CHILD_CHOICES|myjson}},
             selectedParent: null,
             selectedChild: null
         },
