@@ -6,7 +6,8 @@ from .models import Constants, Player
 pass_html = ['RegionsIncome', 'RegionsKnowledge','Personal1', 'Personal2']
 specific_values = dict(age=13,
                        occupation_child=11,
-                       is_occupied=False)
+                       is_occupied=False,
+                       self_employed=False)
 class PlayerBot(Bot):
 
     def play_round(self):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-07 17:42-0400\n"
+"POT-Creation-Date: 2020-05-07 17:55-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1724,6 +1724,10 @@ msgstr ""
 
 #: questionnaire/templates/questionnaire/Results.html:5
 msgid "Результаты"
+msgstr ""
+
+#: questionnaire/templates/questionnaire/includes/occupation.html:13
+msgid "Как бы вы описали ваш вид деятельности?"
 msgstr ""
 
 #: questionnaire/templates/questionnaire/includes/ranking.html:5

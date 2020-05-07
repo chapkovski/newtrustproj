@@ -1,4 +1,4 @@
-{% load otree hse %}
+{% load otree hse i18n %}
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css'>
 <style>
     .children-choice {
@@ -10,7 +10,7 @@
 <div id="occupation_app" class="my-3 form-group required">
     <div class="row">
         <div class="col">
-            <label for="id_occupation_parent" class="col-form-label">Main occupation</label>
+            <label for="id_occupation_parent" class="col-form-label">{% trans 'Как бы вы описали ваш вид деятельности?' %}</label>
             <template v-for='(ch, index) in parents' :key='index'>
                 <div class="parent-el choice-el">
                     <p-radio :id="index" name='occupation_parent' v-model='selectedParent' @change='changeParent'
