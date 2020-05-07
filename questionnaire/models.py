@@ -140,10 +140,10 @@ class Constants(BaseConstants):
         (9, _('1 млн. и более')),
     ]
     LIVING_CHOICES = [
-        [1, _('С родителями')],
-        [2, _('В общежитии')],
-        [3, _('В съемной квартире')],
-        [4, _('В отдельной квартитре')],
+        [1, _('Жилье, находящееся в собственности у Вас и/или членов Вашей семьи    ')],
+        [2, _('Государственное, муниципальное, ведомственное неприватизированное жилье')],
+        [3, _('Арендованное жилье')],
+        [4, _('Общежитие')],
         [5, _('Другое')]
     ]
     IncrementChoices5DNK = [
@@ -449,13 +449,13 @@ class Player(BasePlayer):
                                       )
 
     living = models.PositiveIntegerField(
-        label=_('Вы живете...'),
+        label=_('Жильё (квартира, дом), в котором Вы живёте в настоящее время, это'),
         choices=Constants.LIVING_CHOICES,
         widget=OtherRadioSelect(other=(5, _('living_other')))
     )
 
     living_other = models.CharField(blank=True,
-                                    label=_("""Уточните где именно""")
+                                    label=_("""Уточните какое именно""")
                                     )
 
     city_size = models.PositiveIntegerField(

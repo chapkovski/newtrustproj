@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-07 15:14-0400\n"
+"POT-Creation-Date: 2020-05-07 15:43-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -215,19 +215,19 @@ msgid "1 млн. и более"
 msgstr ""
 
 #: questionnaire/models.py:143
-msgid "С родителями"
+msgid "Жилье, находящееся в собственности у Вас и/или членов Вашей семьи    "
 msgstr ""
 
 #: questionnaire/models.py:144
-msgid "В общежитии"
+msgid "Государственное, муниципальное, ведомственное неприватизированное жилье"
 msgstr ""
 
 #: questionnaire/models.py:145
-msgid "В съемной квартире"
+msgid "Арендованное жилье"
 msgstr ""
 
 #: questionnaire/models.py:146
-msgid "В отдельной квартитре"
+msgid "Общежитие"
 msgstr ""
 
 #: questionnaire/models.py:150
@@ -710,7 +710,7 @@ msgstr ""
 msgid "occupation_status_other"
 msgstr ""
 
-#: questionnaire/models.py:422
+#: questionnaire/models.py:422 questionnaire/models.py:458
 msgid "Уточните какое именно"
 msgstr ""
 
@@ -748,15 +748,11 @@ msgid "Если на другом языке, то на каком именно?
 msgstr ""
 
 #: questionnaire/models.py:452
-msgid "Вы живете..."
+msgid "Жильё (квартира, дом), в котором Вы живёте в настоящее время, это"
 msgstr ""
 
 #: questionnaire/models.py:454
 msgid "living_other"
-msgstr ""
-
-#: questionnaire/models.py:458
-msgid "Уточните где именно"
 msgstr ""
 
 #: questionnaire/models.py:463

@@ -351,11 +351,11 @@ page_sequence = [
     # RegionsIncome,
     # Trust,
     # StatedPreferences1,
-    StatedPreferences2_1,
+    # StatedPreferences2_1,
     # StatedPreferences2_2,
     # StatedPreferences3,
     # SelfDetermination,
     # Values,
-    Risk,
-    # Personal2
+    # Risk,
+    Personal2
 ]

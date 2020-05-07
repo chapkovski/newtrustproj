@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-07 15:14-0400\n"
+"POT-Creation-Date: 2020-05-07 15:43-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -219,20 +219,20 @@ msgid "1 млн. и более"
 msgstr "1 mln or more"
 
 #: questionnaire/models.py:143
-msgid "С родителями"
-msgstr "With parents"
+msgid "Жилье, находящееся в собственности у Вас и/или членов Вашей семьи    "
+msgstr "Home owned by you and / or your family members"
 
 #: questionnaire/models.py:144
-msgid "В общежитии"
-msgstr "In the dorm"
+msgid "Государственное, муниципальное, ведомственное неприватизированное жилье"
+msgstr "State, municipal, departmental non-privatized housing"
 
 #: questionnaire/models.py:145
-msgid "В съемной квартире"
-msgstr "In rented apartment"
+msgid "Арендованное жилье"
+msgstr "Rented housing"
 
 #: questionnaire/models.py:146
-msgid "В отдельной квартитре"
-msgstr "In separate apartment"
+msgid "Общежитие"
+msgstr "The dorm"
 
 #: questionnaire/models.py:150
 msgid "Безусловно увеличился"
@@ -753,7 +753,7 @@ msgstr "Which answer best describes your status at the present time?"
 msgid "occupation_status_other"
 msgstr ""
 
-#: questionnaire/models.py:422
+#: questionnaire/models.py:422 questionnaire/models.py:458
 msgid "Уточните какое именно"
 msgstr "Specify which one"
 
@@ -791,16 +791,12 @@ msgid "Если на другом языке, то на каком именно?
 msgstr "If in another language, then in which one?"
 
 #: questionnaire/models.py:452
-msgid "Вы живете..."
-msgstr "Do you live ..."
+msgid "Жильё (квартира, дом), в котором Вы живёте в настоящее время, это"
+msgstr "The housing (apartment, house) in which you currently live, is"
 
 #: questionnaire/models.py:454
 msgid "living_other"
 msgstr ""
-
-#: questionnaire/models.py:458
-msgid "Уточните где именно"
-msgstr "Specify exactly where"
 
 #: questionnaire/models.py:463
 msgid ""
@@ -1084,8 +1080,9 @@ msgid ""
 "                 а 10 означает, что Вы «охотно идете на риск».\n"
 "                "
 msgstr ""
-"To answer, select a value on a scale from 0 to 10, where 0 means that you are "
-"\"absolutely not ready to take any risks\", but 10 means that you are \"really like to take risks\""
+"To answer, select a value on a scale from 0 to 10, where 0 means that you "
+"are \"absolutely not ready to take any risks\", but 10 means that you are "
+"\"really like to take risks\""
 
 #: questionnaire/models.py:740
 msgid "Я совершенно не готов рисковать"
@@ -1583,7 +1580,8 @@ msgstr ""
 "People can behave differently in different situations. How would you rate "
 "your desire to take risks in the following situations? To answer, select a "
 "value on a scale from 0 to 10, where 0 means that you are \"absolutely not "
-"ready to take any risk,\" and 10 means that you are \"really like to take risks.\""
+"ready to take any risk,\" and 10 means that you are \"really like to take "
+"risks.\""
 
 #: questionnaire/templates/questionnaire/Motivation.html:5
 #: questionnaire/templates/questionnaire/Personal1.html:5
@@ -1656,6 +1654,21 @@ msgstr ""
 #: trust/templates/trust/includes/error_modal.html:16
 msgid "Внимание!"
 msgstr "Attention!"
+
+#~ msgid "Уточните где именно"
+#~ msgstr "Specify exactly where"
+
+#~ msgid "С родителями"
+#~ msgstr "With parents"
+
+#~ msgid "В съемной квартире"
+#~ msgstr "In rented apartment"
+
+#~ msgid "В отдельной квартитре"
+#~ msgstr "In separate apartment"
+
+#~ msgid "Вы живете..."
+#~ msgstr "Do you live ..."
 
 #~ msgid ""
 #~ "Укажите, пожалуйста, насколько Вы в целом любите рисковать?  \n"
