@@ -166,13 +166,6 @@ class Values(Page):
 class Risk(Page):
     form_model = 'player'
     joined_fields = [
-        {"title": _("""Укажите, пожалуйста, насколько Вы в целом любите рисковать?  
-        Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
-        """),
-         "fields": [
-             'risk_general',
-
-         ]},
         {"title": _("""Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё желание брать на себя риски в следующих ситуациях? 
             Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
             """),
@@ -358,11 +351,11 @@ page_sequence = [
     # RegionsIncome,
     # Trust,
     # StatedPreferences1,
-    # StatedPreferences2_1,
+    StatedPreferences2_1,
     # StatedPreferences2_2,
     # StatedPreferences3,
     # SelfDetermination,
-    Values,
-    # Risk,
+    # Values,
+    Risk,
     # Personal2
 ]

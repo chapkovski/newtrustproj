@@ -730,7 +730,16 @@ class Player(BasePlayer):
     risk_general = models.PositiveIntegerField(
         label='',
         choices=Constants.RISK_CHOICES,
-        widget=widgets.RadioSelectHorizontal()
+        widget=LikertWidget(
+            quote=_(
+                "Укажите, пожалуйста, насколько Вы в целом любите рисковать?"),
+            label=_(
+                """Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы «совершенно не готовы рисковать»,
+                 а 10 означает, что Вы «охотно идете на риск».
+                """),
+            left=_('Я совершенно не готов рисковать'),
+            right=_('Я охотно иду на риск'),
+        )
     )
 
     risk_fin = models.PositiveIntegerField(
