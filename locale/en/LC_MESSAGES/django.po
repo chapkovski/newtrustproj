@@ -1085,15 +1085,15 @@ msgid ""
 "                "
 msgstr ""
 "To answer, select a value on a scale from 0 to 10, where 0 means that you are "
-"\"absolutely not ready to ris \", but 10 means that you are \"really like to risk\""
+"\"absolutely not ready to take any risks\", but 10 means that you are \"really like to take risks\""
 
 #: questionnaire/models.py:740
 msgid "Я совершенно не готов рисковать"
-msgstr "I'm absolutely not ready to risk"
+msgstr "I'm absolutely not ready to take any risk"
 
 #: questionnaire/models.py:741
 msgid "Я охотно иду на риск"
-msgstr "I really like to risk"
+msgstr "I really like to take risks"
 
 #: questionnaire/models.py:746
 msgid "В финансовых вопросах"
@@ -1582,9 +1582,8 @@ msgid ""
 msgstr ""
 "People can behave differently in different situations. How would you rate "
 "your desire to take risks in the following situations? To answer, select a "
-"value on a scale from 0 to 10, where 0 means that you are \"completely not "
-"willing to take risks,\" and 10 means that you are \"completely willing to "
-"take risks.\""
+"value on a scale from 0 to 10, where 0 means that you are \"absolutely not "
+"ready to take any risk,\" and 10 means that you are \"really like to take risks.\""
 
 #: questionnaire/templates/questionnaire/Motivation.html:5
 #: questionnaire/templates/questionnaire/Personal1.html:5
