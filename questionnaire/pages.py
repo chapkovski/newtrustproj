@@ -51,7 +51,7 @@ class SelfDetermination(Page):
 
 
 class Trust(Page):
-    joined_fields = [{"title": _('Скажите пожалуйста, насколько Вы доверяете следующим категориям людей:'),
+    joined_fields = [{"title": _('Укажите, пожалуйста, насколько Вы доверяете следующим категориям людей:'),
                       "fields": ['trust_family',
                                  'trust_neighbours',
                                  'trust_acquant',
@@ -59,7 +59,7 @@ class Trust(Page):
                                  'trust_other_faith',
                                  'trust_fiends',
                                  'trust_politicians', ]},
-                     {"title": _('Скажите пожалуйста, насколько Вы доверяете следующим организациям и институтам:'),
+                     {"title": _('Укажите, пожалуйста, насколько Вы доверяете следующим организациям и институтам:'),
                       "fields": [
                           'trust_church',
                           'trust_army',
@@ -128,7 +128,7 @@ class Values(Page):
             'similar_care_society',
         ]},
 
-        {"title": _("""Скажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 1 до 10, 
+        {"title": _("""Укажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 1 до 10, 
         где 1 означает "никогда не заслуживает оправдания", а 10 означает "всегда заслуживает оправдания"."""),
          "fields": [
              'justified_subsidies',
@@ -166,7 +166,7 @@ class Values(Page):
 class Risk(Page):
     form_model = 'player'
     joined_fields = [
-        {"title": _("""Скажите, пожалуйста, насколько Вы в целом любите рисковать?  
+        {"title": _("""Укажите, пожалуйста, насколько Вы в целом любите рисковать?  
         Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы «охотно идете на риск».
         """),
          "fields": [
@@ -358,11 +358,11 @@ page_sequence = [
     # RegionsIncome,
     # Trust,
     # StatedPreferences1,
-    StatedPreferences2_1,
+    # StatedPreferences2_1,
     # StatedPreferences2_2,
     # StatedPreferences3,
     # SelfDetermination,
-    # Values,
+    Values,
     # Risk,
     # Personal2
 ]
