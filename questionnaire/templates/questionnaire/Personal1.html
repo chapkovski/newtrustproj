@@ -30,6 +30,9 @@
         $(() => {
             const other_occupation_status = $('#id_occupation_status').parent().parent();
             other_occupation_status.hide();
+            const self_employed = $('[name="self_employed"]').parent().parent().parent();
+            const self_employed_items = $('input:radio[name="self_employed"]');
+            self_employed.hide();
             var other_occupation_status_items = $('input:radio[name="occupation_status"]');
             other_occupation_status_items.attr('required', false);
             var occupation_parent_items = $('input:radio[name="occupation_parent"]');
@@ -49,10 +52,12 @@
                 if (is_occupied.val() === 'False') {
                     occupation_parent_items.attr('required', false);
                     occupation_child_items.attr('required', false);
+                    self_employed_items.attr('required', false);
                     other_occupation_status_items.attr('required', true);
                 } else {
                     occupation_parent_items.attr('required', true);
                     occupation_child_items.attr('required', true);
+                    self_employed_items.attr('required', true);
                     other_occupation_status_items.attr('required', false);
                 }
                 this.submit();
@@ -62,6 +67,8 @@
                     other_occupation_status_items.attr('required', true);
                     other_occupation_status.show();
                     main_occupation.hide();
+                    self_employed.hide();
+                    self_employed_items.attr('required', false);
                     occupation_parent_items.attr('required', false);
                     occupation_child_items.attr('required', false);
 
@@ -69,6 +76,8 @@
                     other_occupation_status.hide();
                     other_occupation_status_items.attr('required', false);
                     main_occupation.show();
+                    self_employed.show();
+                    self_employed_items.attr('required', true);
                     occupation_parent_items.attr('required', true);
                     occupation_child_items.attr('required', true);
                 }

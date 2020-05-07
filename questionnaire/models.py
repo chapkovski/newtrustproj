@@ -1250,5 +1250,9 @@ class Player(BasePlayer):
     is_occupied = models.BooleanField(label=_("В настоящее время вы трудоустроены?"),
                                       choices=Constants.IS_OCCUPIED_CHOICES,
                                       widget=widgets.RadioSelectHorizontal)
+    self_employed = models.BooleanField(label=_("Являетесь ли вы в настоящее время самозанятым?"),
+                                        choices=Constants.IS_OCCUPIED_CHOICES,
+                                        widget=widgets.RadioSelectHorizontal,
+                                        blank=True)
     occupation_parent = models.IntegerField(choices=Constants.OCCUPATION_PARENT_CHOICES, blank=True)
     occupation_child = models.IntegerField(choices=Constants.OCCUPATION_CHILD_CHOICES, blank=True)

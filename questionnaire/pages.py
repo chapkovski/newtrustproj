@@ -22,6 +22,7 @@ class Personal1(Page):
         'gender',
         'education',
         'is_occupied',
+        'self_employed',
         'occupation_status',
         'occupation_status_other',
         'occupation_parent',
