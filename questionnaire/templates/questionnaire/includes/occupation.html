@@ -21,7 +21,7 @@
                         <div v-for='(child, index) in selectedChildren'  class="child-el choice-el">
 
                             <p-radio :id="index" name='occupation_child' v-model='selectedChild'
-                                     :value='getItem(child).value' :required="true">
+                                     :value='getItem(child).value' :required="false">
                                 [[getItem(child).text]]
                             </p-radio>
                         </div>
