@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-06 12:59-0400\n"
+"POT-Creation-Date: 2020-05-07 14:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1150,12 +1150,12 @@ msgstr ""
 
 #: questionnaire/models.py:815
 msgid ""
-"Для ответа выберите значение на шкале от 0 до 10, где 0 означает \"у меня "
+"Для ответа выберите значение на шкале от 1 до 10, где 1 означает \"у меня "
 "нет свободы выбора\", а 10\n"
 "         означает \"у меня полная свобода выбора.\n"
 "                "
 msgstr ""
-"To answer, select a value on a scale from 0 to 10, where 0 means \"I have no "
+"To answer, select a value on a scale from 1 to 10, where 1 means \"I have no "
 "freedom of choice,\" and 10 means \"I have complete freedom of choice.\""
 
 #: questionnaire/models.py:818
@@ -1172,14 +1172,14 @@ msgstr "Do you think competition is evil or good?"
 
 #: questionnaire/models.py:830
 msgid ""
-"Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что "
+"Для ответа выберите значение на шкале от 1 до 10, где 1 означает, что "
 "«конкуренция вредна, \n"
 "                поскольку она побуждает у людей худшие качества»,\n"
 "             а 10 означает, что «конкуренция - это благо, поскольку она "
 "побуждает людей лучше трудиться»\n"
 "                "
 msgstr ""
-"To answer, select a value on a scale from 0 to 10, where 0means that "
+"To answer, select a value on a scale from 1 to 10, where 1 means that "
 "\"competition is harmful because it induces the worst in people \"quality\", "
 "10 means that \"competition is good because it is encourages people to work "
 "better\" "
@@ -1202,11 +1202,11 @@ msgstr ""
 
 #: questionnaire/models.py:846
 msgid ""
-"Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди "
+"Для ответа выберите значение на шкале от 1 до 10, где 1 означает, что «люди "
 "могут разбогатеть только за счет других», а 10 означает, что «благосостояние "
 "может вырасти у всех»"
 msgstr ""
-"To answer, select a value on a scale from 0 to 10, where 0 meansthat "
+"To answer, select a value on a scale from 1 to 10, where 1 means that "
 "\"people can get rich only at the expense of others \", and 10 means that  "
 "\"Well-being can grow for everyone \""
 
@@ -1415,30 +1415,21 @@ msgid ""
 msgstr ""
 
 #: questionnaire/models.py:1155
-#, fuzzy
-#| msgid ""
-#| "Для ответа выберите значение на шкале от 0 до 10,\n"
-#| "         где 0 означает, что Вы «совершенно не готовы так поступать», а "
-#| "10 означает, что Вы «готовы поступать именно так»"
 msgid ""
 " Для ответа выберите значение на шкале от 0 до 10, где 0 означает "
 "«совершенно не удовлетворен», а 10 - «полностью удовлетворен»)"
 msgstr ""
-"To answer, select a value on a scale from 0 to10, where 0 means that you are "
+"To answer, select a value on a scale from 0 to 10, where 0 means that you are "
 "\"absolutely not ready to do this \", but 10means that you are \"ready to do "
 "just that \""
 
 #: questionnaire/models.py:1156
-#, fuzzy
-#| msgid "Совершенно не согласен"
 msgid "Совершенно не удовлетворен"
-msgstr "Absolutely disagree"
+msgstr "Absolutely unsatisfied"
 
 #: questionnaire/models.py:1157
-#, fuzzy
-#| msgid "Полностью доверяю"
 msgid "Полностью удовлетворен"
-msgstr "trust completely"
+msgstr "Absolutely satisfied completely"
 
 #: questionnaire/models.py:1162
 msgid "В целом я могу сказать, что я"
