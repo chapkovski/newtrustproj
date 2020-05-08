@@ -6,6 +6,10 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+    th{position: sticky; top: 20px; background:#eee;z-index:1000!important}
+    th.joined-field-header{font-weight: normal}
+    </style>
          {% for foo in form %}
             {% if   foo.name in form.non_joined_fields  %}
                 {% formfield foo %}
