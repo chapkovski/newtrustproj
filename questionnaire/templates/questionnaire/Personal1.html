@@ -28,6 +28,8 @@
 
     <script>
         $(() => {
+            const extra_disoccupation_status=$("[for='id_occupation_status_other']").parent();
+            extra_disoccupation_status.hide();
             const other_occupation_status = $('#id_occupation_status').parent().parent();
             other_occupation_status.hide();
             const self_employed = $('[name="self_employed"]').parent().parent().parent();
@@ -65,6 +67,7 @@
             is_occupied.change(function (e) {
                 if (e.target.value === 'False') {
                     other_occupation_status_items.attr('required', true);
+
                     other_occupation_status.show();
                     main_occupation.hide();
                     self_employed.hide();
@@ -74,6 +77,7 @@
 
                 } else {
                     other_occupation_status.hide();
+                    extra_disoccupation_status.hide();
                     other_occupation_status_items.attr('required', false);
                     main_occupation.show();
                     self_employed.show();
