@@ -9,14 +9,23 @@ const pages = {
     },
     'rank': {
         entry:'./src/rank.js',
-        chunks:['chunk-vendors']
+        template: './public/rank.html',
+        title: 'Rank',
+        chunks: [ 'chunk-vendors', 'chunk-common', 'rank' ]
+    },
+    'occupation': {
+        entry:'./src/occupation.js',
+        template: './public/occupation.html',
+        title: 'occupation',
+        chunks: [ 'chunk-vendors', 'chunk-common', 'occupation' ]
     }
 };
 
 module.exports = {
     pages: pages,
     filenameHashing: false,
-    productionSourceMap: false,
+    // productionSourceMap: false,
+    // publicPath:'/jopa/',
     publicPath: process.env.NODE_ENV === 'production'
         ? '/static/vue'
         : 'http://localhost:8080/',
@@ -42,11 +51,11 @@ module.exports = {
                 },
             });
 
-        Object.keys(pages).forEach(page => {
-            config.plugins.delete(`html-${page}`);
-            config.plugins.delete(`preload-${page}`);
-            config.plugins.delete(`prefetch-${page}`);
-        })
+        // Object.keys(pages).forEach(page => {
+        //     config.plugins.delete(`html-${page}`);
+        //     config.plugins.delete(`preload-${page}`);
+        //     config.plugins.delete(`prefetch-${page}`);
+        // })
 
         config
             .plugin('BundleTracker')
@@ -60,7 +69,6 @@ module.exports = {
 
         config.devServer
             .public('http://localhost:8080')
-            .proxy ('http://localhost:8000')
             .host('localhost')
             .port(8080)
             .hotOnly(true)

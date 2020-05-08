@@ -8,7 +8,6 @@
 {% block content %}
 
 
-
     {% for foo in form %}
         {% if foo.name not in  view.special_fields %}
             {% formfield foo %}
