@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block content %}
+    <style>
+    th{position: sticky; top: 20px; background:#eee;z-index:1000!important}
+    </style>
      {% formfield player.regions_been %}
      {% formfield player.abroad_been  %}
     {{ form.media }}
@@ -17,7 +20,7 @@
         <thead>
         <th></th>
         {% for foo in form.Ark_source.field.widget.inner_choices %}
-            <td>{{ foo.1 }}</td>
+            <th>{{ foo.1 }}</th>
         {% endfor %}
 
         </thead>
