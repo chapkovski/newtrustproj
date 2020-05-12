@@ -34,8 +34,8 @@ class PlayerBot(Bot):
         }
 
     def play_round(self):
-        yield ConfirmationInstructions
-
+        yield Instructions1
+        yield Instructions2
         if self.session.config.get('cq'):
 
             сc1answers = dict(

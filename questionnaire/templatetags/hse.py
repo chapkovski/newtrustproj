@@ -18,9 +18,9 @@ def rubl(value):
     m = p.search(value)
     re_val = m.group('value')
     if re_val:
-        intval = int(re_val)
+        lasttwo = int(re_val[-2:]) if len(re_val) >2 else int(re_val)
         lastdigit = int(re_val[-1])
-        if 5 <= intval <= 20:
+        if 5 <= lasttwo <= 20:
             r = 'рублей'
         elif 2 <= lastdigit <= 4:
             r = 'рубля'

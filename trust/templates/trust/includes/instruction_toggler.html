@@ -1,0 +1,27 @@
+{% load otree i18n %}
+{# TODO: move toggles under one class #}
+<p>
+
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#instruction_wrapper"
+            aria-expanded="false" aria-controls="instruction_wrapper" id="instruction_toggler">
+        {% trans 'Показать инструкции' %}
+    </button>
+</p>
+<div class="collapse mb-3" id="instruction_wrapper">
+    {% include  path_to_instructions %}
+
+</div>
+<script>
+
+    var $instruction_wrapper = $('div#instruction_wrapper');
+    var $instruction_toggler = $('button#instruction_toggler');
+    $instruction_wrapper.on('hide.bs.collapse', function () {
+        $instruction_toggler.removeClass('btn-info').addClass('btn-primary');
+        $instruction_toggler.html('Показать инструкции');
+    });
+    $instruction_wrapper.on('show.bs.collapse', function () {
+        $instruction_toggler.addClass('btn-info').removeClass('btn-primary');
+        $instruction_toggler.html('Скрыть инструкции');
+    })
+
+</script>

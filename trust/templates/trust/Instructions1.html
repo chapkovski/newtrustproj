@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree static i18n %}
+
+{% block title %}
+    {% trans ' Пожалуйста, прочтите инструкции полностью, и только после этого нажмите кнопку' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include 'trust/includes/instructions/common_instructions.html' %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% include 'trust/includes/instructions/sender_instructions_1.html' %}
+        </div>
+        <div class="col">
+            {% include 'trust/includes/instructions/receiver_instructions_1.html' %}
+        </div>
+
+    </div>
+
+
+    <button class="btn-lg btn-danger">{% trans 'Да, я полностью прочитал(а) инструкции' %}</button>
+
+{% endblock %}

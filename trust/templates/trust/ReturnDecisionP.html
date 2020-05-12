@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'trust/includes/receiver_instructions_block.html' %}
+    {% include 'trust/includes/instruction_toggler.html' with path_to_instructions='trust/includes/instructions/receiver_instructions_1.html' %}
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>

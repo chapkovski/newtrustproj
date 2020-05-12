@@ -1,12 +1,12 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load otree static   %}
 
 {% block title %}
-    Часть 1. Участник {{player.role_desc}}: решения
+    Часть 1. Участник {{ player.role_desc }}: решения
 {% endblock %}
 
 {% block content %}
-    {% include 'trust/includes/sender_instructions_block.html' %}
+    {% include 'trust/includes/instruction_toggler.html' with path_to_instructions='trust/includes/instructions/sender_instructions_1.html' %}
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>

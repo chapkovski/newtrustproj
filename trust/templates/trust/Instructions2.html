@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree static i18n %}
+
+{% block title %}
+   {% trans ' Пожалуйста, прочтите инструкции полностью, и только после этого нажмите кнопку' %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include 'trust/includes/instructions/sender_instructions_1.html' %}
+        </div>
+            <div class="col">
+                {% include 'trust/includes/instructions/receiver_instructions_1.html' %}
+            </div>
+      
+    </div>
+    <div class="row">
+    <div class="col">
+         Please make the decision within the time limit shown on your screen.
+
+    After both Person A and Person B have made their decisions the second part of the experiment will start. Further
+    information will follow when Part 2 of the experiment starts.
+
+    Please click the link below if you understood the instructions.
+
+    Before the experiment itself starts, a brief quiz will check whether you understood the tasks.
+
+    </div>
+    </div>
+     <button class="btn-lg btn-danger">{% trans 'Да, я полностью прочитал(а) инструкции' %}</button>
+
+{% endblock %}

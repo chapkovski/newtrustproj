@@ -1,0 +1,30 @@
+{% extends 'trust/includes/generic_block.html' %}
+{% block title %}
+    IN SUMMARY: PAYOFF PERSON A
+{% endblock %}
+{% block body %}
+    Your endowment
+minus transfer
+plus return amount
+______________________________________
+Example 1:
+Suppose you are from City 6 in Region 6. You decided to transfer your endowment.
+You are randomly paired with a participant B from City 2 in Region 2 who stated to return 15 Token in case you transferred your endowment.
+
+
+Your payoff: 10 – 10 + 15= 15
+Your endowment: 10
+minus transfer: 10
+plus return amount: 15
+
+Example 2:
+Suppose you are from City 8 in Region 8. You decided not to transfer your endowment.
+You are randomly paired with a participant B from City 1 in Region 1 who stated to return 9 Token in case you transferred your endowment.
+
+
+Your payoff: 10 – 0 (+ 0) = 10
+Your endowment: 10
+minus transfer: 0
+plus return amount: (0)
+
+{% endblock %}

@@ -8,7 +8,10 @@ from .forms import (sender_formset, return_formset, returnbelief_formset, sender
                     averagereturnbelief_formset, averagesendbelief_formset)
 
 
-class ConfirmationInstructions(Page):
+class Instructions1(Page):
+    pass
+
+class Instructions2(Page):
     pass
 
 
@@ -59,7 +62,8 @@ class Average3(FormSetMixin, Page):
 
 
 page_sequence = [
-    ConfirmationInstructions,
+    Instructions1,
+    Instructions2,
     CQ1,
     SenderDecisionP,
     ReturnDecisionP,
