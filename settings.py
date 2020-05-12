@@ -38,13 +38,13 @@ uni_trust = dict(
 )
 SESSION_CONFIGS = [
     {**uni_trust,
-     'city1': '01',
-     'city2': '02',
+     'city_code': '01',
      'name': 'trust_demo',
-     'display_name': 'trust: DEMO! Moscow-St.Petersburg',
+     'display_name': 'trust: DEMO! Moscow ONLY',
      'cq': True,
      'debug': True,
-     'use_browser_bots': False},
+     'use_browser_bots': False
+     },
 
     {
         'name': 'questionnaire_ru',

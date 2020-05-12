@@ -16,6 +16,7 @@ import json
 from django.core.serializers import serialize
 from otree.models import Session
 from django_pandas.managers import DataFrameManager
+from django.utils.translation import gettext_lazy as _
 
 author = 'Philipp Chapkovski'
 
@@ -66,25 +67,30 @@ class MyEncoder(JSONEncoder):
 class Subsession(BaseSubsession):
     session_config_dump = models.LongStringField()
 
-    @property
-    def cities(self):
-        return [self.session.config.get('city1'), self.session.config.get('city2')]
-
     def creating_session(self):
         self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)
 
-
-        # randomize city order
         for p in self.get_players():
+            roles = list(Constants.roles.keys())
+            p._role = roles[p.id_in_subsession % 2]  # odd numbers become Senders, even numbers become Receivers
+            p.create_decisions()
+            p.create_beliefs()
+            p.create_averages()
+            # randomize city order
+
             p.participant.vars['city_order'] = random.choice([True, False])
             p.city_order = p.participant.vars['city_order']
         if self.session.num_participants % 2 != 0:
             raise Exception('Number of participants should be even!')
         for i in settings.CITIES:
             City.objects.get_or_create(code=i['code'], defaults={'description': i['name']})
-        registered_cities = set(City.objects.all().values_list('code', flat=True))
-        if not set(self.cities).issubset(registered_cities):
-            raise Exception('Вы ввели неверный код для одного из городов!')
+        cur_city = self.session.config.get('city_code')
+        city_in = City.objects.filter(code=cur_city)
+        if not city_in.exists():
+            raise Exception(_('Вы ввели неверный код для одного из городов!'))
+        # TODO: add requirements to plug toloka pool and project ids
+        # toloka_project_id
+        # toloka_pool_id
 
 
 class Group(BaseGroup):

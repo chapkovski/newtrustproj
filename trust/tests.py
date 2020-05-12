@@ -37,7 +37,7 @@ class PlayerBot(Bot):
         yield ConfirmationInstructions
 
         if self.session.config.get('cq'):
-            yield CQ1Blocker
+
             сc1answers = dict(
                 cq1_1=30,
                 cq1_2=30,
@@ -60,15 +60,15 @@ class PlayerBot(Bot):
                 cq2_5=0,
             )
             cq2wronganswers = {k: v + 1 for k, v in cq2answers.items()}
-        yield Stage1Blocker
+
         if self.player.role() == 'Sender':
             yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='answer',
                                                      choice_set=[0, Constants.endowment])
             if self.session.config.get('cq'):
-                yield CQ2Blocker
+
                 # yield SubmissionMustFail(CQ2, cq2wronganswers)
                 yield CQ2, cq2answers
-            yield Stage2Blocker
+
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
                                                    choice_set=Constants.receiver_choices)
         else:
@@ -76,10 +76,10 @@ class PlayerBot(Bot):
                                                      choice_set=Constants.receiver_choices)
 
             if self.session.config.get('cq'):
-                yield CQ2Blocker
+
                 # yield SubmissionMustFail(CQ2,cq2wronganswers)
                 yield CQ2, cq2answers
-            yield Stage2Blocker
+
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
 
@@ -92,4 +92,4 @@ class PlayerBot(Bot):
                                           choice_set=range(0, 100))
         yield Average3, self._create_data(name='averageonreturnbeliefs', field_name='average_belief_on_return',
                                           choice_set=Constants.receiver_choices)
-        yield QuestionnaireBlocker
+
