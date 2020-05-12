@@ -1,6 +1,7 @@
 from otree.api import Currency as c, currency_range
 from typing import Union, List, Any, Optional
-from ._builtin import Page, WaitPage
+from ._builtin import  WaitPage
+from questionnaire.generic_pages import Page
 from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage, BlockerPage
 import random
 from .forms import (sender_formset, return_formset, returnbelief_formset, senderbelief_formset,

@@ -1,4 +1,5 @@
-from ._builtin import Page, WaitPage
+from ._builtin import  WaitPage
+from questionnaire.generic_pages import Page
 from typing import List
 import otree.bots.browser as browser_bots
 from .cq_models import correct_answers

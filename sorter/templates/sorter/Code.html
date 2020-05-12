@@ -1,24 +1,13 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load otree static i18n %}
 
 {% block title %}
-   Пожалуйста, введите код города:
+    {% trans 'Пожалуйста, укажите в каком городе вы проживаете?' %}
 {% endblock %}
 
 {% block content %}
-    {% if session.is_demo %}
-        <div class="alert alert-primary">
-            <div>
-                DEBUG: <b>THIS BLOCK WILL NOT BE SHOWN IN THE REAL GAME</b>
-            </div>
-            <div>insert one of the following codes: {{ session.config.city1 }}, {{ session.config.city2 }}</div>
-            <div>
-                DEBUG: <b>THIS BLOCK WILL NOT BE SHOWN IN THE REAL GAME</b>
-            </div>
-        </div>
 
-    {% endif %}
-    {% formfields %}
+    {% formfield player.city label='' %}
 
     {% next_button %}
 

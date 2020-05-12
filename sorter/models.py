@@ -8,7 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+from django.utils.translation import gettext_lazy as _
 author = 'Philipp Chapkovski, '
 
 doc = """
@@ -23,9 +23,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    @property
-    def cities(self):
-        return [self.session.config.get('city1'), self.session.config.get('city2')]
+    pass
 
 
 class Group(BaseGroup):
@@ -33,10 +31,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    city = models.StringField(label='Код города:')
-    pc_id = models.IntegerField(label='')
+    city = models.StringField(label=_('В каком городе вы проживаете на данный момент?'))
 
-    def pc_id_error_message(self, value):
-        ids = self.subsession.player_set.filter(pc_id__isnull=False, city=self.city).values_list("pc_id", flat=True)
-        if value in ids:
-            return 'Пожалуйста, проверьте номер участника. Этот номер уже используется'
