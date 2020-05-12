@@ -6,18 +6,42 @@
 {% endblock %}
 
 {% block content %}
-    Screen 1
-    In this experiment you will make several decisions and you will interact with other participants.
-    The experiment consists of three parts. In each you can earn Token.
-    Token will be converted into real money: 10 Token = ??? Rubles.
 
-    Your payoff at the end of the experiment is the sum of Token earned in all 3 parts.
-    Information on each part will be provided before each part starts.
-    Your decision in one part of the experiment does not influence your earnings in other parts.
+  <div class="row my-3">
+    <div class="col">
 
-    Some participants in this experiment are from the same City as you are.
-    The other participants are from one of 11 different Cities, located in 11 Russian regions.
-    The names of the 11 Cities (Regions) will be shown when the experiment starts.
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          In this experiment you will make several decisions and you will interact with other participants.
+        </li>
+        <li class="list-group-item">
+          The experiment consists of three parts. In two first parts you can earn extra money which will be paid to you as a bonus in Toloka.
+        </li>
+        <li class="list-group-item">
+          Your fee for participation (equal to X USD) will be paid to you immediately after you provide us with the correct code in Toloka interface.
+
+        </li>
+        <li class="list-group-item">
+          Your bonus willbe a sum that you earned in first 2 parts. It will be paid to you as soon as we get decisions from you and another randomly chosen Toloka participant.
+        </li>
+        <li class="list-group-item lead">
+          Please be patient: it may take up to 1 week before we get the decisions of another Toloka participant. </li>
+
+        <li class="list-group-item">
+
+          Your decision in one part of the experiment does not influence your earnings in other parts.
+
+        </li>
+        <li class="list-group-item">
+          Some participants in this experiment are from the same City as you are. The other participants are from one of 11 different Cities, located in 11 Russian regions. The names of the 11 Cities (Regions) will be shown when the experiment starts.
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+
     {% next_button %}
 
 {% endblock %}
