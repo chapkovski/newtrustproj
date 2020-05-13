@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block content %}
-
+    {#    TODO: make full set of instructions here#}
+    {% include 'trust/includes/instruction_toggler.html' with path_to_instructions='trust/includes/instructions/receiver_instructions_1.html' %}
     {% formfields %}
     {% next_button %}
 

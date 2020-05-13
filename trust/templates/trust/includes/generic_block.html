@@ -1,9 +1,12 @@
-<div class="card my-3">
+<style>.filler {
+    flex: 1
+}</style>
+<div class="card my-3 flex-fill filler">
     <div class="card-header">
-    {% block title %}
+        {% block title %}
 
-    {% endblock %}
-  </div>
+        {% endblock %}
+    </div>
     <div class="card-body">
         {% block body %}
 
