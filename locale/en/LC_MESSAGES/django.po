@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 13:31-0400\n"
+"POT-Creation-Date: 2020-05-13 13:47-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2124,6 +2124,7 @@ msgid "Часть 1. Участник %(role)s: решения"
 msgstr "Part 1. Participant %(role)s: decisions"
 
 #: trust/templates/trust/ReturnDecisionP.html:14
+#: trust/templates/trust/ReturnerBeliefP.html:16
 #: trust/templates/trust/SenderDecisionP.html:15
 #, python-format
 msgid ""
@@ -2139,10 +2140,37 @@ msgid ""
 "            получили %(max_return)s токенов?\n"
 "            "
 msgstr ""
-"how many tokens do you agree to return to the Member %(other) s if "
-"if he (a) transferred his initial amount to you and you "
-"got %(max_return) s tokens? "
-""
+"how many tokens do you agree to return to the Member %(other) s if if he (a) "
+"transferred his initial amount to you and you got %(max_return) s tokens? "
+
+#: trust/templates/trust/ReturnerBeliefP.html:5
+#: trust/templates/trust/SenderBeliefP.html:5
+#, python-format
+msgid "Часть 2. Участник %(role)s: оценки"
+msgstr "Part 2. Participant %(role)s: estimations"
+
+#: trust/templates/trust/ReturnerBeliefP.html:21
+#, python-format
+msgid ""
+"cогласно Вашей оценке, передал ли Вам этот Участник %(other)s свою начальную "
+"сумму или нет?"
+msgstr ""
+"according to your assessment, did this Member of %(other)s give you his "
+"initial amount or not?"
+
+#: trust/templates/trust/SenderBeliefP.html:15
+#, python-format
+msgid "Если бы Вы передали Вашу начальную сумму Участнику  %(other)s из города"
+msgstr "If you would give your endowment to Participant  %(other)s from city:"
+
+#: trust/templates/trust/SenderBeliefP.html:21
+#, python-format
+msgid ""
+"то как Вы оцениваете, сколько из %(max_return)s токенов этот Участник "
+"%(other)s вернул бы Вам\n"
+"            "
+msgstr "how do you evaluate how many of the %(max_return)s tokens this Member"
+" %(other)s would return you "
 
 #: trust/templates/trust/SenderDecisionP.html:21
 #, python-format

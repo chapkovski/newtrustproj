@@ -1,20 +1,26 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load otree static i18n %}
 
 {% block title %}
-    Часть 2. Участник {{ player.role_desc }}: оценки
+       {% blocktrans with role=player.role_desc %}Часть 2. Участник {{ role }}: оценки{% endblocktrans %}
 {% endblock %}
 
 {% block content %}
-      {#    TODO: toggler here #}
-    {% include 'trust/includes/sender_beliefs_instructions_block.html' %}
+
+     {% include 'trust/includes/instruction_toggler.html' with path_to_instructions='trust/includes/instructions/common_instructions.html'%}
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th  class="align-top">Если бы Вы передали Вашу начальную сумму Участнику  {{ player.other.role_desc }} из города
+        <th  class="align-top">
+            {% blocktrans with other=player.other.role_desc%}Если бы Вы передали Вашу начальную сумму Участнику  {{ other }} из города{% endblocktrans %}
+
+
         </th>
 
-        <th  class="align-top">то как Вы оцениваете, сколько из {{ Constants.max_return }} токенов этот Участник {{ player.other.role_desc }} Б вернул бы Вам
+        <th  class="align-top">
+            {% blocktrans with max_return=Constants.max_return other=player.other.role_desc%}то как Вы оцениваете, сколько из {{ max_return }} токенов этот Участник {{ other }} вернул бы Вам
+            {% endblocktrans %}
+
         </th>
         </thead>
         <tbody>
