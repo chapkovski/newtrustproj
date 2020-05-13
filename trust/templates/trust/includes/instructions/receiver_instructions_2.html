@@ -1,32 +1,33 @@
 {% extends 'trust/includes/generic_block.html' %}
 {% block title %}
-    IN SUMMARY: PAYOFF PERSON B
+    Person B - payoff calculation
 {% endblock %}
 {% block body %}
-   Transfer multiplied by 3
-minus return amount
-plus your endowment
-_____________________________________
-Example 1:
-Suppose you are from City 2 in Region 2.
-You are randomly paired with a participant A from City 6 in Region 6
-You decide to return 15 token in case Person A from City 6 transfers his endowment.
-Person A did decide to transfer his endowment.
 
-Your payoff: 30 – 15 + 10 = 25
-Transfer multiplied by 3: 10*3 = 30
-Minus return amount: 15
-plus your endowment: 10
+<p><code><span class="bold">Payoff</span> = Transfer multiplied by 3 <span class="bold darkred">minus</span> return amount <span class="bold darkred">plus</span> your endowment</code>
 
-Example 2:
-Suppose you are from City 1 in Region 1.
-You are randomly paired with a participant A from City 8 in Region 8.
-You decided to return 9 token in case Person A from City 8 transfers his endowment.
-Person A decided not to transfer his endowment.
+    <hr>
+<p class="lead">Example 1:</p>
+<p>Suppose you are from City 2 in Region 2.</p>
+<p>You are randomly paired with a participant A from City 6 in Region 6</p>
+<p>You decide to return 15 token in case Person A from City 6 transfers his endowment.</p>
+<p>Person A did decide to transfer his endowment.</p>
 
-Your payoff: 0 (– 0) + 10 =10
-Transfer multiplied by 3: 0*3 = 0
-Minus return amount: (0)
-plus your endowment: 10
+<p><span class="bold">Your payoff:</span> <code>30 – 15 + 10 = 25</code></p>
+<p><span class="bold darkred">equals</span> Transfer multiplied by 3: <code>10*3 = 30</code></p>
+<p><span class="bold darkred">minus</span> return amount: <code>15</code></p>
+<p><span class="bold darkred">plus</span>  your endowment: 10</p>
+    <hr>
+<p class="lead">Example 2:</p>
+<p>Suppose you are from City 1 in Region 1.</p>
+<p>You are randomly paired with a participant A from City 8 in Region 8.</p>
+<p>You decided to return 9 token in case Person A from City 8 transfers his endowment.</p>
+<p>Person A decided not to transfer his endowment.</p>
+
+<p><span class="bold">Your payoff:</span> <code> 0 (– 0) + 10 =10</code></p>
+<p><span class="bold darkred">equals</span> Transfer multiplied by 3: <code>0*3 = 0</code></p>
+<p><span class="bold darkred">minus</span> return amount: <code>(0)</code></p>
+<p><span class="bold darkred">plus</span>  your endowment: 10</p>
+
 
 {% endblock %}

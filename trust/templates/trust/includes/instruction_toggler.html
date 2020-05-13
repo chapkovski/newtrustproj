@@ -1,27 +1,27 @@
 {% load otree i18n %}
-{# TODO: move toggles under one class #}
-<p>
 
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#instruction_wrapper"
-            aria-expanded="false" aria-controls="instruction_wrapper" id="instruction_toggler">
-        {% trans 'Показать инструкции' %}
-    </button>
-</p>
-<div class="collapse mb-3" id="instruction_wrapper">
-    {% include  path_to_instructions %}
-
+<div class="my-3">
+    <button type="button" class="btn btn-primary" data-toggle="modal"
+            data-target=".bd-example-modal-lg">{% trans 'Show instructions' %}</button>
 </div>
-<script>
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Instructions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% include path_to_instructions %}
 
-    var $instruction_wrapper = $('div#instruction_wrapper');
-    var $instruction_toggler = $('button#instruction_toggler');
-    $instruction_wrapper.on('hide.bs.collapse', function () {
-        $instruction_toggler.removeClass('btn-info').addClass('btn-primary');
-        $instruction_toggler.html('Показать инструкции');
-    });
-    $instruction_wrapper.on('show.bs.collapse', function () {
-        $instruction_toggler.addClass('btn-info').removeClass('btn-primary');
-        $instruction_toggler.html('Скрыть инструкции');
-    })
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-</script>
+            </div>
+        </div>
+    </div>
+</div>

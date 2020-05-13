@@ -39,16 +39,26 @@ uni_trust = dict(
 SESSION_CONFIGS = [
     {**uni_trust,
      'city_code': '01',
-     'name': 'trust_demo',
-     'display_name': 'trust: DEMO! Moscow ONLY',
+     'name': 'trust_demo_ru',
+     'display_name': 'trust: DEMO! Moscow ONLY RUSSIAN',
      'cq': True,
      'debug': True,
-     'use_browser_bots': False
+     'use_browser_bots': False,
+     'language': 'ru'
+     },
+    {**uni_trust,
+     'city_code': '01',
+     'name': 'trust_demo_en',
+     'display_name': 'trust: DEMO! Moscow ONLY ENGLISH',
+     'cq': True,
+     'debug': True,
+     'use_browser_bots': False,
+     'language': 'en'
      },
 
     {
         'name': 'questionnaire_ru',
-         'app_sequence': [
+        'app_sequence': [
             'questionnaire',
             'last'
         ],
@@ -92,7 +102,7 @@ INSTALLED_APPS = [
     'otree',
     'django.contrib.admin',
     'webpack_loader',
-    'questionnaire', # we need this only because we use generic pages from there.
+    'questionnaire',  # we need this only because we use generic pages from there.
 
 ]
 EXTENSION_APPS = ['trust']
