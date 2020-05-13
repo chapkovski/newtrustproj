@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 12:42-0400\n"
+"POT-Creation-Date: 2020-05-13 13:31-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1756,68 +1756,88 @@ msgstr ""
 msgid "Ни для кого"
 msgstr ""
 
+#: trust/cq_models.py:45
+msgid "Для 12 – по одному из каждого города, участвующего в исследовании."
+msgstr ""
+
+#: trust/cq_models.py:46
+msgid ""
+"Для 1 случайно выбранного участника из одного из 12 городов, участвующих в "
+"исследовании."
+msgstr ""
+
 #: trust/cq_models.py:47
 msgid "12 – по одному из каждого города, участвующего в исследовании."
 msgstr ""
 
-#: trust/cq_models.py:60
+#: trust/cq_models.py:49
+msgid ""
+"1 – случайно выбранный участник из одного из 12 городов, принимающих участие "
+"в исследовании.  "
+msgstr ""
+
+#: trust/cq_models.py:50
+msgid "Ни один не примет"
+msgstr ""
+
+#: trust/cq_models.py:59
 msgid ""
 "Если Участник А передаст свою начальную сумму Участнику Б, сколько токенов "
 "получит Участник Б?"
 msgstr ""
 
-#: trust/cq_models.py:64
+#: trust/cq_models.py:63
 msgid ""
 "Участник А передал свою начальную сумму Участнику Б. Какую максимальную "
 "сумму может Участник Б вернуть обратно Участнику А? "
 msgstr ""
 
-#: trust/cq_models.py:67
+#: trust/cq_models.py:66
 msgid ""
 "Участник Б решает вернуть Участнику А 21 токен. Сколько токенов получит "
 "Участник А от участника Б?"
 msgstr ""
 
-#: trust/cq_models.py:71
+#: trust/cq_models.py:70
 msgid ""
 "Сколько токенов получит Участник Б всего за часть 1 эксперимента, если "
 "Участник А передаст ему свою начальную сумму, а Участник Б вернет Участнику "
 "А 9 токенов?"
 msgstr ""
 
-#: trust/cq_models.py:75
+#: trust/cq_models.py:74
 msgid ""
 "Сколько токенов получит Участник А по итогам эксперимента если он передаст "
 "Участнику Б свою начальную сумму, а Участник Б вернет Участнику А 9 токенов?"
 msgstr ""
 
-#: trust/cq_models.py:78
+#: trust/cq_models.py:77
 msgid ""
 "Сколько токенов получит Участник А, если он решит не передавать Участнику Б "
 "свою начальную сумму? "
 msgstr ""
 
-#: trust/cq_models.py:82
+#: trust/cq_models.py:81
 msgid ""
 "Сколько токенов получит Участник Б, если Участник А решит не передавать "
 "Участнику Б свою начальную сумму? "
 msgstr ""
 
-#: trust/cq_models.py:86
+#: trust/cq_models.py:85
 msgid ""
 "Предположим, Вам случайным образом выпала роль Участника А. Для скольких "
 "Участников Б Ваше решение о передаче своей начальной суммы будет "
 "определяющим для получения его выигрыша?"
 msgstr ""
 
-#: trust/cq_models.py:90
+#: trust/cq_models.py:89
 msgid ""
 "Предположим, Вам случайным образом выпала роль Участника Б. Сколько "
 "Участников А примут решение о том, получите ли вы их утроенную начальную "
 "сумму?"
 msgstr ""
 
-#: trust/cq_models.py:96
+#: trust/cq_models.py:95
 msgid ""
 "В части 1 Участник А из города 1 передал свою начальную сумму Участнику Б. "
 "Участник Б из города 1, с которым взаимодействовал этот Участник А, дал "
@@ -1825,7 +1845,7 @@ msgid ""
 "токенов получит за эту оценку в части 2 этот Участник Б?"
 msgstr ""
 
-#: trust/cq_models.py:100
+#: trust/cq_models.py:99
 msgid ""
 "В части 1 Участник А из города 1 передал свою начальную сумму Участнику Б. "
 "Участник Б из города 1, с которым взаимодействовал этот Участник А, дал "
@@ -1833,7 +1853,7 @@ msgid ""
 "токенов получит за эту оценку в части 2 этот Участник Б?"
 msgstr ""
 
-#: trust/cq_models.py:104
+#: trust/cq_models.py:103
 msgid ""
 "В части 1 Участник А из города 1 передал свою начальную сумму Участнику Б из "
 "города 2. Участник Б из города 2, с которым взаимодействовал этот Участник "
@@ -1842,7 +1862,7 @@ msgid ""
 "такую оценку?"
 msgstr ""
 
-#: trust/cq_models.py:108
+#: trust/cq_models.py:107
 msgid ""
 "В части 1 Участник А из города 1 не передал свою начальную сумму Участнику Б "
 "из города 2. Участник Б из города 2, с которым взаимодействовал этот "
@@ -1852,7 +1872,7 @@ msgid ""
 "токенов получит Участник А из этой пары за такую оценку?"
 msgstr ""
 
-#: trust/cq_models.py:112
+#: trust/cq_models.py:111
 msgid ""
 "В части 1 Участник А из города 1 передал свою начальную сумму Участнику Б из "
 "города 2. Участник Б из города 2, с которым взаимодействовал этот Участник "
@@ -1866,6 +1886,14 @@ msgstr ""
 msgid "Вы ввели неверный код для одного из городов!"
 msgstr ""
 
+#: trust/templates/trust/CQ1.html:5
+msgid "Проверочные вопросы для части 1"
+msgstr ""
+
+#: trust/templates/trust/CQ2.html:5
+msgid "Проверочные вопросы для части 2"
+msgstr ""
+
 #: trust/templates/trust/Instructions1.html:5
 msgid " Instructions"
 msgstr ""
@@ -1877,6 +1905,36 @@ msgstr ""
 
 #: trust/templates/trust/Instructions2.html:5
 msgid "Instructions"
+msgstr ""
+
+#: trust/templates/trust/ReturnDecisionP.html:5
+#: trust/templates/trust/SenderDecisionP.html:5
+#, python-format
+msgid "Часть 1. Участник %(role)s: решения"
+msgstr ""
+
+#: trust/templates/trust/ReturnDecisionP.html:14
+#: trust/templates/trust/SenderDecisionP.html:15
+#, python-format
+msgid ""
+"Если Участник %(role)s, с которым Вы взаимодействуете, из города\n"
+"            "
+msgstr ""
+
+#: trust/templates/trust/ReturnDecisionP.html:19
+#, python-format
+msgid ""
+"сколько токенов Вы согласны вернуть Участнику %(other)s в том случае,\n"
+"            если он(а) перевел Вам свою начальную сумму и Вы\n"
+"            получили %(max_return)s токенов?\n"
+"            "
+msgstr ""
+
+#: trust/templates/trust/SenderDecisionP.html:21
+#, python-format
+msgid ""
+"то согласны ли Вы передать Вашу начальную сумму этому Участнику %(other)s?\n"
+"            "
 msgstr ""
 
 #: trust/templates/trust/includes/error_modal.html:16

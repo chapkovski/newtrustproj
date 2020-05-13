@@ -1,8 +1,9 @@
 {% extends "global/Page.html" %}
-{% load otree static   %}
+{% load otree static i18n   %}
 
 {% block title %}
-    Часть 1. Участник {{ player.role_desc }}: решения
+    {% blocktrans with role=player.role_desc %}Часть 1. Участник {{ role }}: решения{% endblocktrans %}
+
 {% endblock %}
 
 {% block content %}
@@ -10,9 +11,17 @@
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th>Если Участник {{ player.other.role_desc }}, с которым Вы взаимодействуете, из города</th>
+        <th>
+            {% blocktrans with role=player.role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из города
+            {% endblocktrans %}
 
-        <th>то согласны ли Вы передать Вашу начальную сумму этому Участнику {{ player.other.role_desc }}?</th>
+        </th>
+
+        <th>
+            {% blocktrans with other=player.other.role_desc%}то согласны ли Вы передать Вашу начальную сумму этому Участнику {{other }}?
+            {% endblocktrans %}
+
+        </th>
         </thead>
         <tbody>
         {% for f in formset %}
