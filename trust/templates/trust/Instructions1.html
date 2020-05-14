@@ -9,18 +9,19 @@
 
     {% include 'trust/includes/instructions/common_instructions.html' %}
 
-    <button class="btn-lg  nextbtn" type="submit" disabled>Please read the instructions</button>
+    <button class="btn-lg  nextbtn" id='next-btn' type="submit" disabled>Please read the instructions</button>
     <script>
-        let pointer=0;
-
-        $('#nextbtn').html('Please read the instructions')
+        let pointerR = 0;
+        const nextBtn = $('#next-btn');
+        nextBtn.html('Please read the instructions')
         $('.btn-link').click(function () {
-            console.debug('POINTER', pointer)
-            pointer += parseInt(this.dataset.partid);
-            if (pointer > 3) {
-                $('#nextbtn').addClass('btn-danger');
-                $('#nextbtn').html('Yes, I read the instructions')
-                $('#nextbtn').attr('disabled', false);
+
+            pointerR += parseInt(this.dataset.partid);
+            if (pointerR > 2) {
+
+                nextBtn.addClass('btn-danger');
+                nextBtn.html('Yes, I read the instructions')
+                nextBtn.attr('disabled', false);
             }
         })
 

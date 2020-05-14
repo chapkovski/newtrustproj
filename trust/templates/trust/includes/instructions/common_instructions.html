@@ -1,4 +1,5 @@
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 <div class="accordion my-3" id="accordionExample">
     <div class="card">
@@ -6,13 +7,14 @@
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                         data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
-                 data-partid="0" onclick="pointer=0" >
+                        data-partid="0" onclick="pointer=0">
                     General instructions
                 </button>
             </h2>
         </div>
 
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div id="collapseOne" class="collapse {% if show_block|default_if_none:1 == 1 %}show{% endif %}"
+             aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
                 <p>Two participants “Person A” and “Person B” are interacting with each other in a pair.</p>
                 <p> Person A and Person B both receive an initial endowment of 10 Token.</p>
@@ -34,13 +36,13 @@
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button"
                         data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                        aria-controls="collapseTwo" data-partid="1"  onclick="pointer=1">
+                        aria-controls="collapseTwo" data-partid="1" onclick="pointer=1">
                     Your Task if you are Person A
                 </button>
             </h2>
         </div>
 
-        <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div id="collapseTwo" class="collapse  {% if show_block|default_if_none:1 == 2 %}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
                 {% include 'trust/includes/instructions/sender_instructions_1.html' %}
             </div>
@@ -52,17 +54,19 @@
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button"
                         data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-                        aria-controls="collapseThree" data-partid="2"  onclick="pointer=2">
+                        aria-controls="collapseThree" data-partid="2" onclick="pointer=2">
                     Your Task if you are Person B
                 </button>
             </h2>
         </div>
 
-        <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div id="collapseThree" class="collapse  {% if show_block|default_if_none:1 == 3 %}show{% endif %}" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
                 {% include 'trust/includes/instructions/receiver_instructions_1.html' %}
             </div>
         </div>
     </div>
 </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>

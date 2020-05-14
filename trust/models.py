@@ -72,7 +72,7 @@ class Subsession(BaseSubsession):
 
         for p in self.get_players():
             roles = list(Constants.roles.keys())
-            p._role = roles[p.id_in_subsession % 2]  # odd numbers become Senders, even numbers become Receivers
+            p._role = roles[(p.id_in_subsession - 1) % 2]  # odd numbers become Senders, even numbers become Receivers
             p.create_decisions()
             p.create_beliefs()
             p.create_averages()

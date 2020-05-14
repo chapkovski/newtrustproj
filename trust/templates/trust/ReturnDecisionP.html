@@ -6,19 +6,21 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'trust/includes/instruction_toggler.html' with path_to_instructions='trust/includes/instructions/common_instructions.html'%}
+    {% include 'trust/includes/instruction_toggler.html' with path_to_instructions='trust/includes/instructions/common_instructions.html' show_block=3 %}
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
         <th class="align-top">
-            {% blocktrans with role=player.role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из города
+            {% blocktrans with role=player.role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из
+                города
             {% endblocktrans %}
-            </th>
+        </th>
 
         <th class="align-top">
-            {% blocktrans with other=player.other.role_desc max_return=Constants.max_return%}сколько токенов Вы согласны вернуть Участнику {{ other }} в том случае,
-            если он(а) перевел Вам свою начальную сумму и Вы
-            получили {{ max_return }} токенов?
+            {% blocktrans with other=player.other.role_desc max_return=Constants.max_return %}сколько токенов Вы
+                согласны вернуть Участнику {{ other }} в том случае,
+                если он(а) перевел Вам свою начальную сумму и Вы
+                получили {{ max_return }} токенов?
             {% endblocktrans %}
 
         </th>
