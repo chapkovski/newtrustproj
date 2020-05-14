@@ -6,8 +6,24 @@
 {% endblock %}
 
 {% block content %}
-{% include 'trust/includes/instructions/common_instructions.html' %}
 
-    <button class="btn-lg btn-danger">{% trans 'Да, я полностью прочитал(а) инструкции' %}</button>
+    {% include 'trust/includes/instructions/common_instructions.html' %}
 
+    <button class="btn-lg  nextbtn" type="submit" disabled>Please read the instructions</button>
+    <script>
+        let pointer=0;
+
+        $('#nextbtn').html('Please read the instructions')
+        $('.btn-link').click(function () {
+            console.debug('POINTER', pointer)
+            pointer += parseInt(this.dataset.partid);
+            if (pointer > 3) {
+                $('#nextbtn').addClass('btn-danger');
+                $('#nextbtn').html('Yes, I read the instructions')
+                $('#nextbtn').attr('disabled', false);
+            }
+        })
+
+
+    </script>
 {% endblock %}
