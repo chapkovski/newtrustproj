@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree hse i18n %}
+
+{% block title %}
+    Your answers were correct.
+
+    Now Part 2 of the experiment starts.
+{% endblock %}
+
+{% block content %}
+
+    {% trans 'Начать' as btnlabel %}
+    {% hse_button html_class='btn-success' label=btnlabel %}
+
+{% endblock %}

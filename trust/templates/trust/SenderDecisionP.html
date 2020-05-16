@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load otree static i18n   %}
+{% load otree static i18n %}
 
 {% block title %}
     {% blocktrans with role=player.role_desc %}Часть 1. Участник {{ role }}: решения{% endblocktrans %}
@@ -7,18 +7,19 @@
 {% endblock %}
 
 {% block content %}
-     {% include 'trust/includes/instruction_toggler.html' with path_to_instructions='trust/includes/instructions/common_instructions.html' show_block=2%}
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
         <th>
-            {% blocktrans with role=player.role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из города
+            {% blocktrans with other=player.other.role_desc %}Если Участник {{ other }}, с которым Вы взаимодействуете, из
+                города
             {% endblocktrans %}
 
         </th>
 
         <th>
-            {% blocktrans with other=player.other.role_desc%}то согласны ли Вы передать Вашу начальную сумму этому Участнику {{other }}?
+            {% blocktrans with other=player.other.role_desc %}то согласны ли Вы передать Вашу начальную сумму этому
+                Участнику {{ other }}?
             {% endblocktrans %}
 
         </th>

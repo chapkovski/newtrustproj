@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 13:47-0400\n"
+"POT-Creation-Date: 2020-05-16 16:20-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,12 +20,12 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: _templates/global/Page.html:59
+#: _templates/global/Page.html:73
 #: questionnaire/templates/questionnaire/Page.html:19
 msgid "Please fix the errors in the form."
 msgstr ""
 
-#: _templates/global/Page.html:63
+#: _templates/global/Page.html:77
 #: questionnaire/templates/questionnaire/Page.html:23
 msgid "Пожалуйста, дождитесь продолжения эксперимента"
 msgstr ""
@@ -47,7 +47,7 @@ msgid ""
 "                "
 msgstr ""
 
-#: _templates/global/includes/progress.html:10
+#: _templates/global/includes/progress.html:12
 msgid "готово"
 msgstr ""
 
@@ -98,12 +98,12 @@ msgid "Женский"
 msgstr ""
 
 #: questionnaire/models.py:31 questionnaire/models.py:217
-#: questionnaire/models.py:373
+#: questionnaire/models.py:373 trust/models.py:36
 msgid "Нет"
 msgstr ""
 
 #: questionnaire/models.py:31 questionnaire/models.py:214
-#: questionnaire/models.py:372
+#: questionnaire/models.py:372 trust/models.py:36
 msgid "Да"
 msgstr ""
 
@@ -1634,29 +1634,29 @@ msgstr ""
 msgid "Являетесь ли вы в настоящее время самозанятым?"
 msgstr ""
 
-#: questionnaire/pages.py:47
+#: questionnaire/pages.py:50
 msgid ""
 "Насколько вы согласны или не согласны с каждым из следующих утверждений о "
 "том, как вы видите себя?"
 msgstr ""
 
-#: questionnaire/pages.py:55
+#: questionnaire/pages.py:58
 msgid "Укажите, пожалуйста, насколько Вы доверяете следующим категориям людей:"
 msgstr ""
 
-#: questionnaire/pages.py:63
+#: questionnaire/pages.py:66
 msgid ""
 "Укажите, пожалуйста, насколько Вы доверяете следующим организациям и "
 "институтам:"
 msgstr ""
 
-#: questionnaire/pages.py:117
+#: questionnaire/pages.py:120
 msgid ""
 "Ниже представлены краткие описание некоторых людей. До какой степени каждый "
 "из описанных людей похож или не похож на вас?:"
 msgstr ""
 
-#: questionnaire/pages.py:132
+#: questionnaire/pages.py:135
 msgid ""
 "Укажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для "
 "ответа выберите значение на шкале от 1 до 10, \n"
@@ -1664,7 +1664,7 @@ msgid ""
 "\"всегда заслуживает оправдания\"."
 msgstr ""
 
-#: questionnaire/pages.py:170
+#: questionnaire/pages.py:173
 msgid ""
 "Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё "
 "желание брать на себя риски в следующих ситуациях? \n"
@@ -1672,6 +1672,21 @@ msgid ""
 "означает, что Вы «совершенно не готовы рисковать», а 10 означает, что Вы "
 "«охотно идете на риск».\n"
 "            "
+msgstr ""
+
+#: questionnaire/templates/questionnaire/IntroQ.html:5
+msgid "The part 2 of the study is completed. Now please answer the questions. "
+msgstr ""
+
+#: questionnaire/templates/questionnaire/IntroQ.html:9
+msgid ""
+"\n"
+"\n"
+"    "
+msgstr ""
+
+#: questionnaire/templates/questionnaire/IntroQ.html:12
+msgid "Перейти к анкете"
 msgstr ""
 
 #: questionnaire/templates/questionnaire/Motivation.html:5
@@ -1738,6 +1753,10 @@ msgid ""
 "Посмотрите пожалуйста на список регионов России, включающий и Ваш. "
 "Проранжируйте пожалуйста эти\n"
 "                регионы по убыванию среднемесячного дохода их жителей."
+msgstr ""
+
+#: questionnaire/templatetags/hse.py:47
+msgid "Next"
 msgstr ""
 
 #: sorter/models.py:34
@@ -1886,6 +1905,10 @@ msgstr ""
 msgid "Вы ввели неверный код для одного из городов!"
 msgstr ""
 
+#: trust/templates/trust/AfterStage1.html:12
+msgid "Перейти к части 2"
+msgstr ""
+
 #: trust/templates/trust/CQ1.html:5
 msgid "Проверочные вопросы для части 1"
 msgstr ""
@@ -1898,13 +1921,17 @@ msgstr ""
 msgid " Instructions"
 msgstr ""
 
-#: trust/templates/trust/Instructions1.html:11
+#: trust/templates/trust/Instructions2.html:5
+msgid "Examples"
+msgstr ""
+
 #: trust/templates/trust/Instructions2.html:28
 msgid "Да, я полностью прочитал(а) инструкции"
 msgstr ""
 
-#: trust/templates/trust/Instructions2.html:5
-msgid "Instructions"
+#: trust/templates/trust/IntroStage1.html:12
+#: trust/templates/trust/IntroStage2.html:12
+msgid "Начать"
 msgstr ""
 
 #: trust/templates/trust/ReturnDecisionP.html:5
@@ -1914,20 +1941,21 @@ msgid "Часть 1. Участник %(role)s: решения"
 msgstr ""
 
 #: trust/templates/trust/ReturnDecisionP.html:14
-#: trust/templates/trust/ReturnerBeliefP.html:16
-#: trust/templates/trust/SenderDecisionP.html:15
+#: trust/templates/trust/SenderDecisionP.html:14
 #, python-format
 msgid ""
-"Если Участник %(role)s, с которым Вы взаимодействуете, из города\n"
+"Если Участник %(other)s, с которым Вы взаимодействуете, из\n"
+"                города\n"
 "            "
 msgstr ""
 
-#: trust/templates/trust/ReturnDecisionP.html:19
+#: trust/templates/trust/ReturnDecisionP.html:20
 #, python-format
 msgid ""
-"сколько токенов Вы согласны вернуть Участнику %(other)s в том случае,\n"
-"            если он(а) перевел Вам свою начальную сумму и Вы\n"
-"            получили %(max_return)s токенов?\n"
+"сколько токенов Вы\n"
+"                согласны вернуть Участнику %(other)s в том случае,\n"
+"                если он(а) перевел Вам свою начальную сумму и Вы\n"
+"                получили %(max_return)s токенов?\n"
 "            "
 msgstr ""
 
@@ -1935,6 +1963,13 @@ msgstr ""
 #: trust/templates/trust/SenderBeliefP.html:5
 #, python-format
 msgid "Часть 2. Участник %(role)s: оценки"
+msgstr ""
+
+#: trust/templates/trust/ReturnerBeliefP.html:16
+#, python-format
+msgid ""
+"Если Участник %(role)s, с которым Вы взаимодействуете, из города\n"
+"            "
 msgstr ""
 
 #: trust/templates/trust/ReturnerBeliefP.html:21
@@ -1960,7 +1995,8 @@ msgstr ""
 #: trust/templates/trust/SenderDecisionP.html:21
 #, python-format
 msgid ""
-"то согласны ли Вы передать Вашу начальную сумму этому Участнику %(other)s?\n"
+"то согласны ли Вы передать Вашу начальную сумму этому\n"
+"                Участнику %(other)s?\n"
 "            "
 msgstr ""
 

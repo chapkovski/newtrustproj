@@ -3,6 +3,10 @@ from .generic_pages import Page
 from django.conf import settings
 
 
+class IntroQ(Page):
+    pass
+
+
 class Motivation(Page):
     form_model = 'player'
     form_fields = ['motivation_part1',
@@ -31,7 +35,6 @@ class Personal1(Page):
     ]
 
 
-
 class SelfDetermination(Page):
     form_model = 'player'
     form_fields = [
@@ -45,10 +48,10 @@ class SelfDetermination(Page):
     ]
     joined_fields = [{"title": _(
         'Насколько вы согласны или не согласны с каждым из следующих утверждений о том, как вы видите себя?'),
-                      "fields": [
-                          'community_local',
-                          'community_russian'
-                      ]}, ]
+        "fields": [
+            'community_local',
+            'community_russian'
+        ]}, ]
 
 
 class Trust(Page):
@@ -346,17 +349,18 @@ class Personal2(Page):
 
 
 page_sequence = [
-    Motivation,
-    Personal1,
-    RegionsKnowledge,
-    RegionsIncome,
-    Trust,
-    StatedPreferences1,
-    StatedPreferences2_1,
-    StatedPreferences2_2,
-    StatedPreferences3,
-    SelfDetermination,
-    Values,
-    Risk,
-    Personal2
+    IntroQ,
+    # Motivation,
+    # Personal1,
+    # RegionsKnowledge,
+    # RegionsIncome,
+    # Trust,
+    # StatedPreferences1,
+    # StatedPreferences2_1,
+    # StatedPreferences2_2,
+    # StatedPreferences3,
+    # SelfDetermination,
+    # Values,
+    # Risk,
+    # Personal2
 ]

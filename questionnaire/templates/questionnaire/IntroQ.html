@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree i18n hse %}
+
+{% block title %}
+    {% trans 'The part 2 of the study is completed. Now please answer the questions. ' %}
+{% endblock %}
+
+{% block content %}
+    {% blocktrans %}
+
+    {% endblocktrans %}
+        {% trans 'Перейти к анкете' as btnlabel %}
+    {% hse_button html_class='btn-success' label=btnlabel %}
+
+
+{% endblock %}

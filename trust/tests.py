@@ -60,26 +60,30 @@ class PlayerBot(Bot):
                 cq2_5=0,
             )
             cq2wronganswers = {k: v + 1 for k, v in cq2answers.items()}
-
+        yield ShowMap,
+        yield IntroStage1,
         if self.player.role() == 'Sender':
             yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='answer',
                                                      choice_set=[0, Constants.endowment])
+            yield AfterStage1
+            yield InstructionsStage2
             if self.session.config.get('cq'):
 
                 # yield SubmissionMustFail(CQ2, cq2wronganswers)
                 yield CQ2, cq2answers
-
+            yield IntroStage2
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
                                                    choice_set=Constants.receiver_choices)
         else:
             yield ReturnDecisionP, self._create_data(name='returndecisions', field_name='send_back',
                                                      choice_set=Constants.receiver_choices)
-
+            yield AfterStage1
+            yield InstructionsStage2
             if self.session.config.get('cq'):
 
                 # yield SubmissionMustFail(CQ2,cq2wronganswers)
                 yield CQ2, cq2answers
-
+            yield IntroStage2
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
 

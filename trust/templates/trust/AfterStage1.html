@@ -1,0 +1,15 @@
+{% extends "global/Page.html" %}
+{% load otree hse i18n %}
+
+{% block title %}
+    Part 1 of the experiment is finished.
+
+    Now Part 2 of the experiment starts
+{% endblock %}
+
+{% block content %}
+
+    {% trans 'Перейти к части 2' as btnlabel %}
+    {% hse_button html_class='btn-success' label=btnlabel %}
+
+{% endblock %}

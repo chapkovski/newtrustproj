@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load otree i18n hse %}
+
+{% block title %}
+    {% trans 'Map of all cities that participate in the study.' %}
+{% endblock %}
+
+{% block content %}
+    <div class="card my-3">
+        <div class="card-body">
+            On this map you can see all 12 cities which participate in this study. This map is always available to you
+            in the course of the study
+            if you click on the button 'Show map' at the right top corner.
+               <img src="{% static 'global/img/map.png' %}" alt="" width="100%">
+        </div>
+    </div>
+    <h5 class="my-3">The cities that participate in the study are the following:</h5>
+    <table class="table">
+        <tbody>
+        {% for foo in cities %}
+            <tr>
+                <td>{{ foo.description }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    {% next_button %}
+
+{% endblock %}

@@ -34,10 +34,18 @@
         }
 
     </style>
-     <style>
-    code{color:	#080808}
-    .bold{font-weight: bold}
-    .darkred{; color:darkred}
+    <style>
+        code {
+            color: #080808
+        }
+
+        .bold {
+            font-weight: bold
+        }
+
+        .darkred {;
+            color: darkred
+        }
     </style>
 {% endblock %}
 
@@ -49,7 +57,13 @@
     {% block progress %}
         {% include 'global/includes/progress.html' %}
     {% endblock %}
-    <div class="otree-body container">
+    {% if view.show_instructions|default_if_none:True %}
+        {% include 'global/includes/instruction_toggler.html' %}
+    {% endif %}
+        {% if view.show_map|default_if_none:True %}
+        {% include 'global/includes/map_modal.html' %}
+    {% endif %}
+    <div class="otree-body container my-5">
         <h2 class="otree-title page-header">{% block title %}{% endblock %}</h2>
         {% if view.remaining_timeout_seconds != None %}
             {% include 'otree/includes/TimeLimit.html' with form_element_id="form" %}

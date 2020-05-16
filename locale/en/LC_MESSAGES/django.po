@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 13:47-0400\n"
+"POT-Creation-Date: 2020-05-16 16:20-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: _templates/global/Page.html:59
+#: _templates/global/Page.html:73
 #: questionnaire/templates/questionnaire/Page.html:19
 msgid "Please fix the errors in the form."
 msgstr ""
 
-#: _templates/global/Page.html:63
+#: _templates/global/Page.html:77
 #: questionnaire/templates/questionnaire/Page.html:23
 msgid "Пожалуйста, дождитесь продолжения эксперимента"
 msgstr ""
@@ -47,7 +47,7 @@ msgstr ""
 "If you have any questions or technical problems, please contact us either "
 "via  Yandex.Toloka or "
 
-#: _templates/global/includes/progress.html:10
+#: _templates/global/includes/progress.html:12
 msgid "готово"
 msgstr "done"
 
@@ -100,12 +100,12 @@ msgid "Женский"
 msgstr "Female"
 
 #: questionnaire/models.py:31 questionnaire/models.py:217
-#: questionnaire/models.py:373
+#: questionnaire/models.py:373 trust/models.py:36
 msgid "Нет"
 msgstr "No"
 
 #: questionnaire/models.py:31 questionnaire/models.py:214
-#: questionnaire/models.py:372
+#: questionnaire/models.py:372 trust/models.py:36
 msgid "Да"
 msgstr "Yes"
 
@@ -1770,7 +1770,7 @@ msgstr "Are you currently employed?"
 msgid "Являетесь ли вы в настоящее время самозанятым?"
 msgstr "Are you currently self-employed?"
 
-#: questionnaire/pages.py:47
+#: questionnaire/pages.py:50
 msgid ""
 "Насколько вы согласны или не согласны с каждым из следующих утверждений о "
 "том, как вы видите себя?"
@@ -1778,11 +1778,11 @@ msgstr ""
 "How strongly you agree or disagree with each of the following statements "
 "about how you see yourself?"
 
-#: questionnaire/pages.py:55
+#: questionnaire/pages.py:58
 msgid "Укажите, пожалуйста, насколько Вы доверяете следующим категориям людей:"
 msgstr "Please indicate how much you trust the following categories of people:"
 
-#: questionnaire/pages.py:63
+#: questionnaire/pages.py:66
 msgid ""
 "Укажите, пожалуйста, насколько Вы доверяете следующим организациям и "
 "институтам:"
@@ -1790,7 +1790,7 @@ msgstr ""
 "Please indicate how much you trust the following organizations and "
 "institutes:"
 
-#: questionnaire/pages.py:117
+#: questionnaire/pages.py:120
 msgid ""
 "Ниже представлены краткие описание некоторых людей. До какой степени каждый "
 "из описанных людей похож или не похож на вас?:"
@@ -1798,7 +1798,7 @@ msgstr ""
 "Below is a brief description of some people. To what extent does each of "
 "these people resemble or not resemble you?"
 
-#: questionnaire/pages.py:132
+#: questionnaire/pages.py:135
 msgid ""
 "Укажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для "
 "ответа выберите значение на шкале от 1 до 10, \n"
@@ -1809,7 +1809,7 @@ msgstr ""
 "To answer, select a value on a scale from 1 to 10, where 1 means \"never "
 "deserves excuse\" and 10 means \"always deserves excuse.\""
 
-#: questionnaire/pages.py:170
+#: questionnaire/pages.py:173
 msgid ""
 "Люди могут вести себя по-разному в разных ситуациях. Как бы Вы оценили своё "
 "желание брать на себя риски в следующих ситуациях? \n"
@@ -1823,6 +1823,21 @@ msgstr ""
 "value on a scale from 0 to 10, where 0 means that you are \"absolutely not "
 "ready to take any risk,\" and 10 means that you are \"really like to take "
 "risks.\""
+
+#: questionnaire/templates/questionnaire/IntroQ.html:5
+msgid "The part 2 of the study is completed. Now please answer the questions. "
+msgstr ""
+
+#: questionnaire/templates/questionnaire/IntroQ.html:9
+msgid ""
+"\n"
+"\n"
+"    "
+msgstr ""
+
+#: questionnaire/templates/questionnaire/IntroQ.html:12
+msgid "Перейти к анкете"
+msgstr "Go to the questionnaire"
 
 #: questionnaire/templates/questionnaire/Motivation.html:5
 #: questionnaire/templates/questionnaire/Personal1.html:5
@@ -1899,6 +1914,10 @@ msgstr ""
 "these regions in descending order of the average monthly income of their "
 "inhabitants."
 
+#: questionnaire/templatetags/hse.py:47
+msgid "Next"
+msgstr ""
+
 #: sorter/models.py:34
 msgid "В каком городе вы проживаете на данный момент?"
 msgstr ""
@@ -1913,112 +1932,94 @@ msgstr "Please check your answer"
 
 #: trust/cq_models.py:44
 msgid "Ни для кого"
-msgstr "Not for anyone"
+msgstr "None"
 
 #: trust/cq_models.py:45
 msgid "Для 12 – по одному из каждого города, участвующего в исследовании."
-msgstr "12 - one from each city participating in the study."
+msgstr "12 - one per each city that is involved in this study."
 
 #: trust/cq_models.py:46
 msgid ""
 "Для 1 случайно выбранного участника из одного из 12 городов, участвующих в "
 "исследовании."
 msgstr ""
-"For 1 randomly selected member from one of 12 cities participating in study."
+"1 - a randomly chosen participant from one of the 12 cities that are involved in this study."
 
 #: trust/cq_models.py:47
 msgid "12 – по одному из каждого города, участвующего в исследовании."
-msgstr "12 - one from each city participating in the study."
+msgstr "12 - one per each city that are involved in this study."
 
 #: trust/cq_models.py:49
 msgid ""
 "1 – случайно выбранный участник из одного из 12 городов, принимающих участие "
 "в исследовании.  "
 msgstr ""
-"1 - a randomly selected participant from one of the 12 cities participating "
-"in the study."
+"1 - a randomly chosen participant from one of the 12 cities that are involved in this study."
 
 #: trust/cq_models.py:50
 msgid "Ни один не примет"
-msgstr "No one will decide"
+msgstr "None"
 
 #: trust/cq_models.py:59
 msgid ""
 "Если Участник А передаст свою начальную сумму Участнику Б, сколько токенов "
 "получит Участник Б?"
-msgstr ""
-"If Participant A transfers his initial amount to Participant B, how many "
-"tokens are will Participant B get?"
+msgstr "If Person A transfers his initial endowment to Person B, how many token does Person B receive?"
 
 #: trust/cq_models.py:63
 msgid ""
 "Участник А передал свою начальную сумму Участнику Б. Какую максимальную "
 "сумму может Участник Б вернуть обратно Участнику А? "
 msgstr ""
-"Participant A transferred his initial amount to Participant B. What is the "
-"maximum Can Participant B return the amount to Participant A?"
+"Person A transfers his initial endowment to Person B. What is the maximum amount Person B can return to Person A?  "
+
 
 #: trust/cq_models.py:66
 msgid ""
 "Участник Б решает вернуть Участнику А 21 токен. Сколько токенов получит "
 "Участник А от участника Б?"
-msgstr ""
-"Participant B decides to return 21 tokens to Participant A. How many tokens "
-"will receive Member A from member B?"
+msgstr "Person B decides to return to Person A 21 points. How many points does Person A receive?"
 
 #: trust/cq_models.py:70
 msgid ""
 "Сколько токенов получит Участник Б всего за часть 1 эксперимента, если "
 "Участник А передаст ему свою начальную сумму, а Участник Б вернет Участнику "
 "А 9 токенов?"
-msgstr ""
-"How many Tokens will Participant B receive in just part 1 of the experiment, "
-"if Participant A will give him his initial amount, and Participant B will "
-"return to Participant And 9 tokens?"
+msgstr "What is the final payoff of Person B if Person A transfers his initial endowment and Person B sends back 9 points? "
 
 #: trust/cq_models.py:74
 msgid ""
 "Сколько токенов получит Участник А по итогам эксперимента если он передаст "
 "Участнику Б свою начальную сумму, а Участник Б вернет Участнику А 9 токенов?"
-msgstr ""
-"How many tokens will Participant A receive as a result of the experiment if "
-"he transfers Participant B will have his initial amount, and Participant B "
-"will return 9 tokens to Participant A?"
+msgstr "What is the payoff of Person A if he transfers his initial endowment and Person B sends him back 9 points?"
 
 #: trust/cq_models.py:77
 msgid ""
 "Сколько токенов получит Участник А, если он решит не передавать Участнику Б "
 "свою начальную сумму? "
-msgstr ""
-"How many tokens will Participant A receive if he decides not to transfer to "
-"Participant B your initial amount?"
+msgstr "What is the payoff of Person A if Person A decides NOT to transfer his initial endowment to Person B? "
 
 #: trust/cq_models.py:81
 msgid ""
 "Сколько токенов получит Участник Б, если Участник А решит не передавать "
 "Участнику Б свою начальную сумму? "
-msgstr ""
-"How many tokens will Participant B receive if Participant A decides not to "
-"transfer to participant B, your initial amount?"
+msgstr "What is the payoff of Person B if Person A decides NOT to transfer his initial endowment to Person B?"
 
 #: trust/cq_models.py:85
 msgid ""
 "Предположим, Вам случайным образом выпала роль Участника А. Для скольких "
 "Участников Б Ваше решение о передаче своей начальной суммы будет "
 "определяющим для получения его выигрыша?"
-msgstr ""
-"Suppose you were randomly assigned the role of Member A. For how many "
-"participants B Your decision to transfer your initial amount will be "
-"decisive for his gain?"
+msgstr "Imagine you have been randomly assigned to be Person A. For how many participants in the role of Person B "
+"your decision to transfer or not transfer your initial endowment will be payoff relevant?"
 
 #: trust/cq_models.py:89
 msgid ""
 "Предположим, Вам случайным образом выпала роль Участника Б. Сколько "
 "Участников А примут решение о том, получите ли вы их утроенную начальную "
 "сумму?"
-msgstr ""
-"Suppose you were randomly assigned the role of Member B. How much "
-"participants A will decide whether you will get their triple initialamount?"
+msgstr "Imagine you have been randomly assigned to be Person B. How many participants in the role of Person A will "
+"decide on whether you actually receive their multiplied initial endowment?"
 
 #: trust/cq_models.py:95
 msgid ""
@@ -2069,7 +2070,7 @@ msgid ""
 msgstr ""
 "In Part 1, Participant A from City 1 did not transfer his initial amount to "
 "Participant B from city 2. Participant B from city 2, with whom this one "
-"interacted Member A was ready to return 15 Tokens to this Member A if if he "
+"interacted Member A was ready to return 15 Tokens to this Member A if he "
 "gave him his initial amount. Participant A in part 2 gave an estimate that "
 "this Participant B was ready to return 18 tokens to him. How much will "
 "Participant A from this pair receive tokens for such an assessment?"
@@ -2090,11 +2091,11 @@ msgstr ""
 "Participant B was ready to return 9 tokens to him. How many tokens will "
 "Participant receive And from this pair for such an assessment?"
 
-#: trust/models.py:90
-#, fuzzy
-#| msgid "Водители и операторы подвижного оборудования"
-msgid "Вы ввели неверный код для одного из городов!"
-msgstr "Drivers and Mobile Plant Operators"
+
+
+#: trust/templates/trust/AfterStage1.html:12
+msgid "Перейти к части 2"
+msgstr "Continue with Part 2"
 
 #: trust/templates/trust/CQ1.html:5
 msgid "Проверочные вопросы для части 1"
@@ -2108,14 +2109,18 @@ msgstr "Comprehension Questions for Part 2"
 msgid " Instructions"
 msgstr ""
 
-#: trust/templates/trust/Instructions1.html:11
+#: trust/templates/trust/Instructions2.html:5
+msgid "Examples"
+msgstr ""
+
 #: trust/templates/trust/Instructions2.html:28
 msgid "Да, я полностью прочитал(а) инструкции"
 msgstr "Yes, I read the instructions"
 
-#: trust/templates/trust/Instructions2.html:5
-msgid "Instructions"
-msgstr ""
+#: trust/templates/trust/IntroStage1.html:12
+#: trust/templates/trust/IntroStage2.html:12
+msgid "Начать"
+msgstr "Begin the study"
 
 #: trust/templates/trust/ReturnDecisionP.html:5
 #: trust/templates/trust/SenderDecisionP.html:5
@@ -2124,23 +2129,24 @@ msgid "Часть 1. Участник %(role)s: решения"
 msgstr "Part 1. Participant %(role)s: decisions"
 
 #: trust/templates/trust/ReturnDecisionP.html:14
-#: trust/templates/trust/ReturnerBeliefP.html:16
-#: trust/templates/trust/SenderDecisionP.html:15
+#: trust/templates/trust/SenderDecisionP.html:14
 #, python-format
 msgid ""
-"Если Участник %(role)s, с которым Вы взаимодействуете, из города\n"
+"Если Участник %(other)s, с которым Вы взаимодействуете, из\n"
+"                города\n"
 "            "
-msgstr "If participant %(role)s, with whom you are matched from the city:"
+msgstr "If participant %(other)s, with whom you are matched from the city:"
 
-#: trust/templates/trust/ReturnDecisionP.html:19
+#: trust/templates/trust/ReturnDecisionP.html:20
 #, python-format
 msgid ""
-"сколько токенов Вы согласны вернуть Участнику %(other)s в том случае,\n"
-"            если он(а) перевел Вам свою начальную сумму и Вы\n"
-"            получили %(max_return)s токенов?\n"
+"сколько токенов Вы\n"
+"                согласны вернуть Участнику %(other)s в том случае,\n"
+"                если он(а) перевел Вам свою начальную сумму и Вы\n"
+"                получили %(max_return)s токенов?\n"
 "            "
 msgstr ""
-"how many tokens do you agree to return to the Member %(other) s if if he (a) "
+"how many tokens do you agree to return to the Member %(other) s if he (a) "
 "transferred his initial amount to you and you got %(max_return) s tokens? "
 
 #: trust/templates/trust/ReturnerBeliefP.html:5
@@ -2148,6 +2154,13 @@ msgstr ""
 #, python-format
 msgid "Часть 2. Участник %(role)s: оценки"
 msgstr "Part 2. Participant %(role)s: estimations"
+
+#: trust/templates/trust/ReturnerBeliefP.html:16
+#, python-format
+msgid ""
+"Если Участник %(role)s, с которым Вы взаимодействуете, из города\n"
+"            "
+msgstr "If participant %(role)s, with whom you are matched from the city:"
 
 #: trust/templates/trust/ReturnerBeliefP.html:21
 #, python-format
@@ -2169,13 +2182,15 @@ msgid ""
 "то как Вы оцениваете, сколько из %(max_return)s токенов этот Участник "
 "%(other)s вернул бы Вам\n"
 "            "
-msgstr "how do you evaluate how many of the %(max_return)s tokens this Member"
-" %(other)s would return you "
+msgstr ""
+"how do you evaluate how many of the %(max_return)s tokens this Member "
+"%(other)s would return you "
 
 #: trust/templates/trust/SenderDecisionP.html:21
 #, python-format
 msgid ""
-"то согласны ли Вы передать Вашу начальную сумму этому Участнику %(other)s?\n"
+"то согласны ли Вы передать Вашу начальную сумму этому\n"
+"                Участнику %(other)s?\n"
 "            "
 msgstr "do you agree to send your endowment to the Participant  %(other)s?"
 
