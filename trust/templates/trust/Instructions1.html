@@ -11,13 +11,14 @@
 
     <button class="btn-lg  nextbtn" id='next-btn' type="submit" disabled>Please read the instructions</button>
     <script>
-        let pointerR = 0;
+        const clickRegister = {'0': true};
+
+
         const nextBtn = $('#next-btn');
         nextBtn.html('Please read the instructions')
         $('.btn-link').click(function () {
-
-            pointerR += parseInt(this.dataset.partid);
-            if (pointerR > 2) {
+            clickRegister[this.dataset.partid] = true;
+            if (Object.keys(clickRegister).length >= 4) {
 
                 nextBtn.addClass('btn-danger');
                 nextBtn.html('Yes, I read the instructions')
