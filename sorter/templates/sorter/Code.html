@@ -1,12 +1,16 @@
 {% extends "global/Page.html" %}
 {% load otree static i18n %}
-
+{% load render_bundle from webpack_loader %}
 {% block title %}
     {% trans 'Пожалуйста, укажите в каком городе вы проживаете?' %}
 {% endblock %}
 
 {% block content %}
-
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=places"></script>
+            <div id="birthplace_app">
+            </div>
+            {% render_bundle 'chunk-vendors' %}
+            {% render_bundle 'main' %}
     {% formfield player.city label='' %}
 
     {% next_button %}
