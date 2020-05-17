@@ -3,13 +3,13 @@
    <div class="controls  field-location">
 
           <vue-google-autocomplete
-            id="id_birthplace"
+            :id="this.field_id"
             ref="address"
             classname="form-control"
             placeholder="Введите название"
             @placechanged="getAddressData"
             types="(cities)"
-            name='birthplace'
+            :name='this.field_name'
           >
           </vue-google-autocomplete>
     </div>
@@ -22,11 +22,13 @@
 import VueGoogleAutocomplete from "./VueAutocomplete";
 export default {
   name: "HelloWorld",
+  props:['field_id', 'field_name'],
   components: { VueGoogleAutocomplete },
   data: function() {
     return { address: "" ,
     retrieved_address:""};
   },
+
   methods: {
     getAddressData: function(addressData, place) {
         console.debug('PLACE', place.formatted_address);

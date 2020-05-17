@@ -6,12 +6,21 @@
 {% endblock %}
 
 {% block content %}
-  <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=places"></script>
-            <div id="birthplace_app">
-            </div>
-            {% render_bundle 'chunk-vendors' %}
-            {% render_bundle 'main' %}
-    {% formfield player.city label='' %}
+    <script>
+        window.field_id = 'id_city';
+        window.field_name = 'city';
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&libraries=places"></script>
+
+    <div id="birthplace_app">
+    </div>
+    {% if form.city.errors %}
+        <div class="text-danger mb-3">{{ form.city.errors.0 }}</div>
+    {% endif %}
+    {% render_bundle 'chunk-vendors' %}
+    {% render_bundle 'main' %}
+
 
     {% next_button %}
 
