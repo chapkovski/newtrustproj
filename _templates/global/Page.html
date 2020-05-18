@@ -107,7 +107,7 @@
         cities = _.map(cities, i=>{i.name=i.name.trim().split(' ')[0];return i})
         </script>
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLjQChWsd_HHg6XuoznRWm0ckxyh8JhxY&callback=initMaps">
+                src="https://maps.googleapis.com/maps/api/js?key={{ Constants.GOOGLE_API_KEY }}&callback=initMaps">
         </script>
         <script>
             function initMaps() {
