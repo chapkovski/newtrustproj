@@ -42,6 +42,7 @@ class Constants(BaseConstants):
     blocked_page_names = ['IntroStage1',
                           'IntroStage2',
                           ]
+    cities = settings.CITIES
 
 
 def return_choices():
