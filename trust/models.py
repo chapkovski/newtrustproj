@@ -166,7 +166,10 @@ class Player(CQPlayer):
     participant_vars_dump = models.LongStringField()
 
     def get_part2_instructions_path(self):
-        return f'trust/includes/instructions/part2_instructions_{self.role()}.html'
+        return f'trust/includes/instructions/part2_instructions_{self.role().lower()}.html'
+    def get_part2_examples_path(self):
+            return f'trust/includes/instructions/part2_examples_{self.role().lower()}.html'
+
 
     @property
     def role_desc(self):

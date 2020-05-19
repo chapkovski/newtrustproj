@@ -2027,11 +2027,9 @@ msgid ""
 "Участник Б из города 1, с которым взаимодействовал этот Участник А, дал "
 "оценку что Участник А из его пары не передаст ему начальную сумму. Сколько "
 "токенов получит за эту оценку в части 2 этот Участник Б?"
-msgstr ""
-"In Part 1, Participant A from City 1 transferred his initial amount to "
-"Participant B. Member B from city 1 with which this Member A interacted gave "
-"an estimate that Member A of his couple will not give him the initial "
-"amount. How much will Token B receive this token in Part 2?"
+msgstr "In Part 1, a Person A from City 1 transferred his initial endowment to a Person B "
+"from City 2, while the estimate of Person B was that a Person A from City 1 will "
+"transfer the endowment. What will be the payoff of Person B for Part 2? "
 
 #: trust/cq_models.py:99
 msgid ""
@@ -2039,11 +2037,9 @@ msgid ""
 "Участник Б из города 1, с которым взаимодействовал этот Участник А, дал "
 "оценку что Участник А из его пары передаст ему начальную сумму. Сколько "
 "токенов получит за эту оценку в части 2 этот Участник Б?"
-msgstr ""
-"In Part 1, Participant A from City 1 transferred his initial amount to "
-"Participant B. Member B from city 1 with which this Member A interacted gave "
-"an estimate that Member A from his couple will give him the initial amount. "
-"How much will Token B receive this token in Part 2?"
+msgstr "In Part 1, a Person A from City 1 transferred his initial endowment to a Person B "
+"from City 2, while the estimate of Person B was that a Person A from City 1 will "
+"transfer the endowment. What will be the payoff of Person B for Part 2? "
 
 #: trust/cq_models.py:103
 msgid ""
@@ -2052,12 +2048,7 @@ msgid ""
 "А, вернул ему 15 токенов. Участник А в части 2 дал оценку, что этот Участник "
 "Б вернул ему 9 токенов. Сколько токенов получит Участник А из этой пары за "
 "такую оценку?"
-msgstr ""
-"In Part 1, Participant A from City 1 transferred his initial amount to "
-"Participant B from cities 2. Member B from city 2 with which this Member "
-"interacted A, returned 15 tokens to him. Participant A in part 2 rated that "
-"this Participant B returned 9 tokens to him. How many tokens will "
-"Participant A get from this pair for such an assessment?"
+msgstr "In Part 1, a Person A from City 5 transferred his initial endowment to a Person B from City 6. Person B returned 15 Token to Person A. In Part 2, Person A estimated that Person B returns 9 Token.  What will be the payoff of Person A for Part 2? "
 
 #: trust/cq_models.py:107
 msgid ""
@@ -2067,13 +2058,7 @@ msgid ""
 "если бы тот передал ему свою начальную сумму. Участник А в части 2 дал "
 "оценку, что этот Участник Б был готов вернуть ему 18 токенов. Сколько "
 "токенов получит Участник А из этой пары за такую оценку?"
-msgstr ""
-"In Part 1, Participant A from City 1 did not transfer his initial amount to "
-"Participant B from city 2. Participant B from city 2, with whom this one "
-"interacted Member A was ready to return 15 Tokens to this Member A if he "
-"gave him his initial amount. Participant A in part 2 gave an estimate that "
-"this Participant B was ready to return 18 tokens to him. How much will "
-"Participant A from this pair receive tokens for such an assessment?"
+msgstr "In Part 1, a Person A from City 7 did not transfer his initial endowment to a Person B from City 8. Person B chose to return 12 Token to Person A if Person A transfers his initial endowment. In Part 2, Person A estimated that Person B would return 15 Token.  What will be the payoff of Person A for Part 2? "
 
 #: trust/cq_models.py:111
 msgid ""
@@ -2083,19 +2068,13 @@ msgid ""
 "передал ему свою начальную сумму. Участник А в части 2 дал оценку, что этот "
 "Участник Б был готов вернуть ему 9 токенов. Сколько токенов получит Участник "
 "А из этой пары за такую оценку? "
-msgstr ""
-"In Part 1, Participant A from City 1 transferred his initial amount to "
-"Participant B from cities 2. Member B from city 2 with which this Member "
-"interacted A, decided not to return anything to this Member A if he handed "
-"him his initial amount. Participant A in part 2 gave an assessment that this "
-"Participant B was ready to return 9 tokens to him. How many tokens will "
-"Participant receive And from this pair for such an assessment?"
+msgstr "In Part 1, a Person A from City 9 transferred his initial endowment to a Person B from City 10. Person B from City 10 chose to return 0 Token to Person A if Person A transfers his initial endowment. In Part 2, Person A estimated that Person B would return 0 Token. What will be the payoff of Person A for Part 2? "
 
 
 
 #: trust/templates/trust/AfterStage1.html:12
 msgid "Перейти к части 2"
-msgstr "Continue with Part 2"
+msgstr "Proceed to Part 2"
 
 #: trust/templates/trust/CQ1.html:5
 msgid "Проверочные вопросы для части 1"
@@ -2160,21 +2139,19 @@ msgstr "Part 2. Participant %(role)s: estimations"
 msgid ""
 "Если Участник %(role)s, с которым Вы взаимодействуете, из города\n"
 "            "
-msgstr "If participant %(role)s, with whom you are matched from the city:"
+msgstr "If a Person %(role)s you are interacting with is a participant from"
 
 #: trust/templates/trust/ReturnerBeliefP.html:21
 #, python-format
 msgid ""
 "cогласно Вашей оценке, передал ли Вам этот Участник %(other)s свою начальную "
 "сумму или нет?"
-msgstr ""
-"according to your assessment, did this Member of %(other)s give you his "
-"initial amount or not?"
+msgstr "what is your estimate: will Person %(other)s transfer his initial endowment to you or not?"
 
 #: trust/templates/trust/SenderBeliefP.html:15
 #, python-format
 msgid "Если бы Вы передали Вашу начальную сумму Участнику  %(other)s из города"
-msgstr "If you would give your endowment to Participant  %(other)s from city:"
+msgstr "If you would have transferred your initial endowment to a Person %(other)s, who is a participant from..."
 
 #: trust/templates/trust/SenderBeliefP.html:21
 #, python-format
@@ -2182,9 +2159,7 @@ msgid ""
 "то как Вы оцениваете, сколько из %(max_return)s токенов этот Участник "
 "%(other)s вернул бы Вам\n"
 "            "
-msgstr ""
-"how do you evaluate how many of the %(max_return)s tokens this Member "
-"%(other)s would return you "
+msgstr "what is your estimate of how many out of the  %(max_return)s Token Person %(other)s would have returned to you:"
 
 #: trust/templates/trust/SenderDecisionP.html:21
 #, python-format

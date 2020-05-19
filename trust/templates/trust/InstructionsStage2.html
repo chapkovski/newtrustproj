@@ -8,9 +8,22 @@
 {% block content %}
     <div class="card my-3">
         <div class="card-body">
-            INSTRUCTIONS FOR PART 2 GO HERE.
+            <p>Now we will explain the rules for making decisions in Part 2. </p>
+            <p>All participants remain in exactly the same role and pairing as in Part 1. </p>
+            <p>That means, if a participant was assigned to be Person A at the beginning of Part 1, he remains in this
+                role in Part 2. The same is true for Person B. </p>
+            <p>For the second part you will be  paired with exactly the same Person A or B you are going to be paired for the Part 1.</p>
+            <p>Both Person A and Person B can increase their payoffs in this Part 2 by providing an estimate of the
+                paired person’s decision in Part 1. </p>
+            <p>The closer the provided estimate is to the actual decision of the paired participant in Part 1, the
+                higher is the payoff in Part 2 a participant will receive. </p>
+            <p>As in Part 1, you have to make the estimation 12 times – one decision for a Person A or B from each of
+                the 12 Cities. </p>
+            <p>You will be paid for only one of the 12 estimations. </p>
+
         </div>
     </div>
+    {% include player.get_part2_instructions_path %}
     <div class="my-3">
         {% next_button %}
     </div>

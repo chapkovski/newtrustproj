@@ -1,0 +1,32 @@
+{% extends "global/Page.html" %}
+{% load otree hse i18n %}
+
+{% block title %}
+    Part 2. Examples
+{% endblock %}
+
+{% block content %}
+    <div class="card my-3">
+        <div class="card-body">
+            {% include player.get_part2_examples_path %}
+        </div>
+    </div>
+    <div class="alert">
+        <p>
+            Please click the button below if you understood the instructions.
+        </p>
+        <p>
+            Before Part 2 of the experiment starts, a brief quiz will check whether you understood the tasks in Part 2.
+        </p>
+        <p>
+            The instructions of both parts will be always available to you in the course of the experiment if you click
+            on
+            one of the 'Instructions’ buttons at the right top corner.
+        </p>
+
+    </div>
+    <div class="my-3">
+        {% trans 'I understand the instructions' as btnlabel %}
+        {% hse_button html_class='btn-danger' label=btnlabel %}
+    </div>
+{% endblock %}

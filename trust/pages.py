@@ -37,6 +37,8 @@ class SenderBeliefP(FormSetMixin, SenderPage):
     formset = senderbelief_formset
     decision_type = 'sender_belief'
     show_instructions = True
+    show_instructions_1 = True
+    show_instructions_2 = True
     show_map = True
 
 
@@ -44,6 +46,8 @@ class ReturnerBeliefP(FormSetMixin, ReturnerPage):
     formset = returnbelief_formset
     decision_type = 'receiver_belief'
     show_instructions = True
+    show_instructions_1 = True
+    show_instructions_2 = True
     show_map = True
 
 
@@ -57,7 +61,14 @@ class CQ1(CQPage):
 class CQ2(CQPage):
     page = 2
     show_instructions = True
-    show_map = False
+    show_instructions_1 = True
+    show_instructions_2 = True
+    show_map = True
+
+    def get_form_fields(self) -> List[str]:
+        receiver_fields = ['cq2_1', 'cq2_2']
+        sender_fields = ['cq2_3', 'cq2_4', 'cq2_5', ]
+        return sender_fields if self.player.role() == 'Sender' else receiver_fields
 
 
 ############ END OF: Comprehension questions #############################################################
@@ -67,15 +78,15 @@ class CQ2(CQPage):
 class Average2(FormSetMixin, Page):
     formset = averagesendbelief_formset
     decision_type = 'average_on_send_belief'
-    show_instructions = True
-    show_map = False
+    show_instructions = False
+    show_map = True
 
 
 class Average3(FormSetMixin, Page):
     formset = averagereturnbelief_formset
     decision_type = 'average_on_return_belief'
-    show_instructions = True
-    show_map = False
+    show_instructions = False
+    show_map = True
 
 
 ############ END OF: AVERAGES #############################################################
@@ -91,6 +102,7 @@ class ShowMap(Page):
     show_instructions_1 = True
     show_instructions_2 = True
     show_map = True
+
     def vars_for_template(self):
         return dict(cities=City.objects.all().values('description'))
 
@@ -103,8 +115,18 @@ class InstructionsStage2(Page):
     pass
 
 
+class ExamplesStage2(Page):
+    show_instructions = True
+    show_instructions_1 = True
+    show_instructions_2 = True
+    show_map = True
+
+
 class IntroStage2(Page):
-    pass
+    show_instructions = True
+    show_instructions_1 = True
+    show_instructions_2 = True
+    show_map = True
 
 
 ############ END OF: INTROPATES #############################################################
@@ -114,12 +136,13 @@ page_sequence = [
     # Instructions1,
     # Instructions2,
     # CQ1,
-    ShowMap,
-    IntroStage1,
-    SenderDecisionP,
-    ReturnDecisionP,
-    AfterStage1,
+    # ShowMap,
+    # IntroStage1,
+    # SenderDecisionP,
+    # ReturnDecisionP,
+    # AfterStage1,
     InstructionsStage2,
+    ExamplesStage2,
     CQ2,
     IntroStage2,
     SenderBeliefP,

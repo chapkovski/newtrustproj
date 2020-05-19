@@ -6,14 +6,20 @@
 {% endblock %}
 
 {% block content %}
-
+    <div class="card my-3">
+        <div class="card-body">
+            {% blocktrans %}
+                Please estimate whether or not your paired Person A will transfer his initial endowment to you.
+            {% endblocktrans %}
+        </div>
+    </div>
 
 
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead class="align-top">
         <th class="align-top">
-            {% blocktrans with role=player.role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из города
+            {% blocktrans with role=player.other.role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из города
             {% endblocktrans %}
         </th>
 
