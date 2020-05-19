@@ -18,12 +18,12 @@
                 <div class="btn-group navbar-nav ml-auto mt-2 mt-lg-0 " role="group" aria-label="Menu buttons">
                     {% if view.show_instructions_1|default_if_none:False %}
                         <button class="btn btn-outline-primary nav-item" role="button"
-                                onclick="$('#instructions1Modal').modal('show')">Show instructions - part 1
+                                onclick="$('#instructions1Modal').modal('show')">Instructions - part 1
                         </button>
                     {% endif %}
                     {% if view.show_instructions_2|default_if_none:False %}
                         <button class="btn btn-outline-primary nav-item" role="button"
-                                onclick="$('#instructions2Modal').modal('show')">Show instructions - part 2
+                                onclick="$('#instructions2Modal').modal('show')">Instructions - part 2
                         </button>
                     {% endif %}
                     {% if view.show_map|default_if_none:False %}

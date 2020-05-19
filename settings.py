@@ -24,7 +24,7 @@ uni_trust = dict(
     display_name="trust: Intercity Russia",
     num_demo_participants=2,
     app_sequence=[
-        'sorter',
+        # 'sorter',
         'trust',
         'questionnaire',
         'last'

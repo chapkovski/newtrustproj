@@ -88,6 +88,8 @@ class IntroStage1(Page):
 
 class ShowMap(Page):
     show_instructions = True
+    show_instructions_1 = True
+    show_instructions_2 = True
     show_map = True
     def vars_for_template(self):
         return dict(cities=City.objects.all().values('description'))

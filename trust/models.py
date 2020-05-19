@@ -45,6 +45,7 @@ class Constants(BaseConstants):
     cities = settings.CITIES
     GOOGLE_API_KEY = settings.GOOGLE_API_KEY
 
+
 def return_choices():
     return list(range(0, Constants.endowment + 1, Constants.step))
 
@@ -163,6 +164,9 @@ class Player(CQPlayer):
     average_beliefs_on_send_dump = models.LongStringField()
     average_beliefs_on_return_dump = models.LongStringField()
     participant_vars_dump = models.LongStringField()
+
+    def get_part2_instructions_path(self):
+        return f'trust/includes/instructions/part2_instructions_{self.role()}.html'
 
     @property
     def role_desc(self):
