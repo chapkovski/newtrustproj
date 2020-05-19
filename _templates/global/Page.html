@@ -60,10 +60,13 @@
     {% block progress %}
         {% include 'global/includes/progress.html' %}
     {% endblock %}
-    {% if view.show_instructions|default_if_none:True %}
-        {% include 'global/includes/instruction_toggler.html' %}
+    {% if view.show_instructions_1|default_if_none:False %}
+        {% include 'global/includes/instructions1_modal.html' %}
     {% endif %}
-    {% if view.show_map|default_if_none:True %}
+    {% if view.show_instructions_2|default_if_none:False %}
+        {% include 'global/includes/instructions2_modal.html' %}
+    {% endif %}
+    {% if view.show_map|default_if_none:False %}
         {% include 'global/includes/map_modal.html' %}
     {% endif %}
     <div class="otree-body container my-5">
@@ -101,10 +104,14 @@
         {# get cities data - perhaps from Constants? #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"
                 integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
-        <script >
-        const cities_full = {{ Constants.cities|json }}
-        let cities = _.filter(cities_full, 'lat')
-        cities = _.map(cities, i=>{i.name=i.name.trim().split(' ')[0];return i})
+        <script>
+            const cities_full = {{ Constants.cities|json }}
+                let
+            cities = _.filter(cities_full, 'lat')
+            cities = _.map(cities, i => {
+                i.name = i.name.trim().split(' ')[0];
+                return i
+            })
         </script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key={{ Constants.GOOGLE_API_KEY }}&callback=initMaps">

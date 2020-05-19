@@ -82,7 +82,8 @@ class Average3(FormSetMixin, Page):
 
 ########### BLOCK: INTROPATES ##############################################################
 class IntroStage1(Page):
-    pass
+    show_instructions = True
+    show_map = True
 
 
 class ShowMap(Page):
@@ -108,9 +109,9 @@ class IntroStage2(Page):
 
 
 page_sequence = [
-    Instructions1,
-    Instructions2,
-    CQ1,
+    # Instructions1,
+    # Instructions2,
+    # CQ1,
     ShowMap,
     IntroStage1,
     SenderDecisionP,
