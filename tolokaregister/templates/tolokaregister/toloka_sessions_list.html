@@ -1,0 +1,32 @@
+{% extends "otree/BaseAdmin.html" %}
+
+{% block title %}
+    Toloka sessions
+{% endblock %}
+
+{% block content %}
+    {% if tolokasessions %}
+        <table class="table table-striped table-hover">
+            <thead>
+            <th>Session code:</th>
+            <th>Sandbox:</th>
+
+            </thead>
+            <tbody>
+            {% for tolokasession in tolokasessions %}
+                <tr>
+                    <td>
+                        <a href="{% url 'tolokasession' code=tolokasession.code %}">{{ tolokasession.code }}</a>
+                    </td>
+                    <td>{{ tolokasession.config.toloka_sandbox|default_if_none:False }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">No TOLOKA sessions have taken place yet.</div>
+    {% endif %}
+
+
+{% endblock %}

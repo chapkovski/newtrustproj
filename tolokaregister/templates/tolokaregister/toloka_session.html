@@ -1,0 +1,70 @@
+{% extends "otree/BaseAdmin.html" %}
+
+{% block title %}
+    Toloka session <a href="{% url 'SessionDescription' session.code %}">{{ session.code }}</a>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Code:</th>
+            <th>Label/Assignment id:</th>
+            <th>Bonus:</th>
+            <th></th>
+            <th>Answer:</th>
+            <th>Is correct:</th>
+            <th>Status:</th>
+            <th>Accept:</th>
+            <th>Pay:</th>
+        </tr>
+        </thead>
+
+        {% for participant in participants %}
+            <tr>
+                <td>
+                    {{ participant.code }}
+                </td>
+                <td>
+                    {{ participant.label }}
+                </td>
+                <td>
+                    {{ participant.payoff_in_real_world_currency }}
+                </td>
+                {% with participant.get_tp|default_if_none:False as t %}
+                    {% if  t %}
+                        <td><a href="{% url 'get_toloka_info' participant_pk=participant.id %}">get/update info</a></td>
+                        <td>{{ t.answer }}</td>
+                        <td>{{ t.answer_is_correct|yesno:"Yes,No" }}</td>
+                        <td {% if not t.acceptable %}colspan="2" class="text-center"{% endif %}>{{ t.status }}</td>
+
+                        {% if  t.acceptable %}
+                            <td>
+                                <a href="{% url 'accept_toloka_answer' toloka_participant=t.id %}">Accept</a>
+                            </td>
+                        {% endif %}
+
+                        <td>
+                            {% if t.bonus_paid %}
+                                bonus already paid
+                            {% elif t.payable %}
+                                <a href="{% url 'pay_toloka_bonus' toloka_participant=t.id %}">Pay bonus</a>
+
+                            {% endif %}
+
+                        </td>
+                    {% else %}
+                        <td colspan="6" class="text-center">NO INFO YET <a
+                                href="{% url 'get_toloka_info' participant_pk=participant.id %}">GET INFO</a>
+                        </td>
+                    {% endif %}
+                {% endwith %}
+
+            </tr>
+
+        {% endfor %}
+
+
+    </table>
+
+{% endblock %}

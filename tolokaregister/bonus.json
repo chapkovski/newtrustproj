@@ -1,0 +1,13 @@
+{
+  "user_id": "{{user_id}}",
+  "amount": {{amount}},
+
+  "public_title": {
+    "EN": "Good job!",
+    "RU": "Спасибо!"
+  },
+  "public_message": {
+    "EN": "Thank you for your contribution",
+    "RU": "Благодарим за участие"
+  },
+}
