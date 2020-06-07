@@ -2,6 +2,8 @@
 REAL_HOST = 'https://toloka.yandex.ru'
 SANDBOX_HOST = 'https://sandbox.toloka.yandex.ru'
 DEFAULT_ACCEPT_MSG = 'Thank you!'
+# naive but let's do it:
+
 # we obtain api from settings, there they are obtained from env
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -69,6 +71,11 @@ class TolokaClient:
         """
         return f"{self.host}/api/v1/user-bonuses"
 
+    def get_error_msg(self, resp):
+        return dict(error=True,
+                    error_status=resp.status_code,
+                    error_raw=resp.json())
+
     def request_to_toloka(self, url, method, payload, ):
         headers = self.get_headers()
         if isinstance(payload, dict):
@@ -77,9 +84,12 @@ class TolokaClient:
         response = requests.request(method, url, headers=headers, data=payload)
         print('HEADERs', headers)
         print('URL', url)
-        print("STATUS COE", response.status_code)
+        print("STATUS CODE", response.status_code)
         print("RAW RESP", response.json())
-        return response.json()
+        if 200 <= response.status_code <= 300:
+            return response.json()
+        else:
+            return self.get_error_msg(response)
 
     def get_assignment_info(self, assignment_id):
         """Using assginment id returns a toloka response object"""

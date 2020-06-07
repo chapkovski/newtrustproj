@@ -8,6 +8,7 @@
     <table class="table table-striped table-hover">
         <thead>
         <tr>
+            <th>Id:</th>
             <th>Code:</th>
             <th>Label/Assignment id:</th>
             <th>Bonus:</th>
@@ -22,6 +23,9 @@
 
         {% for participant in participants %}
             <tr>
+                <td>
+                    P{{ participant.id_in_session }}
+                </td>
                 <td>
                     {{ participant.code }}
                 </td>
@@ -47,6 +51,8 @@
                         <td>
                             {% if t.bonus_paid %}
                                 bonus already paid
+                            {% elif participant.payoff_in_real_world_currency == 0 %}
+                                zero bonus
                             {% elif t.payable %}
                                 <a href="{% url 'pay_toloka_bonus' toloka_participant=t.id %}">Pay bonus</a>
 

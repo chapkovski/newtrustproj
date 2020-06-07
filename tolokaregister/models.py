@@ -115,13 +115,16 @@ class TolokaParticipant(models.Model):
     def update_info_from_toloka(self, resp):
         """given a resp from toloka, udpate instance properties. It is far from optimal, but just a bit simpler"""
         print("WHAT WE GET AS RESP?", resp)
-        self.status = resp.status
-        self.info = json.dumps(resp)
-        self.toloka_user_id = resp.user_id
-        if hasattr(resp, 'solutions') and isinstance(resp.solutions, list) and len(resp.solutions) > 0:
-            self.answer = self.process_solutions(resp.solutions)
-            self.answer_is_correct = self.check_answer()
-
+        if not resp.get('error'):
+            self.status = resp.status
+            self.info = json.dumps(resp)
+            self.toloka_user_id = resp.user_id
+            if hasattr(resp, 'solutions') and isinstance(resp.solutions, list) and len(resp.solutions) > 0:
+                self.answer = self.process_solutions(resp.solutions)
+                self.answer_is_correct = self.check_answer()
+        else:
+            self.status = StatusEnum.error.value
+            self.info = json.dumps(resp)
         self.save()
 
     def accept_assignment(self):
