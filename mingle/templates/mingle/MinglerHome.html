@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div>
+        <li class="nav-item"><a class="nav-link" href="{% url 'ExportIndex' %}">Back to oTree</a></li>
+
+    </div>
+    <a href="{% url 'CreateNewMegaSession' %}">Create new megasession</a>
+</div>
+{% if megasessions %}
+    <table class="table table-hover table-striped">
+        {% for m in megasessions %}
+            <tr>
+                <td>Megasession {{ m.id }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% else %}
+    <div>No megasessions yet</div>
+{% endif %}
+</body>
+</html>

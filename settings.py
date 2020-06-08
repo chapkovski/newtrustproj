@@ -100,9 +100,10 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'webpack_loader',
     'questionnaire',  # we need this only because we use generic pages from there.
+    'mingle', # this one is responsible for mingling.
 
 ]
-EXTENSION_APPS = ['trust']
+EXTENSION_APPS = ['trust', 'mingle', 'tolokaregister']
 MIDDLEWARE_CLASSES = ['django.middleware.locale.LocaleMiddleware', ]
 USE_I18N = True
 

@@ -8,5 +8,3 @@ views_to_add = [
 
 
 ]
-urlpatterns = [url(i.url_pattern, i.as_view(), name=i.url_name) for i in views_to_add]
-urlpatterns += [path('admin/', admin.site.urls)]
