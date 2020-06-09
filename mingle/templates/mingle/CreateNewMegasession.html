@@ -6,5 +6,11 @@
 </head>
 <body>
 hello let's create megasession
+
+<form action="{% url 'CreateNewMegaSession' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button>CREATE</button>
+</form>
 </body>
 </html>

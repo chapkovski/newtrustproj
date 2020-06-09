@@ -1,31 +1,22 @@
 import django.forms as forms
-from .models import Player, Decision, Constants
+from .models import MegaSession, MingleSession
 from django.forms import inlineformset_factory
 
 
-
-
-class SorterFormset(forms.BaseInlineFormSet):
-    model = Decision
-
-    def __init__(self, decision_type, *args, **kwargs):
-        self.decision_type = decision_type
-        super().__init__(*args, **kwargs)
+class MingleFormset(forms.BaseInlineFormSet):
+    model = MingleSession
 
     def get_queryset(self):
-        initial_q = self.model.objects.filter(decision_type=self.decision_type, owner=self.instance)
-        asc_order = '' if self.instance.participant.vars.get('city_order') else '-'
-        return initial_q.order_by(f'{asc_order}city__description')
+        print('HWAT??', self.model.objects.filter(wrapper__isnull=True))
+        return self.model.objects.filter(wrapper__isnull=True)
 
 
-def get_player_formset( form=forms.ModelForm):
-    return inlineformset_factory(parent_model=Player,
-                                 model=Decision,
-                                 formset=SorterFormset,
-                                 fields=['answer'],
-                                 extra=0,
-                                 can_delete=False,
-                                 form=form
-                                 )
+class MegaForm(forms.ModelForm):
+    """Form for individual checkbox"""
+    mingles = forms.ModelMultipleChoiceField(
+        queryset=MingleSession.objects.filter(wrapper__isnull=True),
+        widget=forms.CheckboxSelectMultiple)
 
-
+    class Meta:
+        model = MegaSession
+        fields = ['comment']

@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView
 from .models import MegaSession
 from django.urls import reverse_lazy
 
+
 class MinglerHome(TemplateView):
     """Home page for mingler. Contains links to Create new megasession,
     Edit megasession (basically for detach the attached sessions
@@ -17,7 +18,10 @@ class MinglerHome(TemplateView):
         c['megasessions'] = []
         return c
 
-from django.forms.models import inlineformset_factory
+
+from .forms import MegaForm
+from django.http import HttpResponseRedirect
+
 class CreateNewMegaSession(CreateView):
     """Home page for mingler. Contains links to Create new megasession,
     Edit megasession (basically for detach the attached sessions
@@ -26,12 +30,15 @@ class CreateNewMegaSession(CreateView):
     url_name = 'CreateNewMegaSession'
     template_name = 'mingle/CreateNewMegasession.html'
     model = MegaSession
-    form_class = CollectionForm
+    form_class = MegaForm
     success_url = reverse_lazy('mingle_home')
-    def get_context_data(self, **kwargs):
-        data = super(CollectionCreate, self).get_context_data(**kwargs)
-        if self.request.POST:
-            data['titles'] = CollectionTitleFormSet(self.request.POST)
-        else:
-            data['titles'] = CollectionTitleFormSet()
-        return data
+
+    def form_valid(self, form):
+        self.object = form.save()
+        mingles =  form.cleaned_data['mingles']
+        mingles.update(wrapper=self.object)
+        return HttpResponseRedirect(self.get_success_url())
+
+
+
+

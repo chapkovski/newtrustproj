@@ -7,12 +7,14 @@ from django.db import models
 
 class MingleSession(models.Model):
     """1to1 to prevent double mingling"""
-    owner = models.OneToOneField(to=Session, on_delete=models.CASCADE, )
-    wrapper = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='minglesessions')
+    owner = models.OneToOneField(to=Session, on_delete=models.CASCADE, related_name='minglesession')
+    wrapper = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='minglesessions',
+                                null=True, blank=True)
 
 
 class MegaSession(models.Model):
     """Container for all sessions beloning to one mega"""
+    comment = models.CharField(max_length=1000)
 
     def __str__(self):
         return f'Wrapper for {self.minglesessions.all().count()}'
