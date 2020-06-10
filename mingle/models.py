@@ -27,6 +27,12 @@ class MegaSession(models.Model):
         if self.payoff_calculated:
             return
         parts = self.megaparticipants.all()
+        # somewhere here we need to retrieve only those participants who are not dropouts.
+        # then we need to split them into senders and receivers
+        # shuffle both sets
+        # drop the difference between shortest and longests sets to make them equal
+        # and form groups.
+        check_participant_statuses_and_balance()
         assert (parts.count() % 2 == 0, 'Number of participants is odd!')
         parts = list(parts)
         random.shuffle(parts)
@@ -36,13 +42,15 @@ class MegaSession(models.Model):
             for p in g:
                 p.group = newg
                 p.save()
-
-        print('CHUNKED', chunked)
+        self.groups_formed = True
+        self.save()
 
     def calculate_payoffs(self):
         """loop over all groups and make payoff calculations"""
         if self.payoff_calculated:
             return
+        for g in self.megagroups().all():
+            g.set_payoff()
 
 
 class MegaParticipant(models.Model):
@@ -56,10 +64,55 @@ class MegaParticipant(models.Model):
                               null=True,
                               blank=True)
 
+    pseudogroup = models.ForeignKey(to='PseudoGroup',
+                                    on_delete=models.SET_NULL,
+                                    related_name='megaparticipants',
+                                    null=True,
+                                    blank=True)
 
-class MegaGroup(models.Model):
+    @property
+    def matched(self):
+        return self.group is not None
+
+    @property
+    def player(self):
+        return self.owner.trust_player.first()
+
+
+class GeneralGroup(models.Model):
+    class Meta:
+        abstract = True
+
+    def get_player_by_role(self, role):
+        for p in self.megaparticipants.all():
+            if p.player._role == role:
+                return p
+
+
+class MegaGroup(GeneralGroup):
     """links two random participants together to calculate their payoffs.
     Will it contain the code for actual payoff calculations? Seems logical place for that.
     Megagroup is different from a normal oTree group, because the participants can belong to the different oTree sessions,
     the umbrella is megasession."""
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='megagroups')
+
+    def set_payoff(self):
+        """Get roles, calculate payoffs"""
+        pass
+
+
+class PseudoGroup(GeneralGroup):
+    """
+    A wrapper to store unmatched participants with their counterparts.
+    A few notes on what is going on with unmatched participants:
+    First we get all receivers, all senders, and match them. The difference abs(R-S) remain unmatched. Then
+    we pick len(R-S) from matched (from the role that is shortest). and match them into Pseudogroups with unmatched.
+    Thus in each pseudogroup there is matched and unmatched participant.
+    When we calculate payoffs for each group member in PseudoGroup, we update the payoffs of unmatched, because
+    matched participants get their payoffs from their real (Mega) group.
+    """
+    megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='megagroups')
+
+    def set_payoff(self):
+        """Get roles, calculate payoffs"""
+        pass

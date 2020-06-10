@@ -62,7 +62,7 @@ class PlayerBot(Bot):
             cq2wronganswers = {k: v + 1 for k, v in cq2answers.items()}
         yield ShowMap,
         yield IntroStage1,
-        if self.player.role() == 'Sender':
+        if self.player.role() == 'sender':
             yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='answer',
                                                      choice_set=[0, Constants.endowment])
             yield AfterStage1
@@ -89,7 +89,7 @@ class PlayerBot(Bot):
 
         average1_answer = (
             {'sender_confident_return': random.choice(
-                Constants.receiver_choices)} if self.player.role() == 'Sender' else {
+                Constants.receiver_choices)} if self.player.role() == 'sender' else {
                 'receiver_confident_send': random.choice(
                     [0, Constants.endowment])})
         yield Average2, self._create_data(name='averageonsendbeliefs', field_name='average_belief_on_send',

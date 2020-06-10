@@ -38,7 +38,7 @@ class Constants(BaseConstants):
     expanded_receiver_choices = list(zip(receiver_choices, receiver_choices))
     receiver_belief_bonus = 10
     sender_belief_bonuses = {0: 20, 3: 10}
-    roles = {'Sender': 'А', 'Receiver': 'Б'}
+    roles = {'sender': 'А', 'receiver': 'Б'}
     blocked_page_names = ['IntroStage1',
                           'IntroStage2',
                           ]
@@ -72,16 +72,7 @@ class Subsession(BaseSubsession):
     def creating_session(self):
         self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)
 
-        for p in self.get_players():
-            roles = list(Constants.roles.keys())
-            p._role = roles[(p.id_in_subsession - 1) % 2]  # odd numbers become Senders, even numbers become Receivers
-            p.create_decisions()
-            p.create_beliefs()
-            p.create_averages()
-            # randomize city order
 
-            p.participant.vars['city_order'] = random.choice([True, False])
-            p.city_order = p.participant.vars['city_order']
         if self.session.num_participants % 2 != 0:
             raise Exception('Number of participants should be even!')
         for i in settings.CITIES:
@@ -108,10 +99,24 @@ class Group(BaseGroup):
     receiver_decisions_dump = models.LongStringField()
     sender_beliefs_dump = models.LongStringField()
     receiver_beliefs_dump = models.LongStringField()
+    def set_players_params(self):
+        roles = list(Constants.roles.keys())
+        for p in self.get_players():
+            # we correct to the fact that new groups start forming from 2 (1 is first large group for all).
+            #  and taking into account the fact that we now get groups of single players, we just cycle over roles
+            # in formed group - but(!) what if they drop before?!
+            # we  need to assign their roles much much later.
+            p._role = roles[(self.id_in_subsession - 2) % 2]  # odd numbers become Senders, even numbers become Receivers
+            p.create_decisions()
+            p.create_beliefs()
+            p.create_averages()
+            # randomize city order
+            p.participant.vars['city_order'] = random.choice([True, False])
+            p.city_order = p.participant.vars['city_order']
 
     def set_payoffs(self):
-        sender = self.get_player_by_role('Sender')
-        receiver = self.get_player_by_role('Receiver')
+        sender = self.get_player_by_role('sender')
+        receiver = self.get_player_by_role('receiver')
         sender_city = sender.get_city_obj()
         receiver_city = receiver.get_city_obj()
 
@@ -141,8 +146,8 @@ class Group(BaseGroup):
             p.dump_vars()
 
     def dump_extra(self):
-        sender = self.get_player_by_role('Sender')
-        receiver = self.get_player_by_role('Receiver')
+        sender = self.get_player_by_role('sender')
+        receiver = self.get_player_by_role('receiver')
         self.sender_decisions_dump = serialize('json', sender.senderdecisions.all())
         self.receiver_decisions_dump = serialize('json', receiver.returndecisions.all())
         self.sender_beliefs_dump = serialize('json', sender.senderbeliefs.all())
@@ -180,28 +185,28 @@ class Player(CQPlayer):
 
     @property
     def guess(self):
-        if self.role() == 'Sender':
+        if self.role() == 'sender':
             return self.senderbeliefs.get(city=self.other.get_city_obj()).answer
         else:
             return self.returnerbeliefs.get(city=self.other.get_city_obj()).answer
 
     @property
     def guess_desc(self):
-        if self.role() == 'Sender':
+        if self.role() == 'sender':
             return c(self.guess)
         else:
             return 'не передать свою начальную сумму' if self.guess == 0 else 'передать свою начальную сумму'
 
     @property
     def decision(self):
-        if self.role() == 'Sender':
+        if self.role() == 'sender':
             return self.senderdecisions.get(city=self.other.get_city_obj()).answer
         else:
             return self.returndecisions.get(city=self.other.get_city_obj()).answer
 
     @property
     def decision_desc(self):
-        if self.role() == 'Sender':
+        if self.role() == 'sender':
             return 'не передать свою начальную сумму' if self.decision == 0 else 'передать свою начальную сумму'
         else:
             return f'вернуть {c(self.decision)}'
@@ -232,13 +237,13 @@ class Player(CQPlayer):
         return self._role
 
     def create_decisions(self):
-        if self.role() == 'Sender':
+        if self.role() == 'sender':
             self.create_sender_decisions()
         else:
             self.create_receiver_decisions()
 
     def create_beliefs(self):
-        if self.role() == 'Sender':
+        if self.role() == 'sender':
             self.create_sender_beliefs()
         else:
             self.create_receiver_beliefs()

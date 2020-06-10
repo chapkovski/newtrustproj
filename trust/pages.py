@@ -8,6 +8,15 @@ from .forms import (sender_formset, return_formset, returnbelief_formset, sender
                     averagereturnbelief_formset, averagesendbelief_formset)
 
 
+class FirstWP(WaitPage):
+    group_by_arrival_time = True
+
+    def get_players_for_group(self, wp):
+        return [wp[0]]
+
+    after_all_players_arrive = 'set_players_params'
+
+
 class Instructions1(Page):
     show_instructions = False
 
@@ -68,7 +77,7 @@ class CQ2(CQPage):
     def get_form_fields(self) -> List[str]:
         receiver_fields = ['cq2_1', 'cq2_2']
         sender_fields = ['cq2_3', 'cq2_4', 'cq2_5', ]
-        return sender_fields if self.player.role() == 'Sender' else receiver_fields
+        return sender_fields if self.player.role() == 'sender' else receiver_fields
 
 
 ############ END OF: Comprehension questions #############################################################
@@ -95,6 +104,9 @@ class Average3(FormSetMixin, Page):
 class IntroStage1(Page):
     show_instructions = True
     show_map = True
+    def before_next_page(self):
+
+        self.player.assign_role()
 
 
 class ShowMap(Page):
@@ -133,11 +145,12 @@ class IntroStage2(Page):
 
 
 page_sequence = [
+    FirstWP,
     # Instructions1,
     # Instructions2,
     # CQ1,
     # ShowMap,
-    # IntroStage1,
+    IntroStage1,
     # SenderDecisionP,
     # ReturnDecisionP,
     # AfterStage1,

@@ -9,12 +9,12 @@ from .models import Blocker
 class SenderPage(Page):
 
     def is_displayed(self) -> bool:
-        return self.player.role() == 'Sender'
+        return self.player.role() == 'sender'
 
 
 class ReturnerPage(Page):
     def is_displayed(self) -> bool:
-        return self.player.role() != 'Sender'
+        return self.player.role() != 'sender'
 
 
 class FormSetMixin:
