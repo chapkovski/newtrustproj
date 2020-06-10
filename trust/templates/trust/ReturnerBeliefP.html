@@ -19,12 +19,12 @@
     <table class="table table-hover table-stripped table-sm ">
         <thead class="align-top">
         <th class="align-top">
-            {% blocktrans with role=player.other.role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из города
+            {% blocktrans with role=player.other_role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из города
             {% endblocktrans %}
         </th>
 
         <th class="align-top">
-            {% blocktrans with other=player.other.role_desc%}cогласно Вашей оценке, передал ли Вам этот Участник {{ other }} свою начальную сумму или нет?{% endblocktrans %}
+            {% blocktrans with other=player.other_role_desc%}cогласно Вашей оценке, передал ли Вам этот Участник {{ other }} свою начальную сумму или нет?{% endblocktrans %}
 
         </th>
         </thead>

@@ -2,7 +2,7 @@ from otree.api import Currency as c, currency_range
 from typing import Union, List, Any, Optional
 from ._builtin import WaitPage
 from questionnaire.generic_pages import Page
-from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage, BlockerPage
+from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage
 from .models import City
 from .forms import (sender_formset, return_formset, returnbelief_formset, senderbelief_formset,
                     averagereturnbelief_formset, averagesendbelief_formset)
@@ -97,6 +97,11 @@ class Average3(FormSetMixin, Page):
     show_instructions = False
     show_map = True
 
+    def before_next_page(self):
+        """If a person has reached this stage that means we can use him for calculating payoffs of others.
+        Theoretically it would be better to move this logic to toloka code provision, but let's ignore that for now"""
+        self.player.calculable = True
+
 
 ############ END OF: AVERAGES #############################################################
 
@@ -104,15 +109,15 @@ class Average3(FormSetMixin, Page):
 class IntroStage1(Page):
     show_instructions = True
     show_map = True
-    def before_next_page(self):
 
+    def before_next_page(self):
         self.player.assign_role()
 
 
 class ShowMap(Page):
     show_instructions = True
     show_instructions_1 = True
-    show_instructions_2 = True
+
     show_map = True
 
     def vars_for_template(self):
@@ -146,14 +151,14 @@ class IntroStage2(Page):
 
 page_sequence = [
     FirstWP,
-    # Instructions1,
-    # Instructions2,
-    # CQ1,
-    # ShowMap,
+    Instructions1,
+    Instructions2,
+    CQ1,
+    ShowMap,
     IntroStage1,
-    # SenderDecisionP,
-    # ReturnDecisionP,
-    # AfterStage1,
+    SenderDecisionP,
+    ReturnDecisionP,
+    AfterStage1,
     InstructionsStage2,
     ExamplesStage2,
     CQ2,

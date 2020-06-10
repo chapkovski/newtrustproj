@@ -6,6 +6,8 @@ from .models import MingleSession, MegaSession, MegaParticipant, MegaGroup
 
 @receiver(post_save, sender=Session)
 def creating_corresponding_mingle_session(sender, instance, created, **kwargs):
+    """Here insert the logic so only 'right' sessions will have mingle counterparts
+    (those with Trust app, toloka pool id, etc)"""
     if created:
         MingleSession.objects.create(owner=instance)
 

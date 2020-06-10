@@ -4,6 +4,8 @@ Contains models for mingling sessions into larger megasessions, plus some 1to1 t
 from otree.models import Participant, Session
 from django.db import models
 import random
+from trust.models import Constants
+from otree.api import models as omodels
 
 
 class MingleSession(models.Model):
@@ -23,24 +25,37 @@ class MegaSession(models.Model):
         return f'Wrapper for {self.minglesessions.all().count()}'
 
     def form_groups(self):
-        """That takes all megaparticipants and create groups from the randmo pairs"""
+        """That takes all megaparticipants and create groups from the random pairs of Senders and receivers"""
         if self.payoff_calculated:
             return
-        parts = self.megaparticipants.all()
-        # somewhere here we need to retrieve only those participants who are not dropouts.
-        # then we need to split them into senders and receivers
-        # shuffle both sets
-        # drop the difference between shortest and longests sets to make them equal
-        # and form groups.
-        check_participant_statuses_and_balance()
-        assert (parts.count() % 2 == 0, 'Number of participants is odd!')
-        parts = list(parts)
-        random.shuffle(parts)
-        chunked = [parts[i:i + 2] for i in range(0, len(parts), 2)]
-        for g in chunked:
+
+        """somewhere here we need to retrieve only those participants who are not dropouts.
+        then we need to split them into senders and receivers
+        shuffle both sets
+        drop the difference between shortest and longests sets to make them equal
+        and form groups."""
+        calculable = self.megaparticipants.filter(owner__trust_player__calculable=True)
+        receivers = calculable.filter(owner__trust_player___role='receiver')
+        senders = calculable.filter(owner__trust_player___role='sender')
+        if receivers.count() == 0 or senders.count() == 0:
+            raise ValueError('NOT ENOUGH PARTICIPANTS')
+        smallest, largest = sorted([senders, receivers], key=lambda x: x.count())
+        largest = list(largest)
+        smallest = list(smallest)
+        random.shuffle(largest)
+        unmatched = largest[len(smallest):]
+        partners_for_unmatched = random.sample(smallest, len(unmatched))
+        pairs = zip(smallest, largest[:len(smallest)])
+        for g in pairs:
             newg = MegaGroup.objects.create(megasession=self)
             for p in g:
                 p.group = newg
+                p.save()
+        unmatched_pairs = zip(unmatched, partners_for_unmatched)
+        for g in unmatched_pairs:
+            newg = PseudoGroup.objects.create(megasession=self)
+            for p in g:
+                p.pseudogroup = newg
                 p.save()
         self.groups_formed = True
         self.save()
@@ -49,8 +64,12 @@ class MegaSession(models.Model):
         """loop over all groups and make payoff calculations"""
         if self.payoff_calculated:
             return
-        for g in self.megagroups().all():
-            g.set_payoff()
+        for g in self.megagroups.all():
+            g.set_payoffs()
+        for g in self.pseudogroups.all():
+            g.set_payoffs()
+        self.payoff_calculated = True
+        self.save()
 
 
 class MegaParticipant(models.Model):
@@ -78,16 +97,84 @@ class MegaParticipant(models.Model):
     def player(self):
         return self.owner.trust_player.first()
 
+    @property
+    def guess(self):
+        if self.role() == 'sender':
+            return self.senderbeliefs.get(city=self.other.get_city_obj()).answer
+        else:
+            return self.returnerbeliefs.get(city=self.other.get_city_obj()).answer
+
+    @property
+    def decision(self):
+        if self.role() == 'sender':
+            return self.senderdecisions.get(city=self.other.get_city_obj()).answer
+        else:
+            return self.returndecisions.get(city=self.other.get_city_obj()).answer
+
 
 class GeneralGroup(models.Model):
     class Meta:
         abstract = True
 
+    sender_decision_re_receiver = omodels.IntegerField()
+    receiver_decision_re_sender = omodels.IntegerField()
+    sender_belief_re_receiver = omodels.IntegerField()
+    receiver_belief_re_receiver = omodels.IntegerField()
+    receiver_correct_guess = omodels.BooleanField()
+    sender_belief_diff = omodels.IntegerField()
+
     def get_player_by_role(self, role):
         for p in self.megaparticipants.all():
             if p.player._role == role:
-                return p
+                return p.player
 
+    def get_players_for_payoff(self):
+        """by default we only get the participants who are matched, it is overriden in pseudogroup"""
+        return [p.player for p in self.megaparticipants.all()]
+
+    def set_payoffs(self) -> None:
+        """Get roles, calculate payoffs. It can be done more elegantly, I guess, this one is a bit of a mess,
+        but just too tired to figure this out now. The major part of ugliness is because of these fucking
+        pseudogrups that we have to take into account - without them it would be much more concise."""
+        sender = self.get_player_by_role('sender')
+        receiver = self.get_player_by_role('receiver')
+        sender_city = sender.get_city_obj()
+        receiver_city = receiver.get_city_obj()
+
+        def stage1_calculations():
+            """Make ready everything for stage1 payoffs (but does not assign it to users, because
+            we don't know if we need to do it for matched/unmatched participants"""
+            self.sender_decision_re_receiver = sender.senderdecisions.get(city=receiver_city).answer
+            self.receiver_decision_re_sender = receiver.returndecisions.get(city=sender_city).answer
+
+        def stage2_calculations():
+            """Make ready everything for stage2 payoffs (but does not assign it to users, because
+             we don't know if we need to do it for matched/unmatched participants"""
+            self.sender_belief_re_receiver = sender.senderbeliefs.get(city=receiver_city).answer
+            self.receiver_belief_re_receiver = receiver.returnerbeliefs.get(city=sender_city).answer
+            self.receiver_correct_guess = self.receiver_belief_re_receiver == self.sender_decision_re_receiver
+
+            self.sender_belief_diff = abs(self.receiver_decision_re_sender - self.sender_belief_re_receiver)
+
+        stage1_calculations()
+        stage2_calculations()
+        self.save()
+        """So for real (mega) groups we calculate payoffs for both players. 
+        For pseudogroups only for ungrouped ones, and ignore those who are already matched. """
+        for p in self.get_players_for_payoff():
+            has_sender_sent = self.sender_decision_re_receiver != 0
+            if p.role() == 'sender':
+                p.stage1payoff = sender.endowment + (
+                        self.receiver_decision_re_sender - self.sender_decision_re_receiver) * has_sender_sent
+                p.stage2payoff = self.receiver_correct_guess * Constants.receiver_belief_bonus
+
+            else:
+                p.stage1payoff = receiver.endowment + (
+                        self.sender_decision_re_receiver * Constants.coef - self.receiver_decision_re_sender) * has_sender_sent
+                p.stage2payoff = Constants.sender_belief_bonuses.get(self.sender_belief_diff) or 0
+
+            p.payoff = p.stage1payoff + p.stage2payoff
+            p.save()
 
 class MegaGroup(GeneralGroup):
     """links two random participants together to calculate their payoffs.
@@ -95,10 +182,6 @@ class MegaGroup(GeneralGroup):
     Megagroup is different from a normal oTree group, because the participants can belong to the different oTree sessions,
     the umbrella is megasession."""
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='megagroups')
-
-    def set_payoff(self):
-        """Get roles, calculate payoffs"""
-        pass
 
 
 class PseudoGroup(GeneralGroup):
@@ -111,8 +194,8 @@ class PseudoGroup(GeneralGroup):
     When we calculate payoffs for each group member in PseudoGroup, we update the payoffs of unmatched, because
     matched participants get their payoffs from their real (Mega) group.
     """
-    megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='megagroups')
+    megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='pseudogroups')
 
-    def set_payoff(self):
-        """Get roles, calculate payoffs"""
-        pass
+    def get_players_for_payoff(self):
+        """We override this in order not to touch the matched players"""
+        return [p.player for p in self.megaparticipants.all() if not p.matched]

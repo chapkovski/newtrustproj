@@ -11,7 +11,7 @@ from otree.api import (
 from .widgets import OtherRadioSelect
 from django.utils.translation import gettext_lazy as _
 from .widgets import LikertWidget, BlockedCheckbox
-from .fields import MultiBlocker
+
 from django.conf import settings
 
 author = _('Philipp Chapkovski, HSE-Moscow')
@@ -386,9 +386,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    def set_payoff(self):
-        _("""Calculate payoff, which is zero for the survey""")
-        self.payoff = 0
+
 
     # Motivation
     motivation_part1 = models.TextField(

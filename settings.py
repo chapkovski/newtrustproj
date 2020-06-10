@@ -26,7 +26,7 @@ uni_trust = dict(
     app_sequence=[
         # 'sorter',
         'trust',
-        'questionnaire',
+        # 'questionnaire',
         'last'
     ],
 

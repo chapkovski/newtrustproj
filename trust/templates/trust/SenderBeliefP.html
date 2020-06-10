@@ -19,14 +19,14 @@
     <table class="table table-hover table-stripped table-sm ">
         <thead>
         <th class="align-top">
-            {% blocktrans with other=player.other.role_desc %}Если бы Вы передали Вашу начальную сумму Участнику
+            {% blocktrans with other=player.other_role_desc %}Если бы Вы передали Вашу начальную сумму Участнику
                 {{ other }} из города{% endblocktrans %}
 
 
         </th>
 
         <th class="align-top">
-            {% blocktrans with max_return=Constants.max_return other=player.other.role_desc %}то как Вы оцениваете,
+            {% blocktrans with max_return=Constants.max_return other=player.other_role_desc %}то как Вы оцениваете,
                 сколько из {{ max_return }} токенов этот Участник {{ other }} вернул бы Вам
             {% endblocktrans %}
 

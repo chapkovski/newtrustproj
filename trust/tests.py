@@ -67,10 +67,12 @@ class PlayerBot(Bot):
                                                      choice_set=[0, Constants.endowment])
             yield AfterStage1
             yield InstructionsStage2
+            yield ExamplesStage2
             if self.session.config.get('cq'):
-
+                sender_fields = ['cq2_3', 'cq2_4', 'cq2_5', ]
+                to_answer = {k:v for k,v in cq2answers.items() if k in sender_fields}
                 # yield SubmissionMustFail(CQ2, cq2wronganswers)
-                yield CQ2, cq2answers
+                yield CQ2, to_answer
             yield IntroStage2
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
                                                    choice_set=Constants.receiver_choices)
@@ -79,10 +81,13 @@ class PlayerBot(Bot):
                                                      choice_set=Constants.receiver_choices)
             yield AfterStage1
             yield InstructionsStage2
+            yield ExamplesStage2
             if self.session.config.get('cq'):
-
+                receiver_fields = ['cq2_1', 'cq2_2']
+                to_answer = {k: v for k, v in cq2answers.items() if k in receiver_fields}
                 # yield SubmissionMustFail(CQ2,cq2wronganswers)
-                yield CQ2, cq2answers
+                yield CQ2, to_answer
+
             yield IntroStage2
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
