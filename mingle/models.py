@@ -17,6 +17,9 @@ class MingleSession(models.Model):
 
 class MegaSession(models.Model):
     """Container for all sessions belonging to one mega. It is also container for participants and megagroups."""
+    # TODO: add created_at, updated_at fields everywhere
+    # created_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(auto_now=True)
     comment = models.CharField(max_length=1000, null=True, blank=True)
     payoff_calculated = models.BooleanField(default=False)
     groups_formed = models.BooleanField(default=False)
@@ -89,6 +92,9 @@ class MegaParticipant(models.Model):
                                     null=True,
                                     blank=True)
 
+    def __str__(self):
+        return f'Megaparticipant {self.owner.code}'
+
     @property
     def matched(self):
         return self.group is not None
@@ -97,19 +103,35 @@ class MegaParticipant(models.Model):
     def player(self):
         return self.owner.trust_player.first()
 
+    def get_another(self, group):
+        return group.megaparticipants.exclude(id=self.id).first()
+
+    def group_partner(self):
+        """this one will return partner for those who are matched in groups or groups AND pseudogrups.
+        for those who are only in pseudogroups will return their pseudogrup partner.
+        """
+        if self.group:
+            return self.get_another(self.group)
+        if self.pseudogroup:
+            return self.get_another(self.pseudogroup)
+
+    @property
+    def other_city(self):
+        return self.group_partner().player.city
+
     @property
     def guess(self):
-        if self.role() == 'sender':
-            return self.senderbeliefs.get(city=self.other.get_city_obj()).answer
+        if self.player.role() == 'sender':
+            return self.player.senderbeliefs.get(city=self.other_city).answer
         else:
-            return self.returnerbeliefs.get(city=self.other.get_city_obj()).answer
+            return self.player.returnerbeliefs.get(city=self.other_city).answer
 
     @property
     def decision(self):
-        if self.role() == 'sender':
-            return self.senderdecisions.get(city=self.other.get_city_obj()).answer
+        if self.player.role() == 'sender':
+            return self.player.senderdecisions.get(city=self.other_city).answer
         else:
-            return self.returndecisions.get(city=self.other.get_city_obj()).answer
+            return self.player.returndecisions.get(city=self.other_city).answer
 
 
 class GeneralGroup(models.Model):
@@ -175,6 +197,7 @@ class GeneralGroup(models.Model):
 
             p.payoff = p.stage1payoff + p.stage2payoff
             p.save()
+
 
 class MegaGroup(GeneralGroup):
     """links two random participants together to calculate their payoffs.
