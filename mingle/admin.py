@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.apps import apps
 from otree.models import Participant, Session
-from .models import MegaSession, MingleSession, MegaParticipant
+from .models import (MegaSession, MingleSession, MegaParticipant,
+                     MegaGroup, PseudoGroup)
 from django.utils.html import format_html
 from django.shortcuts import resolve_url
 from django.contrib.admin.templatetags.admin_urls import admin_urlname
@@ -79,3 +80,36 @@ class MSSessionInline(admin.TabularInline):
 @admin.register(MegaSession)
 class MSAdmin(admin.ModelAdmin):
     fields = ['comment', 'payoff_calculated', 'groups_formed']
+
+
+class GGAdmin(admin.ModelAdmin):
+    list_display = ['link', 'sender', 'receiver']
+    list_display_links = ['link']
+
+    def link(self, instance):
+        return f'Group id {instance.id}'
+
+    def role_player(self, instance, role):
+        p = instance.get_player_by_role(role).participant
+        m = p.megaparticipant
+        url = resolve_url(admin_urlname(MegaParticipant._meta, 'change'), m.id)
+        name = p.code
+        if m.group is None:
+            name += ' (ungrouped)'
+        return format_html('<a href="{url}">{name}</a>'.format(url=url, name=name))
+
+    def sender(self, instance):
+        return self.role_player(instance, 'sender')
+
+    def receiver(self, instance):
+        return self.role_player(instance, 'receiver')
+
+
+@admin.register(MegaGroup)
+class MGAdmin(GGAdmin):
+    pass
+
+
+@admin.register(PseudoGroup)
+class PGAdmin(GGAdmin):
+    pass
