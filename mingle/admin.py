@@ -78,8 +78,4 @@ class MSSessionInline(admin.TabularInline):
 
 @admin.register(MegaSession)
 class MSAdmin(admin.ModelAdmin):
-    fields = ['comment']
-    list_display = ['id', 'comment']
-    inlines = [
-        MSSessionInline,
-    ]
+    fields = ['comment', 'payoff_calculated', 'groups_formed']

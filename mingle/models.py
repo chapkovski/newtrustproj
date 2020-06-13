@@ -175,7 +175,6 @@ class GeneralGroup(models.Model):
             self.sender_belief_re_receiver = sender.senderbeliefs.get(city=receiver_city).answer
             self.receiver_belief_re_receiver = receiver.returnerbeliefs.get(city=sender_city).answer
             self.receiver_correct_guess = self.receiver_belief_re_receiver == self.sender_decision_re_receiver
-
             self.sender_belief_diff = abs(self.receiver_decision_re_sender - self.sender_belief_re_receiver)
 
         stage1_calculations()
@@ -188,12 +187,13 @@ class GeneralGroup(models.Model):
             if p.role() == 'sender':
                 p.stage1payoff = sender.endowment + (
                         self.receiver_decision_re_sender - self.sender_decision_re_receiver) * has_sender_sent
-                p.stage2payoff = self.receiver_correct_guess * Constants.receiver_belief_bonus
+                p.stage2payoff = Constants.sender_belief_bonuses.get(self.sender_belief_diff) or 0
 
             else:
                 p.stage1payoff = receiver.endowment + (
                         self.sender_decision_re_receiver * Constants.coef - self.receiver_decision_re_sender) * has_sender_sent
-                p.stage2payoff = Constants.sender_belief_bonuses.get(self.sender_belief_diff) or 0
+                p.stage2payoff = self.receiver_correct_guess * Constants.receiver_belief_bonus
+
 
             p.payoff = p.stage1payoff + p.stage2payoff
             p.save()
