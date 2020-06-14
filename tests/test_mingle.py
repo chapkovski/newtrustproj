@@ -37,5 +37,6 @@ class AnimalTestCase(TestCase):
         print(MegaParticipant.objects.all().count())
 
         m.form_groups()
+        print('MMMM', m.megagroups.all().count())
         # m.calculate_payoffs()
 
