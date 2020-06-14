@@ -34,7 +34,9 @@ class CreateNewMegaSession(CreateView):
     model = MegaSession
     form_class = MegaForm
     success_url = reverse_lazy('mingle_home')
-
+    def post(self, request, *args, **kwargs):
+        print('POST', request.POST)
+        return super().post(request, *args, **kwargs)
     def form_valid(self, form):
         self.object = form.save()
         mingles = form.cleaned_data['mingles']

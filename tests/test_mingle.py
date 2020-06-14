@@ -5,11 +5,18 @@ from otree.models import Session, Participant
 from trust.models import Player, Decision, Constants
 from django.db.models import F
 import random
+from django.urls import reverse
 
 
 class AnimalTestCase(TestCase):
     def setUp(self):
         MegaSession.objects.create(comment="lion")
+
+    def TestCreateSession(self):
+        """Testing how new megaession is created via view"""
+        mingles = MingleSession.objects.all().values_list('id', flat=True)
+        response = self.client.post(reverse('CreateNewMegaSession'), dict(mingles=mingles))
+        print(response, "RESPONSE ")
 
     def test_animals_can_speak(self):
         """Animals that can speak are correctly identified"""
@@ -24,11 +31,12 @@ class AnimalTestCase(TestCase):
                 modified_session_config_fields=dict(city_code=x)
             ) for x in cities]
 
-        m = MegaSession.objects.create()
-        MingleSession.objects.all().update(megasession=m)
-        parts = Participant.objects.filter(session__in=sessions)
-        megapars = [MegaParticipant(owner=i, megasession=m) for i in parts]
-        MegaParticipant.objects.bulk_create(megapars)
+        self.TestCreateSession()
+        m = MegaSession.objects.all().first()
+        # MingleSession.objects.all().update(megasession=m)
+        # parts = Participant.objects.filter(session__in=sessions)
+        # megapars = [MegaParticipant(owner=i, megasession=m) for i in parts]
+        # MegaParticipant.objects.bulk_create(megapars)
         tps = Player.objects.filter(session__in=sessions)
         tps.update(calculable=True)
         tps = Player.objects.filter(session__in=sessions)
