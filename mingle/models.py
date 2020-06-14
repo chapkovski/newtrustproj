@@ -23,7 +23,8 @@ class MegaSession(models.Model):
     comment = models.CharField(max_length=1000, null=True, blank=True)
     payoff_calculated = models.BooleanField(default=False)
     groups_formed = models.BooleanField(default=False)
-
+    def speak(self):
+        return f'comment {self.comment}'
     def __str__(self):
         return f'Wrapper for {self.minglesessions.all().count()}'
 

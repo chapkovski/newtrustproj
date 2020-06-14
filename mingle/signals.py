@@ -1,6 +1,6 @@
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from otree.models import Session
+from otree.models import Session, Participant
 from .models import MingleSession, MegaSession, MegaParticipant, MegaGroup
 
 
@@ -12,11 +12,15 @@ def creating_corresponding_mingle_session(sender, instance, created, **kwargs):
         MingleSession.objects.create(owner=instance)
 
 
+
 @receiver(post_save, sender=MingleSession)
-def monitoring_mingle_sessions(sender, instance, **kwargs):
+def monitoring_mingle_sessions(sender, instance, created, **kwargs):
     """Monitoring changes in mingle session belonging and delete empty
     megasessions which have not mingle sessions in it"""
     MegaSession.objects.filter(minglesessions__isnull=True).delete()
+
+
+
 
 
 @receiver(post_save, sender=MegaParticipant)
@@ -24,5 +28,3 @@ def cleaning_empty_groups(sender, instance, **kwargs):
     """Monitoring changes in megaparticipants belonging and delete empty
         megagroups which have no participants."""
     MegaGroup.objects.filter(megaparticipants__isnull=True).delete()
-
-

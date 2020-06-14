@@ -49,6 +49,7 @@ class CreateNewMegaSession(CreateView):
 
         participants = Participant.objects.filter(session__in=owners)
         megapars = [MegaParticipant(owner=i, megasession=self.object) for i in participants]
+
         MegaParticipant.objects.bulk_create(megapars)
         return HttpResponseRedirect(self.get_success_url())
 
