@@ -8,25 +8,37 @@ from trust.models import Constants
 from otree.api import models as omodels
 
 
-class MingleSession(models.Model):
+class TrackerModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class MingleSession(TrackerModel):
     """1to1 to prevent double mingling. This is basically the linkage between otree sessions and megasessions"""
     owner = models.OneToOneField(to=Session, on_delete=models.CASCADE, related_name='minglesession')
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.SET_NULL, related_name='minglesessions',
                                     null=True, blank=True)
 
 
-class MegaSession(models.Model):
+class MegaSession(TrackerModel):
     """Container for all sessions belonging to one mega. It is also container for participants and megagroups."""
     # TODO: add created_at, updated_at fields everywhere
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
+
     comment = models.CharField(max_length=1000, null=True, blank=True)
     payoff_calculated = models.BooleanField(default=False)
     groups_formed = models.BooleanField(default=False)
-    def speak(self):
-        return f'comment {self.comment}'
+
     def __str__(self):
         return f'Wrapper for {self.minglesessions.all().count()}'
+
+    @property
+    def deletable(self):
+        if self.payoff_calculated:
+            return False
+        return True
 
     def form_groups(self):
         """That takes all megaparticipants and create groups from the random pairs of Senders and receivers"""
@@ -76,10 +88,11 @@ class MegaSession(models.Model):
         self.save()
 
 
-class MegaParticipant(models.Model):
+class MegaParticipant(TrackerModel):
     """1to1 link to participant for freezing those whose payoffs were calculated.
     Not really necessary but maybe convenient for future extensions, since we can't interfere to Participant model"""
     owner = models.OneToOneField(to=Participant, on_delete=models.CASCADE, )
+
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='megaparticipants')
     group = models.ForeignKey(to='MegaGroup',
                               on_delete=models.SET_NULL,
@@ -135,7 +148,7 @@ class MegaParticipant(models.Model):
             return self.player.returndecisions.get(city=self.other_city).answer
 
 
-class GeneralGroup(models.Model):
+class GeneralGroup(TrackerModel):
     class Meta:
         abstract = True
 
@@ -194,7 +207,6 @@ class GeneralGroup(models.Model):
                 p.stage1payoff = receiver.endowment + (
                         self.sender_decision_re_receiver * Constants.coef - self.receiver_decision_re_sender) * has_sender_sent
                 p.stage2payoff = self.receiver_correct_guess * Constants.receiver_belief_bonus
-
 
             p.payoff = p.stage1payoff + p.stage2payoff
             p.save()

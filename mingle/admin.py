@@ -82,6 +82,15 @@ class MSAdmin(admin.ModelAdmin):
     fields = ['comment', 'payoff_calculated', 'groups_formed']
 
 
+@admin.register(MingleSession)
+class MingleAdmin(admin.ModelAdmin):
+    list_display = ['owner_code', 'megasession', 'created_at', 'updated_at']
+    list_display_links = ['owner_code', 'megasession', 'created_at', 'updated_at']
+
+    def owner_code(self, instance):
+        return instance.owner.code
+
+
 class GGAdmin(admin.ModelAdmin):
     list_display = ['link', 'sender', 'receiver']
     list_display_links = ['link']

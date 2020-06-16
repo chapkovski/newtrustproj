@@ -1,0 +1,22 @@
+{% extends 'mingle/MinglerBase.html' %}
+{% block content %}
+    Let's do smoething with this megasession
+
+    <div>
+        <button class="btn btn-lg btn-success">Create groups</button>
+    </div>
+    <div>
+        <button class="btn btn-lg btn-danger">Calculate payoffs</button>
+    </div>
+    <table class="table table-hover table-striped">
+        {% for foo in object.minglesessions.all %}
+            <tr>
+                <td>{{ foo.id }}</td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+{% endblock %}
+

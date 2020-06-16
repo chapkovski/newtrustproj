@@ -1,8 +1,9 @@
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic import TemplateView, DetailView
+from django.views.generic.edit import CreateView, DeleteView
 from .models import MegaSession, MegaParticipant
 from django.urls import reverse_lazy
 from otree.models import Participant
+from django.contrib import messages
 
 
 class MinglerHome(TemplateView):
@@ -16,7 +17,7 @@ class MinglerHome(TemplateView):
 
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
-        c['megasessions'] = []
+        c['megasessions'] = MegaSession.objects.all()
         return c
 
 
@@ -25,8 +26,8 @@ from django.http import HttpResponseRedirect
 
 
 class CreateNewMegaSession(CreateView):
-    """Home page for mingler. Contains links to Create new megasession,
-    Edit megasession (basically for detach the attached sessions
+    """
+    Creating new megasession out of unattached minglesessions
     """
     url_pattern = 'mingle/megasession/create'
     url_name = 'CreateNewMegaSession'
@@ -34,9 +35,7 @@ class CreateNewMegaSession(CreateView):
     model = MegaSession
     form_class = MegaForm
     success_url = reverse_lazy('mingle_home')
-    def post(self, request, *args, **kwargs):
-        print('POST', request.POST)
-        return super().post(request, *args, **kwargs)
+
     def form_valid(self, form):
         self.object = form.save()
         mingles = form.cleaned_data['mingles']
@@ -56,3 +55,26 @@ class CreateNewMegaSession(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
+class MegaSessionDetail(DetailView):
+    url_pattern = 'mingle/megasession/detail/<pk>'
+    url_name = 'MegaSessionDetail'
+    template_name = 'mingle/MegaSessionDetail.html'
+    model = MegaSession
+    http_method_names = ['get']
+    success_url = reverse_lazy('mingle_home')
+
+
+
+
+class DeleteMegaSession(DeleteView):
+    url_pattern = 'mingle/megasession/delete/<pk>'
+    url_name = 'DeleteMegaSession'
+    template_name = 'mingle/DeleteMegasession.html'
+    model = MegaSession
+    success_url = reverse_lazy('mingle_home')
+
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object(self.get_queryset())
+        if not instance.deletable:
+            messages.error(request, 'Cannot delete this megasession!', extra_tags='alert alert-danger')
+            return HttpResponseRedirect(self.success_url)

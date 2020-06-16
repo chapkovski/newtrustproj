@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Let's do smoething with this megasession
+
+<div>
+    <button class="btn btn-lg">Create groups</button>
+</div>
+<div>
+    <button class="btn btn-lg">Calculate payoffs</button>
+</div>
+{% if form %}
+
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button>CREATE</button>
+    </form>
+{% endif %}
+</body>
+</html>

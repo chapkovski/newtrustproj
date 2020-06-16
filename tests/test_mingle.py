@@ -20,8 +20,7 @@ class AnimalTestCase(TestCase):
 
     def test_animals_can_speak(self):
         """Animals that can speak are correctly identified"""
-        lion = MegaSession.objects.get(comment="lion")
-        self.assertEqual(lion.speak(), 'comment lion')
+
         print(f'TOTSESSIONS: {Session.objects.all().count()}')
         cities = [(f"{x:02d}") for x in range(1, 13)]
         sessions = [
