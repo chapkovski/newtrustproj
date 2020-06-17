@@ -69,7 +69,7 @@ class MegaSessionDetail(DetailView):
 class DeleteMegaSession(DeleteView):
     url_pattern = 'mingle/megasession/delete/<pk>'
     url_name = 'DeleteMegaSession'
-    template_name = 'mingle/DeleteMegasession.html'
+    template_name = 'mingle/MegaSessionDeleteConfirm.html'
     model = MegaSession
     success_url = reverse_lazy('mingle_home')
 
@@ -78,3 +78,4 @@ class DeleteMegaSession(DeleteView):
         if not instance.deletable:
             messages.error(request, 'Cannot delete this megasession!', extra_tags='alert alert-danger')
             return HttpResponseRedirect(self.success_url)
+        return super().get(self,request,*args, **kwargs)
