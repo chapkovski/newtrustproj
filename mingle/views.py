@@ -21,8 +21,9 @@ class MinglerHome(TemplateView):
         return c
 
 
-from .forms import MegaForm
+from .forms import MegaForm, MingleFormSet
 from django.http import HttpResponseRedirect
+from .models import MingleSession
 
 
 class CreateNewMegaSession(CreateView):
@@ -35,23 +36,46 @@ class CreateNewMegaSession(CreateView):
     model = MegaSession
     form_class = MegaForm
     success_url = reverse_lazy('mingle_home')
+    # def get(self, request, *args, **kwargs):
+    #     # TODO if no free minglesessions - reutrn back with message
+    #     if not - just render normally
+    #     request, *args, ** kwargs
+    def get_formset(self):
+        return MingleFormSet(form_kwargs=dict(owner=self.object),
+                             queryset=MingleSession.objects.filter(megasession__isnull=True)
+                             )
+
+    def get_context_data(self, **kwargs):
+        r = super().get_context_data(**kwargs)
+
+        r['formset'] = self.get_formset()
+        return r
 
     def form_valid(self, form):
         self.object = form.save()
-        mingles = form.cleaned_data['mingles']
-        owners = [i.owner for i in mingles]
-        mingles_to_update = mingles.update(megasession=self.object)
-
-        # we need to get all participants that belong to owner sessions, and create corresposponding
-        # megaparticipants. Should we allow to detach a specific session from megasession? It seems it's
-        # easier just to let them delete megasessions, and thus all megaparticipants and megagroups will be
-        # deleted as well. (In deletion we need to check that payoffs have not been yet formed, and if yes we should
-        # block the deletion. (using pre_delete signal apparently).
-
-        participants = Participant.objects.filter(session__in=owners)
-        megapars = [MegaParticipant(owner=i, megasession=self.object) for i in participants]
-
-        MegaParticipant.objects.bulk_create(megapars)
+        formset = MingleFormSet(self.request.POST, form_kwargs=dict(owner=self.object),
+                                queryset=MingleSession.objects.filter(megasession__isnull=True)
+                                )
+        print(formset.is_valid(), 'VALID??')
+        print(formset.errors, 'errors')
+        if formset.is_valid():
+            formset.save()
+        # print(formset.is_valid(), 'VALID??')
+        #
+        # mingles = form.cleaned_data['mingles']
+        # owners = [i.owner for i in mingles]
+        # mingles_to_update = mingles.update(megasession=self.object)
+        #
+        # # we need to get all participants that belong to owner sessions, and create corresposponding
+        # # megaparticipants. Should we allow to detach a specific session from megasession? It seems it's
+        # # easier just to let them delete megasessions, and thus all megaparticipants and megagroups will be
+        # # deleted as well. (In deletion we need to check that payoffs have not been yet formed, and if yes we should
+        # # block the deletion. (using pre_delete signal apparently).
+        #
+        # participants = Participant.objects.filter(session__in=owners)
+        # megapars = [MegaParticipant(owner=i, megasession=self.object) for i in participants]
+        #
+        # MegaParticipant.objects.bulk_create(megapars)
         return HttpResponseRedirect(self.get_success_url())
 
 
@@ -62,8 +86,6 @@ class MegaSessionDetail(DetailView):
     model = MegaSession
     http_method_names = ['get']
     success_url = reverse_lazy('mingle_home')
-
-
 
 
 class DeleteMegaSession(DeleteView):
@@ -78,4 +100,4 @@ class DeleteMegaSession(DeleteView):
         if not instance.deletable:
             messages.error(request, 'Cannot delete this megasession!', extra_tags='alert alert-danger')
             return HttpResponseRedirect(self.success_url)
-        return super().get(self,request,*args, **kwargs)
+        return super().get(self, request, *args, **kwargs)
