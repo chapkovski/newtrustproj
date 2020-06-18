@@ -36,12 +36,23 @@ class CreateNewMegaSession(CreateView):
     model = MegaSession
     form_class = MegaForm
     success_url = reverse_lazy('mingle_home')
-    # def get(self, request, *args, **kwargs):
-    #     # TODO if no free minglesessions - reutrn back with message
-    #     if not - just render normally
-    #     request, *args, ** kwargs
-    def get_formset(self):
-        return MingleFormSet(form_kwargs=dict(owner=self.object),
+
+    def get(self, request, *args, **kwargs):
+        q = MingleSession.objects.filter(megasession__isnull=True).exists()
+        if not q:
+            messages.error(request,
+                           """
+                           Cannot create new megasession: all sessions are already members of other megasessions! 
+                           Either wait till new data is added or delete existing megasessions.
+                           """,
+                           extra_tags='alert alert-danger')
+            return HttpResponseRedirect(self.success_url)
+        return super().get(request, *args, ** kwargs)
+
+
+
+    def get_formset(self, post_data=None):
+        return MingleFormSet(data=post_data, form_kwargs=dict(owner=self.object),
                              queryset=MingleSession.objects.filter(megasession__isnull=True)
                              )
 
@@ -52,14 +63,16 @@ class CreateNewMegaSession(CreateView):
         return r
 
     def form_valid(self, form):
-        self.object = form.save()
-        formset = MingleFormSet(self.request.POST, form_kwargs=dict(owner=self.object),
-                                queryset=MingleSession.objects.filter(megasession__isnull=True)
-                                )
-        print(formset.is_valid(), 'VALID??')
-        print(formset.errors, 'errors')
+        self.object = form.save(commit=False)
+        formset = self.get_formset(post_data=self.request.POST)
+
         if formset.is_valid():
+            form.save(commit=True)
+            formset = self.get_formset(post_data=self.request.POST)
             formset.save()
+        else:
+            form.add_error(None, "Please select at least one session")
+            return self.form_invalid(form)
         # print(formset.is_valid(), 'VALID??')
         #
         # mingles = form.cleaned_data['mingles']

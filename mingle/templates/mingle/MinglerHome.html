@@ -16,7 +16,7 @@
                         <a href="{% url 'MegaSessionDetail' pk=m.id %}">
                             Megasession {{ m.id }}
                         </a>
-                        <a href="{% url 'DeleteMegaSession' pk=m.id %}">Delete</a>
+                        <a role="button" class="btn btn-outline-danger" href="{% url 'DeleteMegaSession' pk=m.id %}">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
