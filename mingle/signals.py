@@ -15,9 +15,19 @@ def creating_corresponding_mingle_session(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=MingleSession)
 def monitoring_mingle_sessions(sender, instance, created, **kwargs):
+
     """Monitoring changes in mingle session belonging and delete empty
     megasessions which have not mingle sessions in it"""
     MegaSession.objects.filter(minglesessions__isnull=True).delete()
+    """for any change in mingle session we check - if a megaparticipant for the 
+    owner exists. Is it a safe way? if megaparticipant for participant already exists then 
+    it can cause an error. On the other hand we may clean all existing megaparticipants?
+    but what if they are already the part  of some megagroups?
+    """
+    participants = Participant.objects.filter(session=instance.owner)
+    megapars = [MegaParticipant(owner=i, megasession=instance.megasession) for i in participants]
+    MegaParticipant.objects.bulk_create(megapars)
+
 
 
 
