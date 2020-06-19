@@ -9,6 +9,7 @@
                     <td>{{ f.instance.id }}</td>
                     <td>{{ f.instance.created_at }}</td>
                     <td>{{ f.instance.owner.code }}</td>
+                    <td>{{ f.instance.owner.num_participants }}</td>
                     <td>{{ f.instance.owner.config.city_code }}</td>
                     {% for field in f %}
                         <td>{{ field }}</td>

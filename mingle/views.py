@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView, RedirectView
 from django.views.generic.edit import CreateView, DeleteView
 from .models import MegaSession, MegaParticipant
 from django.urls import reverse_lazy
@@ -47,9 +47,7 @@ class CreateNewMegaSession(CreateView):
                            """,
                            extra_tags='alert alert-danger')
             return HttpResponseRedirect(self.success_url)
-        return super().get(request, *args, ** kwargs)
-
-
+        return super().get(request, *args, **kwargs)
 
     def get_formset(self, post_data=None):
         return MingleFormSet(data=post_data, form_kwargs=dict(owner=self.object),
@@ -73,32 +71,62 @@ class CreateNewMegaSession(CreateView):
         else:
             form.add_error(None, "Please select at least one session")
             return self.form_invalid(form)
-        # print(formset.is_valid(), 'VALID??')
-        #
-        # mingles = form.cleaned_data['mingles']
-        # owners = [i.owner for i in mingles]
-        # mingles_to_update = mingles.update(megasession=self.object)
-        #
-        # # we need to get all participants that belong to owner sessions, and create corresposponding
-        # # megaparticipants. Should we allow to detach a specific session from megasession? It seems it's
-        # # easier just to let them delete megasessions, and thus all megaparticipants and megagroups will be
-        # # deleted as well. (In deletion we need to check that payoffs have not been yet formed, and if yes we should
-        # # block the deletion. (using pre_delete signal apparently).
-        #
-        # participants = Participant.objects.filter(session__in=owners)
-        # megapars = [MegaParticipant(owner=i, megasession=self.object) for i in participants]
-        #
-        # MegaParticipant.objects.bulk_create(megapars)
+
         return HttpResponseRedirect(self.get_success_url())
 
 
-class MegaSessionDetail(DetailView):
-    url_pattern = 'mingle/megasession/detail/<pk>'
+class MegaSessionMixin:
+    def get_megasession(self):
+        pk = self.kwargs.get('pk')
+        megasession = MegaSession.objects.get(id=pk)
+        return megasession
+
+
+class MegaSessionDetail(MegaSessionMixin, ListView):
+    url_pattern = 'mingle/megasession/detail/<int:pk>'
     url_name = 'MegaSessionDetail'
     template_name = 'mingle/MegaSessionDetail.html'
-    model = MegaSession
+    context_object_name = 'mparticipants'
     http_method_names = ['get']
     success_url = reverse_lazy('mingle_home')
+    paginate_by = 50
+
+    def get_context_data(self, *args, **kwargs):
+        r = super().get_context_data(*args, **kwargs)
+        r['megasession'] = self.get_megasession()
+        return r
+
+    def get_queryset(self):
+        return MegaParticipant.objects.filter(megasession=self.get_megasession())
+
+
+class TurnBackToMegaSession(MegaSessionMixin, RedirectView):
+    pattern_name = 'MegaSessionDetail'
+
+    def do_something(self):
+        pass
+
+    def get_redirect_url(self, *args, **kwargs):
+        self.do_something()
+        return super().get_redirect_url(*args, **kwargs)
+
+
+class CreateGroupsView(TurnBackToMegaSession):
+    url_pattern = 'mingle/megasession/creategroups/<int:pk>'
+    url_name = 'mega_create_groups'
+
+    def do_something(self):
+        m = self.get_megasession()
+        m.form_groups()
+
+
+class CalculatePayoffsView(TurnBackToMegaSession):
+    url_pattern = 'mingle/megasession/calculatepayoffs/<int:pk>'
+    url_name = 'mega_calculate_payoffs'
+
+    def do_something(self):
+        m = self.get_megasession()
+        m.calculate_payoffs()
 
 
 class DeleteMegaSession(DeleteView):

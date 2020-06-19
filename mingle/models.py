@@ -106,6 +106,18 @@ class MegaParticipant(TrackerModel):
                                     null=True,
                                     blank=True)
 
+    @property
+    def pseudogrouped(self):
+        return self.pseudogroup and not self.group
+
+    @property
+    def grouped(self):
+        return self.pseudogroup or self.group
+
+    @property
+    def realgroup(self):
+        return self.pseudogroup if self.pseudogrouped else self.group
+
     def __str__(self):
         return f'Megaparticipant {self.owner.code}'
 
@@ -116,6 +128,11 @@ class MegaParticipant(TrackerModel):
     @property
     def player(self):
         return self.owner.trust_player.first()
+
+    @property
+    def role(self):
+        """just for template rendering"""
+        return self.player._role
 
     def get_another(self, group):
         return group.megaparticipants.exclude(id=self.id).first()

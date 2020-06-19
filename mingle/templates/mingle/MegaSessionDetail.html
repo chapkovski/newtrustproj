@@ -3,20 +3,47 @@
     Let's do smoething with this megasession
 
     <div>
-        <button class="btn btn-lg btn-success">Create groups</button>
+        <a href='{% url 'mega_create_groups' pk=megasession.id %}' role='button' class="btn btn-lg btn-success">Create
+            groups</a>
     </div>
     <div>
-        <button class="btn btn-lg btn-danger">Calculate payoffs</button>
+        <a href='{% url 'mega_calculate_payoffs' pk=megasession.id %}' role='button' class="btn btn-lg btn-danger">Calculate
+            payoffs</a>
     </div>
-    <table class="table table-hover table-striped">
-        {% for foo in object.minglesessions.all %}
-            <tr>
-                <td>{{ foo.id }}</td>
-            </tr>
 
+    <hr>
+    <table class="table">
+        {% for f in mparticipants %}
+            <tr>
+                <td>{{ f.owner.session.code }}</td>
+                <td>{{ f.realgroup }}</td>
+                <td>{{ f.pseudogrouped }}</td>
+                <td>{{ f.role }}</td>
+                <td>{{ f.owner.payoff }}</td>
+                <td>{{ f.player.city.description }}</td>
+                <td>{{ f.other_city.description }}</td>
+            </tr>
         {% endfor %}
 
     </table>
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
 
 {% endblock %}
 
