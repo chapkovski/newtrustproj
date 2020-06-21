@@ -4,7 +4,7 @@ Contains models for mingling sessions into larger megasessions, plus some 1to1 t
 from otree.models import Participant, Session
 from django.db import models
 import random
-from trust.models import Constants
+from trust.models import Constants, City
 from otree.api import models as omodels
 
 
@@ -21,6 +21,7 @@ class MingleSession(TrackerModel):
     owner = models.OneToOneField(to=Session, on_delete=models.CASCADE, related_name='minglesession')
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.SET_NULL, related_name='minglesessions',
                                     null=True, blank=True)
+    city = models.ForeignKey(to=City, on_delete=models.CASCADE, )
 
 
 class MegaSession(TrackerModel):
@@ -80,19 +81,28 @@ class MegaSession(TrackerModel):
         """loop over all groups and make payoff calculations"""
         if self.payoff_calculated:
             return
-        for g in self.megagroups.all():
-            g.set_payoffs()
-        for g in self.pseudogroups.all():
-            g.set_payoffs()
-        self.payoff_calculated = True
-        self.save()
+        if self.groups_formed:
+            for g in self.megagroups.all():
+                g.set_payoffs()
+            for g in self.pseudogroups.all():
+                g.set_payoffs()
+            self.payoff_calculated = True
+            self.save()
+
+    def get_balance_info(self):
+        """We get the balance here:
+        1. how many participants have been matched with the same city
+        2. what an average share of each city per city
+        3. what is a standard dev of p.2
+        4. NxN table of city shares
+        """
 
 
 class MegaParticipant(TrackerModel):
     """1to1 link to participant for freezing those whose payoffs were calculated.
     Not really necessary but maybe convenient for future extensions, since we can't interfere to Participant model"""
     owner = models.OneToOneField(to=Participant, on_delete=models.CASCADE, )
-
+    city = models.ForeignKey(to=City, on_delete=models.CASCADE, )
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='megaparticipants')
     group = models.ForeignKey(to='MegaGroup',
                               on_delete=models.SET_NULL,

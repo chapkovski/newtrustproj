@@ -142,3 +142,12 @@ class DeleteMegaSession(DeleteView):
             messages.error(request, 'Cannot delete this megasession!', extra_tags='alert alert-danger')
             return HttpResponseRedirect(self.success_url)
         return super().get(self, request, *args, **kwargs)
+
+class MegaSessionStats(DetailView):
+    """
+    Getting megasession stats per city
+    """
+    url_pattern = 'mingle/megasession/stats/<int:pk>'
+    url_name = 'MegaSessionStats'
+    template_name = 'mingle/MegasessionStats.html'
+    model = MegaSession

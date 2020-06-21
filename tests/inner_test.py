@@ -9,7 +9,7 @@ import random
 
 cities = [(f"{x:02d}") for x in range(1, 13)]
 sessions = []
-num_participants = 20
+num_participants = 24
 for x in cities:
     s = create_session(
         session_config_name='trust_demo_ru',

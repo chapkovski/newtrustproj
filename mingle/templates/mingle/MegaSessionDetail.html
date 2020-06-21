@@ -1,12 +1,14 @@
 {% extends 'mingle/MinglerBase.html' %}
 {% block content %}
-    Let's do smoething with this megasession
 
-    <div>
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href='{% url 'MegaSessionStats' pk=megasession.id %}' role='button' class="btn btn-lg btn-outline-info">
+            Get statistics
+        </a>
         <a href='{% url 'mega_create_groups' pk=megasession.id %}' role='button' class="btn btn-lg btn-success">Create
             groups</a>
-    </div>
-    <div>
+
         <a href='{% url 'mega_calculate_payoffs' pk=megasession.id %}' role='button' class="btn btn-lg btn-danger">Calculate
             payoffs</a>
     </div>
@@ -19,31 +21,57 @@
                 <td>{{ f.realgroup }}</td>
                 <td>{{ f.pseudogrouped }}</td>
                 <td>{{ f.role }}</td>
-                <td>{{ f.owner.payoff }}</td>
-                <td>{{ f.player.city.description }}</td>
-                <td>{{ f.other_city.description }}</td>
+                {% if f.grouped %}
+                    <td>{{ f.decision }}</td>
+                    <td>{{ f.group_partner.decision }}</td>
+                    <td>{{ f.guess }}</td>
+
+                    <td>{{ f.owner.payoff }}</td>
+                    <td>{{ f.player.city.description }}</td>
+                    <td>{{ f.other_city.description }}</td>
+                {% endif %}
+
             </tr>
         {% endfor %}
 
     </table>
 
-    <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a href="?page=1" class="page-link">&laquo; first</a>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-    </div>
+                </li>
+                <li class="page-item">
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link">previous</a>
+
+                </li>
+
+            {% endif %}
+            <li class="page-item">
+                <div  class="page-link" disabled> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</div>
+
+            </li>
+
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ page_obj.next_page_number }}"
+                       class="page-link">{{ page_obj.next_page_number }}</a>
+
+                </li>
+                <li class="page-item">
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last</a>
+
+                </li>
+
+
+            {% endif %}
+
+        </ul>
+    </nav>
 
 {% endblock %}
 
