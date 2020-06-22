@@ -8,9 +8,10 @@ from trust.models import Constants, City
 from otree.api import models as omodels
 import pandas as pd
 import numpy as np
-from django.db.models import Count, F, Q
+from django.db.models import Count, F, Q, Max
 from django.utils.safestring import mark_safe
 import time
+
 
 class TrackerModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -67,13 +68,20 @@ class MegaSession(TrackerModel):
         random.shuffle(largest)
         unmatched = largest[len(smallest):]
         partners_for_unmatched = random.sample(smallest, len(unmatched))
-        pairs = zip(smallest, largest[:len(smallest)])
-        # TODO: think about bulk_update and bulk create for boosting effiency of this BS
-        for g in pairs:
-            newg = MegaGroup.objects.create(megasession=self)
-            for p in g:
-                p.group = newg
-                p.save()
+        pairs = list(zip(smallest, largest[:len(smallest)]))
+
+        maxpk = MegaGroup.objects.all().aggregate(mx=Max('pk'))['mx'] or 0
+        newgroups = [MegaGroup(megasession=self, pk=maxpk + i + 1) for i in range(len(pairs))]
+        newgroups = MegaGroup.objects.bulk_create(newgroups)
+
+        parts_to_update = []
+        for i, (a, b) in enumerate(pairs):
+            g = newgroups[i]
+            a.group = g
+            b.group = g
+            parts_to_update.extend([a, b, ])
+        # TODO THERE IS SOMETING WRONG HERE
+        MegaParticipant.objects.bulk_update(parts_to_update, ['group'])
         unmatched_pairs = zip(unmatched, partners_for_unmatched)
         for g in unmatched_pairs:
             newg = PseudoGroup.objects.create(megasession=self)
@@ -87,6 +95,7 @@ class MegaSession(TrackerModel):
 
     def calculate_payoffs(self):
         """loop over all groups and make payoff calculations"""
+        # TODO: move to bulk_update!
         if self.payoff_calculated:
             return
         if self.groups_formed:
@@ -201,7 +210,10 @@ class MegaParticipant(TrackerModel):
 
     @property
     def other_city(self):
-        return self.group_partner().city
+        if  self.group_partner():
+            return self.group_partner().city
+        else:
+            return dict(code='', description='')
 
     @property
     def guess(self):

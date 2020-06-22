@@ -92,7 +92,7 @@ class MingleAdmin(admin.ModelAdmin):
 
 
 class GGAdmin(admin.ModelAdmin):
-    list_display = ['link', 'sender', 'receiver']
+    list_display = ['link',]
     list_display_links = ['link']
 
     def link(self, instance):
