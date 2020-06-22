@@ -6,7 +6,11 @@ from django.db import models
 import random
 from trust.models import Constants, City
 from otree.api import models as omodels
-
+import pandas as pd
+import numpy as np
+from django.db.models import Count, F, Q
+from django.utils.safestring import mark_safe
+import time
 
 class TrackerModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -42,6 +46,7 @@ class MegaSession(TrackerModel):
         return True
 
     def form_groups(self):
+        start = time.time()
         """That takes all megaparticipants and create groups from the random pairs of Senders and receivers"""
         if self.payoff_calculated:
             return
@@ -63,6 +68,7 @@ class MegaSession(TrackerModel):
         unmatched = largest[len(smallest):]
         partners_for_unmatched = random.sample(smallest, len(unmatched))
         pairs = zip(smallest, largest[:len(smallest)])
+        # TODO: think about bulk_update and bulk create for boosting effiency of this BS
         for g in pairs:
             newg = MegaGroup.objects.create(megasession=self)
             for p in g:
@@ -76,6 +82,8 @@ class MegaSession(TrackerModel):
                 p.save()
         self.groups_formed = True
         self.save()
+        end = time.time()
+        print(end - start)
 
     def calculate_payoffs(self):
         """loop over all groups and make payoff calculations"""
@@ -89,13 +97,48 @@ class MegaSession(TrackerModel):
             self.payoff_calculated = True
             self.save()
 
-    def get_balance_info(self):
+    def general_stats(self):
+        """Return general stats about number of participants"""
+        q = self.megaparticipants.values(
+            city1=F('city__description'),
+            role=F('owner__trust_player___role'),
+        ).annotate(
+            number=Count('pk')
+        ).order_by('city1')
+        df = pd.DataFrame(q)
+        table = pd.pivot_table(df, values='number', index=['city1'],
+                               columns=['role'], fill_value=0)
+        return mark_safe(
+            table.to_html(classes=['table', 'table-hover', 'table-striped', ]))
+
+    def get_summary_table(self):
         """We get the balance here:
         1. how many participants have been matched with the same city
         2. what an average share of each city per city
         3. what is a standard dev of p.2
         4. NxN table of city shares
+        solution is THANKS TO Willem Van Olsem:
+        https://stackoverflow.com/questions/62490065/how-to-calculate-frequency-of-pairs-in-queryset/62490197?noredirect=1#comment110523467_62490197
         """
+
+        data = self.megaparticipants.filter(group__isnull=False).filter(
+            Q(group__megaparticipants__lt=F('pk')) | Q(group__megaparticipants__gt=F('pk'))
+        ).values(
+            city1=F('city__description'),
+            city2=F('group__megaparticipants__city__description')
+        ).annotate(
+            number=Count('pk')
+        ).order_by('city1', 'city2')
+
+        df = pd.DataFrame(data)
+        df['sumcity'] = df.groupby('city1')['number'].transform('sum')
+        df['perc'] = df['number'] / df['sumcity']
+
+        pd.options.display.float_format = '{0:.0%}'.format
+        table = pd.pivot_table(df, values='perc', index=['city1'],
+                               columns=['city2'], fill_value=0)
+        return mark_safe(
+            table.to_html(classes=['table', 'table-hover', 'table-striped', 'table-sm', 'table-responsive']))
 
 
 class MegaParticipant(TrackerModel):
@@ -118,7 +161,7 @@ class MegaParticipant(TrackerModel):
 
     @property
     def pseudogrouped(self):
-        return self.pseudogroup and not self.group
+        return bool(self.pseudogroup and not self.group)
 
     @property
     def grouped(self):
@@ -158,7 +201,7 @@ class MegaParticipant(TrackerModel):
 
     @property
     def other_city(self):
-        return self.group_partner().player.city
+        return self.group_partner().city
 
     @property
     def guess(self):

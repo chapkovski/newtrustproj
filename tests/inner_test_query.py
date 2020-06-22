@@ -22,9 +22,11 @@ data = MegaParticipant.objects.filter(group__isnull=False).filter(
 df = pd.DataFrame(data)
 df['whaterver'] = df.groupby('city1')['number'].transform('sum')
 df['perc'] = df['number'] / df['whaterver']
-a = df.groupby('city1')['perc'].agg([np.min, np.max, np.median])
+a = df.groupby('city1').agg(min_height=pd.NamedAgg(column='number', aggfunc='mean'),)
+print(a.columns)
+# {'perc':[np.min, np.max, np.median], 'number':np.median}
 print(a)
-pd.options.display.float_format = '{0:.0%}'.format
-table = pd.pivot_table(df, values='perc', index=['city1'],
-                       columns=['city2'])
-print(table)
+# pd.options.display.float_format = '{0:.0%}'.format
+# table = pd.pivot_table(df, values='perc', index=['city1'],
+#                        columns=['city2'])
+# print(table)

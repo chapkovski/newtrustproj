@@ -15,20 +15,52 @@
 
     <hr>
     <table class="table">
+        <thead>
+        <th>
+            Session
+        </th>
+
+        <th>
+            Group
+        </th>
+        <th>
+            Pseudogrouped
+        </th>
+        <th>
+            Role
+        </th>
+        <th>
+            City
+        </th>
+        {% if megasession.groups_formed %}
+            <th>Partner city</th>
+            <th>Decision</th>
+            <th>Partner Decision</th>
+            <th>Guess about partner decision</th>
+            <th>Payoff</th>
+
+        {% endif %}
+        </thead>
         {% for f in mparticipants %}
             <tr>
-                <td>{{ f.owner.session.code }}</td>
-                <td>{{ f.realgroup }}</td>
-                <td>{{ f.pseudogrouped }}</td>
+                <td>
+                    {% with f.owner.session.code as code %}
+                        <a href="{% url "SessionData" code %}">{{ code }}</a>
+                    {% endwith %}
+                </td>
+                <td>{{ f.realgroup.id|default_if_none:'Not yet' }}</td>
+                <td>{{ f.pseudogrouped|yesno:'Yes,No' }}</td>
                 <td>{{ f.role }}</td>
+                <td>{{ f.city.description }}</td>
                 {% if f.grouped %}
+                    <td>{{ f.other_city.description }}</td>
                     <td>{{ f.decision }}</td>
                     <td>{{ f.group_partner.decision }}</td>
                     <td>{{ f.guess }}</td>
 
                     <td>{{ f.owner.payoff }}</td>
-                    <td>{{ f.player.city.description }}</td>
-                    <td>{{ f.other_city.description }}</td>
+
+
                 {% endif %}
 
             </tr>
@@ -51,7 +83,7 @@
 
             {% endif %}
             <li class="page-item">
-                <div  class="page-link" disabled> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</div>
+                <div class="page-link" disabled> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</div>
 
             </li>
 

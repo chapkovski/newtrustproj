@@ -151,3 +151,4 @@ class MegaSessionStats(DetailView):
     url_name = 'MegaSessionStats'
     template_name = 'mingle/MegasessionStats.html'
     model = MegaSession
+    context_object_name = 'ms'

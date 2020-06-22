@@ -1,6 +1,27 @@
 {% extends 'mingle/MinglerBase.html' %}
+  {% block back %}
+                        <div><a class="nav-link" href="{% url 'MegaSessionDetail' pk=ms.id %}">Back to Megasession</a></div>
+                    {% endblock %}
 {% block content %}
+    <h3>General stats</h3>
+    <div>Number of sessions: <span class="badge badge-info"> {{ ms.minglesessions.all.count }}</span></div>
+    <div class="mb-3">Number of participants: <span class="badge badge-info  ">     {{ ms.megaparticipants.all.count }}</span></div>
+    {{ ms.general_stats }}
 
-    STATS
+
+    <h3>Matching stats</h3>
+
+    {% if ms.groups_formed %}
+        {{ ms.get_summary_table }}
+    {% else %}
+        Groups not formed yet
+    {% endif %}
+
+    <h3>Payoffs</h3>
+    {% if ms.payoff_calculated %}
+        <div>Payoff stats per city here</div>
+    {% else %}
+        <div>Payoffs are not yet calculated</div>
+    {% endif %}
 {% endblock %}
 
