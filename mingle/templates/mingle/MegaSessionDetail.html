@@ -48,7 +48,7 @@
                         <a href="{% url "SessionData" code %}">{{ code }}</a>
                     {% endwith %}
                 </td>
-                <td>{{ f.realgroup.id|default_if_none:'Not yet' }}</td>
+                <td>{{ f.owner.code }}</td>
                 <td>{{ f.pseudogrouped|yesno:'Yes,No' }}</td>
                 <td>{{ f.role }}</td>
                 <td>{{ f.city.description }}</td>

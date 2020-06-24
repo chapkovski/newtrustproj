@@ -77,6 +77,14 @@ class MegaSession(TrackerModel):
         parts_to_update = []
         for i, (a, b) in enumerate(pairs):
             g = newgroups[i]
+            # REDO WITHOUT LOOP!!!
+            if a.role == 'sender':
+                g.sender = a
+                g.receiver = b
+            else:
+                g.sender = b
+                g.receiver = a
+            g.save()
             a.group = g
             b.group = g
             parts_to_update.extend([a, b, ])
@@ -99,7 +107,7 @@ class MegaSession(TrackerModel):
         if self.payoff_calculated:
             return
         if self.groups_formed:
-            for g in self.megagroups.all():
+            for g in self.megagroups.filter(megaparticipants__isnull=False):
                 g.set_payoffs()
             for g in self.pseudogroups.all():
                 g.set_payoffs()
@@ -210,7 +218,7 @@ class MegaParticipant(TrackerModel):
 
     @property
     def other_city(self):
-        if  self.group_partner():
+        if self.group_partner():
             return self.group_partner().city
         else:
             return dict(code='', description='')
@@ -300,6 +308,10 @@ class MegaGroup(GeneralGroup):
     Megagroup is different from a normal oTree group, because the participants can belong to the different oTree sessions,
     the umbrella is megasession."""
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='megagroups')
+    sender = models.OneToOneField(to=MegaParticipant, on_delete=models.CASCADE,
+                                  related_name='sender_group', null=True, blank=True)
+    receiver = models.OneToOneField(to=MegaParticipant, on_delete=models.CASCADE,
+                                    related_name='receiver_group', null=True, blank=True)
 
 
 class PseudoGroup(GeneralGroup):
