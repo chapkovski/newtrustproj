@@ -14,7 +14,7 @@ for i in settings.CITIES:
 
 cities = [(f"{x:02d}") for x in range(1, 13)]
 sessions = []
-num_participants = 2
+num_participants = 24
 for x in cities:
     s = create_session(
         session_config_name='trust_demo_ru',
@@ -45,12 +45,12 @@ for d in Decision.objects.filter(decision_type='sender_decision'):
     d.answer = random.choice([0, 10])
     upd_decisions.append(d)
 for d in Decision.objects.filter(decision_type='return_decision'):
-    d.answer = random.choice(Constants.receiver_choices)
+    d.answer = random.choice([12,15,18])
     upd_decisions.append(d)
 for d in Decision.objects.filter(decision_type='receiver_belief'):
     d.answer = random.choice([0, 10])
     upd_decisions.append(d)
 for d in Decision.objects.filter(decision_type='sender_belief'):
-    d.answer = random.choice(Constants.receiver_choices)
+    d.answer = random.choice([12,15,18,21])
     upd_decisions.append(d)
 Decision.objects.bulk_update(upd_decisions, ['answer'])

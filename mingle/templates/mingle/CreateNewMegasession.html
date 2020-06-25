@@ -1,6 +1,9 @@
 {% extends 'mingle/MinglerBase.html' %}
 {% block content %}
-<h5 class="text-danger"> {{ form.non_field_errors }}</h5>
+    <div>
+        <button type="button" class="btn btn-outline-danger" id="selectall">Select all</button>
+    </div>
+    <h5 class="text-danger"> {{ form.non_field_errors }}</h5>
     <form method="post">
         {{ formset.management_form }}
         <table class="table table-hover table-striped">
@@ -19,7 +22,7 @@
             {% endfor %}
         </table>
         {% csrf_token %}
-    {{ form }}
+        {{ form }}
 
         <button class="btn btn-outline-primary">CREATE</button>
     </form>
@@ -27,3 +30,13 @@
 
 {% endblock %}
 
+    {% block scripts %}
+        <script>
+            $('#selectall').click(function () {
+                $('[type="checkbox"]').prop('checked', true);;
+
+            })
+        </script>
+
+
+    {% endblock %}

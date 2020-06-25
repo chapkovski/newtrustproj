@@ -4,7 +4,7 @@ from .models import MegaSession, MegaParticipant
 from django.urls import reverse_lazy
 from otree.models import Participant
 from django.contrib import messages
-
+from django.db.models import F
 
 class MinglerHome(TemplateView):
     """Home page for mingler. Contains links to Create new megasession,
@@ -35,7 +35,7 @@ class CreateNewMegaSession(CreateView):
     template_name = 'mingle/CreateNewMegasession.html'
     model = MegaSession
     form_class = MegaForm
-    success_url = reverse_lazy('mingle_home')
+    # success_url = reverse_lazy('mingle_home')
 
     def get(self, request, *args, **kwargs):
         q = MingleSession.objects.filter(megasession__isnull=True).exists()
@@ -97,7 +97,8 @@ class MegaSessionDetail(MegaSessionMixin, ListView):
         return r
 
     def get_queryset(self):
-        return MegaParticipant.objects.filter(megasession=self.get_megasession()).order_by('group')
+        return MegaParticipant.objects.filter(megasession=self.get_megasession()).\
+            annotate(playerrole=F('owner__trust_player___role')).order_by('group','-playerrole')
 
 
 class TurnBackToMegaSession(MegaSessionMixin, RedirectView):

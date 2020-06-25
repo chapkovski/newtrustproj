@@ -21,48 +21,84 @@
         </th>
 
         <th>
+            Participant
+        </th>
+        <th>
             Group
         </th>
         <th>
-            Pseudogrouped
+            City
         </th>
         <th>
             Role
         </th>
         <th>
-            City
+            Sender decision
         </th>
-        {% if megasession.groups_formed %}
-            <th>Partner city</th>
-            <th>Decision</th>
-            <th>Partner Decision</th>
-            <th>Guess about partner decision</th>
-            <th>Payoff</th>
+        <th>
+            Receiver decision
+        </th>
+        <th>
+            Sender belief
+        </th>
+        <th>
+            Receiver belief
+        </th>
+        <th>
+            Stage 1 Payoff
+        </th>
+        <th>
+            Stage 2 Payoff
+        </th>
+        <th >
+            Payoff
+        </th>
 
-        {% endif %}
         </thead>
         {% for f in mparticipants %}
             <tr>
                 <td>
-                    {% with f.owner.session.code as code %}
-                        <a href="{% url "SessionData" code %}">{{ code }}</a>
-                    {% endwith %}
+                    {{ f.owner.session.code }}
                 </td>
-                <td>{{ f.owner.code }}</td>
-                <td>{{ f.group.id }}</td>
-                <td>{{ f.role }}</td>
-                <td>{{ f.city.description }}</td>
-                {% if f.grouped %}
-                    <td>{{ f.other_city.description }}</td>
-                    <td>{{ f.decision }}</td>
-                    <td>{{ f.group_partner.decision }}</td>
-                    <td>{{ f.guess }}</td>
-
-                    <td>{{ f.owner.payoff }}</td>
+                <td>
+                    {{ f.owner.code }}
+                </td>
+                {% if megasession.groups_formed %}
 
 
+                    <td>
+                        {{ f.group.id }}
+                    </td>
+                    <td>
+                        {{ f.city.description }}
+                    </td>
+                    <td>
+                        {{ f.playerrole }}
+                    </td>
+
+
+                    <td>
+                        {{ f.group.sender_decision_re_receiver }}
+                    </td>
+                    <td>
+                        {{ f.group.receiver_decision_re_sender }}
+                    </td>
+                    <td>
+                        {{ f.group.sender_belief_re_receiver }}
+                    </td>
+                    <td>
+                        {{ f.group.receiver_belief_re_sender }}
+                    </td>
+                    <td>
+                        {{ f.owner.trust_player.all.0.stage1payoff }}
+                    </td>
+                    <td>
+                        {{ f.owner.trust_player.all.0.stage2payoff }}
+                    </td>
+                    <td>
+                        {{ f.owner.trust_player.all.0.payoff }}
+                    </td>
                 {% endif %}
-
             </tr>
         {% endfor %}
 
