@@ -97,7 +97,7 @@ class MegaSessionDetail(MegaSessionMixin, ListView):
         return r
 
     def get_queryset(self):
-        return MegaParticipant.objects.filter(megasession=self.get_megasession())
+        return MegaParticipant.objects.filter(megasession=self.get_megasession()).order_by('group')
 
 
 class TurnBackToMegaSession(MegaSessionMixin, RedirectView):

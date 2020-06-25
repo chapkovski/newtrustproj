@@ -245,9 +245,10 @@ class GeneralGroup(TrackerModel):
     sender_decision_re_receiver = omodels.IntegerField()
     receiver_decision_re_sender = omodels.IntegerField()
     sender_belief_re_receiver = omodels.IntegerField()
-    receiver_belief_re_receiver = omodels.IntegerField()
+    receiver_belief_re_sender = omodels.IntegerField()
     receiver_correct_guess = omodels.BooleanField()
     sender_belief_diff = omodels.IntegerField()
+    sender_guess_payoff = omodels.IntegerField()
 
     def get_player_by_role(self, role):
         for p in self.megaparticipants.all():

@@ -49,7 +49,7 @@
                     {% endwith %}
                 </td>
                 <td>{{ f.owner.code }}</td>
-                <td>{{ f.pseudogrouped|yesno:'Yes,No' }}</td>
+                <td>{{ f.group.id }}</td>
                 <td>{{ f.role }}</td>
                 <td>{{ f.city.description }}</td>
                 {% if f.grouped %}
