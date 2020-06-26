@@ -182,6 +182,6 @@ class MegaSessionStats(DetailView):
     """
     url_pattern = 'mingle/megasession/stats/<int:pk>'
     url_name = 'MegaSessionStats'
-    template_name = 'mingle/MegasessionStats.html'
+    template_name = 'mingle/MegaSessionStats.html'
     model = MegaSession
     context_object_name = 'ms'
