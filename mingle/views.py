@@ -4,7 +4,8 @@ from .models import MegaSession, MegaParticipant
 from django.urls import reverse_lazy
 from otree.models import Participant
 from django.contrib import messages
-from django.db.models import F
+from django.db.models import F, Count, Value, IntegerField, Q
+
 
 class MinglerHome(TemplateView):
     """Home page for mingler. Contains links to Create new megasession,
@@ -35,6 +36,7 @@ class CreateNewMegaSession(CreateView):
     template_name = 'mingle/CreateNewMegasession.html'
     model = MegaSession
     form_class = MegaForm
+
     # success_url = reverse_lazy('mingle_home')
 
     def get(self, request, *args, **kwargs):
@@ -50,8 +52,10 @@ class CreateNewMegaSession(CreateView):
         return super().get(request, *args, **kwargs)
 
     def get_formset(self, post_data=None):
+        filt = Count('owner__trust_player', filter=Q(owner__trust_player__calculable=True))
+        q = MingleSession.objects.filter(megasession__isnull=True).annotate(calcs=filt)
         return MingleFormSet(data=post_data, form_kwargs=dict(owner=self.object),
-                             queryset=MingleSession.objects.filter(megasession__isnull=True)
+                             queryset=q
                              )
 
     def get_context_data(self, **kwargs):
@@ -97,8 +101,8 @@ class MegaSessionDetail(MegaSessionMixin, ListView):
         return r
 
     def get_queryset(self):
-        return MegaParticipant.objects.filter(megasession=self.get_megasession()).\
-            annotate(playerrole=F('owner__trust_player___role')).order_by('group','-playerrole')
+        return MegaParticipant.objects.filter(megasession=self.get_megasession()). \
+            annotate(playerrole=F('owner__trust_player___role')).order_by('group', '-playerrole')
 
 
 class TurnBackToMegaSession(MegaSessionMixin, RedirectView):
@@ -143,6 +147,7 @@ class DeleteMegaSession(DeleteView):
             messages.error(request, 'Cannot delete this megasession!', extra_tags='alert alert-danger')
             return HttpResponseRedirect(self.success_url)
         return super().get(self, request, *args, **kwargs)
+
 
 class MegaSessionStats(DetailView):
     """

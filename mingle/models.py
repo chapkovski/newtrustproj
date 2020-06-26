@@ -8,11 +8,12 @@ from trust.models import Constants, City, Player
 from otree.api import models as omodels
 import pandas as pd
 from django.db.models.functions import Abs
-from django.db.models import (Count, F,  Q, Max, Sum, Value, IntegerField, Case,
+from django.db.models import (Count, F, Q, Max, Sum, Value, IntegerField, Case,
                               When, OuterRef, Subquery, BooleanField)
 from django.utils.safestring import mark_safe
 import time
 from django.urls import reverse
+
 
 class TrackerModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -28,7 +29,8 @@ class MingleSession(TrackerModel):
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.SET_NULL, related_name='minglesessions',
                                     null=True, blank=True)
     city = models.ForeignKey(to=City, on_delete=models.CASCADE, )
-
+    def num_calculable(self):
+        return self.owner.trust_player.filter(calculable=True).count()
 
 class MegaSession(TrackerModel):
     """Container for all sessions belonging to one mega. It is also container for participants and megagroups."""
@@ -37,8 +39,10 @@ class MegaSession(TrackerModel):
     comment = models.CharField(max_length=1000, null=True, blank=True)
     payoff_calculated = models.BooleanField(default=False)
     groups_formed = models.BooleanField(default=False)
+
     def get_absolute_url(self):
         return reverse('MegaSessionDetail', args=[self.id])
+
     def __str__(self):
         return f'Wrapper for {self.minglesessions.all().count()}'
 

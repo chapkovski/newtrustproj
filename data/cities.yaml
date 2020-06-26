@@ -1,49 +1,61 @@
 - code: '07'
   name: Москва
+  eng: Moscow
   lat: 55.7558
   long: 37.6173
 - code: '03'
   name: Санкт-Петербург
+  eng: St. Petersburg
   lat: 59.9311
   long:  30.3609
 - code: '06'
   name: Новосибирск (Новосибирская область)
+  eng: Novosibirsk
   lat: 54.9833
   long: 82.8964
 - code: '12'
   name: Архангельск (Архангельская область)
+  eng: Arkhangelsk
   lat: 64.5459°
   long:  40.5506
 - code: '11'
   name: Екатеринбург (Свердловская область)
+  eng: Ekaterinburg
   lat: 55.8431
   long: 60.6454
 - code: '10'
   name: Казань (Татарстан)
+  eng: Kazan'
   lat: 53.7879
   long:  49.1233
 - code: '09'
   name: Хабаровск (Хабаровский край)
+  eng: Khabarovsk
   lat: 48.4814
   long:  135.0721
 - code: '08'
   name: Махачкала (Дагестан)
+  eng: Makhachkala
   lat: 42.9778
   long:  47.5147
 - code: '01'
   name: Воронеж (Воронежская область)
+  eng: Voronezh
   lat: 51.6683
   long:  39.1919
 - code: '05'
   name: Пермь (Пермский край)
+  eng: Perm'
   lat: 58.9092
   long: 57.927
 - code: '04'
   name: Ростов-на-Дону (Ростовская область)
+  eng: Rostov-na-Donu
   lat: 47.2357
   long:  39.7015
 - code: '02'
   name: Владивосток (Приморский край)
+  eng: Vladivostok
   lat: 43.1332
   long:  131.9113
 

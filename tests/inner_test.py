@@ -10,11 +10,12 @@ from django.conf import  settings
 
 
 for i in settings.CITIES:
-    City.objects.get_or_create(code=i['code'], defaults={'description': i['name']})
+    City.objects.get_or_create(code=i['code'], defaults={'description': i['name'],
+                                                         'eng': i['eng']})
 
 cities = [(f"{x:02d}") for x in range(1, 13)]
 sessions = []
-num_participants = 24
+num_participants = 2
 for x in cities:
     s = create_session(
         session_config_name='trust_demo_ru',

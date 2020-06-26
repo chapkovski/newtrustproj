@@ -51,9 +51,9 @@ def return_choices():
 class City(djmodels.Model):
     code = models.StringField(unique=True)
     description = models.StringField(unique=True)
-
+    eng  = models.StringField()
     def __str__(self):
-        return f'Code: {self.code}; Description: {self.description}'
+        return f'Code: {self.code}; Name: {self.eng}'
 
 
 from json import JSONEncoder
@@ -72,7 +72,8 @@ class Subsession(BaseSubsession):
         if self.session.num_participants % 2 != 0:
             raise Exception('Number of participants should be even!')
         for i in settings.CITIES:
-            City.objects.get_or_create(code=i['code'], defaults={'description': i['name']})
+            City.objects.get_or_create(code=i['code'], defaults={'description': i['name'],
+                                                                 'eng':i['eng']})
         cur_city = self.session.config.get('city_code')
         city_in = City.objects.filter(code=cur_city)
         if not city_in.exists():
