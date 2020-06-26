@@ -1,10 +1,19 @@
 from django.views.generic import TemplateView, DetailView, ListView, RedirectView
 from django.views.generic.edit import CreateView, DeleteView
-from .models import MegaSession, MegaParticipant
+from .models import MegaSession, MegaParticipant, NotEnoughParticipants
 from django.urls import reverse_lazy
 from otree.models import Participant
 from django.contrib import messages
-from django.db.models import F, Count, Value, IntegerField, Q
+from django.db.models import F, Count, Value, IntegerField, Q, BooleanField, Case, When
+
+
+def case_builder(field_name):
+    return Case(
+        When(group__isnull=False, then=f'group__{field_name}'),
+        When(pseudogroup__isnull=False, then=f'pseudogroup__{field_name}'),
+        default=None,
+        output_field=IntegerField()
+    )
 
 
 class MinglerHome(TemplateView):
@@ -101,8 +110,22 @@ class MegaSessionDetail(MegaSessionMixin, ListView):
         return r
 
     def get_queryset(self):
-        return MegaParticipant.objects.filter(megasession=self.get_megasession()). \
-            annotate(playerrole=F('owner__trust_player___role')).order_by('group', '-playerrole')
+        return MegaParticipant.objects.filter(megasession=self.get_megasession(),
+                                              owner__trust_player__calculable=True). \
+            annotate(playerrole=F('owner__trust_player___role'),
+                     sender2receiver=case_builder('sender_decision_re_receiver'),
+                     receiver2sender=case_builder('receiver_decision_re_sender'),
+                     sender_belief=case_builder('sender_belief_re_receiver'),
+                     receiver_belief=case_builder('receiver_belief_re_sender'),
+                     is_pseudogrouped=Case(
+                         When(
+                             Q(group__isnull=True) & Q(pseudogroup__isnull=False),
+                             then=Value(True)),
+                         default=Value(False),
+                         output_field=BooleanField())
+
+                     ). \
+            order_by('is_pseudogrouped', 'group', '-playerrole')
 
 
 class TurnBackToMegaSession(MegaSessionMixin, RedirectView):
@@ -116,13 +139,19 @@ class TurnBackToMegaSession(MegaSessionMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class CreateGroupsView(TurnBackToMegaSession):
-    url_pattern = 'mingle/megasession/creategroups/<int:pk>'
-    url_name = 'mega_create_groups'
+class GroupCalculateView(TurnBackToMegaSession):
+    url_pattern = 'mingle/megasession/group_and_calculate/<int:pk>'
+    url_name = 'mega_group_and_recalculate'
 
-    def do_something(self):
+    def get_redirect_url(self, *args, **kwargs):
         m = self.get_megasession()
-        m.form_groups()
+        try:
+            m.form_groups()
+            m.calculate_payoffs()
+        except NotEnoughParticipants:
+            messages.error(self.request, 'Not enough participants: we need at least one sender and one receiver!',
+                           extra_tags='alert alert-danger')
+        return super().get_redirect_url(*args, **kwargs)
 
 
 class CalculatePayoffsView(TurnBackToMegaSession):

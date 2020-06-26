@@ -6,11 +6,15 @@
         <a href='{% url 'MegaSessionStats' pk=megasession.id %}' role='button' class="btn btn-lg btn-outline-info">
             Get statistics
         </a>
-        <a href='{% url 'mega_create_groups' pk=megasession.id %}' role='button' class="btn btn-lg btn-success">Create
-            groups</a>
+        <a href='{% url 'mega_group_and_recalculate' pk=megasession.id %}' role='button' class="btn btn-lg btn-success">
+        {% if  megasession.groups_formed%}
+            RE-group and RE-calculate payoffs
+        {% else %}
+            group and calculate payoffs
+        {% endif %}
+        </a>
 
-        <a href='{% url 'mega_calculate_payoffs' pk=megasession.id %}' role='button' class="btn btn-lg btn-danger">Calculate
-            payoffs</a>
+
     </div>
 
     <hr>
@@ -25,6 +29,9 @@
         </th>
         <th>
             Group
+        </th>
+        <th>
+            Pseudogroup
         </th>
         <th>
             City
@@ -50,27 +57,37 @@
         <th>
             Stage 2 Payoff
         </th>
-        <th >
+        <th>
             Payoff
         </th>
 
         </thead>
+
         {% for f in mparticipants %}
             <tr>
                 <td>
-                    {{ f.owner.session.code }}
+                     <a href="{% url "SessionData"  f.owner.session.code %}" target="_blank">
+                            {{  f.owner.session.code }}
+                        </a>
+
+
                 </td>
                 <td>
                     {{ f.owner.code }}
                 </td>
                 {% if megasession.groups_formed %}
-
-
                     <td>
-                        {{ f.group.id }}
+                        {% if f.group %}
+                            {{ f.group.id }}
+                        {% endif %}
                     </td>
                     <td>
-                        {{ f.city.description }}
+                        {% if f.pseudogroup %}
+                            {{ f.pseudogroup.id }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ f.city.eng }}
                     </td>
                     <td>
                         {{ f.playerrole }}
@@ -78,16 +95,16 @@
 
 
                     <td>
-                        {{ f.group.sender_decision_re_receiver }}
+                        {{ f.sender2receiver }}
                     </td>
                     <td>
-                        {{ f.group.receiver_decision_re_sender }}
+                        {{ f.receiver2sender }}
                     </td>
                     <td>
-                        {{ f.group.sender_belief_re_receiver }}
+                        {{ f.sender_belief }}
                     </td>
                     <td>
-                        {{ f.group.receiver_belief_re_sender }}
+                        {{ f.receiver_belief }}
                     </td>
                     <td>
                         {{ f.owner.trust_player.all.0.stage1payoff }}

@@ -15,6 +15,10 @@ import time
 from django.urls import reverse
 
 
+class NotEnoughParticipants(ValueError):
+    pass
+
+
 class TrackerModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -29,8 +33,10 @@ class MingleSession(TrackerModel):
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.SET_NULL, related_name='minglesessions',
                                     null=True, blank=True)
     city = models.ForeignKey(to=City, on_delete=models.CASCADE, )
+
     def num_calculable(self):
         return self.owner.trust_player.filter(calculable=True).count()
+
 
 class MegaSession(TrackerModel):
     """Container for all sessions belonging to one mega. It is also container for participants and megagroups."""
@@ -52,17 +58,45 @@ class MegaSession(TrackerModel):
             return False
         return True
 
+    def merge_to_groups(self, group_type, data, type_referral):
+        if len(data) == 0:
+            return
+        maxpk = group_type.objects.all().aggregate(mx=Max('pk'))['mx'] or 0
+        newgroups = [group_type(megasession=self, pk=maxpk + i + 1) for i in range(len(data))]
+        newgroups = group_type.objects.bulk_create(newgroups)
+
+        parts_to_update = []
+        for i, (a, b) in enumerate(data):
+            g = newgroups[i]
+            setattr(a, type_referral, g)
+            setattr(b, type_referral, g)
+            parts_to_update.extend([a, b, ])
+
+        MegaParticipant.objects.bulk_update(parts_to_update, [type_referral])
+        groups = group_type.objects.filter(megasession=self)
+        sender = Subquery(MegaParticipant.objects.filter(**{type_referral: OuterRef('pk')},
+                                                         owner__trust_player___role='sender').values(
+            'id')[:1])
+        receiver = Subquery(MegaParticipant.objects.filter(**{type_referral: OuterRef('pk')},
+                                                           owner__trust_player___role='receiver').values(
+            'id')[:1])
+        groups.update(sender=sender, receiver=receiver)
+
     def form_groups(self):
         """That takes all megaparticipants and create groups from the random pairs of Senders and receivers"""
         # TODO: we will probably block further group recomposition later
         # if self.payoff_calculated:
         #     return
+        # We reset all group memberships:
+        self.megaparticipants.filter(owner__trust_player__calculable=True).update(group=None, pseudogroup=None)
+        self.megagroups.filter(megaparticipants__isnull=True).delete()
+        self.pseudogroups.filter(megaparticipants__isnull=True).delete()
 
         calculable = self.megaparticipants.filter(owner__trust_player__calculable=True)
         receivers = calculable.filter(owner__trust_player___role='receiver')
         senders = calculable.filter(owner__trust_player___role='sender')
         if receivers.count() == 0 or senders.count() == 0:
-            raise ValueError('NOT ENOUGH PARTICIPANTS')
+            raise NotEnoughParticipants
         smallest, largest = sorted([senders, receivers], key=lambda x: x.count())
         largest = list(largest)
         smallest = list(smallest)
@@ -70,45 +104,17 @@ class MegaSession(TrackerModel):
         unmatched = largest[len(smallest):]
         partners_for_unmatched = random.sample(smallest, len(unmatched))
         pairs = list(zip(smallest, largest[:len(smallest)]))
-
-        maxpk = MegaGroup.objects.all().aggregate(mx=Max('pk'))['mx'] or 0
-        newgroups = [MegaGroup(megasession=self, pk=maxpk + i + 1) for i in range(len(pairs))]
-        newgroups = MegaGroup.objects.bulk_create(newgroups)
-
-        parts_to_update = []
-        for i, (a, b) in enumerate(pairs):
-            g = newgroups[i]
-            a.group = g
-            b.group = g
-            parts_to_update.extend([a, b, ])
-
-        MegaParticipant.objects.bulk_update(parts_to_update, ['group'])
-        groups = self.megagroups.all()
-        sender = Subquery(MegaParticipant.objects.filter(group=OuterRef('pk'),
-                                                         owner__trust_player___role='sender').values(
-            'id')[:1])
-        receiver = Subquery(MegaParticipant.objects.filter(group=OuterRef('pk'),
-                                                           owner__trust_player___role='receiver').values(
-            'id')[:1])
-        groups.update(sender=sender, receiver=receiver)
-
-        # TODO: THINK ABOUT UNMATCHED *LATER*
-        unmatched_pairs = zip(unmatched, partners_for_unmatched)
-        for g in unmatched_pairs:
-            newg = PseudoGroup.objects.create(megasession=self)
-            for p in g:
-                p.pseudogroup = newg
-                p.save()
+        self.merge_to_groups(group_type=MegaGroup, data=pairs, type_referral='group')
+        # Dealing with unmatched
+        unmatched_pairs = list(zip(unmatched, partners_for_unmatched))
+        self.merge_to_groups(group_type=PseudoGroup, data=unmatched_pairs, type_referral='pseudogroup')
         self.groups_formed = True
         self.save()
 
-
-    def calculate_payoffs(self):
-        """loop over all groups and make payoff calculations"""
-        session_id = self.id
-        m = MegaGroup.objects.filter(megasession__id=session_id)
+    def set_group_data(self, group_type):
+        m = group_type.objects.filter(megasession=self)
         # WE GET AND ASSIGN SENDER DESIONS TO GROUP OBJECTS HERE
-        subquery_head = MegaGroup.objects.filter(
+        subquery_head = group_type.objects.filter(
             id=OuterRef('id')
         ).annotate(sender_city=F('sender__city'),
                    receiver_city=F('receiver__city'))
@@ -152,21 +158,21 @@ class MegaSession(TrackerModel):
                                                        )))).values('receiver_belief')[:1]
         )
 
-        m = m.update(sender_decision_re_receiver=sender_decision,
-                     receiver_decision_re_sender=receiver_decision,
-                     sender_belief_re_receiver=sender_belief_re_receiver,
-                     receiver_belief_re_sender=receiver_belief_re_sender,
+        m.update(sender_decision_re_receiver=sender_decision,
+                 receiver_decision_re_sender=receiver_decision,
+                 sender_belief_re_receiver=sender_belief_re_receiver,
+                 receiver_belief_re_sender=receiver_belief_re_sender,
 
-                     )
-        m = MegaGroup.objects.filter(megasession__id=session_id)
+                 )
+        m = group_type.objects.filter(megasession=self)
         receiver_correct_guess = Case(
             When(sender_decision_re_receiver=receiver_belief_re_sender, then=Value(True)),
             default=Value(False),
             output_field=BooleanField(),
         )
         m.update(sender_belief_diff=Abs(F('receiver_decision_re_sender') - F('sender_belief_re_receiver')), )
-        m = MegaGroup.objects.filter(megasession__id=session_id)
-        m = m.update(
+        m = group_type.objects.filter(megasession=self)
+        m.update(
             has_sender_sent=Case(When(~Q(sender_decision_re_receiver=0), then=Value(True)),
                                  default=Value(False),
                                  output_field=BooleanField()),
@@ -178,49 +184,53 @@ class MegaSession(TrackerModel):
                 output_field=IntegerField()
             )
         )
-        # TODO: don't forget to get a real obj when
-        m = MegaSession.objects.get(id=session_id)
-        players = Player.objects.filter(participant__megaparticipant__megasession=m)
+
+    def set_players_payoffs(self, pseudo, ):
+        """
+             Sender payoff stage 1:
+             endowment - amount sent + amount returned
+             Sender State 2 payoff:
+             exact match from receiver decision: 20 points. 3 points deviation - 10 poins. More 0
+             Receiver stage 1 payoff:
+             endowment + amount_send * coef - amount_returned
+             Receiver stage 2 payoff:
+             receiver_belief_bonus (10) for guessing correclty.
+
+             """
+        if pseudo:
+            condition = {'participant__megaparticipant__group__isnull': True,
+                         'participant__megaparticipant__pseudogroup__isnull': False, }
+            type_referral = 'pseudogroup'
+
+        else:
+            condition = {'participant__megaparticipant__group__isnull': False, }
+            type_referral = 'group'
+        sender_type_referral = f'sender_{type_referral}'
+        receiver_type_referral = f'receiver_{type_referral}'
+        players = Player.objects.filter(**condition, participant__megaparticipant__megasession=self)
+        print(f'PSEUEODO: {pseudo}, PALYERS: {players}')
+        if pseudo:
+            for p in players:
+                print(p._role, p.participant.code)
         sender_players = players.filter(
-            participant__megaparticipant=F('participant__megaparticipant__sender_group__sender'),
+            participant__megaparticipant=F(f'participant__megaparticipant__{sender_type_referral}__sender'),
         )
         receiver_players = players.filter(
-            participant__megaparticipant=F('participant__megaparticipant__receiver_group__receiver'),
+            participant__megaparticipant=F(f'participant__megaparticipant__{receiver_type_referral}__receiver'),
         )
-
-        """
-        Sender payoff stage 1:
-        endowment - amount sent + amount returned
-
-        Sender State 2 payoff:
-
-        exact match from receiver decision: 20 points. 3 points deviation - 10 poins. More 0
-
-        Receiver stage 1 payoff:
-
-        endowment + amount_send * coef - amount_returned
-
-        Receiver stage 2 payoff:
-
-        receiver_belief_bonus (10) for guessing correclty.
-
-        """
-
+        if pseudo:
+            for r in receiver_players:
+                print(r.participant.code, 'PSUEODl', type_referral, receiver_type_referral)
         def group_retrieval_sq(field_name):
             """Returns subquery for updating payoffs"""
-            # TODO: REMOVE TWO LINES IN PROD:
-            from trust.models import Player, Decision, Constants
-            from django.db.models import (OuterRef, Subquery)
             return Subquery(Player.objects.filter(pk=OuterRef('pk')).values(
-                f'participant__megaparticipant__group__{field_name}')[:1])
+                f'participant__megaparticipant__{type_referral}__{field_name}')[:1])
 
         # TODO: if later (when??) we decide to change endowment to something else, that may create problems
 
         sender_decision = group_retrieval_sq('sender_decision_re_receiver')
         has_sender_sent = group_retrieval_sq('has_sender_sent')
         receiver_decision = group_retrieval_sq('receiver_decision_re_sender')
-        sender_belief = group_retrieval_sq('sender_belief_re_receiver')
-        receiver_belief = group_retrieval_sq('receiver_belief_re_sender')
         receiver_correct_guess = group_retrieval_sq('receiver_correct_guess')
         sender_guess_payoff = group_retrieval_sq('sender_guess_payoff')
         sender_stage1_payoff = Constants.endowment + (receiver_decision - sender_decision) * has_sender_sent
@@ -235,9 +245,21 @@ class MegaSession(TrackerModel):
         sender_players.update(stage1payoff=sender_stage1_payoff,
                               stage2payoff=sender_stage2_payoff,
                               _payoff=sender_payoff)
+
+
         receiver_players.update(stage1payoff=receiver_stage1_payoff,
                                 stage2payoff=receiver_stage2_payoff,
                                 _payoff=receiver_payoff)
+
+    def calculate_payoffs(self):
+        """
+        We first set group data (for real and pseudogroups. Then we update players payoffs based on group data.
+        Those players who are matched both into a group and pseudogroup are updated only based on their real group data.
+        """
+        self.set_group_data(group_type=MegaGroup)
+        self.set_group_data(group_type=PseudoGroup)
+        self.set_players_payoffs(pseudo=False)
+        self.set_players_payoffs(pseudo=True)
 
     def general_stats(self):
         """Return general stats about number of participants"""
@@ -367,14 +389,14 @@ class GeneralGroup(TrackerModel):
     class Meta:
         abstract = True
 
-    sender_decision_re_receiver = omodels.IntegerField()
-    has_sender_sent = omodels.BooleanField()
-    receiver_decision_re_sender = omodels.IntegerField()
-    sender_belief_re_receiver = omodels.IntegerField()
-    receiver_belief_re_sender = omodels.IntegerField()
-    receiver_correct_guess = omodels.BooleanField()
-    sender_belief_diff = omodels.IntegerField()
-    sender_guess_payoff = omodels.IntegerField()
+    sender_decision_re_receiver = omodels.IntegerField(blank=True)
+    has_sender_sent = omodels.BooleanField(blank=True)
+    receiver_decision_re_sender = omodels.IntegerField(blank=True)
+    sender_belief_re_receiver = omodels.IntegerField(blank=True)
+    receiver_belief_re_sender = omodels.IntegerField(blank=True)
+    receiver_correct_guess = omodels.BooleanField(blank=True)
+    sender_belief_diff = omodels.IntegerField(blank=True)
+    sender_guess_payoff = omodels.IntegerField(blank=True)
 
     def get_player_by_role(self, role):
         for p in self.megaparticipants.all():
@@ -456,6 +478,7 @@ class PseudoGroup(GeneralGroup):
                                   related_name='sender_pseudogroup', null=True, blank=True)
     receiver = models.OneToOneField(to=MegaParticipant, on_delete=models.CASCADE,
                                     related_name='receiver_pseudogroup', null=True, blank=True)
+
     def get_players_for_payoff(self):
         """We override this in order not to touch the matched players"""
         return [p.player for p in self.megaparticipants.all() if not p.matched]
