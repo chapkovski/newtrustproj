@@ -53,7 +53,6 @@ class MegaSession(TrackerModel):
         return True
 
     def form_groups(self):
-        start = time.time()
         """That takes all megaparticipants and create groups from the random pairs of Senders and receivers"""
         # TODO: we will probably block further group recomposition later
         # if self.payoff_calculated:
@@ -102,8 +101,7 @@ class MegaSession(TrackerModel):
                 p.save()
         self.groups_formed = True
         self.save()
-        end = time.time()
-        print(end - start)
+
 
     def calculate_payoffs(self):
         """loop over all groups and make payoff calculations"""
@@ -454,7 +452,10 @@ class PseudoGroup(GeneralGroup):
     matched participants get their payoffs from their real (Mega) group.
     """
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='pseudogroups')
-
+    sender = models.OneToOneField(to=MegaParticipant, on_delete=models.CASCADE,
+                                  related_name='sender_pseudogroup', null=True, blank=True)
+    receiver = models.OneToOneField(to=MegaParticipant, on_delete=models.CASCADE,
+                                    related_name='receiver_pseudogroup', null=True, blank=True)
     def get_players_for_payoff(self):
         """We override this in order not to touch the matched players"""
         return [p.player for p in self.megaparticipants.all() if not p.matched]
