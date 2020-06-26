@@ -216,7 +216,6 @@ class MegaSession(TrackerModel):
             participant__megaparticipant=F(f'participant__megaparticipant__{receiver_type_referral}__receiver'),
         )
 
-
         def group_retrieval_sq(field_name):
             """Returns subquery for updating payoffs"""
             return Subquery(Player.objects.filter(pk=OuterRef('pk')).values(
@@ -227,7 +226,7 @@ class MegaSession(TrackerModel):
         sender_decision = group_retrieval_sq('sender_decision_re_receiver')
         has_sender_sent = Cast(group_retrieval_sq('has_sender_sent'), output_field=IntegerField())
         receiver_decision = group_retrieval_sq('receiver_decision_re_sender')
-        receiver_correct_guess = group_retrieval_sq('receiver_correct_guess')
+        receiver_correct_guess = Cast(group_retrieval_sq('receiver_correct_guess'), output_field=IntegerField())
         sender_guess_payoff = group_retrieval_sq('sender_guess_payoff')
         sender_stage1_payoff = Constants.endowment + (receiver_decision - sender_decision) * has_sender_sent
         receiver_stage1_payoff = Constants.endowment + (
