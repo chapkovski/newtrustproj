@@ -7,9 +7,9 @@ import random
 from trust.models import Constants, City, Player
 from otree.api import models as omodels
 import pandas as pd
-from django.db.models.functions import Abs
+from django.db.models.functions import Abs, Cast
 from django.db.models import (Count, F, Q, Max, Sum, Value, IntegerField, Case,
-                              When, OuterRef, Subquery, BooleanField)
+                              When, OuterRef, Subquery, BooleanField, )
 from django.utils.safestring import mark_safe
 import time
 from django.urls import reverse
@@ -208,19 +208,15 @@ class MegaSession(TrackerModel):
         sender_type_referral = f'sender_{type_referral}'
         receiver_type_referral = f'receiver_{type_referral}'
         players = Player.objects.filter(**condition, participant__megaparticipant__megasession=self)
-        print(f'PSEUEODO: {pseudo}, PALYERS: {players}')
-        if pseudo:
-            for p in players:
-                print(p._role, p.participant.code)
+
         sender_players = players.filter(
             participant__megaparticipant=F(f'participant__megaparticipant__{sender_type_referral}__sender'),
         )
         receiver_players = players.filter(
             participant__megaparticipant=F(f'participant__megaparticipant__{receiver_type_referral}__receiver'),
         )
-        if pseudo:
-            for r in receiver_players:
-                print(r.participant.code, 'PSUEODl', type_referral, receiver_type_referral)
+
+
         def group_retrieval_sq(field_name):
             """Returns subquery for updating payoffs"""
             return Subquery(Player.objects.filter(pk=OuterRef('pk')).values(
@@ -229,7 +225,7 @@ class MegaSession(TrackerModel):
         # TODO: if later (when??) we decide to change endowment to something else, that may create problems
 
         sender_decision = group_retrieval_sq('sender_decision_re_receiver')
-        has_sender_sent = group_retrieval_sq('has_sender_sent')
+        has_sender_sent = Cast(group_retrieval_sq('has_sender_sent'), output_field=IntegerField())
         receiver_decision = group_retrieval_sq('receiver_decision_re_sender')
         receiver_correct_guess = group_retrieval_sq('receiver_correct_guess')
         sender_guess_payoff = group_retrieval_sq('sender_guess_payoff')
@@ -245,7 +241,6 @@ class MegaSession(TrackerModel):
         sender_players.update(stage1payoff=sender_stage1_payoff,
                               stage2payoff=sender_stage2_payoff,
                               _payoff=sender_payoff)
-
 
         receiver_players.update(stage1payoff=receiver_stage1_payoff,
                                 stage2payoff=receiver_stage2_payoff,

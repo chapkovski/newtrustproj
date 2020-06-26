@@ -1,4 +1,4 @@
-otree>=2.6.0b5
+otree>=3.0.0
 pyyaml
 pandas
 django_pandas
