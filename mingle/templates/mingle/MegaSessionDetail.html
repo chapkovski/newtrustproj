@@ -7,13 +7,14 @@
             Get statistics
         </a>
         <a href='{% url 'mega_group_and_recalculate' pk=megasession.id %}' role='button' class="btn btn-lg btn-success">
-        {% if  megasession.groups_formed%}
-            RE-group and RE-calculate payoffs
-        {% else %}
-            group and calculate payoffs
-        {% endif %}
+            {% if  megasession.groups_formed %}
+                RE-group and RE-calculate payoffs
+            {% else %}
+                group and calculate payoffs
+            {% endif %}
         </a>
-
+        <a role="button" class="btn btn-outline-danger  btn-lg"
+           href="{% url 'DeleteMegaSession' pk=megasession.id %}">Delete</a>
 
     </div>
 
@@ -27,15 +28,16 @@
         <th>
             Participant
         </th>
+           <th>
+            City
+        </th>
         <th>
             Group
         </th>
         <th>
             Pseudogroup
         </th>
-        <th>
-            City
-        </th>
+
         <th>
             Role
         </th>
@@ -66,15 +68,18 @@
         {% for f in mparticipants %}
             <tr>
                 <td>
-                     <a href="{% url "SessionData"  f.owner.session.code %}" target="_blank">
-                            {{  f.owner.session.code }}
-                        </a>
+                    <a href="{% url "SessionData"  f.owner.session.code %}" target="_blank">
+                        {{ f.owner.session.code }}
+                    </a>
 
 
                 </td>
                 <td>
                     {{ f.owner.code }}
                 </td>
+             <td>
+                        {{ f.city.eng }}
+                    </td>
                 {% if megasession.groups_formed %}
                     <td>
                         {% if f.group %}
@@ -86,9 +91,7 @@
                             {{ f.pseudogroup.id }}
                         {% endif %}
                     </td>
-                    <td>
-                        {{ f.city.eng }}
-                    </td>
+
                     <td>
                         {{ f.playerrole }}
                     </td>

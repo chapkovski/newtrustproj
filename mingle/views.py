@@ -46,8 +46,6 @@ class CreateNewMegaSession(CreateView):
     model = MegaSession
     form_class = MegaForm
 
-    # success_url = reverse_lazy('mingle_home')
-
     def get(self, request, *args, **kwargs):
         q = MingleSession.objects.filter(megasession__isnull=True).exists()
         if not q:
@@ -57,7 +55,7 @@ class CreateNewMegaSession(CreateView):
                            Either wait till new data is added or delete existing megasessions.
                            """,
                            extra_tags='alert alert-danger')
-            return HttpResponseRedirect(self.success_url)
+            return HttpResponseRedirect(reverse_lazy('mingle_home'))
         return super().get(request, *args, **kwargs)
 
     def get_formset(self, post_data=None):
