@@ -5,3 +5,4 @@ django_pandas
 django_pivot
 django-webpack-loader==0.7.0
 django-dotenv
+requests
