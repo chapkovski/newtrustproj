@@ -204,14 +204,32 @@ class MegaParticipantDetail(DetailView):
     model = MegaParticipant
     context_object_name = 'p'
 
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+    def get_context_data(self, **kwargs):
+        c = super().get_context_data(**kwargs)
+
+        c['message'] = 'Sorry, no results yet.'
+        if not self.get_owner():
+            c['message'] = 'Sorry, the code is wrong'
+        return c
+
+
 
     def get_template_names(self):
         obj = self.get_object()
-        if not obj.payoff_calculated:
-            return ['mingle/NoResultsYet.html']
-        return [self.template_name]
+        if obj and obj.payoff_calculated:
+            return [self.template_name]
+
+        return ['mingle/NoResultsYet.html']
+
+    def get_owner(self):
+        try:
+            return Participant.objects.get(code=self.kwargs.get('code'))
+        except Participant.DoesNotExist:
+            pass
 
     def get_object(self, queryset=None):
-        return MegaParticipant.objects.get(owner__code=self.kwargs.get('code'))
+        try:
+            m = MegaParticipant.objects.get(owner__code=self.kwargs.get('code'))
+            return m
+        except MegaParticipant.DoesNotExist:
+            pass
