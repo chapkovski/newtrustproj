@@ -1,29 +1,64 @@
 {% extends 'mingle/MinglerBase.html' %}
- {% block back %}
-                        <div><a class="nav-link" href="{% url 'ExportIndex' %}">
-                            Back to Otree</a></div>
-                    {% endblock %}
-{% block content %}
-    <div>
-    <a href="{% url 'CreateNewMegaSession' %}" role="button"
-    class="btn btn-lg btn-outline-primary">Create new megasession</a>
+{% block back %}
+
+{% endblock %}
+{% block styles %}
+    <style>
+        body, html {
+            height: 100%;
+        }
+    </style>
+{% endblock %}
+{% block main %}
+    <div class="d-flex flex-column h-100">
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'ExportIndex' %}" role="button"
+                           class="btn btn-lg btn-outline-info">< Back to Otree</a>
+
+
+                    </li>
+
+                </ul>
+                <div class="nav-item ">
+                    <a href="{% url 'CreateNewMegaSession' %}" role="button"
+                       class="btn btn-lg btn-outline-primary">Create new megasession</a>
+                </div>
+            </nav>
+        </div>
+        <div class="d-flex flex-column flex-fill mt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col card">
+                        <div class="card-body">
+                            {% if megasessions %}
+
+                                {% for m in megasessions %}
+
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <a href="{% url 'MegaSessionDetail' pk=m.id %}">
+                                                Megasession {{ m.id }}
+                                            </a>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <a role="button" class="btn btn-outline-danger "
+                                               href="{% url 'DeleteMegaSession' pk=m.id %}">Delete</a>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+
+
+                            {% else %}
+                                <div>No megasessions yet</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    {% if megasessions %}
-        <table class="table table-hover table-striped">
-            {% for m in megasessions %}
-                <tr>
-                    <td>
-                        <a href="{% url 'MegaSessionDetail' pk=m.id %}">
-                            Megasession {{ m.id }}
-                        </a>
-                        <a role="button" class="btn btn-outline-danger" href="{% url 'DeleteMegaSession' pk=m.id %}">Delete</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-
-    {% else %}
-        <div>No megasessions yet</div>
-    {% endif %}
-
 {% endblock %}

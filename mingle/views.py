@@ -189,6 +189,8 @@ class MegaSessionStats(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
+        c['num_parts'] = MegaParticipant.objects.filter(megasession=self.object,
+                                                        owner__trust_player__calculable=True).count()
         c['total_payoff'] = self.object.total_payoff()
         c['pseudogrouped'] = self.object.megaparticipants.filter(group__isnull=True,
                                                                  pseudogroup__isnull=False).count()

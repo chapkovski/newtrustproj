@@ -266,8 +266,8 @@ class MegaSession(TrackerModel):
 
     def general_stats(self):
         """Return general stats about number of participants"""
-        q = self.megaparticipants.values(
-            city1=F('city__description'),
+        q = self.megaparticipants.filter(owner__trust_player__calculable=True).values(
+            city1=F('city__eng'),
             role=F('owner__trust_player___role'),
         ).annotate(
             number=Count('pk')
@@ -292,7 +292,7 @@ class MegaSession(TrackerModel):
             Q(group__megaparticipants__lt=F('pk')) | Q(group__megaparticipants__gt=F('pk'))
         ).values(
             city1=F('city__description'),
-            city2=F('group__megaparticipants__city__description')
+            city2=F('group__megaparticipants__city__eng')
         ).annotate(
             number=Count('pk')
         ).order_by('city1', 'city2')
