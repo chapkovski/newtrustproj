@@ -206,13 +206,26 @@ class MegaParticipantDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
-
-        c['message'] = 'Sorry, no results yet.'
         if not self.get_owner():
             c['message'] = 'Sorry, the code is wrong'
+            return c
+        obj = self.get_object()
+        if not obj or not (obj.group or obj.pseudogroup):
+            c['message'] = 'Sorry, no results yet.'
+            return c
+        if obj.group:
+            decision = obj.decision(pseudo=False)
+            belief = obj.belief(pseudo=False)
+            other_decision = obj.other.decision(pseudo=False)
+        elif obj.pseudogroup and not obj.group:
+            decision = obj.decision(pseudo=True)
+            belief = obj.belief(pseudo=True)
+            other_decision = obj.other.decision(pseudo=True)
+        c['decision'] = decision
+        c['belief'] = belief
+        c['other_decision'] = other_decision
+
         return c
-
-
 
     def get_template_names(self):
         obj = self.get_object()

@@ -1,4 +1,7 @@
 {% extends 'mingle/MinglerBase.html' %}
+{% block title %}
+    Group and calculate
+{% endblock %}
 {% block content %}
 
 
@@ -19,7 +22,7 @@
     </div>
 
     <hr>
-    <table class="table">
+    <table class="table   table-hover table-striped mptable">
         <thead>
         <th>
             Session
@@ -62,9 +65,7 @@
         <th>
             Payoff
         </th>
-        <th>
-            Link
-        </th>
+
 
         </thead>
 
@@ -78,7 +79,8 @@
 
                 </td>
                 <td>
-                    {{ f.owner.code }}
+                    <a href="{{ f.get_absolute_url }}" target="_blank">{{ f.owner.code }}</a>
+
                 </td>
                 <td>
                     {{ f.city.eng }}
@@ -122,9 +124,7 @@
                         {{ f.owner.payoff }}
                     </td>
                 {% endif %}
-                <td>
-                    <a href="{{ f.get_absolute_url }}" target="_blank">link</a>
-                </td>
+
             </tr>
         {% endfor %}
 
@@ -169,3 +169,17 @@
 
 {% endblock %}
 
+{% block styles %}
+    <style>
+        .mptable {
+            font-size: 0.8rem !important;
+
+            word-break: break-word;
+        }
+
+        .mptable td, .mptable th {
+            padding: 0.5rem;
+        }
+    </style>
+
+{% endblock %}

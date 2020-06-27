@@ -17,49 +17,14 @@ from django.contrib.admin.templatetags.admin_urls import admin_urlname
 
 @admin.register(MegaParticipant)
 class MGPAdmin(admin.ModelAdmin):
-    readonly_fields = ['owner_code', 'partner_code', 'city', 'role', 'guess', 'decision', 'other_decision',
-                       'payoff1',
-                       'payoff2',
-                       'payoff',
-                       ]
     list_display = ['owner_code', 'city_short',
                     'role', 'megasession', 'group', 'pseudogroup']
 
     def owner_code(self, instance):
         return instance.owner.code
 
-    def partner_code(self, item):
-        url = resolve_url(admin_urlname(MegaParticipant._meta, 'change'), item.group_partner().id)
-        return format_html('<a href="{url}">{name}</a>'.format(url=url, name=str(item.group_partner().owner.code)))
-
-    def role(self, instance):
-        return instance.player._role
-
-    def city(self, instance):
-        return instance.player.city.description
-
-    def guess(self, instance):
-        return instance.guess
-
-    def decision(self, instance):
-        return instance.decision
-
-    def other_decision(self, instance):
-        return instance.group_partner().decision
-
-    def payoff1(self, instance):
-        return instance.player.stage1payoff
-
-    def payoff2(self, instance):
-        return instance.player.stage2payoff
-
-    def payoff(self, instance):
-        return instance.player.payoff
-
     def city_short(self, instance):
-        city = self.city(instance)
-        i = city.find('(')
-        return city[:i]
+        return instance.city.eng
 
 
 class MSSessionInline(admin.TabularInline):
@@ -92,7 +57,7 @@ class MingleAdmin(admin.ModelAdmin):
 
 
 class GGAdmin(admin.ModelAdmin):
-    list_display = ['link',]
+    list_display = ['link', ]
     list_display_links = ['link']
 
     def link(self, instance):

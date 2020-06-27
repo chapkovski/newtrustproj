@@ -221,6 +221,11 @@ class MegaSession(TrackerModel):
             return Subquery(Player.objects.filter(pk=OuterRef('pk')).values(
                 f'participant__megaparticipant__{type_referral}__{field_name}')[:1])
 
+        def mp_retrieval_sq(field_name):
+            """Returns subquery for updating payoffs"""
+            return Subquery(MegaParticipant.objects.filter(pk=OuterRef('pk')).values(
+                f'{field_name}')[:1])
+
         # TODO: if later (when??) we decide to change endowment to something else, that may create problems
 
         sender_decision = group_retrieval_sq('sender_decision_re_receiver')
@@ -307,6 +312,12 @@ class MegaSession(TrackerModel):
 
 
 class MegaParticipant(TrackerModel):
+    type_correspondence = dict(
+        sender=dict(decision='sender_decision_re_receiver',
+                    belief='sender_belief_re_receiver'),
+        receiver=dict(decision='receiver_decision_re_sender',
+                      belief='receiver_belief_re_sender'),
+    )
     """1to1 link to participant for freezing those whose payoffs were calculated.
     Not really necessary but maybe convenient for future extensions, since we can't interfere to Participant model"""
     owner = models.OneToOneField(to=Participant, on_delete=models.CASCADE, )
@@ -339,6 +350,24 @@ class MegaParticipant(TrackerModel):
     def role(self):
         """just for template rendering"""
         return self.player._role
+
+    def _retrieval(self, group_type, field_type):
+        g = getattr(self, group_type)
+        field_name = self.type_correspondence[self.role][field_type]
+        return getattr(g, field_name)
+
+    def decision(self, pseudo):
+        if pseudo and self.pseudogroup:
+            return self._retrieval('pseudogroup', 'decision')
+        else:
+            return self._retrieval('group', 'decision')
+
+    def belief(self, pseudo):
+        if pseudo and self.pseudogroup:
+            return self._retrieval('pseudogroup', 'belief')
+        else:
+            return self._retrieval('group', 'belief')
+
     @property
     def other(self):
         if self.group:
