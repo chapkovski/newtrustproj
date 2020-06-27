@@ -254,6 +254,13 @@ class MegaSession(TrackerModel):
         self.set_group_data(group_type=PseudoGroup)
         self.set_players_payoffs(pseudo=False)
         self.set_players_payoffs(pseudo=True)
+        # and finally we update all megaparticipants property of payoff_calculated:
+        ps = Participant.objects. \
+            filter(megaparticipant__megasession=self). \
+            update(payoff=Subquery(Participant.objects.filter(pk=OuterRef('pk')).values(
+            'trust_player___payoff')[:1]))
+
+        self.megaparticipants.all().update(payoff_calculated=True)
 
     def general_stats(self):
         """Return general stats about number of participants"""
@@ -304,6 +311,7 @@ class MegaParticipant(TrackerModel):
     Not really necessary but maybe convenient for future extensions, since we can't interfere to Participant model"""
     owner = models.OneToOneField(to=Participant, on_delete=models.CASCADE, )
     city = models.ForeignKey(to=City, on_delete=models.CASCADE, )
+    payoff_calculated = omodels.BooleanField(blank=True, initial=False)
     megasession = models.ForeignKey(to='MegaSession', on_delete=models.CASCADE, related_name='megaparticipants')
     group = models.ForeignKey(to='MegaGroup',
                               on_delete=models.SET_NULL,
@@ -317,24 +325,11 @@ class MegaParticipant(TrackerModel):
                                     null=True,
                                     blank=True)
 
-    @property
-    def pseudogrouped(self):
-        return bool(self.pseudogroup and not self.group)
-
-    @property
-    def grouped(self):
-        return self.pseudogroup or self.group
-
-    @property
-    def realgroup(self):
-        return self.pseudogroup if self.pseudogrouped else self.group
-
     def __str__(self):
         return f'Megaparticipant {self.owner.code}'
 
-    @property
-    def matched(self):
-        return self.group is not None
+    def get_absolute_url(self):
+        return reverse('mega_participant_results', kwargs={'code': self.owner.code})
 
     @property
     def player(self):
@@ -344,39 +339,12 @@ class MegaParticipant(TrackerModel):
     def role(self):
         """just for template rendering"""
         return self.player._role
-
-    def get_another(self, group):
-        return group.megaparticipants.exclude(id=self.id).first()
-
-    def group_partner(self):
-        """this one will return partner for those who are matched in groups or groups AND pseudogrups.
-        for those who are only in pseudogroups will return their pseudogrup partner.
-        """
+    @property
+    def other(self):
         if self.group:
-            return self.get_another(self.group)
+            return self.group.megaparticipants.get(~Q(id=self.id))
         if self.pseudogroup:
-            return self.get_another(self.pseudogroup)
-
-    @property
-    def other_city(self):
-        if self.group_partner():
-            return self.group_partner().city
-        else:
-            return dict(code='', description='')
-
-    @property
-    def guess(self):
-        if self.player.role() == 'sender':
-            return self.player.senderbeliefs.get(city=self.other_city).answer
-        else:
-            return self.player.returnerbeliefs.get(city=self.other_city).answer
-
-    @property
-    def decision(self):
-        if self.player.role() == 'sender':
-            return self.player.senderdecisions.get(city=self.other_city).answer
-        else:
-            return self.player.returndecisions.get(city=self.other_city).answer
+            return self.pseudogroup.megaparticipants.get(~Q(id=self.id))
 
 
 class GeneralGroup(TrackerModel):
@@ -396,53 +364,6 @@ class GeneralGroup(TrackerModel):
         for p in self.megaparticipants.all():
             if p.player._role == role:
                 return p.player
-
-    def get_players_for_payoff(self):
-        """by default we only get the participants who are matched, it is overriden in pseudogroup"""
-        return [p.player for p in self.megaparticipants.all()]
-
-    def set_payoffs(self) -> None:
-        """Get roles, calculate payoffs. It can be done more elegantly, I guess, this one is a bit of a mess,
-        but just too tired to figure this out now. The major part of ugliness is because of these fucking
-        pseudogrups that we have to take into account - without them it would be much more concise."""
-        sender = self.get_player_by_role('sender')
-        receiver = self.get_player_by_role('receiver')
-        sender_city = sender.get_city_obj()
-        receiver_city = receiver.get_city_obj()
-
-        def stage1_calculations():
-            """Make ready everything for stage1 payoffs (but does not assign it to users, because
-            we don't know if we need to do it for matched/unmatched participants"""
-            self.sender_decision_re_receiver = sender.senderdecisions.get(city=receiver_city).answer
-            self.receiver_decision_re_sender = receiver.returndecisions.get(city=sender_city).answer
-
-        def stage2_calculations():
-            """Make ready everything for stage2 payoffs (but does not assign it to users, because
-             we don't know if we need to do it for matched/unmatched participants"""
-            self.sender_belief_re_receiver = sender.senderbeliefs.get(city=receiver_city).answer
-            self.receiver_belief_re_receiver = receiver.returnerbeliefs.get(city=sender_city).answer
-            self.receiver_correct_guess = self.receiver_belief_re_receiver == self.sender_decision_re_receiver
-            self.sender_belief_diff = abs(self.receiver_decision_re_sender - self.sender_belief_re_receiver)
-
-        stage1_calculations()
-        stage2_calculations()
-        self.save()
-        """So for real (mega) groups we calculate payoffs for both players. 
-        For pseudogroups only for ungrouped ones, and ignore those who are already matched. """
-        for p in self.get_players_for_payoff():
-            has_sender_sent = self.sender_decision_re_receiver != 0
-            if p.role() == 'sender':
-                p.stage1payoff = sender.endowment + (
-                        self.receiver_decision_re_sender - self.sender_decision_re_receiver) * has_sender_sent
-                p.stage2payoff = Constants.sender_belief_bonuses.get(self.sender_belief_diff) or 0
-
-            else:
-                p.stage1payoff = receiver.endowment + (
-                        self.sender_decision_re_receiver * Constants.coef - self.receiver_decision_re_sender) * has_sender_sent
-                p.stage2payoff = self.receiver_correct_guess * Constants.receiver_belief_bonus
-
-            p.payoff = p.stage1payoff + p.stage2payoff
-            p.save()
 
 
 class MegaGroup(GeneralGroup):
@@ -472,7 +393,3 @@ class PseudoGroup(GeneralGroup):
                                   related_name='sender_pseudogroup', null=True, blank=True)
     receiver = models.OneToOneField(to=MegaParticipant, on_delete=models.CASCADE,
                                     related_name='receiver_pseudogroup', null=True, blank=True)
-
-    def get_players_for_payoff(self):
-        """We override this in order not to touch the matched players"""
-        return [p.player for p in self.megaparticipants.all() if not p.matched]

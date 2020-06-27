@@ -8,7 +8,7 @@ import os
 GOOGLE_API_KEY = environ.get('GOOGLE_API_KEY')
 print('GOOGLE_API', GOOGLE_API_KEY)
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=10.00, participation_fee=150.00, doc=""
+    real_world_currency_per_point=0.10, participation_fee=150.00, doc=""
 )
 
 LANGUAGE_SESSION_KEY = '_language'
@@ -80,7 +80,7 @@ SESSION_CONFIGS = [
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'RUR'
+REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
 POINTS_CUSTOM_NAME = 'токен'
 

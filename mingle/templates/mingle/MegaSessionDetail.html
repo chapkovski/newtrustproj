@@ -28,7 +28,7 @@
         <th>
             Participant
         </th>
-           <th>
+        <th>
             City
         </th>
         <th>
@@ -62,6 +62,9 @@
         <th>
             Payoff
         </th>
+        <th>
+            Link
+        </th>
 
         </thead>
 
@@ -77,9 +80,9 @@
                 <td>
                     {{ f.owner.code }}
                 </td>
-             <td>
-                        {{ f.city.eng }}
-                    </td>
+                <td>
+                    {{ f.city.eng }}
+                </td>
                 {% if megasession.groups_formed %}
                     <td>
                         {% if f.group %}
@@ -116,9 +119,12 @@
                         {{ f.owner.trust_player.all.0.stage2payoff }}
                     </td>
                     <td>
-                        {{ f.owner.trust_player.all.0.payoff }}
+                        {{ f.owner.payoff }}
                     </td>
                 {% endif %}
+                <td>
+                    <a href="{{ f.get_absolute_url }}">link</a>
+                </td>
             </tr>
         {% endfor %}
 

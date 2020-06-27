@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from otree.models import Participant
 from django.contrib import messages
 from django.db.models import F, Count, Value, IntegerField, Q, BooleanField, Case, When
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def case_builder(field_name):
@@ -16,7 +17,7 @@ def case_builder(field_name):
     )
 
 
-class MinglerHome(TemplateView):
+class MinglerHome(LoginRequiredMixin, TemplateView):
     """Home page for mingler. Contains links to Create new megasession,
     Edit megasession (basically for detach the attached sessions
     """
@@ -36,7 +37,7 @@ from django.http import HttpResponseRedirect
 from .models import MingleSession
 
 
-class CreateNewMegaSession(CreateView):
+class CreateNewMegaSession(LoginRequiredMixin, CreateView):
     """
     Creating new megasession out of unattached minglesessions
     """
@@ -93,7 +94,7 @@ class MegaSessionMixin:
         return megasession
 
 
-class MegaSessionDetail(MegaSessionMixin, ListView):
+class MegaSessionDetail(LoginRequiredMixin, MegaSessionMixin, ListView):
     url_pattern = 'mingle/megasession/detail/<int:pk>'
     url_name = 'MegaSessionDetail'
     template_name = 'mingle/MegaSessionDetail.html'
@@ -137,7 +138,7 @@ class TurnBackToMegaSession(MegaSessionMixin, RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class GroupCalculateView(TurnBackToMegaSession):
+class GroupCalculateView(LoginRequiredMixin, TurnBackToMegaSession):
     url_pattern = 'mingle/megasession/group_and_calculate/<int:pk>'
     url_name = 'mega_group_and_recalculate'
 
@@ -152,7 +153,7 @@ class GroupCalculateView(TurnBackToMegaSession):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class CalculatePayoffsView(TurnBackToMegaSession):
+class CalculatePayoffsView(LoginRequiredMixin, TurnBackToMegaSession):
     url_pattern = 'mingle/megasession/calculatepayoffs/<int:pk>'
     url_name = 'mega_calculate_payoffs'
 
@@ -161,7 +162,7 @@ class CalculatePayoffsView(TurnBackToMegaSession):
         m.calculate_payoffs()
 
 
-class DeleteMegaSession(DeleteView):
+class DeleteMegaSession(LoginRequiredMixin, DeleteView):
     url_pattern = 'mingle/megasession/delete/<pk>'
     url_name = 'DeleteMegaSession'
     template_name = 'mingle/MegaSessionDeleteConfirm.html'
@@ -176,7 +177,7 @@ class DeleteMegaSession(DeleteView):
         return super().get(self, request, *args, **kwargs)
 
 
-class MegaSessionStats(DetailView):
+class MegaSessionStats(LoginRequiredMixin, DetailView):
     """
     Getting megasession stats per city
     """
@@ -185,3 +186,32 @@ class MegaSessionStats(DetailView):
     template_name = 'mingle/MegaSessionStats.html'
     model = MegaSession
     context_object_name = 'ms'
+
+
+class ResultsNotReady(TemplateView):
+    url_pattern = 'mingle/resultsnotready'
+    url_name = 'mingle_no_results'
+    template_name = 'mingle/NoResultsYet.html'
+
+
+class MegaParticipantDetail(DetailView):
+    """
+    Resulting page for a participant
+    """
+    url_pattern = 'mingle/participant/results/<code>'
+    url_name = 'mega_participant_results'
+    template_name = 'mingle/MegaParticipantResults.html'
+    model = MegaParticipant
+    context_object_name = 'p'
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def get_template_names(self):
+        obj = self.get_object()
+        if not obj.payoff_calculated:
+            return ['mingle/NoResultsYet.html']
+        return [self.template_name]
+
+    def get_object(self, queryset=None):
+        return MegaParticipant.objects.get(owner__code=self.kwargs.get('code'))
