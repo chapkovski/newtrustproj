@@ -9,7 +9,7 @@ from otree.api import models as omodels
 import pandas as pd
 from django.db.models.functions import Abs, Cast
 from django.db.models import (Count, F, Q, Max, Sum, Value, IntegerField, Case,
-                              When, OuterRef, Subquery, BooleanField, )
+                              When, OuterRef, Subquery, BooleanField, Avg, FloatField )
 from django.utils.safestring import mark_safe
 import time
 from django.urls import reverse
@@ -221,11 +221,6 @@ class MegaSession(TrackerModel):
             return Subquery(Player.objects.filter(pk=OuterRef('pk')).values(
                 f'participant__megaparticipant__{type_referral}__{field_name}')[:1])
 
-        def mp_retrieval_sq(field_name):
-            """Returns subquery for updating payoffs"""
-            return Subquery(MegaParticipant.objects.filter(pk=OuterRef('pk')).values(
-                f'{field_name}')[:1])
-
         # TODO: if later (when??) we decide to change endowment to something else, that may create problems
 
         sender_decision = group_retrieval_sq('sender_decision_re_receiver')
@@ -266,6 +261,8 @@ class MegaSession(TrackerModel):
             'trust_player___payoff')[:1]))
 
         self.megaparticipants.all().update(payoff_calculated=True)
+        self.payoff_calculated = True
+        self.save()
 
     def general_stats(self):
         """Return general stats about number of participants"""
@@ -309,6 +306,30 @@ class MegaSession(TrackerModel):
                                columns=['city2'], fill_value=0)
         return mark_safe(
             table.to_html(classes=['table', 'table-hover', 'table-striped', 'table-sm', 'table-responsive']))
+
+    def total_payoff(self):
+        try:
+            single_session = self.megaparticipants.first().owner.session
+            exchange_rate = single_session.config.get('real_world_currency_per_point', 1)
+            total_p = Participant.objects.filter(megaparticipant__megasession=self).aggregate(Sum('payoff'))[
+                'payoff__sum']
+            return total_p, float(total_p * exchange_rate)
+        except (Participant.DoesNotExist, MegaParticipant.DoesNotExist):
+            pass
+
+    def payoff_stats(self):
+        parts = self.megaparticipants.annotate(role=F('owner__trust_player___role'),
+                                               payoff=F('owner__payoff'),).\
+            values('role','city__eng', ).annotate(avpayoff=Cast(Avg('payoff'), output_field=FloatField())).order_by('role')
+        df = pd.DataFrame(parts)
+        pd.reset_option('float_format')
+
+        table = pd.pivot_table(df, values='avpayoff', index=['city__eng'],
+                               columns=['role'], fill_value=0)
+
+        return mark_safe(
+            table.to_html(classes=['table', 'table-hover', 'table-striped', ]))
+
 
 
 class MegaParticipant(TrackerModel):

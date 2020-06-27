@@ -168,13 +168,13 @@ class DeleteMegaSession(LoginRequiredMixin, DeleteView):
     template_name = 'mingle/MegaSessionDeleteConfirm.html'
     model = MegaSession
     success_url = reverse_lazy('mingle_home')
-
-    def get(self, request, *args, **kwargs):
-        instance = self.get_object(self.get_queryset())
-        if not instance.deletable:
-            messages.error(request, 'Cannot delete this megasession!', extra_tags='alert alert-danger')
-            return HttpResponseRedirect(self.success_url)
-        return super().get(self, request, *args, **kwargs)
+    # TODO: later on control for non-deletion!
+    # def get(self, request, *args, **kwargs):
+    #     instance = self.get_object(self.get_queryset())
+    #     if not instance.deletable:
+    #         messages.error(request, 'Cannot delete this megasession!', extra_tags='alert alert-danger')
+    #         return HttpResponseRedirect(self.success_url)
+    #     return super().get(self, request, *args, **kwargs)
 
 
 class MegaSessionStats(LoginRequiredMixin, DetailView):
@@ -187,11 +187,12 @@ class MegaSessionStats(LoginRequiredMixin, DetailView):
     model = MegaSession
     context_object_name = 'ms'
 
-
-class ResultsNotReady(TemplateView):
-    url_pattern = 'mingle/resultsnotready'
-    url_name = 'mingle_no_results'
-    template_name = 'mingle/NoResultsYet.html'
+    def get_context_data(self, **kwargs):
+        c = super().get_context_data(**kwargs)
+        c['total_payoff'] = self.object.total_payoff()
+        c['pseudogrouped'] = self.object.megaparticipants.filter(group__isnull=True,
+                                                                 pseudogroup__isnull=False).count()
+        return c
 
 
 class MegaParticipantDetail(DetailView):

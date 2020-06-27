@@ -1,11 +1,22 @@
 {% extends 'mingle/MinglerBase.html' %}
-  {% block back %}
-                        <div><a class="nav-link" href="{% url 'MegaSessionDetail' pk=ms.id %}">Back to Megasession</a></div>
-                    {% endblock %}
+{% block back %}
+    <div><a class="nav-link" href="{% url 'MegaSessionDetail' pk=ms.id %}">Back to Megasession</a></div>
+{% endblock %}
 {% block content %}
     <h3>General stats</h3>
-    <div>Number of sessions: <span class="badge badge-info"> {{ ms.minglesessions.all.count }}</span></div>
-    <div class="mb-3">Number of participants: <span class="badge badge-info  ">     {{ ms.megaparticipants.all.count }}</span></div>
+    {% if pseudogrouped > 0 %}
+        <div class="alert alert-warning">
+            This statistics does not count 'pseudogrouped' so it can be slightly biased!
+        </div>
+    {% endif %}
+
+    <div class="genwrapper my-3">
+        <div>Number of sessions: <span class="badge badge-info"> {{ ms.minglesessions.all.count }}</span></div>
+        <div class=" ">Number of participants: <span
+                class="badge badge-info  ">     {{ ms.megaparticipants.all.count }}</span></div>
+        <div class="">Number of pseudogrouped participants: <span
+                class="badge badge-info  ">     {{ pseudogrouped }}</span></div>
+    </div>
     {{ ms.general_stats }}
 
 
@@ -20,6 +31,11 @@
     <h3>Payoffs</h3>
     {% if ms.payoff_calculated %}
         <div>Payoff stats per city here</div>
+        <div>Total payoff in tokens: <span class="badge badge-danger">{{ total_payoff.0 }}</span></div>
+        <div>Total payoff in USD: <span class="badge badge-danger">{{ total_payoff.1 }}</span></div>
+        <div>
+        {{ ms.payoff_stats }}
+        </div>
     {% else %}
         <div>Payoffs are not yet calculated</div>
     {% endif %}
