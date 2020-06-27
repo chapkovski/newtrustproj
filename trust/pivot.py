@@ -33,7 +33,7 @@ def get_full_data():
         data = Player.objects.all().annotate(**curconverter).values()
 
         df = pd.DataFrame(list(
-            data.values('session__code', 'participant__code', 'participant__time_started', 'city', 'partner_city',
+            data.values('session__code', 'participant__code', 'participant__time_started', 'city',
                         '_role', 'city_order', 'participant__id_in_session', 'participant__label',
                         *curconverter.keys(), )))
         df.set_index('participant__code', inplace=True)
@@ -69,8 +69,11 @@ def get_full_data():
             'group',
         ]
         data = Player.objects.all()
+        print('PLAYERS', data)
         fields = [q.name for q in Player._meta.get_fields() if q.name not in skip_fields]
         df = pd.DataFrame(list(data.values(*fields, 'participant__code', )))
+        print(df)
+        print('-=-------')
         df.set_index('participant__code', inplace=True)
         return df
 
@@ -91,15 +94,13 @@ def get_full_data():
 
     trust_data = get_trust_data_df(TPlayer)
     decisions = get_decisions_wide_df(Decision)
-    q = get_q_data(QPlayer)
-    completion_time = get_time()
-    merged = pd.concat([
-        trust_data,
-        q,
-        decisions,
-        completion_time
-
-    ], sort=False, join='inner', axis=1)
+    to_merge = [trust_data, decisions]
+    # Obviously for testing we don't have a questionnaire.
+    if QPlayer.objects.all().count() > 0:
+        q = get_q_data(QPlayer)
+        completion_time = get_time()
+        to_merge.extend([q, completion_time])
+    merged = pd.concat(to_merge, sort=False, join='inner', axis=1)
     merged = reshuffle_data(merged)
     merged.reset_index(inplace=True)
 
