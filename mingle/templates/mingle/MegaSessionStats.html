@@ -2,6 +2,13 @@
 {% block back %}
     <div><a class="nav-link" href="{% url 'MegaSessionDetail' pk=ms.id %}">Back to Megasession</a></div>
 {% endblock %}
+{% block restmenu %}
+    <div class="nav-item ">
+        <a href="{% url 'MegaSessionDetail' pk=ms.id %}" role="button" class="btn btn-lg btn-outline-secondary">
+                        Back to megasession {{ ms.id }}
+                    </a>
+    </div>
+{% endblock %}
 {% block content %}
     <h3>General stats</h3>
     {% if pseudogrouped > 0 %}
@@ -35,7 +42,7 @@
         <div>Total payoff in USD: <span class="badge badge-danger">{{ total_payoff.1 }}</span></div>
         <h5>Payoffs in token per city and role:</h5>
         <div>
-        {{ ms.payoff_stats }}
+            {{ ms.payoff_stats }}
         </div>
     {% else %}
         <div>Payoffs are not yet calculated</div>

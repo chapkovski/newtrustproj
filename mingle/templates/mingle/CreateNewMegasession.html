@@ -1,21 +1,29 @@
 {% extends 'mingle/MinglerBase.html' %}
 {% block content %}
-    <div class="btn-group">
-        <button type="button" class="btn btn-outline-danger" id="selectall">Select all</button>
-        <button type="button" class="btn btn-outline-success" id="unselectall">Unselect all</button>
-    </div>
-    <h5 class="text-danger"> {{ form.non_field_errors }}</h5>
     <form method="post">
+        <div class="d-flex">
+            <div>
+                <button type="submit" class="btn btn-success"
+                ">Create</button>
+            </div>
+            <div class="btn-group ml-auto">
+
+                <button type="button" class="btn btn-outline-danger" id="selectall">Select all</button>
+                <button type="button" class="btn btn-outline-success" id="unselectall">Unselect all</button>
+            </div>
+        </div>
+        <h5 class="text-danger"> {{ form.non_field_errors }}</h5>
+
         {{ formset.management_form }}
         <table class="table table-hover table-striped">
-        <thead>
-        <th></th>
-        <th>Created at</th>
-        <th>Session link</th>
-        <th>N.</th>
-        <th>City</th>
-        <th></th>
-        </thead>
+            <thead>
+            <th></th>
+            <th>Created at</th>
+            <th>Session link</th>
+            <th>N.</th>
+            <th>City</th>
+            <th></th>
+            </thead>
             {% for f in formset %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
@@ -26,7 +34,7 @@
                         </a>
 
                     </td>
-                    <td>{{ f.instance.calcs     }}</td>
+                    <td>{{ f.instance.calcs }}</td>
                     <td>{{ f.instance.city.eng }}</td>
                     {% for field in f %}
                         <td>{{ field }}</td>
@@ -38,7 +46,7 @@
         {% csrf_token %}
         {{ form }}
 
-        <button class="btn btn-outline-primary">CREATE</button>
+        <button class="btn btn-outline-primary">Create</button>
     </form>
 
 
