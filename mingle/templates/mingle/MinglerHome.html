@@ -37,7 +37,7 @@
 
                                 {% for m in megasessions %}
 
-                                    <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center my-3">
                                         <div>
                                             <a href="{% url 'MegaSessionDetail' pk=m.id %}">
                                                 Megasession {{ m.id }}
@@ -48,7 +48,9 @@
                                                href="{% url 'DeleteMegaSession' pk=m.id %}">Delete</a>
                                         </div>
                                     </div>
-
+                                    {% if not forloop.last %}
+                                        <hr>
+                                    {% endif %}
                                 {% endfor %}
 
 
