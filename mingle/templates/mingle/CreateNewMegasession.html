@@ -2,7 +2,9 @@
 {% block content %}
     <form method="post">
         <div class="d-flex">
-            <div>
+            <div class="btn-group">
+                 <a href="{% url 'mingle_home' %}" role="button"
+                                       class="btn   btn-outline-secondary">Cancel</a>
                 <button type="submit" class="btn btn-success"
                 ">Create</button>
             </div>
@@ -45,8 +47,12 @@
         </table>
         {% csrf_token %}
         {{ form }}
+        <div class="btn-group">
+            <a href="{% url 'mingle_home' %}" role="button"
+                                       class="btn   btn-outline-secondary">Cancel</a>
+            <button class="btn btn-success">Create</button>
+        </div>
 
-        <button class="btn btn-outline-primary">Create</button>
     </form>
 
 
