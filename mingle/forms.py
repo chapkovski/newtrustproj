@@ -6,6 +6,9 @@ from django.db.models import Q
 
 class MingleFormSet(BaseModelFormSet):
     def clean(self):
+        for i in self.forms:
+            if i.instance.id is None:
+                raise forms.ValidationError('Sorry, one of the sessions has been taken. Please make another choice')
         nones = [form.cleaned_data.get('megasession') is None for form in self.forms]
 
         if all(nones):

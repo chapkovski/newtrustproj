@@ -47,21 +47,28 @@ class CreateNewMegaSession(LoginRequiredMixin, CreateView):
     model = MegaSession
     form_class = MegaForm
 
+    def no_mingle_sessions(self):
+        messages.error(self.request,
+                       """
+                       Cannot create new megasession: all sessions are already members of other megasessions! 
+                       Either wait till new data is added or delete existing megasessions.
+                       """,
+                       extra_tags='alert alert-danger')
+        return HttpResponseRedirect(reverse_lazy('mingle_home'))
+
+    def get_queryset(self):
+        filt = Count('owner__trust_player', filter=Q(owner__trust_player__calculable=True))
+        q = MingleSession.objects.filter(megasession__isnull=True).annotate(calcs=filt)
+        return q
+
     def get(self, request, *args, **kwargs):
-        q = MingleSession.objects.filter(megasession__isnull=True).exists()
-        if not q:
-            messages.error(request,
-                           """
-                           Cannot create new megasession: all sessions are already members of other megasessions! 
-                           Either wait till new data is added or delete existing megasessions.
-                           """,
-                           extra_tags='alert alert-danger')
-            return HttpResponseRedirect(reverse_lazy('mingle_home'))
+        q = self.get_queryset()
+        if not q.exists():
+            return self.no_mingle_sessions()
         return super().get(request, *args, **kwargs)
 
     def get_formset(self, post_data=None):
-        filt = Count('owner__trust_player', filter=Q(owner__trust_player__calculable=True))
-        q = MingleSession.objects.filter(megasession__isnull=True).annotate(calcs=filt)
+        q = self.get_queryset()
         return MingleFormSet(data=post_data, form_kwargs=dict(owner=self.object),
                              queryset=q
                              )
@@ -70,6 +77,12 @@ class CreateNewMegaSession(LoginRequiredMixin, CreateView):
         r = super().get_context_data(**kwargs)
 
         r['formset'] = self.get_formset()
+        return r
+
+    def form_invalid(self, form):
+        if not self.get_queryset().exists():
+            return self.no_mingle_sessions()
+        r = super().form_invalid(form)
         return r
 
     def form_valid(self, form):
@@ -81,7 +94,8 @@ class CreateNewMegaSession(LoginRequiredMixin, CreateView):
             formset = self.get_formset(post_data=self.request.POST)
             formset.save()
         else:
-            form.add_error(None, "Please select at least one session")
+            for i in formset.non_form_errors():
+                form.add_error(None, i)
             return self.form_invalid(form)
 
         return HttpResponseRedirect(self.get_success_url())
