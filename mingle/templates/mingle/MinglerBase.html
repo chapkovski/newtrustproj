@@ -33,8 +33,11 @@
 
                                 <a href="{% url 'ExportIndex' %}" role="button"
                                    class="btn btn-lg btn-outline-info">Back to Otree</a>
-                                <a href="{% url 'mingle_home' %}" role="button"
-                                   class="btn btn-lg btn-outline-info">Back to Mingler</a>
+                                {% block backtomingler %}
+                                    <a href="{% url 'mingle_home' %}" role="button"
+                                       class="btn btn-lg btn-outline-info">Back to Mingler</a>
+                                {% endblock %}
+
 
                             </div>
                         </div>
