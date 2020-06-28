@@ -107,17 +107,25 @@ class MegaSessionMixin:
         megasession = MegaSession.objects.get(id=pk)
         return megasession
 
-    def get(self, request, *args, **kwargs):
+    def nonexistent(self):
         try:
             self.get_megasession()
         except             MegaSession.DoesNotExist:
-            messages.error(request,
+            messages.error(self.request,
                            """
                           Sorry, this megasession no longer exists
                            """,
                            extra_tags='alert alert-danger')
             return HttpResponseRedirect(reverse_lazy('mingle_home'))
-        return super().get(request, *args, **kwargs)
+        return False
+
+    def get(self, request, *args, **kwargs):
+        existence = self.nonexistent()
+        return existence or super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        existence = self.nonexistent()
+        return existence or super().post(request, *args, **kwargs)
 
 
 class MegaSessionDetail(LoginRequiredMixin, MegaSessionMixin, ListView):
