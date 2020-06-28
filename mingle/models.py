@@ -291,7 +291,7 @@ class MegaSession(TrackerModel):
         data = self.megaparticipants.filter(group__isnull=False).filter(
             Q(group__megaparticipants__lt=F('pk')) | Q(group__megaparticipants__gt=F('pk'))
         ).values(
-            city1=F('city__description'),
+            city1=F('city__eng'),
             city2=F('group__megaparticipants__city__eng')
         ).annotate(
             number=Count('pk')
