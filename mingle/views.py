@@ -93,6 +93,18 @@ class MegaSessionMixin:
         megasession = MegaSession.objects.get(id=pk)
         return megasession
 
+    def get(self, request, *args, **kwargs):
+        try:
+            self.get_megasession()
+        except             MegaSession.DoesNotExist:
+            messages.error(request,
+                           """
+                          Sorry, this megasession no longer exists
+                           """,
+                           extra_tags='alert alert-danger')
+            return HttpResponseRedirect(reverse_lazy('mingle_home'))
+        return super().get(request, *args, **kwargs)
+
 
 class MegaSessionDetail(LoginRequiredMixin, MegaSessionMixin, ListView):
     url_pattern = 'mingle/megasession/detail/<int:pk>'
@@ -102,6 +114,18 @@ class MegaSessionDetail(LoginRequiredMixin, MegaSessionMixin, ListView):
     http_method_names = ['get']
     success_url = reverse_lazy('mingle_home')
     paginate_by = 50
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.get_megasession()
+        except             MegaSession.DoesNotExist:
+            messages.error(request,
+                           """
+                          Sorry, this megasession no longer exists
+                           """,
+                           extra_tags='alert alert-danger')
+            return HttpResponseRedirect(reverse_lazy('mingle_home'))
+        return super().get(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         r = super().get_context_data(*args, **kwargs)
@@ -162,7 +186,7 @@ class CalculatePayoffsView(LoginRequiredMixin, TurnBackToMegaSession):
         m.calculate_payoffs()
 
 
-class DeleteMegaSession(LoginRequiredMixin, DeleteView):
+class DeleteMegaSession(LoginRequiredMixin, MegaSessionMixin, DeleteView):
     url_pattern = 'mingle/megasession/delete/<pk>'
     url_name = 'DeleteMegaSession'
     template_name = 'mingle/MegaSessionDeleteConfirm.html'
@@ -177,7 +201,7 @@ class DeleteMegaSession(LoginRequiredMixin, DeleteView):
     #     return super().get(self, request, *args, **kwargs)
 
 
-class MegaSessionStats(LoginRequiredMixin, DetailView):
+class MegaSessionStats(LoginRequiredMixin, MegaSessionMixin, DetailView):
     """
     Getting megasession stats per city
     """
