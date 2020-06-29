@@ -23,6 +23,9 @@ doc = """
 Interregional trust game. 
 """
 
+decision_types = ['sender_decision', 'return_decision', 'sender_belief', 'receiver_belief', 'average_on_send_belief',
+                  'average_on_return_belief']
+
 
 class Constants(BaseConstants):
     name_in_url = 'trust'
@@ -76,17 +79,22 @@ class Subsession(BaseSubsession):
             City.objects.get_or_create(code=i['code'], defaults={'description': i['name'],
                                                                  'eng': i['eng']})
         cur_city = self.session.config.get('city_code')
-        city_in = City.objects.filter(code=cur_city)
-        if not city_in.exists():
+        try:
+            city_in = City.objects.get(code=cur_city)
+        except City.DoesNotExist:
+
             raise Exception(_('Вы ввели неверный код для одного из городов!'))
         """We get the city and assign its objects to all players"""
-        for p in self.get_players():
-            p.city = city_in.first()
-            p.create_averages()
-            p.create_sender_decisions()
-            p.create_receiver_decisions()
-            p.create_sender_beliefs()
-            p.create_receiver_beliefs()
+        decisions = []
+        ps = self.player_set.all()
+        cities = City.objects.all()
+        for p in ps:
+            for d in decision_types:
+                ds = [Decision(city=city, owner=p, decision_type=d) for city in cities]
+                decisions.extend(ds)
+        ps.update(city=city_in)
+        Decision.objects.bulk_create(decisions)
+
         # TODO: add requirements to plug toloka pool and project ids
         # toloka_project_id
         # toloka_pool_id
@@ -161,44 +169,6 @@ class Player(CQPlayer):
     def role(self):
         return self._role
 
-    def create_decisions(self):
-        if self.role() == 'sender':
-            self.create_sender_decisions()
-        else:
-            self.create_receiver_decisions()
-
-    def create_beliefs(self):
-        if self.role() == 'sender':
-            self.create_sender_beliefs()
-        else:
-            self.create_receiver_beliefs()
-
-    def create_averages(self):
-        self.create_sender_averages()
-        self.create_receiver_averages()
-
-    def create_sender_averages(self):
-        self._universal_creator('average_on_return_belief')
-
-    def create_receiver_averages(self):
-        self._universal_creator('average_on_send_belief')
-
-    def create_sender_decisions(self):
-        self._universal_creator('sender_decision')
-
-    def create_receiver_decisions(self):
-        self._universal_creator('return_decision')
-
-    def create_sender_beliefs(self):
-        self._universal_creator('sender_belief')
-
-    def create_receiver_beliefs(self):
-        self._universal_creator('receiver_belief')
-
-    def _universal_creator(self, decision_type):
-        ds = [Decision(city=city, owner=self, decision_type=decision_type) for city in City.objects.all()]
-        Decision.objects.bulk_create(ds)
-
     def _decision_getter(self, decision_type):
         return self.decisions.filter(decision_type=decision_type)
 
@@ -225,10 +195,6 @@ class Player(CQPlayer):
     @property
     def averageonreturnbeliefs(self):
         return self._decision_getter('average_on_return_belief')
-
-
-decision_types = ['sender_decision', 'return_decision', 'sender_belief', 'receiver_belief', 'average_on_send_belief',
-                  'average_on_return_belief']
 
 
 class Decision(djmodels.Model):

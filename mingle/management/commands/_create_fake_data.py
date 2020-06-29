@@ -5,12 +5,25 @@ NOT A PROPER TEST. Proper ones are in test_mingle.py here.
 from otree.session import create_session
 from trust.models import Player, Decision, Constants, City
 from django.db.models import F
-from django.db import connection
+from mingle.utils import  time_check
 import random
 from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 drop_out_rate = 0.1
 
+@time_check
+def generate_rest(sessions, upd_decisions):
+    Decision.objects.bulk_update(upd_decisions, ['answer'])
+    # finally let take some of them out by setting calculable to false
+    ps = Player.objects.filter(session__in=sessions, calculable=True)
+    ids = list(ps.values_list('id', flat=True))
+
+    drop_out_n = int(len(ps) * drop_out_rate)
+    drop_out_ids = random.sample(ids, drop_out_n)
+    ps.filter(id__in=drop_out_ids).update(calculable=False)
 
 def data_creator(num_participants):
     for i in settings.CITIES:
@@ -20,6 +33,7 @@ def data_creator(num_participants):
     cities = [(f"{x:02d}") for x in range(1, 13)]
     sessions = []
     for x in cities:
+        logger.info(f'Creating session for city: {x}; participants:{num_participants} ')
         s = create_session(
             session_config_name='trust_demo_ru',
             num_participants=num_participants,
@@ -36,29 +50,20 @@ def data_creator(num_participants):
     odds.update(_role='sender')
     evens.update(_role='receiver')
 
-    # we do this again because update nullifies querysets
-    # TODO: It really can be optimized by bulk creation but I am too lazy for that now. Optimize later
-
-
-
     upd_decisions = []
-    for d in Decision.objects.filter(decision_type='sender_decision'):
+    ds = Decision.objects.filter(owner__session__in=sessions)
+    for d in ds.filter(decision_type='sender_decision', owner___role='sender'):
         d.answer = random.choice([0, 10])
         upd_decisions.append(d)
-    for d in Decision.objects.filter(decision_type='return_decision'):
+    for d in ds.filter(decision_type='return_decision', owner___role='receiver'):
         d.answer = random.choice([12, 15, 18])
         upd_decisions.append(d)
-    for d in Decision.objects.filter(decision_type='receiver_belief'):
+    for d in ds.filter(decision_type='receiver_belief', owner___role='receiver'):
         d.answer = random.choice([0, 10])
         upd_decisions.append(d)
-    for d in Decision.objects.filter(decision_type='sender_belief'):
+    for d in ds.filter(decision_type='sender_belief', owner___role='sender'):
         d.answer = random.choice([12, 15, 18, 21])
         upd_decisions.append(d)
-    Decision.objects.bulk_update(upd_decisions, ['answer'])
-    # finally let take some of them out by setting calculable to false
-    ps = Player.objects.filter(session__in=sessions, calculable=True)
-    ids = list(ps.values_list('id', flat=True))
 
-    drop_out_n = int(len(ps) * drop_out_rate)
-    drop_out_ids = random.sample(ids, drop_out_n)
-    ps.filter(id__in=drop_out_ids).update(calculable=False)
+
+    generate_rest(sessions, upd_decisions)
