@@ -11,7 +11,7 @@ def time_check(func):
         print("Something is happening after the function is called.")
         endq = len(connection.queries)
 
-        print(f'Total queries: {endq - startq}')
-        print(f'Total time: {   time() - start_time}')
+        print(f'FUNC: {func.__name__}; Total queries: {endq - startq}')
+        print(f'FUNC: {func.__name__}; Total time: {   time() - start_time}')
 
     return wrapper

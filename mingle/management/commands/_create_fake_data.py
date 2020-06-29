@@ -5,6 +5,7 @@ NOT A PROPER TEST. Proper ones are in test_mingle.py here.
 from otree.session import create_session
 from trust.models import Player, Decision, Constants, City
 from django.db.models import F
+from django.db import connection
 import random
 from django.conf import settings
 
@@ -37,11 +38,14 @@ def data_creator(num_participants):
 
     # we do this again because update nullifies querysets
     # TODO: It really can be optimized by bulk creation but I am too lazy for that now. Optimize later
-
+    startq = len(connection.queries)
     ps = Player.objects.filter(session__in=sessions)
     for p in ps:
         p.create_decisions()
         p.create_beliefs()
+    endq = len(connection.queries)
+
+    print(f'Total queries: {endq - startq}')
 
     upd_decisions = []
     for d in Decision.objects.filter(decision_type='sender_decision'):

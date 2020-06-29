@@ -67,7 +67,6 @@ class MyEncoder(JSONEncoder):
 class Subsession(BaseSubsession):
     session_config_dump = models.LongStringField()
 
-    @time_check
     def creating_session(self):
         self.session_config_dump = json.dumps(self.session.config, cls=MyEncoder)
         if self.session.num_participants % 2 != 0:
