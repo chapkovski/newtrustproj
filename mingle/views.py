@@ -58,7 +58,8 @@ class CreateNewMegaSession(LoginRequiredMixin, CreateView):
 
     def get_queryset(self):
         filt = Count('owner__trust_player', filter=Q(owner__trust_player__calculable=True))
-        q = MingleSession.objects.filter(megasession__isnull=True).annotate(calcs=filt)
+        q = MingleSession.objects.filter(megasession__isnull=True).annotate(calcs=filt).\
+            exclude(calcs=0)
         return q
 
     def get(self, request, *args, **kwargs):
