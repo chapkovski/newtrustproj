@@ -82,6 +82,11 @@ class Subsession(BaseSubsession):
         """We get the city and assign its objects to all players"""
         for p in self.get_players():
             p.city = city_in.first()
+            p.create_averages()
+            p.create_sender_decisions()
+            p.create_receiver_decisions()
+            p.create_sender_beliefs()
+            p.create_receiver_beliefs()
         # TODO: add requirements to plug toloka pool and project ids
         # toloka_project_id
         # toloka_pool_id
@@ -112,7 +117,6 @@ class Player(CQPlayer):
         """create some params and decision sets that we can create before role assignment. Which are:
         averages, and order in which cities are shown."""
         p = self
-        p.create_averages()
         # randomize city order
         p.participant.vars['city_order'] = random.choice([True, False])
         p.city_order = p.participant.vars['city_order']
@@ -125,8 +129,6 @@ class Player(CQPlayer):
         roles = list(Constants.roles.keys())
         self._role = roles[
             (self.group.id_in_subsession - 2) % 2]  # odd numbers become Senders, even numbers become Receivers
-        self.create_decisions()
-        self.create_beliefs()
 
     @property
     def role_desc(self):

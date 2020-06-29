@@ -1,5 +1,8 @@
 from django.db import connection
 from time import time
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def time_check(func):
@@ -8,7 +11,6 @@ def time_check(func):
         start_time = time()
         func(*args, **kwargs)
         endq = len(connection.queries)
-        print(f'FUNC: {func.__name__}; Total queries: {endq - startq}')
-        print(f'FUNC: {func.__name__}; Total time: {   time() - start_time}')
+        logger.info(f'FUNC: {func.__name__}; Total queries: {endq - startq}; Total time: {time() - start_time}',)
 
     return wrapper

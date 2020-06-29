@@ -11,7 +11,7 @@ from django.db.models.functions import Abs, Cast
 from django.db.models import (Count, F, Q, Max, Sum, Value, IntegerField, Case,
                               When, OuterRef, Subquery, BooleanField, Avg, FloatField )
 from django.utils.safestring import mark_safe
-import time
+from .utils import time_check
 from django.urls import reverse
 
 
@@ -81,7 +81,7 @@ class MegaSession(TrackerModel):
                                                            owner__trust_player___role='receiver').values(
             'id')[:1])
         groups.update(sender=sender, receiver=receiver)
-
+    @time_check
     def form_groups(self):
         """That takes all megaparticipants and create groups from the random pairs of Senders and receivers"""
         # TODO: we will probably block further group recomposition later
@@ -245,6 +245,7 @@ class MegaSession(TrackerModel):
                                 stage2payoff=receiver_stage2_payoff,
                                 _payoff=receiver_payoff)
 
+    @time_check
     def calculate_payoffs(self):
         """
         We first set group data (for real and pseudogroups. Then we update players payoffs based on group data.
