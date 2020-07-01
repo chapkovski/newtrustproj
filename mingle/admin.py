@@ -1,6 +1,5 @@
 from django.contrib import admin
-from django.apps import apps
-from otree.models import Participant, Session
+from trust.models import CQ
 from .models import (MegaSession, MingleSession, MegaParticipant,
                      MegaGroup, PseudoGroup)
 from django.utils.html import format_html
@@ -14,6 +13,17 @@ from django.contrib.admin.templatetags.admin_urls import admin_urlname
   
 """
 
+
+@admin.register(CQ)
+class CQdmin(admin.ModelAdmin):
+    list_display = ['owner_code', 'session', 'text', 'choices','wrong_answer',]
+    list_display_links = list_display
+
+    def owner_code(self, instance):
+        return instance.owner.participant.code
+
+    def session(self, instance):
+        return instance.owner.session.code
 
 @admin.register(MegaParticipant)
 class MGPAdmin(admin.ModelAdmin):

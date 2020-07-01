@@ -41,8 +41,11 @@ class Constants(BaseConstants):
     receiver_belief_bonus = 10
     sender_belief_bonuses = {0: 20, 3: 10}
     roles = {'sender': 'А', 'receiver': 'Б'}
-
     cities = settings.CITIES
+    cqs = settings.CQS
+
+    DEFAULT_CQ_ERROR = dict(rus='НеправильноЕ читайте инструкции',
+                            eng='Wrong! read instructions')
     GOOGLE_API_KEY = settings.GOOGLE_API_KEY
 
 
@@ -88,12 +91,16 @@ class Subsession(BaseSubsession):
         decisions = []
         ps = self.player_set.all()
         cities = City.objects.all()
+        cqs = []
         for p in ps:
             for d in decision_types:
                 ds = [Decision(city=city, owner=p, decision_type=d) for city in cities]
                 decisions.extend(ds)
+            for k, v in Constants.cqs.items():
+                cqs.append(CQ(source=k, owner=p))
         ps.update(city=city_in)
         Decision.objects.bulk_create(decisions)
+        CQ.objects.bulk_create(cqs)
 
         # TODO: add requirements to plug toloka pool and project ids
         # toloka_project_id
@@ -204,3 +211,46 @@ class Decision(djmodels.Model):
     answer = models.IntegerField()
     forpd = DataFrameManager()
     objects = djmodels.Manager()
+
+
+class CQ(djmodels.Model):
+    """Actual cq for specific player. stores the number of wrong answers."""
+    source = models.StringField()
+    owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="cqs")
+    counter = models.IntegerField(initial=0)
+
+    def _lang(self):
+        return self.owner.session.config.get('language', settings.LANGUAGE_CODE)
+
+    @property
+    def lang(self):
+        if self._lang() == 'en':
+            return 'eng'
+        else:
+            return 'rus'
+
+    @property
+    def choices(self):
+        ch = Constants.cqs[self.source].get('choices')
+        lang = self.lang
+        if ch:
+            return [(i['value'], i[lang]) for i in ch]
+
+    @property
+    def correct_answer(self):
+        return Constants.cqs[self.source]['correct']
+
+    @property
+    def text(self):
+        return Constants.cqs[self.source]['text'][self.lang]
+
+    @property
+    def wrong_answer(self):
+        lang = self.lang
+        resp = [
+            Constants.DEFAULT_CQ_ERROR[lang],
+            Constants.cqs[self.source]['wrong1'][lang],
+            Constants.cqs[self.source]['wrong2'][lang]
+        ]
+        if self.counter < len(resp):
+            return resp[self.counter]

@@ -15,9 +15,10 @@ LANGUAGE_SESSION_KEY = '_language'
 import yaml
 
 with open(r'./data/cities.yaml') as file:
-    # The FullLoader parameter handles the conversion from YAML
-    # scalar values to Python the dictionary format
     CITIES = yaml.load(file, Loader=yaml.FullLoader)
+with open(r'./data/cqs.yaml') as file:
+    CQS = yaml.load(file, Loader=yaml.FullLoader)
+
 uni_trust = dict(
     name='trust',
     use_browser_bots=False,
@@ -29,8 +30,6 @@ uni_trust = dict(
         # 'questionnaire',
         'last'
     ],
-
-
 
 )
 SESSION_CONFIGS = [
@@ -100,7 +99,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'webpack_loader',
     'questionnaire',  # we need this only because we use generic pages from there.
-    'mingle', # this one is responsible for mingling.
+    'mingle',  # this one is responsible for mingling.
 
 ]
 EXTENSION_APPS = ['trust', 'mingle', 'tolokaregister']

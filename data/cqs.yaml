@@ -1,0 +1,59 @@
+#"""
+#procedure:
+#
+#Every player has a set of control questions attached.
+#
+#requirements:
+#- have statistics per number of wrong answers for each question
+#- switch between russian and english version
+#- store the overall and part 1 and part 2 question wrong counter in player
+#- change the validator message based on the number of attempts
+#- let them through despite wrong answer after 3d attempt
+#- show questions conditionally based on the stage (1,2) and role (sender,receiver - for stage 2).
+#- modify form field/widget type (choices/number) based on question
+#
+#so we create from the dictionary below the
+#questions for each player
+#each cq instance contains a name field which is used a reference to this hardcoded structure.
+#
+#Strategy 1:
+#cq incsntace: (player, cq_base, answer) -
+#each time cq page is shown we let them create new instances with different properties.
+#we collect the statistics via count the instances of one type
+#
+#Strategy 2:
+#cq instance (player, cq_base, answer, count)
+#we pre-create cq for each player, show them existing instances, without allowing them to add new ones.
+#we validate them based on response and count, update the counter, return the validation error
+#
+#S2 sounds more promising
+#
+#"""
+cq1:
+  text:
+    rus: 'Ы'
+    eng: 'S'
+  correct: 1
+  choices:
+    - value: 1
+      rus: 'vybor1'
+      eng: 'choice2'
+    - value: 2
+      rus: 'vybor12'
+      eng: 'choice22'
+  wrong1:
+    rus: 'неправильно1'
+    eng: 'wrong1'
+  wrong2:
+    rus: 'неправильно2'
+    eng: 'wrong2'
+
+
+
+
+
+
+
+
+
+
