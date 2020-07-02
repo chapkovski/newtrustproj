@@ -9,6 +9,7 @@
 
         .otree-body {
             max-width: 1140px;
+            margin-top:100px!important;
         }
 
         .controls.field-answer {
@@ -69,7 +70,7 @@
     {% if view.show_map|default_if_none:False %}
         {% include 'global/includes/map_modal.html' %}
     {% endif %}
-    <div class="otree-body container my-5">
+    <div class="otree-body container ">
         {% if view.remaining_timeout_seconds != None %}
             {% include 'otree/includes/TimeLimit.html' with form_element_id="form" %}
         {% endif %}

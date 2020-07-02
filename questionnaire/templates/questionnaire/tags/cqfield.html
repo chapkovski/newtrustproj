@@ -6,18 +6,26 @@
             {% if field.is_hidden %}
                 {{ field.as_hidden }}
             {% else %}
-                <h1>CQ</h1>
+
                 {% if label %}{% if field|id %}<label class="col-form-label" for="{{ field|id }}">{% endif %}{{ label }}
                 {% if label|last not in ".:!?" %}:{% endif %}{% if field|id %}</label>{% endif %}{% endif %}
                 <div class="controls {{ classes }} field-{{ field.name }}">
                     {{ field }}
-                    {% include "otree/forms/errors.html" with errors=field.errors %}
+
                     {% if field.help_text %}
                         <small>
                             <p class="form-text text-muted">{{ field.help_text }}</p>
                         </small>
                     {% endif %}
+
                 </div>
+                {% if field.errors %}
+
+
+                    <div class="alert alert-danger my-3">
+                        {% include "otree/forms/errors.html" with errors=field.errors %}
+                    </div>
+                {% endif %}
             {% endif %}
         {% endwith %}
     </div>
