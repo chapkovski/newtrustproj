@@ -61,6 +61,44 @@ cq2:
   wrong2:
     rus: 'неправильно2 - q2'
     eng: 'wrong2 - q2'
+cq3:
+  text:
+    rus: 'вопрос 3 for SENDER'
+    eng: 'question 3 for SENDER'
+  correct: 3
+  part: 2
+  role: 'sender'
+  wrong1:
+    rus: 'неправильно1 - q3'
+    eng: 'wrong1 - q3'
+  wrong2:
+    rus: 'неправильно2 - q3'
+    eng: 'wrong2 - q3'
+cq4:
+  text:
+    rus: 'вопрос 4 for RECEIVER'
+    eng: 'question 3 for RECEIVER'
+  correct: 4
+  part: 2
+  role: 'receiver'
+  wrong1:
+    rus: 'неправильно1 - q4'
+    eng: 'wrong1 - q4'
+  wrong2:
+    rus: 'неправильно2 - q4'
+    eng: 'wrong2 - q4'
+cq5:
+  text:
+    rus: 'вопрос 5  UNIVERSAL'
+    eng: 'question 5  UNIVERSALR'
+  correct: 5
+  part: 2
+  wrong1:
+    rus: 'неправильно1 - q5'
+    eng: 'wrong1 - q5'
+  wrong2:
+    rus: 'неправильно2 - q5'
+    eng: 'wrong2 - q5'
 
 
 

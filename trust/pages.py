@@ -68,16 +68,13 @@ class CQ1(CQPage):
 
 
 class CQ2(CQPage):
-    page = 2
+    part = 2
     show_instructions = True
     show_instructions_1 = True
     show_instructions_2 = True
     show_map = True
 
-    def get_form_fields(self) -> List[str]:
-        receiver_fields = ['cq2_1', 'cq2_2']
-        sender_fields = ['cq2_3', 'cq2_4', 'cq2_5', ]
-        return sender_fields if self.player.role() == 'sender' else receiver_fields
+
 
 
 ############ END OF: Comprehension questions #############################################################
@@ -155,13 +152,13 @@ page_sequence = [
     # Instructions2,
     CQ1,
     # ShowMap,
-    # IntroStage1,
+    IntroStage1,
     # SenderDecisionP,
     # ReturnDecisionP,
     # AfterStage1,
     # InstructionsStage2,
     # ExamplesStage2,
-    # CQ2,
+    CQ2,
     # IntroStage2,
     # SenderBeliefP,
     # ReturnerBeliefP,

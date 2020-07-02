@@ -120,7 +120,7 @@ class Group(BaseGroup):
             p.set_params()
 
 
-class Player(CQPlayer):
+class Player(BasePlayer):
     endowment = models.CurrencyField(initial=Constants.endowment)
     city = djmodels.ForeignKey(to='City', related_name='players', null=True, blank=True, on_delete=djmodels.SET_NULL)
     _role = models.StringField()
@@ -128,8 +128,8 @@ class Player(CQPlayer):
     stage2payoff = models.CurrencyField(initial=0)
     city_order = models.BooleanField()
     calculable = models.BooleanField(initial=False)
-    cq1_counter = models.FloatField(initial=0)
-    cq2_counter = models.FloatField(initial=0)
+    cq1_counter = models.FloatField()
+    cq2_counter = models.FloatField()
 
     def get_part2_instructions_path(self):
         return f'trust/includes/instructions/part2_instructions_{self.role()}.html'

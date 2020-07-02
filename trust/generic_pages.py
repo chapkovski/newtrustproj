@@ -37,7 +37,6 @@ from .forms import cq_formset
 
 class CQPage(Page):
     part = None
-    role = None
     custom_general_error = True
 
     def is_displayed(self) -> bool:
@@ -45,11 +44,13 @@ class CQPage(Page):
 
     def get_cq_instances(self):
         """Get cq for this part and this role"""
-        return [q for q in self.player.cqs.all() if q.role == self.role and q.part == self.part]
+        cqs_for_this_part = self.player.cqs.filter(part=self.part, role=None)
+        cqs_for_this_role = self.player.cqs.filter(part=self.part, role=self.player.role())
+        return (cqs_for_this_part | cqs_for_this_role)
 
     def get_formset(self, data=None):
         """Get formset with cq instnaces"""
-        return cq_formset(instance=self.player, data=data)
+        return cq_formset(instance=self.player, data=data, queryset=self.get_cq_instances())
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -64,6 +65,6 @@ class CQPage(Page):
         return self.get_formset(data=data)
 
     def before_next_page(self):
-        counter_name = f'cq{1}_counter'
-        counter = self.player.cqs.filter(part=self.part, role=self.role).aggregate(avg=Avg('counter'))['avg']
+        counter_name = f'cq{self.part}_counter'
+        counter = self.get_cq_instances().aggregate(avg=Avg('counter'))['avg']
         setattr(self.player, counter_name, counter)

@@ -5,7 +5,7 @@ from trust.models import Player as TPlayer
 from django.db.models import Value, IntegerField, F, DecimalField
 from django.db.models.functions import Cast
 from otree.models_concrete import PageCompletion
-
+from otree.models import Session
 
 def renamer(oldname):
     newname = oldname.strip('_').replace('__', '_')
@@ -21,7 +21,7 @@ def reshuffle_data(data):
 
 def get_full_data():
     # get extra info from trust game
-    def get_trust_data_df(Player):
+    def get_trust_data_df(Player, sessions):
         toconv = ['_payoff',
                   'endowment',
                   'stage1payoff',
@@ -30,11 +30,12 @@ def get_full_data():
         curconverter = {}
         for p in toconv:
             curconverter[f'trustgame_{p}'] = Cast(p, output_field=IntegerField())
-        data = Player.objects.all().annotate(**curconverter).values()
+        data = Player.objects.filter(session__in=sessions).annotate(**curconverter).values()
 
         df = pd.DataFrame(list(
             data.values('session__code', 'participant__code', 'participant__time_started', 'city',
                         '_role', 'city_order', 'participant__id_in_session', 'participant__label',
+                        'cq1_counter', 'cq2_counter',
                         *curconverter.keys(), )))
         df.set_index('participant__code', inplace=True)
         df['participant__time_started'] = pd.to_datetime(df['participant__time_started'], unit='s').dt.strftime(
@@ -42,16 +43,18 @@ def get_full_data():
         return df
 
     # get pivot table from decisions
-    def get_decisions_wide_df(Decision):
-        d = Decision.objects.all()
-        df = pd.DataFrame(list(d.values('city__code', 'decision_type', 'owner__participant__code', 'answer')))
-        df.rename(dict(owner__participant__code='participant__code'), axis='columns', inplace=True)
+    def get_decisions_wide_df(Decision,sessions):
+        d = Decision.objects.filter(owner__session__in=sessions,
+                                    answer__isnull=False)
+        if d.count()>0:
+            df = pd.DataFrame(list(d.values('city__code', 'decision_type', 'owner__participant__code', 'answer')))
+            df.rename(dict(owner__participant__code='participant__code'), axis='columns', inplace=True)
 
-        table = pd.pivot_table(df, values='answer', index=['participant__code'],
-                               columns=['decision_type', 'city__code'])
-        table.columns = ['_'.join(col).strip() for col in table.columns.values]
+            table = pd.pivot_table(df, values='answer', index=['participant__code'],
+                                   columns=['decision_type', 'city__code'])
+            table.columns = ['_'.join(col).strip() for col in table.columns.values]
 
-        return table
+            return table
 
     # get questionnaire
     def get_q_data(Player):
@@ -69,11 +72,9 @@ def get_full_data():
             'group',
         ]
         data = Player.objects.all()
-        print('PLAYERS', data)
+
         fields = [q.name for q in Player._meta.get_fields() if q.name not in skip_fields]
         df = pd.DataFrame(list(data.values(*fields, 'participant__code', )))
-        print(df)
-        print('-=-------')
         df.set_index('participant__code', inplace=True)
         return df
 
@@ -92,9 +93,13 @@ def get_full_data():
 
         return table
 
-    trust_data = get_trust_data_df(TPlayer)
-    decisions = get_decisions_wide_df(Decision)
-    to_merge = [trust_data, decisions]
+
+    sessions =[s for s in  Session.objects.all() if 'trust' in s.config['app_sequence'] and s.config.get('city_code')]
+    trust_data = get_trust_data_df(TPlayer, sessions)
+    to_merge = [trust_data]
+    decisions = get_decisions_wide_df(Decision, sessions)
+    if decisions:
+        to_merge.append(decisions)
     # Obviously for testing we don't have a questionnaire.
     if QPlayer.objects.all().count() > 0:
         q = get_q_data(QPlayer)
