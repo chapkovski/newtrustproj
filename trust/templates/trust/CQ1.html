@@ -1,15 +1,27 @@
 {% extends "global/Page.html" %}
-{% load otree static i18n %}
+{% load otree  i18n hse %}
 
 {% block title %}
     {% trans 'Проверочные вопросы для части 1' %}
 {% endblock %}
+{% block custom_error_msg %}
+    <div>
+        {{ form.non_form_errors }}
 
+    </div>
+
+{% endblock %}
 {% block content %}
 
     {{ form.management_form }}
 
-    {{ form }}
+    {% for foo in form %}
+        {% for field in foo %}
+            {% cqfield field %}
+        {% endfor %}
+
+    {% endfor %}
+
 
 
     {% next_button %}

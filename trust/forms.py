@@ -1,22 +1,24 @@
 import django.forms as forms
 from .models import Player, Decision, Constants, CQ
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, BaseModelFormSet, BaseInlineFormSet
 from otree.api import widgets
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db.models import Max
+
 
 class CQForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance.choices:
-            widget = widgets.RadioSelect(choices=self.instance.choices)
+            widget = widgets.RadioSelect(choices=self.instance.choices, attrs=dict(required=True))
         else:
-            widget = forms.NumberInput()
+            widget = forms.NumberInput(attrs=dict(required=True))
 
         self.fields['answer'] = forms.IntegerField(
             label=self.instance.text,
-            widget=widget
+            widget=widget,
+            required=True
         )
-
 
     def clean_answer(self):
         q = self.instance
@@ -29,6 +31,15 @@ class CQForm(forms.ModelForm):
             q.save()
             raise forms.ValidationError(wrong_answer)
         return answer
+
+
+class CQFormSet(BaseInlineFormSet):
+    def clean(self):
+        if any(self.errors):
+            mcounter = (self.queryset.aggregate(mcounter=Max('counter')))['mcounter']
+            general_msg = Constants.general_error_msg.get(mcounter)
+            if general_msg:
+                raise forms.ValidationError(general_msg)
 
 
 class SenderForm(forms.ModelForm):
@@ -107,5 +118,6 @@ cq_formset = inlineformset_factory(parent_model=Player,
                                    fields=['answer'],
                                    extra=0,
                                    can_delete=False,
-                                   form=CQForm
+                                   form=CQForm,
+                                   formset=CQFormSet
                                    )

@@ -11,7 +11,12 @@ class HSEFormField(FormFieldNode):
     default_template = 'questionnaire/tags/hsefield.html'
 
 
+class CQFormField(FormFieldNode):
+    default_template = 'questionnaire/tags/cqfield.html'
+
+
 register.tag('hsefield', HSEFormField.parse)
+register.tag('cqfield', CQFormField.parse)
 
 
 @register.filter

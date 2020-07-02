@@ -1,7 +1,7 @@
 from ._builtin import WaitPage
 from questionnaire.generic_pages import Page
 from typing import List
-
+from django.db.models import Avg
 from .cq_models import correct_answers
 
 
@@ -31,20 +31,23 @@ class FormSetMixin:
             return super().get_form(data, files, **kwargs)
         return self.formset(data=data, instance=self.player, decision_type=self.decision_type)
 
+
 from .forms import cq_formset
 
+
 class CQPage(Page):
-    page = None
+    part = None
     role = None
+    custom_general_error = True
 
     def is_displayed(self) -> bool:
         return self.session.config.get('cq', False)
 
     def get_cq_instances(self):
         """Get cq for this part and this role"""
-        return [q for q in self.player.cqs.all() if q.role == self.role and q.page == self.page]
+        return [q for q in self.player.cqs.all() if q.role == self.role and q.part == self.part]
 
-    def get_formset(self,data=None):
+    def get_formset(self, data=None):
         """Get formset with cq instnaces"""
         return cq_formset(instance=self.player, data=data)
 
@@ -59,3 +62,8 @@ class CQPage(Page):
         if data and data.get('timeout_happened'):
             return super().get_form(data, files, **kwargs)
         return self.get_formset(data=data)
+
+    def before_next_page(self):
+        counter_name = f'cq{1}_counter'
+        counter = self.player.cqs.filter(part=self.part, role=self.role).aggregate(avg=Avg('counter'))['avg']
+        setattr(self.player, counter_name, counter)

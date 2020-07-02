@@ -43,8 +43,12 @@ class Constants(BaseConstants):
     roles = {'sender': 'А', 'receiver': 'Б'}
     cities = settings.CITIES
     cqs = settings.CQS
-    max_cq_attempts = 2
-
+    max_cq_attempts = 2  # number of attempts after a person made an error in comp. question
+    general_error_msg = {
+        1: 'first attempt wrong general message',
+        2: 'second attempt wrong general message',
+        3: 'THIRD AND LAST attempt wrong general message',
+    }
     DEFAULT_CQ_ERROR = dict(rus='НеправильноЕ читайте инструкции',
                             eng='Wrong! read instructions')
     GOOGLE_API_KEY = settings.GOOGLE_API_KEY
@@ -98,7 +102,9 @@ class Subsession(BaseSubsession):
                 ds = [Decision(city=city, owner=p, decision_type=d) for city in cities]
                 decisions.extend(ds)
             for k, v in Constants.cqs.items():
-                cqs.append(CQ(source=k, owner=p))
+                cqs.append(CQ(source=k, part=v.get('part'),
+                              role=v.get('role'),
+                              owner=p))
         ps.update(city=city_in)
         Decision.objects.bulk_create(decisions)
         CQ.objects.bulk_create(cqs)
@@ -122,6 +128,8 @@ class Player(CQPlayer):
     stage2payoff = models.CurrencyField(initial=0)
     city_order = models.BooleanField()
     calculable = models.BooleanField(initial=False)
+    cq1_counter = models.FloatField(initial=0)
+    cq2_counter = models.FloatField(initial=0)
 
     def get_part2_instructions_path(self):
         return f'trust/includes/instructions/part2_instructions_{self.role()}.html'
@@ -220,6 +228,8 @@ class CQ(djmodels.Model):
     owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="cqs")
     counter = models.IntegerField(initial=0)
     answer = models.IntegerField()
+    part = models.IntegerField()
+    role = models.StringField()
 
     def _lang(self):
         return self.owner.session.config.get('language', settings.LANGUAGE_CODE)
@@ -243,15 +253,10 @@ class CQ(djmodels.Model):
         return Constants.cqs[self.source]['correct']
 
     @property
-    def part(self):
-        return Constants.cqs[self.source]['part']
-
-    @property
     def shown(self):
-        role = Constants.cqs[self.source].get('role')
-        if not role:
+        if not self.role:
             return True
-        return self.owner._role == role
+        return self.owner._role == self.role
 
     @property
     def text(self):
@@ -267,5 +272,3 @@ class CQ(djmodels.Model):
         ]
         if self.counter < len(resp):
             return resp[self.counter]
-
-

@@ -62,7 +62,7 @@ class ReturnerBeliefP(FormSetMixin, ReturnerPage):
 
 ########### BLOCK: Comprehension questions ##############################################################
 class CQ1(CQPage):
-    page = 1
+    part = 1
     show_instructions = True
     show_map = False
 

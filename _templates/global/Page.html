@@ -70,19 +70,29 @@
         {% include 'global/includes/map_modal.html' %}
     {% endif %}
     <div class="otree-body container my-5">
-        <h2 class="otree-title page-header">{% block title %}{% endblock %}</h2>
         {% if view.remaining_timeout_seconds != None %}
             {% include 'otree/includes/TimeLimit.html' with form_element_id="form" %}
         {% endif %}
-        {% if form.errors and not view.lockable|default:False %}
-            <div class="otree-form-errors alert alert-danger">
-                {% blocktrans trimmed %}Please fix the errors in the form.{% endblocktrans %}
-                {{ form.non_field_errors|default_if_none:'' }}
-            </div>
-        {% elif view.lockable|default:False and form.errors %}
-            {% trans "Пожалуйста, дождитесь продолжения эксперимента" as modal_message %}
-            {% include 'trust/includes/error_modal.html' with message=modal_message %}
+        {% if form.errors %}
 
+            {% if not view.custom_general_error|default_if_none:False %}
+                {% if  view.lockable|default:False %}
+                    {% trans "Пожалуйста, дождитесь продолжения эксперимента" as modal_message %}
+                    {% include 'trust/includes/error_modal.html' with message=modal_message %}
+
+                {% else %}
+                    <div class="otree-form-errors alert alert-danger">
+                        {% blocktrans trimmed %}Please fix the errors in the form.{% endblocktrans %}
+                        {{ form.non_field_errors|default_if_none:'' }}
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="otree-form-errors alert alert-danger">
+                    {% block custom_error_msg %}
+                        {{ form.non_field_errors|default_if_none:'' }}
+                    {% endblock %}
+                </div>
+            {% endif %}
         {% endif %}
         <form action="" method="post" role="form" id="form" autocomplete="off">{% csrf_token %}
 
