@@ -1,7 +1,25 @@
 import django.forms as forms
-from .models import Player, Decision, Constants
+from .models import Player, Decision, Constants, CQ
 from django.forms import inlineformset_factory
 from otree.api import widgets
+
+
+class CQForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.choices:
+            self.fields['answer'].widget = widgets.RadioSelect(choices=self.instance.choices)
+
+    def clean_answer(self):
+        q = self.instance
+        answer = self.cleaned_data.get('answer')
+        if q.counter > Constants.max_cq_attempts:
+            return answer
+        if answer != q.correct_answer:
+            q.counter += 1
+            q.save()
+            raise forms.ValidationError(q.wrong_answer)
+        return answer
 
 
 class SenderForm(forms.ModelForm):
@@ -56,7 +74,7 @@ class SorterFormset(forms.BaseInlineFormSet):
         return initial_q.order_by(f'{asc_order}city__description')
 
 
-def get_player_formset( form=forms.ModelForm):
+def get_player_formset(form=forms.ModelForm):
     return inlineformset_factory(parent_model=Player,
                                  model=Decision,
                                  formset=SorterFormset,
@@ -73,3 +91,12 @@ return_formset = get_player_formset(ReturnForm)
 returnbelief_formset = get_player_formset(ReturnerBeliefForm)
 averagesendbelief_formset = get_player_formset(AverageOnSendBeliefForm)
 averagereturnbelief_formset = get_player_formset(AverageOnReturnBeliefForm)
+
+# formset for cqs
+cq_formset = inlineformset_factory(parent_model=Player,
+                                   model=CQ,
+                                   fields=['answer'],
+                                   extra=0,
+                                   can_delete=False,
+                                   form=CQForm
+                                   )

@@ -6,10 +6,19 @@
 {% endblock %}
 
 {% block content %}
+    jpa
+    {{ formset.management_form }}
+    <table>
+        {% for f in formset.forms %}
+            <div>JOPA</div>
+            {{ f.non_field_errors }}
+            {{ f.errors }}
+            {{ f }}
 
 
+        {% endfor %}
+    </table>
 
-    {% formfields %}
     {% next_button %}
 
 {% endblock %}

@@ -43,6 +43,7 @@ class Constants(BaseConstants):
     roles = {'sender': 'А', 'receiver': 'Б'}
     cities = settings.CITIES
     cqs = settings.CQS
+    max_cq_attempts = 2
 
     DEFAULT_CQ_ERROR = dict(rus='НеправильноЕ читайте инструкции',
                             eng='Wrong! read instructions')
@@ -218,6 +219,7 @@ class CQ(djmodels.Model):
     source = models.StringField()
     owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="cqs")
     counter = models.IntegerField(initial=0)
+    answer = models.IntegerField()
 
     def _lang(self):
         return self.owner.session.config.get('language', settings.LANGUAGE_CODE)
@@ -231,6 +233,7 @@ class CQ(djmodels.Model):
 
     @property
     def choices(self):
+        print('JOPPPPPPPP', self.source)
         ch = Constants.cqs[self.source].get('choices')
         lang = self.lang
         if ch:
@@ -239,6 +242,17 @@ class CQ(djmodels.Model):
     @property
     def correct_answer(self):
         return Constants.cqs[self.source]['correct']
+
+    @property
+    def part(self):
+        return Constants.cqs[self.source]['part']
+
+    @property
+    def shown(self):
+        role = Constants.cqs[self.source].get('role')
+        if not role:
+            return True
+        return self.owner._role == role
 
     @property
     def text(self):

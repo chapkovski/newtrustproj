@@ -34,6 +34,7 @@ cq1:
     rus: 'Ы'
     eng: 'S'
   correct: 1
+  part: 1
   choices:
     - value: 1
       rus: 'vybor1'
@@ -47,6 +48,19 @@ cq1:
   wrong2:
     rus: 'неправильно2'
     eng: 'wrong2'
+
+cq2:
+  text:
+    rus: 'вопрос 2'
+    eng: 'question 2'
+  correct: 2
+  part: 1
+  wrong1:
+    rus: 'неправильно1 - q2'
+    eng: 'wrong1 - q2'
+  wrong2:
+    rus: 'неправильно2 - q2'
+    eng: 'wrong2 - q2'
 
 
 
