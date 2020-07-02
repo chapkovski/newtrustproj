@@ -8,7 +8,14 @@ class CQForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance.choices:
-            self.fields['answer'].widget = widgets.RadioSelect(choices=self.instance.choices)
+            widget = widgets.RadioSelect(choices=self.instance.choices)
+        else:
+            widget = forms.NumberInput()
+
+        self.fields['answer'] = forms.IntegerField(
+            label=self.instance.text,
+            widget=widget
+        )
 
     def clean_answer(self):
         q = self.instance
