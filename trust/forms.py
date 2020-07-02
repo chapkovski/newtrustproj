@@ -2,7 +2,7 @@ import django.forms as forms
 from .models import Player, Decision, Constants, CQ
 from django.forms import inlineformset_factory
 from otree.api import widgets
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class CQForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -17,15 +17,17 @@ class CQForm(forms.ModelForm):
             widget=widget
         )
 
+
     def clean_answer(self):
         q = self.instance
         answer = self.cleaned_data.get('answer')
         if q.counter > Constants.max_cq_attempts:
             return answer
         if answer != q.correct_answer:
+            wrong_answer = q.wrong_answer
             q.counter += 1
             q.save()
-            raise forms.ValidationError(q.wrong_answer)
+            raise forms.ValidationError(wrong_answer)
         return answer
 
 

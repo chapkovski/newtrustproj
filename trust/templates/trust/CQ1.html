@@ -7,13 +7,9 @@
 
 {% block content %}
 
-    {{ formset.management_form }}
+    {{ form.management_form }}
 
-        {% for f in formset %}
-        {{ f }}
-
-
-        {% endfor %}
+    {{ form }}
 
 
     {% next_button %}

@@ -233,7 +233,6 @@ class CQ(djmodels.Model):
 
     @property
     def choices(self):
-        print('JOPPPPPPPP', self.source)
         ch = Constants.cqs[self.source].get('choices')
         lang = self.lang
         if ch:
