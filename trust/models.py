@@ -8,7 +8,7 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-from .cq_models import CQPlayer
+
 from django.db import models as djmodels
 from django.conf import settings
 import random
@@ -40,17 +40,17 @@ class Constants(BaseConstants):
     expanded_receiver_choices = list(zip(receiver_choices, receiver_choices))
     receiver_belief_bonus = 10
     sender_belief_bonuses = {0: 20, 3: 10}
-    roles = {'sender': 'А', 'receiver': 'Б'}
+    roles = {'sender': _('А'), 'receiver': _('Б')}
     cities = settings.CITIES
     cqs = settings.CQS
     max_cq_attempts = 2  # number of attempts after a person made an error in comp. question
     general_error_msg = {
-        1: 'first attempt wrong general message',
-        2: 'second attempt wrong general message',
-        3: 'THIRD AND LAST attempt wrong general message',
+        1: _('Не все Ваши ответы были правильными. Пожалуйста, прочтите еще раз инструкции в верхней части экрана, и исправьте свои ответы.'),
+        2: _('Некоторые ответы все еще не правильны. Пожалуйста, исправьте их.'),
+        3: _('Ответы, отмеченные ниже все еще не правильны. Пожалуйста, ознакомьтесь с правильными  решениями и ответами и приступайте к эксперименту'),
     }
-    DEFAULT_CQ_ERROR = dict(rus='НеправильноЕ читайте инструкции',
-                            eng='Wrong! read instructions')
+    DEFAULT_CQ_ERROR = dict(rus='Пожалуйста, проверьте правильность вашего ответа.',
+                            eng='Please, check your answer.')
     GOOGLE_API_KEY = settings.GOOGLE_API_KEY
 
 

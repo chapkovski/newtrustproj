@@ -5,13 +5,14 @@
     {% trans 'Проверочные вопросы для части 1' %}
 {% endblock %}
 {% block custom_error_msg %}
-    <div>
-        {{ form.non_form_errors }}
-
-    </div>
-
+    {% for foo in   form.non_form_errors %}
+        {{ foo }}
+    {% endfor %}
 {% endblock %}
 {% block content %}
+    <h5>
+    {% blocktrans %}Пожалуйста, ответьте на следующие вопросы. Если Вам нужна помощь, пожалуйста обратитесь к инструкциям, кликнув на кнопку в верхней части экрана.{% endblocktrans %}
+    </h5>
 
     {{ form.management_form }}
 

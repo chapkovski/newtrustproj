@@ -6,13 +6,35 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models import Max
 
 
+class SelfCleaningMixin:
+    def __init__(self, zeroing=False, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.zeroing = zeroing
+
+    def render(self, name, value, *args, **kwargs):
+        if self.zeroing:
+            value = None
+        return super().render(name, value, *args, **kwargs)
+
+
+class SelfCleaningNumber(SelfCleaningMixin, forms.NumberInput):
+    pass
+
+
+class SelfCleaningChoice(SelfCleaningMixin, widgets.RadioSelect):
+    pass
+
+
 class CQForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
+        zeroing = False
         super().__init__(*args, **kwargs)
+        if kwargs.get('data') and not self.is_valid():
+            zeroing = True
         if self.instance.choices:
-            widget = widgets.RadioSelect(choices=self.instance.choices, attrs=dict(required=True))
+            widget = SelfCleaningChoice(choices=self.instance.choices, attrs=dict(required=True), zeroing=zeroing)
         else:
-            widget = forms.NumberInput(attrs=dict(required=True))
+            widget = SelfCleaningNumber(attrs=dict(required=True), zeroing=zeroing)
 
         self.fields['answer'] = forms.IntegerField(
             label=self.instance.text,

@@ -9,7 +9,7 @@
 
         .otree-body {
             max-width: 1140px;
-            margin-top:100px!important;
+            margin-top: 100px !important;
         }
 
         .controls.field-answer {
@@ -90,7 +90,10 @@
             {% else %}
                 <div class="otree-form-errors alert alert-danger">
                     {% block custom_error_msg %}
-                        {{ form.non_field_errors|default_if_none:'' }}
+
+
+
+
                     {% endblock %}
                 </div>
             {% endif %}

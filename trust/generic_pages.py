@@ -2,7 +2,7 @@ from ._builtin import WaitPage
 from questionnaire.generic_pages import Page
 from typing import List
 from django.db.models import Avg
-from .cq_models import correct_answers
+
 
 
 class SenderPage(Page):
@@ -57,12 +57,17 @@ class CQPage(Page):
         context['formset'] = self.get_formset()
         return context
 
+
     def get_form(self, data=None, files=None, **kwargs):
         # here if this page was forced by admin to continue we just submit an empty form (with no formset data)
         # if we need this data later on that can create some problems. But that's the price we pay for autosubmission
         if data and data.get('timeout_happened'):
             return super().get_form(data, files, **kwargs)
-        return self.get_formset(data=data)
+        if not data:
+            return self.get_formset()
+        formset = self.get_formset(data=data)
+        return formset
+
 
     def before_next_page(self):
         counter_name = f'cq{self.part}_counter'

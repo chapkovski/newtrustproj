@@ -65,6 +65,7 @@ class CQ1(CQPage):
     part = 1
     show_instructions = True
     show_map = False
+    show_instructions_1 = True
 
 
 class CQ2(CQPage):
