@@ -35,7 +35,8 @@ class CQForm(forms.ModelForm):
             widget = SelfCleaningChoice(choices=self.instance.choices, attrs=dict(required=True), zeroing=zeroing)
         else:
             widget = SelfCleaningNumber(attrs=dict(required=True), zeroing=zeroing)
-
+        if kwargs.get('data') and self.is_valid():
+            widget = forms.HiddenInput()
         self.fields['answer'] = forms.IntegerField(
             label=self.instance.text,
             widget=widget,
