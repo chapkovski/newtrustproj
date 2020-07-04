@@ -9,8 +9,8 @@ cq1_1:
     rus: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token."
     eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token."
   wrong2:
-    rus: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = 30 Token."
-    eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = <b>30 Token</b>."
+    rus: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = <b><u>30 Token</b></u>."
+    eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = <b><u>30 Token</b></u>."
 
 cq1_2:
   extid: 2
@@ -20,11 +20,11 @@ cq1_2:
   correct: 30
   part: 1
   wrong1:
-    rus: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token."
-    eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token."
+    rus: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: <b><u>10 Token."
+    eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: <b><u>10 Token."
   wrong2:
-    rus: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = 30 Token."
-    eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = 30 Token."
+    rus: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = <b><u>30 Token</b></u>."
+    eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = <b><u>30 Token</b></u>."
 cq1_3:
   extid: 3
   text:
@@ -37,9 +37,9 @@ cq1_3:
     eng: "The amount of 21 Token Person B returns to Person A is not multiplied."
   wrong2:
     rus: "The amount of 21 Token Person B returns to Person A is not multiplied.
-          Person A receives the returned amount of 21 Token."
+          Person A receives the returned amount of <b><u>21 Token."
     eng: "The amount of 21 Token Person B returns to Person A is not multiplied.
-          Person A receives the returned amount of 21 Token."
+          Person A receives the returned amount of <b><u>21 Token</b></u>."
 cq1_4:
   extid: 4
   text:
@@ -48,11 +48,11 @@ cq1_4:
   correct: 31
   part: 1
   wrong1:
-    rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token. "
-    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token. "
+    rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of <b><u>10 Token</b></u>."
+    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of <b><u>10 Token</b></u>."
   wrong2:
-    rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = 31 Token. "
-    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = 31 Token. "
+    rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = <b><u>31 Token</b></u>."
+    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = <b><u>31 Token</b></u>."
 cq1_5:
   extid: 5
   text:
@@ -64,8 +64,8 @@ cq1_5:
     rus: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount."
     eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount."
   wrong2:
-    rus: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount of 9 Token = 10 – 10 + 9 = 9 Token."
-    eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount of 9 Token = 10 – 10 + 9 = 9 Token."
+    rus: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount of 9 Token = 10 – 10 + 9 = <b><u>9 Token</b></u>."
+    eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount of 9 Token = 10 – 10 + 9 = <b><u>9 Token</b></u>"
 cq1_6:
   extid: 6
   text:
@@ -77,8 +77,8 @@ cq1_6:
     rus: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token."
     eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token."
   wrong2:
-    rus: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token = 10 – 0 + 0 = 10 Token. "
-    eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token = 10 – 0 + 0 = 10 Token. "
+    rus: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token = 10 – 0 + 0 = <b><u>10 Token</b></u>."
+    eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token = 10 – 0 + 0 = <b><u>10 Token</b></u>."
 cq1_7:
   extid: 7
   text:
@@ -90,8 +90,8 @@ cq1_7:
     rus: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token."
     eng: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token."
   wrong2:
-    rus: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token = 0*3 – 0 + 10 = 10 Token. "
-    eng: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token = 0*3 – 0 + 10 = 10 Token. "
+    rus: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token = 0*3 – 0 + 10 = <b><u>10 Token</b></u>."
+    eng: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token = 0*3 – 0 + 10 = <b><u>10 Token</b></u>."
 cq1_8:
   extid: 8
   text:
@@ -103,8 +103,8 @@ cq1_8:
     rus: "Your decision to transfer or not transfer your initial endowment is relevant for the one Person B from the one city you are actually paired with."
     eng: "Your decision to transfer or not transfer your initial endowment is relevant for the one Person B from the one city you are actually paired with."
   wrong2:
-    rus: "1 - a randomly chosen participant B from one of the 12 cities that are involved in this study."
-    eng: "1 - a randomly chosen participant B from one of the 12 cities that are involved in this study."
+    rus: "<b><u>1</b></u> - a randomly chosen participant B from one of the 12 cities that are involved in this study."
+    eng: "<b><u>1</b></u> - a randomly chosen participant B from one of the 12 cities that are involved in this study."
   choices:
     - value: 1
       rus: 'Ни для кого.'
@@ -126,8 +126,8 @@ cq1_9:
     rus: 'Whether you actually receive the multiplied initial endowment is decided by the one Person A from the one city you are actually paired with.'
     eng: ' Whether you actually receive the multiplied initial endowment is decided by the one Person A from the one city you are actually paired with.'
   wrong2:
-    rus: '1 - a randomly chosen participant A from one of the 12 cities that are involved in this study.'
-    eng: '1 - a randomly chosen participant A from one of the 12 cities that are involved in this study.'
+    rus: '<b><u>1</b></u> - a randomly chosen participant A from one of the 12 cities that are involved in this study.'
+    eng: '<b><u>1</b></u> - a randomly chosen participant A from one of the 12 cities that are involved in this study.'
   choices:
     - value: 1
       rus: 'Для 12 – по одному из каждого города, участвующего в исследовании.'
@@ -151,8 +151,8 @@ cq2_1:
     rus: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token)."
     eng: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token)."
   wrong2:
-    rus: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token). This difference is 15 – 9 = 6 Token and is larger than 3 Token. The bonus therefore is 0 Token. "
-    eng: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token). This difference is 15 – 9 = 6 Token and is larger than 3 Token. The bonus therefore is 0 Token. "
+    rus: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token). This difference is 15 – 9 = 6 Token and is larger than 3 Token. The bonus therefore is <b><u>0 Token</b></u>."
+    eng: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token). This difference is 15 – 9 = 6 Token and is larger than 3 Token. The bonus therefore is <b><u>0 Token</b></u>."
 cq2_2:
   extid: A2
   text:
@@ -165,8 +165,8 @@ cq2_2:
     rus: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). "
     eng: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). "
   wrong2:
-    rus: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). This difference is 15 Token – 12 Token = 3 Token. The bonus,therefore, is 10 Token."
-    eng: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). This difference is 15 Token – 12 Token = 3 Token. The bonus,therefore, is 10 Token."
+    rus: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). This difference is 15 Token – 12 Token = 3 Token. The bonus,therefore, is <b><u>10 Token</b></u>."
+    eng: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). This difference is 15 Token – 12 Token = 3 Token. The bonus,therefore, is <b><u>10 Token</b></u>."
 cq2_3:
   extid: A3
   text:
@@ -179,8 +179,8 @@ cq2_3:
     rus: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token).
     eng: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token).
   wrong2:
-    rus: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is 20 Token.
-    eng: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is 20 Token.
+    rus: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is <b><u>20 Token</b></u>.
+    eng: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is <b><u>20 Token</b></u>.
 cq2_4:
   extid: Б1
   text:
@@ -193,8 +193,8 @@ cq2_4:
     rus: State the bonus Person B receives if he incorrectly guesses the decision of Person A.
     eng: State the bonus Person B receives if he incorrectly guesses the decision of Person A.
   wrong2:
-    rus: The bonus Person B receives if he incorrectly guesses the decision of Person A is 0 Token.
-    eng: The bonus Person B receives if he incorrectly guesses the decision of Person A is 0 Token.
+    rus: The bonus Person B receives if he incorrectly guesses the decision of Person A is <b><u>0 Token</b></u>.
+    eng: The bonus Person B receives if he incorrectly guesses the decision of Person A is <b><u>0 Token</b></u>.
 cq2_5:
   extid: Б2
   text:
@@ -207,5 +207,5 @@ cq2_5:
     rus: State the bonus Person B receives if he correctly guesses the decision of Person A.
     eng: State the bonus Person B receives if he correctly guesses the decision of Person A.
   wrong2:
-    rus: The bonus Person B receives if he correctly guesses the decision of Person A is 10 Token.
-    eng: The bonus Person B receives if he correctly guesses the decision of Person A is 10 Token.
+    rus: The bonus Person B receives if he correctly guesses the decision of Person A is <b><u>10 Token</b></u>.
+    eng: The bonus Person B receives if he correctly guesses the decision of Person A is <b><u>10 Token</b></u>.

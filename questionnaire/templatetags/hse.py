@@ -18,16 +18,6 @@ class CQFormField(FormFieldNode):
 register.tag('hsefield', HSEFormField.parse)
 register.tag('cqfield', CQFormField.parse)
 
-@register.filter
-def extid(bound_field):
-    widget = bound_field.field.widget
-    print("HIDDEN", bound_field.field.jopa)
-    print('WIDGET', widget)
-    # for_id = widget.attrs.get('id') or bound_field.auto_id
-    # if for_id:
-    #     for_id = widget.id_for_label(for_id)
-    if  not bound_field.is_hidden:
-        return 666
 
 
 @register.filter
