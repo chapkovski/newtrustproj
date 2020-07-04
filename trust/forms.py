@@ -42,6 +42,7 @@ class CQForm(forms.ModelForm):
             widget=widget,
             required=True
         )
+        self.fields['answer'].extid=self.instance.extid
 
     def clean_answer(self):
         q = self.instance

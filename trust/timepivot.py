@@ -6,7 +6,7 @@ p = Participant.objects.all()
 pages = ['CQ1', 'CQ2', 'SenderDecisionP', 'SenderBeliefP', 'ReturnDecisionP', 'ReturnerBeliefP', 'Average2', 'Average3',
          'Motivation', ]
 q = PageCompletion.objects.filter(page_name__in=pages)
-ps = q.values('participant__code', 'page_name', 'seconds_on_page')
+ps = q.values('participant__code' , 'page_name', 'seconds_on_page')
 
 df = pd.DataFrame(list(ps))
 

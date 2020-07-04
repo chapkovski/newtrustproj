@@ -1,5 +1,8 @@
-{% load otree otree_internal %}
+{% load otree otree_internal hse %}
 {% with bound_field as field %}
+    {% if not field.is_hidden %}
+        <h1></h1>
+    {% endif %}
     {% if not field.is_hidden %}
         <div class="card">
         <div class="card-body">
@@ -12,7 +15,9 @@
         {% else %}
 
             {% if label %}{% if field|id %}
-                <label class="col-form-label" for="{{ field|id }}">{% endif %}{{ label }}
+                <label class="col-form-label" for="{{ field|id }}">{% endif %}{% if field.field.extid|default_if_none:False %}
+                <b><i>{{ field.field.extid }}: </i></b>
+                {% endif %} {{ label }}
             {% if label|last not in ".:!?" %}:{% endif %}{% if field|id %}</label>{% endif %}{% endif %}
             <div class="controls {{ classes }} field-{{ field.name }}">
                 {{ field }}
@@ -26,7 +31,10 @@
             </div>
             {% if field.errors %}
                 <div class="alert alert-warning my-3">
-                    {% include "otree/forms/errors.html" with errors=field.errors %}
+                    {% autoescape off %}
+                        {% include "otree/forms/errors.html" with errors=field.errors %}
+                    {% endautoescape %}
+
                 </div>
             {% endif %}
         {% endif %}

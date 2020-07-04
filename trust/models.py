@@ -45,9 +45,11 @@ class Constants(BaseConstants):
     cqs = settings.CQS
     max_cq_attempts = 2  # number of attempts after a person made an error in comp. question
     general_error_msg = {
-        1: _('Не все Ваши ответы были правильными. Пожалуйста, прочтите еще раз инструкции в верхней части экрана, и исправьте свои ответы.'),
+        1: _(
+            'Не все Ваши ответы были правильными. Пожалуйста, прочтите еще раз инструкции в верхней части экрана, и исправьте свои ответы.'),
         2: _('Некоторые ответы все еще не правильны. Пожалуйста, исправьте их.'),
-        3: _('Ответы, отмеченные ниже все еще не правильны. Пожалуйста, ознакомьтесь с правильными  решениями и ответами и приступайте к эксперименту'),
+        3: _(
+            'Ответы, отмеченные ниже все еще не правильны. Пожалуйста, ознакомьтесь с правильными  решениями и ответами и приступайте к эксперименту'),
     }
     DEFAULT_CQ_ERROR = dict(rus='Пожалуйста, проверьте правильность вашего ответа.',
                             eng='Please, check your answer.')
@@ -251,6 +253,10 @@ class CQ(djmodels.Model):
     @property
     def correct_answer(self):
         return Constants.cqs[self.source]['correct']
+
+    @property
+    def extid(self):
+        return Constants.cqs[self.source].get('extid', '')
 
     @property
     def shown(self):

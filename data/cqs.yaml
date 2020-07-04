@@ -1,4 +1,5 @@
 cq1_1:
+  extid: 1
   text:
     rus: Если Участник А передаст свою начальную сумму. Участнику Б, сколько токенов получит Участник Б?
     eng: If Person A transfers his initial endowment to Person B how many Token does Person B receive?
@@ -9,9 +10,10 @@ cq1_1:
     eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token."
   wrong2:
     rus: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = 30 Token."
-    eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = 30 Token."
+    eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = <b>30 Token</b>."
 
 cq1_2:
+  extid: 2
   text:
     rus: "Участник А передал свою начальную сумму Участнику Б. Какую максимальную сумму может Участник Б вернуть обратно Участнику А?"
     eng: "Person A transfers his initial endowment to Person B. What is the maximum amount Person B can return to Person A?"
@@ -24,6 +26,7 @@ cq1_2:
     rus: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = 30 Token."
     eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = 30 Token."
 cq1_3:
+  extid: 3
   text:
     rus: "Участник Б решает вернуть Участнику А 21 токенов. Сколько токенов получит Участник А от участника Б?"
     eng: "Person B decides to return to Person A 21 Token. How many Token does Person A receive from Person B?"
@@ -38,18 +41,20 @@ cq1_3:
     eng: "The amount of 21 Token Person B returns to Person A is not multiplied.
           Person A receives the returned amount of 21 Token."
 cq1_4:
+  extid: 4
   text:
     rus: "Какой бонус в токенах получит Участник Б всего за Часть 1 эксперимента, если Участник А передаст ему свою начальную сумму, а Участник Б вернет Участнику А 9 токенов? "
     eng: "What is the bonus of Person B in Token for Part 1 of the experiment if Person A transfers his initial endowment to Person B and Person B returns 9 Token to Person A? "
   correct: 31
   part: 1
   wrong1:
-    rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount plus B’s endowment of 10 Token. "
-    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount plus B’s endowment of 10 Token. "
+    rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token. "
+    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token. "
   wrong2:
     rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = 31 Token. "
     eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = 31 Token. "
 cq1_5:
+  extid: 5
   text:
     eng: "What is the bonus of Person A in Token for Part 1 of the experiment if Person A transfers his initial endowment to Person B and Person B returns 9 Token to Person A?"
     rus: "Какой бонус в токенах получит Участник А всего за Часть 1 эксперимента, если он передаст Участнику А свою начальную сумму, а Участник Б вернет Участнику А 9 токенов? "
@@ -62,6 +67,7 @@ cq1_5:
     rus: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount of 9 Token = 10 – 10 + 9 = 9 Token."
     eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount of 9 Token = 10 – 10 + 9 = 9 Token."
 cq1_6:
+  extid: 6
   text:
     eng: "What is the bonus of Person A if Person A decides NOT to transfer his initial endowment to Person B?"
     rus: "Какой бонус в токенах получит Участник А, если он решит НЕ передавать Участнику Б свою начальную сумму? "
@@ -74,6 +80,7 @@ cq1_6:
     rus: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token = 10 – 0 + 0 = 10 Token. "
     eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token = 10 – 0 + 0 = 10 Token. "
 cq1_7:
+  extid: 7
   text:
     eng: "What is the bonus of Person B if Person A decides NOT to transfer his initial endowment to Person B? "
     rus: "Какой бонус в токенах получит Участник Б, если Участник А решит НЕ передавать Участнику Б свою начальную сумму? "
@@ -83,9 +90,10 @@ cq1_7:
     rus: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token."
     eng: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token."
   wrong2:
-    rus: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10token = 0*3 – 0 + 10 = 10 Token. "
-    eng: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10token = 0*3 – 0 + 10 = 10 Token. "
+    rus: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token = 0*3 – 0 + 10 = 10 Token. "
+    eng: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token = 0*3 – 0 + 10 = 10 Token. "
 cq1_8:
+  extid: 8
   text:
     eng: "Imagine you are randomly assigned the role of Person A. For how many participants in the role of Person B is your decision to transfer or not transfer your initial endowment relevant for calculating your bonus? "
     rus: "Предположим, Вам случайным образом выпала роль роль Участника А. Для скольких Участников Б Ваше решение о передаче своей начальной суммы будет иметь значение для определения его бонуса?"
@@ -108,9 +116,10 @@ cq1_8:
       rus: 'Для 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании.'
       eng: '1 - a randomly chosen participant B from one of the 12 cities that are involved in this study. '
 cq1_9:
+  extid: 9
   text:
     rus: 'Предположим, Вам случайным образом выпала роль Участника Б. Сколько Участников А примут решение о том, получите ли вы их утроенную начальную сумму?'
-    eng: 'Whether you actually receive the multiplied initial endowment is decided by the one Person A from the one city you are actually paired with.'
+    eng: 'Imagine you are randomly assigned the role of Person B. How many participants in the role of Person A decide on whether you actually receive their tripled initial endowment? '
   correct: 2
   part: 1
   wrong1:
@@ -131,6 +140,7 @@ cq1_9:
       eng: 'None '
 
 cq2_1:
+  extid: A1
   text:
     rus: В Части 1 Участник А из города 5 передал свою начальную сумму Участнику Б из города 6. Этот участник Б решил вернуть 15 токенов Участнику А из города 5, если этот Участник А решит передать ему свою начальную сумму. В Части 2 этот Участник А дал оценку, что этот Участник Б вернет ему 9 токенов. Какой бонус в токенах получит этот Участник А в части 2?
     eng: In Part 1, a Person A from City 5 transferred his initial endowment to a randomly paired Person B from City 6. This Person B from City 6 decided to return 15 Token to Person A from City 5 if this Person A transferred his initial endowment. In Part 2, this Person A estimated that Person B decided to return 9 Token. What is the bonus in Token of Person A in Part 2?
@@ -144,6 +154,7 @@ cq2_1:
     rus: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token). This difference is 15 – 9 = 6 Token and is larger than 3 Token. The bonus therefore is 0 Token. "
     eng: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token). This difference is 15 – 9 = 6 Token and is larger than 3 Token. The bonus therefore is 0 Token. "
 cq2_2:
+  extid: A2
   text:
     rus: В части 1 Участник А из города 7 НЕ передал свою начальную сумму Участнику Б из города 8. Этот участник Б решил вернуть 12 токенов Участнику А из города 7, если этот Участник А решит передать ему свою начальную сумму. В Части 2 этот Участник А дал оценку, что этот Участник Б вернет ему 15 токенов. Какой бонус в токенах получит этот Участник А в части 2?
     eng: In Part 1, a Person A from City 7 did NOT transfer his initial endowment to a randomly paired Person B from City 8. This Person B from City 8 chose to return 12 Token to Person A from City 7 if this Person A transferred his initial endowment. In Part 2, this Person A estimated that Person B decided to return 15 Token. What is the bonus in Token of Person A in Part 2?
@@ -154,9 +165,10 @@ cq2_2:
     rus: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). "
     eng: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). "
   wrong2:
-    rus: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = 30 Token."
-    eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = 30 Token."
+    rus: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). This difference is 15 Token – 12 Token = 3 Token. The bonus,therefore, is 10 Token."
+    eng: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). This difference is 15 Token – 12 Token = 3 Token. The bonus,therefore, is 10 Token."
 cq2_3:
+  extid: A3
   text:
     rus: В части 1 Участник А из города 9 передал свою начальную сумму Участнику Б из города 10. Этот участник Б решил вернуть 0 токенов Участнику А из города 9, если этот Участник А решит передать ему свою начальную сумму. В Части 2 этот Участник А дал оценку, что этот Участник Б вернет ему 0 токенов. Какой бонус в токенах получит этот Участник А в части 2?
     eng: In Part 1, a Person A from City 9 transferred his initial endowment to a randomly paired Person B from City 10. This Person B from City 10 chose to return 0 Token to Person A from City 7 if this Person A transferred his initial endowment. In Part 2, this Person A estimates that Person B decided to return 0 Token. What is the bonus of Person A in Part 2?
@@ -170,6 +182,7 @@ cq2_3:
     rus: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is 20 Token.
     eng: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is 20 Token.
 cq2_4:
+  extid: Б1
   text:
     rus: В Части 1, Участник А из города 1 передал свою начальную сумму Участнику Б из города 2, тогда как Участник Б из города 2, случайным образом определенный в пару к этому Участнику А, решил что этот Участник А НЕ передаст свою начальную сумму. Какой бонус в токенах получит этот Участник Б в Части 2?
     eng: In Part 1, a Person A from City 1 transferred his initial endowment to a randomly paired Person B from City 2. In Part 2, this Person B from City 2 estimated that the paired Person A from City 1 does NOT transfer the endowment. What is the bonus in Token of this Person B for Part 2?
@@ -183,6 +196,7 @@ cq2_4:
     rus: The bonus Person B receives if he incorrectly guesses the decision of Person A is 0 Token.
     eng: The bonus Person B receives if he incorrectly guesses the decision of Person A is 0 Token.
 cq2_5:
+  extid: Б2
   text:
     rus: В Части 1, Участник А из города 3 передал свою начальную сумму Участнику Б из города 4, тогда как Участник Б из города 4, случайным образом определенный в пару к этому Участнику А, оценил что этот Участник А передаст свою начальную сумму. Какой бонус в токенах получит этот Участник Б в Части 2?
     eng: In Part 1, a Person A from City 3 transfers his initial endowment to a randomly paired Person B from City 4. In Part 2, this Person B from City 4 estimated that the paired Person A from City 3 does transfer his endowment. What is the bonus of this Person B for Part 2?
