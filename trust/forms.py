@@ -2,7 +2,8 @@ import django.forms as forms
 from .models import Player, Decision, Constants, CQ
 from django.forms import inlineformset_factory, BaseModelFormSet, BaseInlineFormSet
 from otree.api import widgets
-from django.core.validators import MinValueValidator, MaxValueValidator
+
+forms.RadioSelect
 from django.db.models import Max
 
 
@@ -22,27 +23,52 @@ class SelfCleaningNumber(SelfCleaningMixin, forms.NumberInput):
 
 
 class SelfCleaningChoice(SelfCleaningMixin, widgets.RadioSelect):
-    pass
+    def __init__(self, *args, **kwargs):
+        cleaned_choices = [i for i, j in kwargs['choices']]
+        self.enabled = kwargs.pop('enabled', cleaned_choices)
+        super().__init__(*args, **kwargs)
+
+    def create_option(self, name, value, *args, **kwargs):
+        options = super().create_option(name, value, *args, **kwargs)
+        options['attrs']['disabled'] = not (value in self.enabled)
+        return options
 
 
 class CQForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        zeroing = False
         super().__init__(*args, **kwargs)
+        zeroing = False
+        extra_attrs = dict(required=True)
+        fix_choice = False
         if kwargs.get('data') and not self.is_valid():
             zeroing = True
+
+            if self.instance.counter > Constants.max_cq_attempts:
+                coranswer = self.instance.correct_answer
+                extra_attrs = dict(**extra_attrs, max=coranswer, min=coranswer)
+                fix_choice = [coranswer]
+        params = dict(zeroing=zeroing,
+                      attrs=extra_attrs)
         if self.instance.choices:
-            widget = SelfCleaningChoice(choices=self.instance.choices, attrs=dict(required=True), zeroing=zeroing)
+            widget = SelfCleaningChoice
+            cleaned_choices = [i for i, j in self.instance.choices]
+            if fix_choice:
+                enabled = [self.instance.correct_answer]
+            else:
+                enabled = cleaned_choices
+            params = dict(**params, choices=self.instance.choices, enabled=enabled)
         else:
-            widget = SelfCleaningNumber(attrs=dict(required=True), zeroing=zeroing)
+            widget = SelfCleaningNumber
+
         if kwargs.get('data') and self.is_valid():
-            widget = forms.HiddenInput()
+            widget = forms.HiddenInput
+            params = {}
         self.fields['answer'] = forms.IntegerField(
             label=self.instance.text,
-            widget=widget,
+            widget=widget(**params),
             required=True
         )
-        self.fields['answer'].extid=self.instance.extid
+        self.fields['answer'].extid = self.instance.extid
 
     def clean_answer(self):
         q = self.instance

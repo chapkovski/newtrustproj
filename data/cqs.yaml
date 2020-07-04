@@ -20,8 +20,8 @@ cq1_2:
   correct: 30
   part: 1
   wrong1:
-    rus: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: <b><u>10 Token."
-    eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: <b><u>10 Token."
+    rus: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment:  10 Token."
+    eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment:  10 Token."
   wrong2:
     rus: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = <b><u>30 Token</b></u>."
     eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = <b><u>30 Token</b></u>."
@@ -37,7 +37,7 @@ cq1_3:
     eng: "The amount of 21 Token Person B returns to Person A is not multiplied."
   wrong2:
     rus: "The amount of 21 Token Person B returns to Person A is not multiplied.
-          Person A receives the returned amount of <b><u>21 Token."
+          Person A receives the returned amount of <b><u>21 Token</b></u>."
     eng: "The amount of 21 Token Person B returns to Person A is not multiplied.
           Person A receives the returned amount of <b><u>21 Token</b></u>."
 cq1_4:
@@ -48,8 +48,8 @@ cq1_4:
   correct: 31
   part: 1
   wrong1:
-    rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of <b><u>10 Token</b></u>."
-    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of <b><u>10 Token</b></u>."
+    rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token."
+    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token."
   wrong2:
     rus: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = <b><u>31 Token</b></u>."
     eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = <b><u>31 Token</b></u>."
