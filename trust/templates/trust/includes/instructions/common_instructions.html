@@ -1,3 +1,4 @@
+{% load i18n %}
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
@@ -8,7 +9,7 @@
                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                         data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
                         data-partid="0" onclick="pointer=0">
-                    General instructions
+                    {% trans 'Инструкции' %}
                 </button>
             </h2>
         </div>
@@ -16,10 +17,20 @@
         <div id="collapseOne" class="collapse {% if show_block|default_if_none:1 == 1 %}show{% endif %}"
              aria-labelledby="headingOne" >
             <div class="card-body">
-                <p>Two participants “Person A” and “Person B” are interacting with each other in a pair.</p>
-                <p> Person A and Person B both receive an initial endowment of 10 Token.</p>
                 <p>
-                    Each token will be converted into usd$ at the exchange rate of <span class="font-weight-bold">1 token = ???Us cent</span>.
+                    {% blocktrans %}
+                        Two participants “Person A” and “Person B” are interacting with each other in a pair.
+                    {% endblocktrans %}
+                </p>
+                <p>
+                    {% blocktrans %}Person A and Person B both receive an initial endowment of 10 Token.
+                    {% endblocktrans %}
+                </p>
+                <p>
+                    {% blocktrans %}Each token will be converted into usd$ at the exchange rate of <span class="font-weight-bold">1 token = ???Us cent
+                    {% endblocktrans %}
+
+                </span>.
                 </p>
                 <p> Each participant is randomly allocated to be Person A or Person B.</p>
                 <p> You will be informed whether you are person A or person B when the experiment starts.</p>

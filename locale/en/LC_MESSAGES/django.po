@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-02 21:52-0400\n"
+"POT-Creation-Date: 2020-07-05 12:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: _templates/global/Page.html:81
+#: _templates/global/Page.html:82
 #: questionnaire/templates/questionnaire/Page.html:23
 msgid "Пожалуйста, дождитесь продолжения эксперимента"
 msgstr ""
 
-#: _templates/global/Page.html:86
+#: _templates/global/Page.html:87
 #: questionnaire/templates/questionnaire/Page.html:19
 msgid "Please fix the errors in the form."
 msgstr ""
@@ -1910,7 +1910,7 @@ msgstr ""
 "these regions in descending order of the average monthly income of their "
 "inhabitants."
 
-#: questionnaire/templatetags/hse.py:52
+#: questionnaire/templatetags/hse.py:53
 msgid "Next"
 msgstr ""
 
@@ -1930,7 +1930,7 @@ msgstr "A"
 msgid "Б"
 msgstr "B"
 
-#: trust/models.py:48
+#: trust/models.py:49
 msgid ""
 "Не все Ваши ответы были правильными. Пожалуйста, прочтите еще раз инструкции "
 "в верхней части экрана, и исправьте свои ответы."
@@ -1938,11 +1938,11 @@ msgstr ""
 "Not all your answers are correct. Please consult the instructions at the top "
 "of the screen and fix the errors."
 
-#: trust/models.py:49
+#: trust/models.py:50
 msgid "Некоторые ответы все еще не правильны. Пожалуйста, исправьте их."
 msgstr "Some answers are still incorrect. Please fix the errors."
 
-#: trust/models.py:50
+#: trust/models.py:52
 msgid ""
 "Ответы, отмеченные ниже все еще не правильны. Пожалуйста, ознакомьтесь с "
 "правильными  решениями и ответами и приступайте к эксперименту"
@@ -1951,7 +1951,7 @@ msgstr ""
 "to find the correct solutions. Finally enter the correct solution into the "
 "box. You then will proceed to the experiment. "
 
-#: trust/models.py:94
+#: trust/models.py:96
 #, fuzzy
 #| msgid "Водители и операторы подвижного оборудования"
 msgid "Вы ввели неверный код для одного из городов!"
@@ -1969,7 +1969,10 @@ msgstr "Comprehension Questions for Part 1"
 msgid ""
 "Пожалуйста, ответьте на следующие вопросы. Если Вам нужна помощь, пожалуйста "
 "обратитесь к инструкциям, кликнув на кнопку в верхней части экрана."
-msgstr "Please answer the following questions. In case you need support, please consult the instructions available by clicking on the button at the top of the screen."
+msgstr ""
+"Please answer the following questions. In case you need support, please "
+"consult the instructions available by clicking on the button at the top of "
+"the screen."
 
 #: trust/templates/trust/CQ2.html:5
 msgid "Проверочные вопросы для части 2"
@@ -2109,163 +2112,28 @@ msgstr "Attention!"
 msgid "Show instructions"
 msgstr ""
 
-#~ msgid "Пожалуйста, проверьте ваш ответ"
-#~ msgstr "Please check your answer"
+#: trust/templates/trust/includes/instructions/common_instructions.html:12
+msgid "Инструкции"
+msgstr "General instructions"
 
-#~ msgid "Ни для кого"
-#~ msgstr "None"
+#: trust/templates/trust/includes/instructions/common_instructions.html:21
+msgid ""
+"\n"
+"                        Two participants “Person A” and “Person B” are "
+"interacting with each other in a pair.\n"
+"                    "
+msgstr ""
 
-#~ msgid "Для 12 – по одному из каждого города, участвующего в исследовании."
-#~ msgstr "12 - one per each city that is involved in this study."
+#: trust/templates/trust/includes/instructions/common_instructions.html:26
+msgid ""
+"Person A and Person B both receive an initial endowment of 10 Token.\n"
+"                    "
+msgstr ""
 
-#~ msgid ""
-#~ "Для 1 случайно выбранного участника из одного из 12 городов, участвующих "
-#~ "в исследовании."
-#~ msgstr ""
-#~ "1 - a randomly chosen participant from one of the 12 cities that are "
-#~ "involved in this study."
-
-#~ msgid "12 – по одному из каждого города, участвующего в исследовании."
-#~ msgstr "12 - one per each city that are involved in this study."
-
-#~ msgid ""
-#~ "1 – случайно выбранный участник из одного из 12 городов, принимающих "
-#~ "участие в исследовании.  "
-#~ msgstr ""
-#~ "1 - a randomly chosen participant from one of the 12 cities that are "
-#~ "involved in this study."
-
-#~ msgid "Ни один не примет"
-#~ msgstr "None"
-
-#~ msgid ""
-#~ "Если Участник А передаст свою начальную сумму Участнику Б, сколько "
-#~ "токенов получит Участник Б?"
-#~ msgstr ""
-#~ "If Person A transfers his initial endowment to Person B, how many token "
-#~ "does Person B receive?"
-
-#~ msgid ""
-#~ "Участник А передал свою начальную сумму Участнику Б. Какую максимальную "
-#~ "сумму может Участник Б вернуть обратно Участнику А? "
-#~ msgstr ""
-#~ "Person A transfers his initial endowment to Person B. What is the maximum "
-#~ "amount Person B can return to Person A?  "
-
-#~ msgid ""
-#~ "Участник Б решает вернуть Участнику А 21 токен. Сколько токенов получит "
-#~ "Участник А от участника Б?"
-#~ msgstr ""
-#~ "Person B decides to return to Person A 21 points. How many points does "
-#~ "Person A receive?"
-
-#~ msgid ""
-#~ "Сколько токенов получит Участник Б всего за часть 1 эксперимента, если "
-#~ "Участник А передаст ему свою начальную сумму, а Участник Б вернет "
-#~ "Участнику А 9 токенов?"
-#~ msgstr ""
-#~ "What is the final payoff of Person B if Person A transfers his initial "
-#~ "endowment and Person B sends back 9 points? "
-
-#~ msgid ""
-#~ "Сколько токенов получит Участник А по итогам эксперимента если он "
-#~ "передаст Участнику Б свою начальную сумму, а Участник Б вернет Участнику "
-#~ "А 9 токенов?"
-#~ msgstr ""
-#~ "What is the payoff of Person A if he transfers his initial endowment and "
-#~ "Person B sends him back 9 points?"
-
-#~ msgid ""
-#~ "Сколько токенов получит Участник А, если он решит не передавать Участнику "
-#~ "Б свою начальную сумму? "
-#~ msgstr ""
-#~ "What is the payoff of Person A if Person A decides NOT to transfer his "
-#~ "initial endowment to Person B? "
-
-#~ msgid ""
-#~ "Сколько токенов получит Участник Б, если Участник А решит не передавать "
-#~ "Участнику Б свою начальную сумму? "
-#~ msgstr ""
-#~ "What is the payoff of Person B if Person A decides NOT to transfer his "
-#~ "initial endowment to Person B?"
-
-#~ msgid ""
-#~ "Предположим, Вам случайным образом выпала роль Участника А. Для скольких "
-#~ "Участников Б Ваше решение о передаче своей начальной суммы будет "
-#~ "определяющим для получения его выигрыша?"
-#~ msgstr ""
-#~ "Imagine you have been randomly assigned to be Person A. For how many "
-#~ "participants in the role of Person B your decision to transfer or not "
-#~ "transfer your initial endowment will be payoff relevant?"
-
-#~ msgid ""
-#~ "Предположим, Вам случайным образом выпала роль Участника Б. Сколько "
-#~ "Участников А примут решение о том, получите ли вы их утроенную начальную "
-#~ "сумму?"
-#~ msgstr ""
-#~ "Imagine you have been randomly assigned to be Person B. How many "
-#~ "participants in the role of Person A will decide on whether you actually "
-#~ "receive their multiplied initial endowment?"
-
-#~ msgid ""
-#~ "В части 1 Участник А из города 1 передал свою начальную сумму Участнику "
-#~ "Б. Участник Б из города 1, с которым взаимодействовал этот Участник А, "
-#~ "дал оценку что Участник А из его пары не передаст ему начальную сумму. "
-#~ "Сколько токенов получит за эту оценку в части 2 этот Участник Б?"
-#~ msgstr ""
-#~ "In Part 1, a Person A from City 1 transferred his initial endowment to a "
-#~ "Person B from City 2, while the estimate of Person B was that a Person A "
-#~ "from City 1 will transfer the endowment. What will be the payoff of "
-#~ "Person B for Part 2? "
-
-#~ msgid ""
-#~ "В части 1 Участник А из города 1 передал свою начальную сумму Участнику "
-#~ "Б. Участник Б из города 1, с которым взаимодействовал этот Участник А, "
-#~ "дал оценку что Участник А из его пары передаст ему начальную сумму. "
-#~ "Сколько токенов получит за эту оценку в части 2 этот Участник Б?"
-#~ msgstr ""
-#~ "In Part 1, a Person A from City 1 transferred his initial endowment to a "
-#~ "Person B from City 2, while the estimate of Person B was that a Person A "
-#~ "from City 1 will transfer the endowment. What will be the payoff of "
-#~ "Person B for Part 2? "
-
-#~ msgid ""
-#~ "В части 1 Участник А из города 1 передал свою начальную сумму Участнику Б "
-#~ "из города 2. Участник Б из города 2, с которым взаимодействовал этот "
-#~ "Участник А, вернул ему 15 токенов. Участник А в части 2 дал оценку, что "
-#~ "этот Участник Б вернул ему 9 токенов. Сколько токенов получит Участник А "
-#~ "из этой пары за такую оценку?"
-#~ msgstr ""
-#~ "In Part 1, a Person A from City 5 transferred his initial endowment to a "
-#~ "Person B from City 6. Person B returned 15 Token to Person A. In Part 2, "
-#~ "Person A estimated that Person B returns 9 Token.  What will be the "
-#~ "payoff of Person A for Part 2? "
-
-#~ msgid ""
-#~ "В части 1 Участник А из города 1 не передал свою начальную сумму "
-#~ "Участнику Б из города 2. Участник Б из города 2, с которым "
-#~ "взаимодействовал этот Участник А, был готов вернуть этому Участнику А 15 "
-#~ "токенов в том случае, если бы тот передал ему свою начальную сумму. "
-#~ "Участник А в части 2 дал оценку, что этот Участник Б был готов вернуть "
-#~ "ему 18 токенов. Сколько токенов получит Участник А из этой пары за такую "
-#~ "оценку?"
-#~ msgstr ""
-#~ "In Part 1, a Person A from City 7 did not transfer his initial endowment "
-#~ "to a Person B from City 8. Person B chose to return 12 Token to Person A "
-#~ "if Person A transfers his initial endowment. In Part 2, Person A "
-#~ "estimated that Person B would return 15 Token.  What will be the payoff "
-#~ "of Person A for Part 2? "
-
-#~ msgid ""
-#~ "В части 1 Участник А из города 1 передал свою начальную сумму Участнику Б "
-#~ "из города 2. Участник Б из города 2, с которым взаимодействовал этот "
-#~ "Участник А, решил ничего не возвращать этому Участнику А в том случае, "
-#~ "если бы тот передал ему свою начальную сумму. Участник А в части 2 дал "
-#~ "оценку, что этот Участник Б был готов вернуть ему 9 токенов. Сколько "
-#~ "токенов получит Участник А из этой пары за такую оценку? "
-#~ msgstr ""
-#~ "In Part 1, a Person A from City 9 transferred his initial endowment to a "
-#~ "Person B from City 10. Person B from City 10 chose to return 0 Token to "
-#~ "Person A if Person A transfers his initial endowment. In Part 2, Person A "
-#~ "estimated that Person B would return 0 Token. What will be the payoff of "
-#~ "Person A for Part 2? "
+#: trust/templates/trust/includes/instructions/common_instructions.html:30
+msgid ""
+"Each token will be converted into usd$ at the exchange rate of <span class="
+"\"font-weight-bold\">1 token = ???Us cent\n"
+"                    "
+msgstr "Each token will be converted into usd$ at the exchange rate of <span class="
+"\"font-weight-bold\">1 token = ???Us cent"

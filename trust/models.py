@@ -276,5 +276,5 @@ class CQ(djmodels.Model):
             Constants.cqs[self.source]['wrong1'][lang],
             Constants.cqs[self.source]['wrong2'][lang]
         ]
-        if self.counter and self.counter < len(resp):
+        if self.counter is not None and self.counter < len(resp):
             return resp[self.counter]

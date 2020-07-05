@@ -7,6 +7,7 @@ from django.utils import translation
 
 
 class TransMixin:
+
     def get_context_data(self, **context):
         user_language = self.session.config.get('language', settings.LANGUAGE_CODE)
         translation.activate(user_language)
