@@ -4,7 +4,6 @@ from typing import List
 from django.db.models import Avg
 
 
-
 class SenderPage(Page):
 
     def is_displayed(self) -> bool:
@@ -60,7 +59,6 @@ class CQPage(Page):
         q.filter(counter__isnull=True).update(counter=0)
         return context
 
-
     def get_form(self, data=None, files=None, **kwargs):
         # here if this page was forced by admin to continue we just submit an empty form (with no formset data)
         # if we need this data later on that can create some problems. But that's the price we pay for autosubmission
@@ -70,7 +68,6 @@ class CQPage(Page):
             return self.get_formset()
         formset = self.get_formset(data=data)
         return formset
-
 
     def before_next_page(self):
         counter_name = f'cq{self.part}_counter'

@@ -6,6 +6,12 @@ from .models import Constants
 import random
 
 
+class PseudoPage:
+    def __init__(self, player, part):
+        self.player = player
+        self.part = part
+
+
 class PlayerBot(Bot):
     def _create_data(self, name, field_name, choice_set):
         senderdecisions = getattr(self.player, name).all()
@@ -33,33 +39,30 @@ class PlayerBot(Bot):
             **pls_dct,
         }
 
+    def _cq_data(self, page_obj):
+        pseudo = PseudoPage(player=self.player, part=page_obj.part)
+        q = page_obj.get_cq_instances(pseudo)
+        name = 'cqs'
+        field_name = 'answer'
+        full_answers = {}
+        for i, j in enumerate(q):
+            full_answers[f'{name}-{i}-id'] = j.id
+            full_answers[f'{name}-{i}-owner'] = self.player.pk
+            full_answers[f'{name}-{i}-{field_name}'] = j.correct_answer
+        return {
+            f'{name}-TOTAL_FORMS': q.count(),
+            f'{name}-INITIAL_FORMS': q.count(),
+            f'{name}-MIN_NUM_FORMS': '0',
+            f'{name}-MAX_NUM_FORMS': '1000',
+            **full_answers
+        }
+
     def play_round(self):
         yield Instructions1
         yield Instructions2
         if self.session.config.get('cq'):
+            yield CQ1, self._cq_data(CQ1)
 
-            сc1answers = dict(
-                cq1_1=30,
-                cq1_2=30,
-                cq1_3=21,
-                cq1_4=31,
-                cq1_5=9,
-                cq1_6=10,
-                cq1_7=10,
-                cq1_8=3,
-                cq1_9=2,
-            )
-            cq1wronganswers = {k: v + 1 for k, v in сc1answers.items()}
-            # yield SubmissionMustFail(CQ1, cq1wronganswers)
-            yield CQ1, сc1answers
-            cq2answers = dict(
-                cq2_1=0,
-                cq2_2=10,
-                cq2_3=0,
-                cq2_4=10,
-                cq2_5=0,
-            )
-            cq2wronganswers = {k: v + 1 for k, v in cq2answers.items()}
         yield ShowMap,
         yield IntroStage1,
         if self.player.role() == 'sender':
@@ -69,10 +72,7 @@ class PlayerBot(Bot):
             yield InstructionsStage2
             yield ExamplesStage2
             if self.session.config.get('cq'):
-                sender_fields = ['cq2_3', 'cq2_4', 'cq2_5', ]
-                to_answer = {k:v for k,v in cq2answers.items() if k in sender_fields}
-                # yield SubmissionMustFail(CQ2, cq2wronganswers)
-                yield CQ2, to_answer
+                yield CQ2, self._cq_data(CQ2)
             yield IntroStage2
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
                                                    choice_set=Constants.receiver_choices)
@@ -83,22 +83,14 @@ class PlayerBot(Bot):
             yield InstructionsStage2
             yield ExamplesStage2
             if self.session.config.get('cq'):
-                receiver_fields = ['cq2_1', 'cq2_2']
-                to_answer = {k: v for k, v in cq2answers.items() if k in receiver_fields}
-                # yield SubmissionMustFail(CQ2,cq2wronganswers)
-                yield CQ2, to_answer
+                yield CQ2, self._cq_data(CQ2)
 
             yield IntroStage2
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
 
-        average1_answer = (
-            {'sender_confident_return': random.choice(
-                Constants.receiver_choices)} if self.player.role() == 'sender' else {
-                'receiver_confident_send': random.choice(
-                    [0, Constants.endowment])})
+
         yield Average2, self._create_data(name='averageonsendbeliefs', field_name='average_belief_on_send',
                                           choice_set=range(0, 100))
         yield Average3, self._create_data(name='averageonreturnbeliefs', field_name='average_belief_on_return',
                                           choice_set=Constants.receiver_choices)
-

@@ -49,7 +49,11 @@
 }
 
 .chart-scale {
+    display: flex;
     min-width: 475px;
+}
+.chart-scale button {
+    margin-left:4px;
 }
 .likert-left-header{
 
@@ -58,4 +62,7 @@
 .likert-right-header{
 
     margin-left:10px;
+}
+.likert-header.likert-right-header {
+    justify-content: left;
 }
