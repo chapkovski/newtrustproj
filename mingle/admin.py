@@ -16,7 +16,7 @@ from django.contrib.admin.templatetags.admin_urls import admin_urlname
 
 @admin.register(CQ)
 class CQdmin(admin.ModelAdmin):
-    list_display = ['owner_code', 'session', 'text', 'choices','wrong_answer',]
+    list_display = ['owner_code', 'session', 'text', 'choices','counter',]
     list_display_links = list_display
 
     def owner_code(self, instance):

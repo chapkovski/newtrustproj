@@ -71,7 +71,22 @@ SESSION_CONFIGS = [
         'display_name': 'Questionnaire only - ENGLISH',
         'num_demo_participants': 1,
         'use_browser_bots': False,
-        'language': 'en'}
+        'language': 'en'},
+    {**uni_trust,
+     'city_code': '01',
+     'name': 'full_demo_en',
+     'display_name': 'Full  DEMO! Moscow ONLY ENGLISH',
+     'cq': True,
+     'debug': True,
+     'use_browser_bots': False,
+     'language': 'en',
+     'app_sequence': [
+         'trust',
+         'questionnaire',
+         'last'
+     ],
+     },
+
 ]
 
 # ISO-639 code

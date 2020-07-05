@@ -1,13 +1,15 @@
-from django.views.generic import TemplateView, ListView, View
-from django.urls import reverse
+from django.views.generic import ListView, View
+from django.urls import reverse, reverse_lazy
+from django.http import HttpResponseRedirect
 from .models import Decision
-from django.db.models import Q
+from django.http import HttpResponse
+from io import BytesIO
+from datetime import datetime
+from .pivot import get_full_data
 import pandas as pd
-from django_pandas.io import read_frame
-from django.http import HttpResponse
-from django.template import loader
-from django.http import HttpResponse
+import logging
 
+logger = logging.getLogger(__name__)
 
 
 class PaginatedListView(ListView):
@@ -47,8 +49,6 @@ class DecisionListView(PaginatedListView):
     queryset = Decision.objects.filter(answer__isnull=False)
 
 
-
-
 from django_pivot.pivot import pivot
 
 
@@ -74,23 +74,9 @@ class DecisionPivotView(ListView):
             return pivot_table
 
 
-
-
 """
 We make a form for locking/unlocking instruction pages here.
 """
-from django.views.generic.edit import UpdateView
-
-from django.urls import reverse
-from django.http import HttpResponseRedirect
-
-
-
-from io import StringIO as IO, BytesIO
-from datetime import datetime
-from .pivot import get_full_data
-import pandas as pd
-from django.utils.encoding import smart_str
 
 
 class PandasExport(View):
@@ -102,15 +88,19 @@ class PandasExport(View):
     def get(self, request, *args, **kwargs):
         bytes = BytesIO()
         csv_data = get_full_data()
-        xlwriter = pd.ExcelWriter(bytes, engine='xlsxwriter')
-        csv_data.to_excel(xlwriter, sheet_name='Sheet1', index=False, header=True)
-        xlwriter.save()
-        xlwriter.close()
-        bytes.seek(0)
 
-        response = HttpResponse(bytes.read(), content_type=self.content_type)
-        formatted_date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-        filename = f'decisions_wide_{formatted_date}.xlsx'
-        response['Content-Disposition'] = f'attachment; filename={filename}'
+        if csv_data is not None and not csv_data.empty:
+            xlwriter = pd.ExcelWriter(bytes, engine='xlsxwriter')
+            csv_data.to_excel(xlwriter, sheet_name='Sheet1', index=False, header=True)
+            xlwriter.save()
+            xlwriter.close()
+            bytes.seek(0)
 
-        return response
+            response = HttpResponse(bytes.read(), content_type=self.content_type)
+            formatted_date = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+            filename = f'decisions_wide_{formatted_date}.xlsx'
+            response['Content-Disposition'] = f'attachment; filename={filename}'
+
+            return response
+        else:
+            return HttpResponseRedirect(reverse_lazy('ExportIndex'))
