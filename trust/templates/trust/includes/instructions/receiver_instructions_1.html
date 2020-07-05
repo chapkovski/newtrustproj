@@ -1,44 +1,33 @@
+{% load i18n %}
 <ul class="list-group list-group-flush">
 
-    <li class="list-group-item">
-        You have to decide how many tokens you want to return to Person A.
-    </li>
-    <li class="list-group-item">
-        In case of no transfer, you cannot return anything and stay with your endowments of 10 Tokens.
-    </li>
-    <li class="list-group-item">
-        If Person A did transfer her endowment you receive 30 Token.
-    </li>
+    <li class="list-group-item">{% blocktrans %}
+        Вам надлежит решить, столько из токенов, которые Вы можете получить от Участника А, вы хотите вернуть этому
+        Участнику А. Поскольку  Вы не знаете, передаст Вам Участник А свои 10 токенов или же нет, решение о возврате Вам
+        надо принять в любом случае, но реализовано оно будет только если Участник А действительно передаст Вам свою
+        начальную сумму.
+    {% endblocktrans %}</li>
+    <li class="list-group-item">{% blocktrans %}
+        Если Участник А не передаст вам свои токены, возвращать Вам будет нечего, и у Вас остаются начальные 10 токенов.
+    {% endblocktrans %}</li>
+    <li class="list-group-item">{% blocktrans %}
+        Если Участник А передаст Вам свои 10 токенов, Вы получите 30 токенов. Из этой суммы Вы можете вернуть ему любое
+        целое число токенов с шагом 3, т.е. 0, 3,… 27, или 30 токенов. Те токены, которые Вы не возвращаете, Вы
+        оставляете себе, и они прибавляются к тем 10 токенам, которые у Вас были изначально. Сумма, которую Вы
+        возвращаете Участнику А, не умножается ни на что.
+    {% endblocktrans %}</li>
     <li class="list-group-item ">
-        You can return money in integer amounts in steps of three Token (i.e., 0, 3, …, 27, 30)
+        Поскольку Вы не знаете, в каком городе находится Участник А из Вашей пары, Вам надо принять решение о возврате
+        12 раз – по одному для Участника А из каждого из 12 городов. Для каждого из городов решение о возврате
+        принимается один раз.
     </li>
 
-    <li class="list-group-item">
+    <li class="list-group-item">{% blocktrans %}
 
-        The Token you do not return, you keep for yourself in addition to your initial endowment.
+        Только одно из этих 12 решений имеет значение при определении Вашего бонуса, а именно: решение в отношении
+        Участника А из того города, с которым Вы действительно будете взаимодействовать.
 
-    </li>
-
-    <li class="list-group-item">
-
-        The amount you return to Person A is not multiplied.
-
-    </li>
-    <li class="list-group-item">
-
-        You have to make the return decision 12 times – one decision for a Person A from each of the 12 Cities.
-
-    </li>
-    <li class="list-group-item">
-
-        You will be paid for only one of the 12 return decisions.
-
-    </li>
-    <li class="list-group-item">
-
-        You make your return decision for each city only once.
-
-    </li>
+    {% endblocktrans %}</li>
 
 
 </ul>

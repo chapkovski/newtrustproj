@@ -2,29 +2,30 @@
 {% load otree static i18n %}
 
 {% block title %}
-    {% trans ' Instructions' %}
+    {% trans 'Инструкции' %}
 {% endblock %}
 
 {% block content %}
 
     {% include 'trust/includes/instructions/common_instructions.html' %}
 
-    <button class="btn-lg  nextbtn" id='next-btn' type="submit" disabled>Please read the instructions</button>
+    <button class="btn-lg  nextbtn" id='next-btn' type="submit" disabled>{% trans 'Пожалуйста, прочитайте инструкции' %}</button>
     <script>
         const clickRegister = {'0': true};
 
 
         const nextBtn = $('#next-btn');
-        nextBtn.html('Please read the instructions')
+
         $('.btn-link').click(function () {
             clickRegister[this.dataset.partid] = true;
             if (Object.keys(clickRegister).length >= 4) {
 
                 nextBtn.addClass('btn-danger');
-                nextBtn.html('Yes, I read the instructions')
+                nextBtn.html('{% trans 'Да, я прочитал(а) инструкции' %}')
                 nextBtn.attr('disabled', false);
             }
         })
+
 
 
     </script>

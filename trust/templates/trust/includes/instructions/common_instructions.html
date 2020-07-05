@@ -15,33 +15,31 @@
         </div>
 
         <div id="collapseOne" class="collapse {% if show_block|default_if_none:1 == 1 %}show{% endif %}"
-             aria-labelledby="headingOne" >
+             aria-labelledby="headingOne">
             <div class="card-body">
                 <p>
-                    {% blocktrans %}
-                        Two participants “Person A” and “Person B” are interacting with each other in a pair.
+                    {% blocktrans %}Каждому участнику случайным образом выпадает одна из двух ролей: Участник А или
+                        Участник Б. Как только начнется эксперимент, Вы узнаете, Вашу роль: Участник А или Участник
+                        Б.{% endblocktrans %}
+                </p>
+                <p>
+                    {% blocktrans %}Два участника, А и Б взаимодействуют друг с другом в паре. Вы случайным образом
+                        определены в пару к Участнику А или Б из одного из 12 городов, возможно из Вашего же. Когда Вы
+                        будете принимать Ваши решения, Вы не будете знать, из какого именно города тот Участник А или Б,
+                        с которым Вы взаимодействуете. Поскольку участник, с которым Вы взаимодействуете, может быть из
+                        любого из 12 городов, Вам следует внимательно изучить весь список городов прежде чем принять
+                        решение.
                     {% endblocktrans %}
                 </p>
                 <p>
-                    {% blocktrans %}Person A and Person B both receive an initial endowment of 10 Token.
-                    {% endblocktrans %}
-                </p>
-                <p>
-                    {% blocktrans %}Each token will be converted into usd$ at the exchange rate of <span class="font-weight-bold">1 token = ???Us cent
+                    {% blocktrans %}В начале эксперимента как Участник А, так и Участник Б  получают от организаторов
+                        начальную сумму в 10 токенов (=1 US$) каждый.
                     {% endblocktrans %}
 
-                </span>.
+                    </span>
                 </p>
-                <p> Each participant is randomly allocated to be Person A or Person B.</p>
-                <p> You will be informed whether you are person A or person B when the experiment starts.</p>
-                <p> You will be randomly paired with one participant A or B from one of the 12 Cities, including your
-                    own.</p>
-                <p> You will not know the City’s name where this person A or B is located when making your
-                    decisions. Therefore you need to make 12 decisions, one for each of the 12 cities.</p>
-                <p> You should carefully read the list of Cities before making your decision as you can be paired with
-                    any of
-                    the 12 cities.</p>
-                <p> Please read now the task description for both Person A and B.</p>
+
+                {% blocktrans %} Пожалуйста, прочитайте теперь задание для обоих Участников: А и Б{% endblocktrans %}
             </div>
         </div>
 
@@ -52,7 +50,7 @@
                 <button class="btn btn-link btn-block text-left collapsed" type="button"
                         data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                         aria-controls="collapseTwo" data-partid="1" onclick="pointer=1">
-                    Click to read about the Task if you are Person A
+                    {% blocktrans %}Кликните чтобы прочесть задание Участника А{% endblocktrans %}
                 </button>
             </h2>
         </div>
@@ -70,8 +68,8 @@
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button"
                         data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-                        aria-controls="collapseThree" data-partid="2" >
-                    Click to read about the Task if you are Person B
+                        aria-controls="collapseThree" data-partid="2">
+                    {% blocktrans %}Кликните чтобы прочесть задание Участника Б{% endblocktrans %}
                 </button>
             </h2>
         </div>
@@ -88,8 +86,8 @@
             <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button"
                         data-toggle="collapse" data-target="#collapsePayoff" aria-expanded="false"
-                        aria-controls="collapsePayoff" data-partid="3"  >
-                    Payoff calculations
+                        aria-controls="collapsePayoff" data-partid="3">
+                    {% trans 'Вычисление бонуса' %}
                 </button>
             </h2>
         </div>
@@ -99,17 +97,24 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <code><span class="bold">Payoff of Person A</span> = Endowment
-                            <span class="bold darkred">minus</span> transfer
-                            <span class="bold darkred">plus</span> return amount</code>
-
+                        {% blocktrans %}
+                            <code><span class="bold">Бонус Участника А за Часть 1 </span> = начальная сумма 10 токенов
+                                <span class="bold darkred">минус</span> передача Участнику Б
+                                <span class="bold darkred">плюс</span> возврат от Участника Б</code>
+                        {% endblocktrans %}
                     </li>
                     <li class="list-group-item">
 
 
-                        <p><code><span class="bold">Payoff of Person B</span> = Transfer multiplied by 3 <span
-                                class="bold darkred">minus</span>
-                            return amount <span class="bold darkred">plus</span> endowment</code>
+                        <p>
+                            {% blocktrans %}
+
+                                <code><span class="bold">Бонус Участника Б за Часть 1 </span> = начальная сумма 10
+                                токенов
+                                <span class="bold darkred">плюс</span>передача от Участника А, умноженная на 3
+                                <span class="bold darkred">минус</span>
+                                rвозврат Участнику А
+                            {% endblocktrans %}
 
                     </li>
                 </ul>

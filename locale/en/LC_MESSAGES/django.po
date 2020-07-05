@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 12:35-0400\n"
+"POT-Creation-Date: 2020-07-05 13:25-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1983,8 +1983,17 @@ msgid "I understand the instructions"
 msgstr ""
 
 #: trust/templates/trust/Instructions1.html:5
-msgid " Instructions"
-msgstr ""
+#: trust/templates/trust/includes/instructions/common_instructions.html:12
+msgid "Инструкции"
+msgstr "General instructions"
+
+#: trust/templates/trust/Instructions1.html:12
+msgid "Пожалуйста, прочитайте инструкции"
+msgstr "Please read the instructions"
+
+#: trust/templates/trust/Instructions1.html:24
+msgid "Да, я прочитал(а) инструкции"
+msgstr "Yes, I read the instructions"
 
 #: trust/templates/trust/Instructions2.html:5
 msgid "Examples"
@@ -2112,28 +2121,186 @@ msgstr "Attention!"
 msgid "Show instructions"
 msgstr ""
 
-#: trust/templates/trust/includes/instructions/common_instructions.html:12
-msgid "Инструкции"
-msgstr "General instructions"
-
 #: trust/templates/trust/includes/instructions/common_instructions.html:21
 msgid ""
-"\n"
-"                        Two participants “Person A” and “Person B” are "
-"interacting with each other in a pair.\n"
-"                    "
+"Каждому участнику случайным образом выпадает одна из двух ролей: Участник А "
+"или\n"
+"                        Участник Б. Как только начнется эксперимент, Вы "
+"узнаете, Вашу роль: Участник А или Участник\n"
+"                        Б."
 msgstr ""
 
 #: trust/templates/trust/includes/instructions/common_instructions.html:26
 msgid ""
-"Person A and Person B both receive an initial endowment of 10 Token.\n"
+"Два участника, А и Б взаимодействуют друг с другом в паре. Вы случайным "
+"образом\n"
+"                        определены в пару к Участнику А или Б из одного из "
+"12 городов, возможно из Вашего же. Когда Вы\n"
+"                        будете принимать Ваши решения, Вы не будете знать, "
+"из какого именно города тот Участник А или Б,\n"
+"                        с которым Вы взаимодействуете. Поскольку участник, с "
+"которым Вы взаимодействуете, может быть из\n"
+"                        любого из 12 городов, Вам следует внимательно "
+"изучить весь список городов прежде чем принять\n"
+"                        решение.\n"
 "                    "
 msgstr ""
 
-#: trust/templates/trust/includes/instructions/common_instructions.html:30
+#: trust/templates/trust/includes/instructions/common_instructions.html:35
 msgid ""
-"Each token will be converted into usd$ at the exchange rate of <span class="
-"\"font-weight-bold\">1 token = ???Us cent\n"
+"В начале эксперимента как Участник А, так и Участник Б  получают от "
+"организаторов\n"
+"                        начальную сумму в 10 токенов (=1 US$) каждый.\n"
 "                    "
-msgstr "Each token will be converted into usd$ at the exchange rate of <span class="
-"\"font-weight-bold\">1 token = ???Us cent"
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/common_instructions.html:42
+#, fuzzy
+#| msgid "Пожалуйста, перенесите все города в новый список"
+msgid " Пожалуйста, прочитайте теперь задание для обоих Участников: А и Б"
+msgstr "Please transfer all cities to the new list"
+
+#: trust/templates/trust/includes/instructions/common_instructions.html:53
+msgid "Кликните чтобы прочесть задание Участника А"
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/common_instructions.html:72
+msgid "Кликните чтобы прочесть задание Участника Б"
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/common_instructions.html:90
+msgid "Вычисление бонуса"
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/common_instructions.html:100
+msgid ""
+"\n"
+"                            <code><span class=\"bold\">Бонус Участника А за "
+"Часть 1 </span> = начальная сумма 10 токенов\n"
+"                                <span class=\"bold darkred\">минус</span> "
+"передача Участнику Б\n"
+"                                <span class=\"bold darkred\">плюс</span> "
+"возврат от Участника Б</code>\n"
+"                        "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/common_instructions.html:110
+msgid ""
+"\n"
+"\n"
+"                                <code><span class=\"bold\">Бонус Участника Б "
+"за Часть 1 </span> = начальная сумма 10\n"
+"                                токенов\n"
+"                                <span class=\"bold darkred\">плюс</"
+"span>передача от Участника А, умноженная на 3\n"
+"                                <span class=\"bold darkred\">минус</span>\n"
+"                                rвозврат Участнику А\n"
+"                            "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/receiver_instructions_1.html:4
+msgid ""
+"\n"
+"        Вам надлежит решить, столько из токенов, которые Вы можете получить "
+"от Участника А, вы хотите вернуть этому\n"
+"        Участнику А. Поскольку  Вы не знаете, передаст Вам Участник А свои "
+"10 токенов или же нет, решение о возврате Вам\n"
+"        надо принять в любом случае, но реализовано оно будет только если "
+"Участник А действительно передаст Вам свою\n"
+"        начальную сумму.\n"
+"    "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/receiver_instructions_1.html:10
+msgid ""
+"\n"
+"        Если Участник А не передаст вам свои токены, возвращать Вам будет "
+"нечего, и у Вас остаются начальные 10 токенов.\n"
+"    "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/receiver_instructions_1.html:13
+msgid ""
+"\n"
+"        Если Участник А передаст Вам свои 10 токенов, Вы получите 30 "
+"токенов. Из этой суммы Вы можете вернуть ему любое\n"
+"        целое число токенов с шагом 3, т.е. 0, 3,… 27, или 30 токенов. Те "
+"токены, которые Вы не возвращаете, Вы\n"
+"        оставляете себе, и они прибавляются к тем 10 токенам, которые у Вас "
+"были изначально. Сумма, которую Вы\n"
+"        возвращаете Участнику А, не умножается ни на что.\n"
+"    "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/receiver_instructions_1.html:25
+msgid ""
+"\n"
+"\n"
+"        Только одно из этих 12 решений имеет значение при определении Вашего "
+"бонуса, а именно: решение в отношении\n"
+"        Участника А из того города, с которым Вы действительно будете "
+"взаимодействовать.\n"
+"\n"
+"    "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/sender_instructions_1.html:4
+msgid ""
+"\n"
+"        Вам надо решить, передаете ли Вы свою начальную сумму в 10 токенов "
+"Участнику Б или нет. Вы можете передать\n"
+"        только все 10 токенов или ничего (0 токенов), частичная передача не "
+"допускается.\n"
+"    "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/sender_instructions_1.html:8
+msgid ""
+"\n"
+"        Если Вы решаете не передававать свою начальную сумму, Ваши 10 "
+"токенов остаются у Вас.\n"
+"    "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/sender_instructions_1.html:11
+msgid ""
+"\n"
+"        Если Вы решаете передать свою начальную сумму в 10 токенов Участнику "
+"Б, они умножаются на 3, так что Участник Б\n"
+"        получит 30 токенов.\n"
+"    "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/sender_instructions_1.html:16
+msgid ""
+"Поскольку Вы не знаете, в каком городе находится Участник Б из Вашей пары, "
+"Вам надо принять\n"
+"            решение о передаче или не передаче 10 токенов 12 раз – по одному "
+"для каждого из 12 городов. Для каждого из\n"
+"            городов решение принимается один раз.\n"
+"        "
+msgstr ""
+
+#: trust/templates/trust/includes/instructions/sender_instructions_1.html:22
+msgid ""
+"\n"
+"        Только одно из этих 12 решений имеет значение при определении Вашего "
+"бонуса, а именно: решение в отношении\n"
+"        Участника Б из того города, с которым Вы действительно будете "
+"взаимодействовать.\n"
+"    "
+msgstr ""
+
+#, fuzzy
+#~| msgid ""
+#~| "Each token will be converted into usd$ at the exchange rate of <span "
+#~| "class=\"font-weight-bold\">1 token = ???Us cent\n"
+#~| "                    "
+#~ msgid ""
+#~ "Each token will be converted into usd$ at the exchange rate of\n"
+#~ "                        <span class=\"font-weight-bold\">1 token = ???Us "
+#~ "cent\n"
+#~ "                    "
+#~ msgstr ""
+#~ "Each token will be converted into usd$ at the exchange rate of <span "
+#~ "class=\"font-weight-bold\">1 token = ???Us cent"
