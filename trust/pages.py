@@ -152,7 +152,7 @@ page_sequence = [
     # Instructions1,
     # Instructions2,
     CQ1,
-    # ShowMap,
+    ShowMap,
     IntroStage1,
     # SenderDecisionP,
     # ReturnDecisionP,

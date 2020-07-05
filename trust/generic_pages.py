@@ -55,6 +55,9 @@ class CQPage(Page):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['formset'] = self.get_formset()
+        # let's set counter:
+        q = self.get_cq_instances()
+        q.filter(counter__isnull=True).update(counter=0)
         return context
 
 

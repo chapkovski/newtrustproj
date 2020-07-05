@@ -2,7 +2,7 @@ import pandas as pd
 from trust.models import Decision
 from questionnaire.models import Player as QPlayer
 from trust.models import Player as TPlayer
-from django.db.models import Value, IntegerField, F, DecimalField
+from django.db.models import   IntegerField, Count, Q
 from django.db.models.functions import Cast
 from otree.models_concrete import PageCompletion
 from otree.models import Session
@@ -30,12 +30,23 @@ def get_full_data():
         curconverter = {}
         for p in toconv:
             curconverter[f'trustgame_{p}'] = Cast(p, output_field=IntegerField())
-        data = Player.objects.filter(session__in=sessions).annotate(**curconverter).values()
+        cq_annotator = dict(
+            cq0_stage1=Count('cqs__counter', filter=Q(cqs__part=1, cqs__counter=0)),
+            cq1_stage1=Count('cqs__counter', filter=Q(cqs__part=1,  cqs__counter=1)),
+            cq2_stage1=Count('cqs__counter', filter=Q(cqs__part=1, cqs__counter=2)),
+            cq3_stage1=Count('cqs__counter', filter=Q(cqs__part=1, cqs__counter=3)),
+            cq0_stage2=Count('cqs__counter', filter=Q(cqs__part=2, cqs__counter=0)),
+            cq1_stage2=Count('cqs__counter', filter=Q(cqs__part=2,  cqs__counter=1)),
+            cq2_stage2=Count('cqs__counter', filter=Q(cqs__part=2, cqs__counter=2)),
+            cq3_stage2=Count('cqs__counter', filter=Q(cqs__part=2, cqs__counter=3)),
+
+        )
+        data = Player.objects.filter(session__in=sessions).annotate(**curconverter, **cq_annotator).values()
 
         df = pd.DataFrame(list(
             data.values('session__code', 'participant__code', 'participant__time_started', 'city',
                         '_role', 'city_order', 'participant__id_in_session', 'participant__label',
-                        'cq1_counter', 'cq2_counter',
+                        'cq1_counter', 'cq2_counter', *cq_annotator.keys(),
                         *curconverter.keys(), )))
         df.set_index('participant__code', inplace=True)
         df['participant__time_started'] = pd.to_datetime(df['participant__time_started'], unit='s').dt.strftime(

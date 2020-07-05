@@ -228,7 +228,7 @@ class CQ(djmodels.Model):
     """Actual cq for specific player. stores the number of wrong answers."""
     source = models.StringField()
     owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="cqs")
-    counter = models.IntegerField(initial=0)
+    counter = models.IntegerField()
     answer = models.IntegerField()
     part = models.IntegerField()
     role = models.StringField()
