@@ -172,7 +172,7 @@ cq2_3:
   text:
     rus: В части 1 Участник А из города 9 передал свою начальную сумму Участнику Б из города 10. Этот участник Б решил вернуть 0 токенов Участнику А из города 9, если этот Участник А решит передать ему свою начальную сумму. В Части 2 этот Участник А дал оценку, что этот Участник Б вернет ему 0 токенов. Какой бонус в токенах получит этот Участник А в части 2?
     eng: In Part 1, a Person A from City 9 transferred his initial endowment to a randomly paired Person B from City 10. This Person B from City 10 chose to return 0 Token to Person A from City 7 if this Person A transferred his initial endowment. In Part 2, this Person A estimates that Person B decided to return 0 Token. What is the bonus of Person A in Part 2?
-  correct: 0
+  correct: 20
   part: 2
   role: sender
   wrong1:
