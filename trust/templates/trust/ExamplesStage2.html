@@ -2,7 +2,7 @@
 {% load otree hse i18n %}
 
 {% block title %}
-    Part 2. Examples
+    {% trans 'Часть 2. Примеры.' %}
 {% endblock %}
 
 {% block content %}
@@ -11,22 +11,24 @@
             {% include player.get_part2_examples_path %}
         </div>
     </div>
-    <div class="alert">
+    <div >
         <p>
-            Please click the button below if you understood the instructions.
+            {% trans 'Пожалуйста кликните на кнопку внизу если Вы прочитали инструкции.' %}
         </p>
+        <div class="alert alert-warning">
+            {% blocktrans %}Важная информация: инструкции всегда доступны Вам в ходе эксперимента: просто кликните на кнопку “Показать инструкции к Части 2” в правой верхней части экрана
+
+            {% endblocktrans %}
+        </div>
+
         <p>
-            Before Part 2 of the experiment starts, a brief quiz will check whether you understood the tasks in Part 2.
+            {% trans 'Перед началом Части 2 эксперимента просим Вас ответить на несколько проверочных вопросов, которые помогут Вам лучше понять Ваши задания.' %}
         </p>
-        <p>
-            The instructions of both parts will be always available to you in the course of the experiment if you click
-            on
-            one of the 'Instructions’ buttons at the right top corner.
-        </p>
+
 
     </div>
     <div class="my-3">
-        {% trans 'I understand the instructions' as btnlabel %}
+        {% trans 'Да, я прочитал(а) инструкции' as btnlabel %}
         {% hse_button html_class='btn-danger' label=btnlabel %}
     </div>
 {% endblock %}

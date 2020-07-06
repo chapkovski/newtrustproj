@@ -1,16 +1,15 @@
 {% extends "global/Page.html" %}
-{% load otree static i18n %}
+{% load otree i18n %}
 
 {% block title %}
-    {% blocktrans with role=player.role_desc %}Часть 2. Участник {{ role }}: оценки{% endblocktrans %}
+    {% trans 'Часть 2. Ваши оценки' %}
 {% endblock %}
 
 {% block content %}
     <div class="card my-3">
         <div class="card-body">
             {% blocktrans %}
-                Please estimate how many Token the paired Person B will return if you would have transferred your
-                initial endowment, independently of whether you have actually done so.
+               Пожалуйста оцените, сколько токенов Участник Б из вашей пары решит вернуть Вам если Вы передадите ему свою начальную сумму, независимо от того, передали ли Вы ему эту сумму или же нет.
             {% endblocktrans %}
         </div>
     </div>
@@ -19,16 +18,13 @@
     <table class="table table-hover table-stripped table-sm ">
         <thead>
         <th class="align-top">
-            {% blocktrans with other=player.other_role_desc %}Если бы Вы передали Вашу начальную сумму Участнику
-                {{ other }} из города{% endblocktrans %}
+            {% trans 'Если  бы вы передали свою начальную сумму Участнику Б из города' %}
 
 
         </th>
 
         <th class="align-top">
-            {% blocktrans with max_return=Constants.max_return other=player.other_role_desc %}то как Вы оцениваете,
-                сколько из {{ max_return }} токенов этот Участник {{ other }} вернул бы Вам
-            {% endblocktrans %}
+            {% trans 'то согласно Вашей оценке,  сколько из 30 токенов  этот Участник Б решит вернуть Вам?' %}
 
         </th>
         </thead>

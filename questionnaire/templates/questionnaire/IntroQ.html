@@ -2,15 +2,17 @@
 {% load otree i18n hse %}
 
 {% block title %}
-    {% trans 'The part 2 of the study is completed. Now please answer the questions. ' %}
+
 {% endblock %}
 
 {% block content %}
-    {% blocktrans %}
-
-    {% endblocktrans %}
-        {% trans 'Перейти к анкете' as btnlabel %}
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="lead">
+                {% trans 'Часть 2 эксперимента завершена. Начинается последняя, третья часть  эксперимента - анкета.' %}
+            </div>
+        </div>
+    </div>
+        {% trans 'Перейти к части 3' as btnlabel %}
     {% hse_button html_class='btn-success' label=btnlabel %}
-
-
 {% endblock %}

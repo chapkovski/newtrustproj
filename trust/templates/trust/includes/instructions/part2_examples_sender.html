@@ -1,38 +1,43 @@
+{% load   i18n %}
+<h5>{% trans 'Подсчет Вашего бонуса в части 2' %}</h5>
+<table class="table-striped table table-hover">
+    <thead>
+    <th>{% trans 'Разница между Вашей оценкой и действительным решением Участника Б:' %}</th>
+    <th>{% trans 'Ваш бонус в части 2:' %}</th>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{% trans 'Разница равна 0 (Ваша оценка совпадает с решением Участника Б о возврате):' %}</td>
+        <td><b>20 {% trans 'токенов' %}</b></td>
+    </tr>
+    <tr>
+        <td>{% trans 'Разница больше 0, но не превышает плюс-минус 3 токена .' %}</td>
+        <td><b>10 {% trans 'токенов' %}</b></td>
+    </tr>
+    <tr>
+        <td>{% trans 'Разница больше чем плюс-минус 3 токена.' %}</td>
+        <td><b>0 {% trans 'токенов' %}</b></td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<h5>{% trans 'Пример' %} 1:</h5>
+<p>
+    {% trans 'Пусть вы из города 2. В Части 1 Вы решили передать свою начальную сумму Участнику Б если этот участник из города 6.' %}
+</p>
+<p>
+    {% blocktrans %}Вы случайным образом определены в пару с Участником Б из города 6, который решил вернуть 12 токенов,
+        если он получит 30 токенов от Участника А из города 2, т.е. его начальную сумму умноженную на 3.
+    {% endblocktrans %}
+</p>
+<p>{% trans 'Вы оценили, что Участник Б из города 6 решит вернуть Вам 15 токенов.' %}</p>
+<p>{% trans 'Разница между Вашей оценкой и действительным решением Участника Б составляет 15-12=3 токена' %}</p>
+<p>{% trans 'Ваш бонус в части 2: 10 токенов' %}</p>
+<hr>
+<h5>{% trans 'Пример' %} 2:</h5>
+<p>{% trans 'Пусть вы из города 8. В Части 1 Вы решили НЕ передать свою начальную сумму Участнику Б если этот участник из города 1.' %}</p>
+<p>{% trans 'Вы случайным образом определены в пару с Участником Б из города 1, который решил вернуть 12 токенов, если он получит 30 токенов от Участника А из города 8, т.е. его начальную сумму умноженную на 3.' %}</p>
+<p>{% trans 'Вы оценили, что Участник Б из города 6 решит вернуть 18 токенов.' %}</p>
+<p>{% trans 'Разница между Вашей оценкой и действительным решением Участника Б составляет 18 - 12 = 6 токенов' %}</p>
+<p>{% trans 'Ваш бонус в части 2: 0 токенов' %}</p>
 
-<h5>Person A - payoff calculation in Part 2</h5>
-   <table class="table-striped table table-hover">
-            <thead>
-            <th>Difference between the estimate of Person A and Person B’s actual decision:</th>
-            <th>Person A’s Payoff in Part 2:</th>
-            </thead>
-            <tbody>
-            <tr>
-                <td>The estimate of Person A coincides with Person B’s decision:</td>
-                <td><b>20 Tokens</b></td>
-            </tr>
-            <tr>
-                <td>The difference is larger than 0 but not larger than 3 Tokens</td>
-                <td><b>10 Tokens</b></td>
-            </tr>
-            <tr>
-                <td>The difference is larger than 3 Tokens</td>
-                <td><b>0 Tokens</b></td>
-            </tr>
-            </tbody>
-        </table>
-<hr>
-<h5>Example 1:</h5>
-<p>Suppose you are from City 2 in Region 2.</p>
-<p>In Part 1, you decided to transfer your endowment to a Person B if this person is from City 6.</p>
-<p>You are randomly paired with a Person B from City 6 in Region 6 who decided to return 12 Token in case he received the multiplied endowment of 30 Token from Person A in City 2.</p>
-<p>You estimated that Person B from City 6 would return 15 Token.</p>
-<p>The difference between your estimate and the actual decision of Person B is    15 – 12 = 3 Token.</p>
-<p>Your payoff in Part 2: 10</p>
-<hr>
-<h5>Example 2:</h5>
-<p>Suppose you are from City 8 in Region 8.</p>
-<p>In Part 1, you decided NOT to transfer your endowment to a Person B if this person is from City 1.</p>
-<p>You are randomly paired with a participant B from City 1 in Region 1 who decided to return 18 Token in case he received the multiplied endowment of 30 Token from Person A in City 8.</p>
-<p>You estimated that Person B from City 1 would return 18 Token.</p>
-<p>The difference between your estimate and the actual decision of Person B is    18 – 18 = 0 Token.</p>
-<p>Your payoff: 20</p>

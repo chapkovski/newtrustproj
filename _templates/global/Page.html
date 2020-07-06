@@ -121,7 +121,6 @@
             if (event.key == "Enter") {
                 event.preventDefault();
                 let empties = $("input").filter(function () {
-                    console.debug('has been called?')
                     return !this.value;
                 });
                 if (empties.length > 0) {
