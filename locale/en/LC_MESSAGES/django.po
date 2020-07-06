@@ -1959,7 +1959,7 @@ msgstr "Drivers and Mobile Plant Operators"
 
 #: trust/templates/trust/AfterStage1.html:12
 msgid "Перейти к части 2"
-msgstr "Proceed to Part 2"
+msgstr "Continue with Part 2"
 
 #: trust/templates/trust/CQ1.html:5
 msgid "Проверочные вопросы для части 1"

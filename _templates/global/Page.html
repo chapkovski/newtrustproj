@@ -116,6 +116,20 @@
 {% endblock %}
 
 {% block global_scripts %}
+    <script>
+        $(document).on("keydown", ":input:not(textarea):not(:submit)", function (event) {
+            if (event.key == "Enter") {
+                event.preventDefault();
+                let empties = $("input").filter(function () {
+                    console.debug('has been called?')
+                    return !this.value;
+                });
+                if (empties.length > 0) {
+                    empties[0].focus()
+                }
+            }
+        });
+    </script>
     {% if view.show_instructions|default_if_none:False %}
         {# get cities data - perhaps from Constants? #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"

@@ -1,33 +1,49 @@
 {% extends 'trust/includes/generic_block.html' %}
+{% load i18n %}
 {% block title %}
-    Person B - payoff calculation
+    {% trans 'Участник Б - вычисление бонуса' %}
 {% endblock %}
 {% block body %}
 
-<p><code><span class="bold">Payoff</span> = Transfer multiplied by 3 <span class="bold darkred">minus</span> return amount <span class="bold darkred">plus</span> your endowment</code>
+    <p>
+        <code>
+            {% blocktrans %}<span class="bold">Бонус Участника Б за Часть 1 </span> = начальная сумма 10
+                токенов
+                <span class="bold darkred">плюс</span> передача от Участника А, умноженная на 3
+                <span class="bold darkred">минус</span>
+                возврат Участнику А
+            {% endblocktrans %}
+        </code>
 
     <hr>
-<p class="lead">Example 1:</p>
-<p>Suppose you are from City 2 in Region 2.</p>
-<p>You are randomly paired with a participant A from City 6 in Region 6</p>
-<p>You decide to return 15 token in case Person A from City 6 transfers his endowment.</p>
-<p>Person A did decide to transfer his endowment.</p>
+    <p class="lead">{% trans 'Пример 1:' %}</p>
+    <p>{% trans 'Пусть вы из города 2.' %}</p>
+    <p>{% trans 'Вы случайным образом определены в пару с Участником А из города 6.' %}</p>
+    <p>{% trans 'Вы решили вернуть 15 токенов, если Участник А из города 6 передаст Вам свою начальную сумму.' %}</p>
+    <p>{% trans 'Участник А из города 6  решил передать вам свою начальную сумму.' %}</p>
 
-<p><span class="bold">Your payoff:</span> <code>30 – 15 + 10 = 25</code></p>
-<p><span class="bold darkred">equals</span> Transfer multiplied by 3: <code>10*3 = 30</code></p>
-<p><span class="bold darkred">minus</span> return amount: <code>15</code></p>
-<p><span class="bold darkred">plus</span>  your endowment: 10</p>
+    <p><span class="bold">{% trans 'Ваш бонус в части 1:' %}</span> <code>10 + 30 – 15 = 25 {% trans 'токенов' %}</code>
+    </p>
+    <p><span class="bold darkred"></span> {% trans 'В том числе начальная сумма:' %}
+        <code>10 {% trans 'токенов' %}</code></p>
+    <p><span class="bold darkred">{% trans 'плюс' %}</span> {% trans 'плюс передача 10 токенов х 3' %}:
+        <code>30 {% trans 'токенов' %}</code></p>
+    <p><span class="bold darkred">{% trans 'минус' %}</span> {% trans 'возврат' %}: <code>15 {% trans 'токенов' %}</code>
+    </p>
     <hr>
-<p class="lead">Example 2:</p>
-<p>Suppose you are from City 1 in Region 1.</p>
-<p>You are randomly paired with a participant A from City 8 in Region 8.</p>
-<p>You decided to return 9 token in case Person A from City 8 transfers his endowment.</p>
-<p>Person A decided not to transfer his endowment.</p>
+    <p class="lead">{% trans 'Пример 2' %}:</p>
+    <p>{% trans 'Пусть вы из города 1.' %}</p>
+    <p>{% trans 'Вы случайным образом определены в пару с Участником А из города 8.' %}</p>
+    <p>{% trans 'Вы решаете вернуть 9 токенов, если Участник А из города 8  передаст Вам свою начальную сумму.' %}</p>
+    <p>{% trans 'Участник А из города 8 решает не передавать вам свою начальную сумму.' %}</p>
 
-<p><span class="bold">Your payoff:</span> <code> 0 (– 0) + 10 =10</code></p>
-<p><span class="bold darkred">equals</span> Transfer multiplied by 3: <code>0*3 = 0</code></p>
-<p><span class="bold darkred">minus</span> return amount: <code>(0)</code></p>
-<p><span class="bold darkred">plus</span>  your endowment: 10</p>
-
+    <p><span class="bold">{% trans 'Ваш бонус в части 1:' %}</span> <code>10 -0  + 0  = 10 {% trans 'токенов' %}</code>
+    </p>
+    <p><span class="bold darkred"></span> {% trans 'В том числе начальная сумма:' %}
+        <code>10 {% trans 'токенов' %}</code></p>
+    <p><span class="bold darkred">{% trans 'плюс' %}</span> {% trans 'плюс передача 0 токенов х 3' %}:
+        <code>0 {% trans 'токенов' %}</code></p>
+    <p><span class="bold darkred">{% trans 'минус' %}</span> {% trans 'возврат' %}: <code>0 {% trans 'токенов' %}</code>
+    </p>
 
 {% endblock %}

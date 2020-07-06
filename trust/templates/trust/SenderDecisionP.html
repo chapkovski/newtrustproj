@@ -2,25 +2,28 @@
 {% load otree static i18n %}
 
 {% block title %}
-    {% blocktrans with role=player.role_desc %}Часть 1. Участник {{ role }}: решения{% endblocktrans %}
+    {% trans 'Часть 1' %}
 
 {% endblock %}
 
 {% block content %}
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="lead">
+                {% trans 'Вам случайным образом выпала роль Участника А. Ваши решения:' %}
+            </div>
+        </div>
+    </div>
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
         <th>
-            {% blocktrans with other=player.other_role_desc %}Если Участник {{ other }}, с которым Вы взаимодействуете, из
-                города
-            {% endblocktrans %}
+            {% trans 'Если  Участник Б, с которым Вы   взаимодействуете в паре,  будет из города' %}
 
         </th>
 
         <th>
-            {% blocktrans with other=player.other_role_desc %}то согласны ли Вы передать Вашу начальную сумму этому
-                Участнику {{ other }}?
-            {% endblocktrans %}
+            {% trans 'То согласны ли Вы передать свою начальную сумму в 10 токенов этому участнику Б?' %}
 
         </th>
         </thead>

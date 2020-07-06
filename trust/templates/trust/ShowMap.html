@@ -2,106 +2,98 @@
 {% load otree i18n hse %}
 
 {% block title %}
-    {% trans 'Map of all cities that participate in the study.' %}
+    {% trans 'Города, в которых находятся участники эксперимента.' %}
 {% endblock %}
 
 {% block content %}
     <div class="card my-3">
         <div class="card-body">
-            On this map you can see all 12 cities which participate in this study. This map is always available to you
-            in the course of the study
-            if you click on the button 'Show map' at the right top corner.
+            {% blocktrans %}На этой карте Вы видите 12 городов, в которых находятся участники эксперимента. Эта карта
+                будет всегда доступна Вам по ходу эксперимента, если вы кликните на кнопку “показать карту” в верхней
+                части экрана.
+            {% endblocktrans %}
+
 
         </div>
     </div>
 
-      <style>
-                    /* Always set the map height explicitly to define the size of the div
-                       * element that contains the map. */
-                    #template_map {
-                        min-height: 400px;
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+        #template_map {
+            min-height: 400px;
 
 
-                    }
+        }
 
-                    /* Optional: Makes the sample page fill the window. */
-                    html,
-                    body {
-                        height: 100%;
-                        margin: 0;
-                        padding: 0;
-                    }
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-                    /* The popup bubble styling. */
-                    .popup-bubble {
-                        /* Position the bubble centred-above its parent. */
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        transform: translate(-50%, -100%);
-                        /* Style the bubble. */
-                        background-color: white;
-                        padding: 5px;
-                        border-radius: 5px;
-                        font-family: sans-serif;
-                        overflow-y: auto;
-                        max-height: 60px;
-                        font-weight: bold;
-                        font-size: 0.5rem;
-                        box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
-                    }
+        /* The popup bubble styling. */
+        .popup-bubble {
+            /* Position the bubble centred-above its parent. */
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -100%);
+            /* Style the bubble. */
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-family: sans-serif;
+            overflow-y: auto;
+            max-height: 60px;
+            font-weight: bold;
+            font-size: 0.5rem;
+            box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
+        }
 
-                    /* The parent of the bubble. A zero-height div at the top of the tip. */
-                    .popup-bubble-anchor {
-                        /* Position the div a fixed distance above the tip. */
-                        position: absolute;
-                        width: 100%;
-                        bottom: /* TIP_HEIGHT= */ 8px;
-                        left: 0;
-                    }
+        /* The parent of the bubble. A zero-height div at the top of the tip. */
+        .popup-bubble-anchor {
+            /* Position the div a fixed distance above the tip. */
+            position: absolute;
+            width: 100%;
+            bottom: /* TIP_HEIGHT= */ 8px;
+            left: 0;
+        }
 
-                    /* This element draws the tip. */
-                    .popup-bubble-anchor::after {
-                        content: "";
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        /* Center the tip horizontally. */
-                        transform: translate(-50%, 0);
-                        /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
-                        width: 0;
-                        height: 0;
-                        /* The tip is 8px high, and 12px wide. */
-                        border-left: 6px solid transparent;
-                        border-right: 6px solid transparent;
-                        border-top: /* TIP_HEIGHT= */ 8px solid white;
-                    }
+        /* This element draws the tip. */
+        .popup-bubble-anchor::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* Center the tip horizontally. */
+            transform: translate(-50%, 0);
+            /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+            width: 0;
+            height: 0;
+            /* The tip is 8px high, and 12px wide. */
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: /* TIP_HEIGHT= */ 8px solid white;
+        }
 
-                    /* JavaScript will position this div at the bottom of the popup tip. */
-                    .popup-container {
-                        cursor: auto;
-                        height: 0;
-                        position: absolute;
-                        /* The max width of the info window. */
-                        width: 200px;
-                    }
-                </style>
-                <div id="template_map" class="map" ></div>
-
-
+        /* JavaScript will position this div at the bottom of the popup tip. */
+        .popup-container {
+            cursor: auto;
+            height: 0;
+            position: absolute;
+            /* The max width of the info window. */
+            width: 200px;
+        }
+    </style>
+    <div id="template_map" class="map"></div>
 
 
-    <h5 class="my-3">The cities that participate in the study are the following:</h5>
-    <table class="table">
-        <tbody>
-        {% for foo in cities %}
-            <tr>
-                <td>{{ foo.description }}</td>
-            </tr>
-        {% endfor %}
 
-        </tbody>
-    </table>
-    {% next_button %}
 
+    <div class="my-3">
+        {% next_button %}
+    </div>
 {% endblock %}

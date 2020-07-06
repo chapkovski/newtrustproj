@@ -2,14 +2,20 @@
 {% load otree hse i18n %}
 
 {% block title %}
-    Your answers were correct.
 
-    Now Part 1 of the experiment starts.
 {% endblock %}
 
 {% block content %}
-
-    {% trans 'Начать' as btnlabel %}
-    {% hse_button html_class='btn-success' label=btnlabel %}
-
+    <div class="card my-3">
+        <div class="card-body">
+            <div class="lead">
+                {% blocktrans %}Вы дали правильные ответы на проверочные вопросы. Теперь начинается Часть 1 эксперимента
+                {% endblocktrans %}
+            </div>
+        </div>
+    </div>
+    <div class="my-3">
+        {% trans 'Начать эксперимент' as btnlabel %}
+        {% hse_button html_class='btn-success' label=btnlabel %}
+    </div>
 {% endblock %}

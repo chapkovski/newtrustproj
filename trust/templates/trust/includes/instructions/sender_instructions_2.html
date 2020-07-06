@@ -1,39 +1,62 @@
 {% extends 'trust/includes/generic_block.html' %}
+{% load i18n %}
 {% block title %}
-        Person A - payoff calculation
+    {% trans 'Участник А - вычисление бонуса' %}
 {% endblock %}
 {% block body %}
 
-    <p><code><span class="bold">Payoff</span> = Your endowment
-        <span class="bold darkred">minus</span> transfer
-        <span class="bold darkred">plus</span> return amount</code>
+    <p><code>
+        {% blocktrans %}<span class="bold">Бонус Участника А за Часть 1 </span> = начальная сумма 10 токенов
+            <span class="bold darkred">минус</span> передача Участнику Б
+            <span class="bold darkred">плюс</span> возврат от Участника Б <br>
+            (или 10 токенов если начальная сумма не была передана)
+
+        {% endblocktrans %}
+    </code>
 
     <hr>
-    <p class="lead">Example 1:</p>
-    <p>Suppose you are from City 6 in Region 6.</p>
+    <p class="lead">
+        {% trans 'Пример 1:' %}
+    </p>
+    <p>
+        {% trans 'Пусть вы из города 6.' %}
+    </p>
 
-    <p> You decided to <span class="bold">transfer</span> your endowment.</p>
-    <p> You are randomly paired with a participant B from City 2 in Region 2 who stated to return 15 Token in case you
-        transferred your endowment.</p>
+    <p>
+        {% trans 'Вы решили передать Вашу начальную сумму Участнику Б из города 2.' %}
+    </p>
+    <p>
+        {% blocktrans %}Вы случайным образом определены в пару с Участником Б из города 2, который решил что вернет Вам
+            15 токенов, если Вы решите передать ему свою начальную сумму.
+        {% endblocktrans %}
+    </p>
 
-    <p><span class="bold">Your payoff:</span> <code>10 – 10 + 15= 15</code></p>
-    <p><span class="bold darkred">equals</span> Your endowment: <code>10</code></p>
-    <p><span class="bold darkred">minus</span> transfer: <code>10</code></p>
-    <p><span class="bold darkred">plus</span> return amount: <code>15</code></p>
+    <p><span class="bold">{% trans 'Ваш бонус в части 1:' %}</span> <code>10 – 10 + 15= 15 {% trans 'токенов' %}</code>
+    </p>
+    <p><span class="bold darkred"></span> {% trans 'В том числе начальная сумма:' %} <code>10 {% trans 'токенов' %}</code></p>
+    <p><span class="bold darkred">{% trans 'минус' %}</span> {% trans 'передача' %}:
+        <code>10 {% trans 'токенов' %}</code></p>
+    <p><span class="bold darkred">{% trans 'плюс' %}</span> {% trans 'возврат' %}: <code>15 {% trans 'токенов' %}</code>
+    </p>
 
 
 
     <hr>
 
-    <p class="lead">Example 2:</p>
-    <p>Suppose you are from City 8 in Region 8.</p>
-    <p> You decided <span class="bold">not to transfer</span> your endowment.</p>
-    <p> You are randomly paired with a participant B from City 1 in Region 1 who stated to return 9 Token in case you
-        transferred your endowment.</p>
-    <p><span class="bold">Your payoff:</span> <code>10 – 0 (+ 0) = 10 </code></p>
-    <p><span class="bold darkred">equals</span> Your endowment: <code>10</code></p>
-    <p><span class="bold darkred">minus</span> transfer: <code>(0)</code></p>
-    <p><span class="bold darkred">plus</span> return amount: <code>(0)</code></p>
+    <p class="lead">{% trans 'Пример 2' %}:</p>
+    <p>{% trans 'Пусть вы из города 8.' %}</p>
+    <p> {% trans 'Вы решаете не передавать Вашу начальную сумму 10 токенов Участнику Б из города 1.' %}</p>
+    <p>
+        {% blocktrans %}Вы случайным образом определены в пару с Участником Б из города 1, который решил что вернет Вам
+            9 токенов, если Вы решите передать ему свою начальную сумму.
+        {% endblocktrans %}</p>
+    <p><span class="bold">{% trans 'Ваш бонус в части 1:' %}</span> <code>10 – 0 + 0= 10 {% trans 'токенов' %}</code>
+    </p>
+    <p><span class="bold darkred"></span> {% trans 'В том числе начальная сумма:' %} <code>10 {% trans 'токенов' %}</code></p>
+    <p><span class="bold darkred">{% trans 'минус' %}</span> {% trans 'передача' %}:
+        <code>0 {% trans 'токенов' %}</code></p>
+    <p><span class="bold darkred">{% trans 'плюс' %}</span> {% trans 'возврат' %}: <code>0 {% trans 'токенов' %}</code>
+    </p>
 
 
 

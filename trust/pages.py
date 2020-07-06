@@ -107,7 +107,7 @@ class Average3(FormSetMixin, Page):
 ########### BLOCK: INTROPATES ##############################################################
 class IntroStage1(Page):
     show_instructions = True
-    show_map = True
+
 
     def before_next_page(self):
         self.player.assign_role()
@@ -150,20 +150,20 @@ class IntroStage2(Page):
 
 page_sequence = [
     FirstWP,
-    Instructions1,
-    Instructions2,
-    CQ1,
-    ShowMap,
+    # Instructions1,
+    # Instructions2,
+    # CQ1,
     IntroStage1,
-    SenderDecisionP,
-    ReturnDecisionP,
-    AfterStage1,
-    InstructionsStage2,
-    ExamplesStage2,
-    CQ2,
-    IntroStage2,
-    SenderBeliefP,
-    ReturnerBeliefP,
+    # ShowMap,
+    # SenderDecisionP,
+    # ReturnDecisionP,
+    # AfterStage1,
+    # InstructionsStage2,
+    # ExamplesStage2,
+    # CQ2,
+    # IntroStage2,
+    # SenderBeliefP,
+    # ReturnerBeliefP,
     Average2,
     Average3,
 ]
