@@ -2,14 +2,14 @@
 {% load otree  i18n %}
 
 {% block title %}
-    {% blocktrans with role=player.role_desc %}Часть 2. Участник {{ role }}: оценки{% endblocktrans %}
+    {% trans 'Часть 2. Ваши оценки' %}
 {% endblock %}
 
 {% block content %}
     <div class="card my-3">
         <div class="card-body">
             {% blocktrans %}
-                Please estimate whether or not your paired Person A will transfer his initial endowment to you.
+                Пожалуйста оцените, передаст ли Вам Участник А из вашей пары свою начальную сумму или же нет.
             {% endblocktrans %}
         </div>
     </div>
@@ -19,12 +19,11 @@
     <table class="table table-hover table-stripped table-sm ">
         <thead class="align-top">
         <th class="align-top">
-            {% blocktrans with role=player.other_role_desc %}Если Участник {{ role }}, с которым Вы взаимодействуете, из города
-            {% endblocktrans %}
+            {% trans 'Если Участник А, с которым Вы взаимодействуете, из города' %}
         </th>
 
         <th class="align-top">
-            {% blocktrans with other=player.other_role_desc%}cогласно Вашей оценке, передал ли Вам этот Участник {{ other }} свою начальную сумму или нет?{% endblocktrans %}
+           {% trans 'то, согласно Вашей оценке, передаст Вам этот Участник А свою начальную сумму или же нет?' %}
 
         </th>
         </thead>

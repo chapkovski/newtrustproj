@@ -1,40 +1,37 @@
-<div class="card">
+{% load i18n %}
+<div class="card my-3">
     <div class="card-header" id="headingOne">
         <h5 class="mb-0">
-            Estimation Task for Person B
+            {% trans 'Ваша задача' %}
         </h5>
     </div>
     <div class="card-body">
         <p>
-            Person B has to estimate whether or not the paired Person A transferred his initial endowment to her.
+            {% trans 'Вам надо оценить, передаст ли Вам Участник А из вашей пары свою начальную сумму или же нет.' %}
         <p>
-            Since Person B at this moment does not know yet what city Person A is from, he will have to make his
-            estimate
-            for
-            each of the 12 cities that are involved in this experiment.</p>
+        {% blocktrans %}Поскольку в настоящий момент Вы не знаете, в каком городе находится Участник А из Вашей пары, Вам надо дать оценку этого решения Участника А 12 раз – по одному для каждого из 12 городов, участвующих в этом эксперименте. 
+        {% endblocktrans %}
+        </p>
     </div>
 </div>
-<div class="card">
+<div class="card mt-3">
     <div class="card-header" id="headingOne">
         <h5 class="mb-0">
-            Payoff calculation for Person B
+           {% trans 'Подсчет Вашего бонуса в части 2' %}
         </h5>
     </div>
     <div class="card-body">
         <p>
-            Person B’s estimate whether or not his paired Person A will transfer his initial endowment to him is
-            compared to
-            the actual decision of Person A.
+            {% blocktrans %}Ваша оценка того, передал Вам Участник А из Вашей пары свою начальную сумму или же нет, сравнивается с действительным решением этого Участник А в Части 1 эксперимента. Размер Вашего бонуса определяется на основе Вашей оценки согласно следующему правилу:
+            {% endblocktrans %}
         </p>
-        <p>
-            The estimate is converted into a payoff according to the following rule:
-        </p>
+
         <ul>
             <li>
-                If Person B estimates Person A’s decision correctly, Person B’s payoff for Part 2 is <b>10 Tokens</b>.
+                {% trans 'Если Вы верно оценили решение Участника А, Ваш бонус в части 2 составит ' %} <b>10 {% trans 'токенов' %}</b>.
             </li>
             <li>
-                If Person B estimates Person A’s decision incorrectly, Person B’s payoff for Part 2 is <b>0 Tokens</b>.
+                {% trans 'Если Вы неверно оценили решение Участника А, Ваш бонус в части 2 составит ' %} <b>0 {% trans 'токенов' %}</b>.
             </li>
         </ul>
 

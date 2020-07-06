@@ -1,25 +1,47 @@
-<h5>Person B - payoff calculation in Part 2</h5>
- <ul>
-            <li>
-                If Person B estimates Person A’s decision correctly, Person B’s payoff for Part 2 is <b>10 Tokens</b>.
-            </li>
-            <li>
-                If Person B estimates Person A’s decision incorrectly, Person B’s payoff for Part 2 is <b>0 Tokens</b>.
-            </li>
-        </ul>
+{% load i18n %}
+<h5 class="mb-0">
+    {% trans 'Подсчет Вашего бонуса в части 2' %}
+</h5>
+
+
+<ul>
+    <li>
+        {% trans 'Если Вы верно оценили решение Участника А, Ваш бонус в части 2 составит ' %}
+        <b>10 {% trans 'токенов' %}</b>.
+    </li>
+    <li>
+        {% trans 'Если Вы неверно оценили решение Участника А, Ваш бонус в части 2 составит ' %}
+        <b>0 {% trans 'токенов' %}</b>.
+    </li>
+</ul>
+
+
 <hr>
-<h5>Example 1:</h5>
-<p>Suppose you are from City 6 in Region 6.</p>
-<p>In Part 1, you decided to return 12 token in case Person A from City 2 transfers his endowment.</p>
-<p>You are randomly paired with a participant A from City 2 in Region 2 who decided to transfer his endowment.</p>
-<p>You estimated that Person A from City 2 will indeed transfer his endowment.</p>
-<p>Your estimate is correct.</p>
-<p>Your payoff in Part 2: 10</p>
+<h5>{% trans 'Пример' %} 1:</h5>
+<p>
+    {% trans 'Пусть Вы из города 6. Вы случайным образом определены в пару с Участником А из города 2. Этот участник решил передать свою начальную сумму в Части 1 ' %}
+</p>
+<p>
+    {% trans 'Согласно Вашей оценке, Участник А из города 2 решит передать  свою начальную сумму.' %}
+</p>
+<p>
+    {% trans 'Ваша оценка верна.' %}
+</p>
+<p>
+    {% trans 'Ваш бонус в части 2: 10 токенов.' %}
+</p>
 <hr>
-<h5>Example 2:</h5>
-<p>Suppose you are from City 1 in Region 1.</p>
-<p>In Part 1, you decided to return 18 token in case Person A from City 8 transfers his endowment.</p>
-<p>You are randomly paired with a participant A from City 8 in Region 8 who decided NOT to transfer his endowment.</p>
-<p>You estimated that Person A from City 8 will transfer his initial endowment.</p>
-<p>Your estimate is NOT correct.</p>
-<p>Your payoff in Part 2: 0</p>
+<h5>{% trans 'Пример' %} 2:</h5>
+
+<p>
+    {% trans 'Пусть Вы из города 1. Вы случайным образом определены в пару с Участником А из города 8. Этот участник решил НЕ передавать  свою начальную сумму в Части 1' %}
+</p>
+<p>
+    {% trans 'Согласно Вашей оценке, Участник А из города 2 решит передать  свою начальную сумму.' %}
+</p>
+<p>
+    {% trans 'Ваша оценка не верна.' %}
+</p>
+<p>
+    {% trans 'Ваш бонус в части 2: 0 токенов.' %}
+</p>
