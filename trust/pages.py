@@ -20,8 +20,10 @@ class Instructions1(Page):
     show_instructions = False
 
 
+
 class Instructions2(Page):
     show_instructions = True
+    show_instructions_1 = True
     show_map = False
 
 

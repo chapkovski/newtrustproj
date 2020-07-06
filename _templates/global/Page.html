@@ -72,6 +72,7 @@
         {% include 'global/includes/map_modal.html' %}
     {% endif %}
     <div class="otree-body container ">
+        <h2 class="otree-title page-header">{% block title %}{% endblock %}</h2>
         {% if view.remaining_timeout_seconds != None %}
             {% include 'otree/includes/TimeLimit.html' with form_element_id="form" %}
         {% endif %}
