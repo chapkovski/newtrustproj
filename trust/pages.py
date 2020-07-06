@@ -11,14 +11,11 @@ from .forms import (sender_formset, return_formset, returnbelief_formset, sender
 class FirstWP(WaitPage):
     group_by_arrival_time = True
 
-
-
     after_all_players_arrive = 'set_players_params'
 
 
 class Instructions1(Page):
     show_instructions = False
-
 
 
 class Instructions2(Page):
@@ -31,6 +28,7 @@ class SenderDecisionP(FormSetMixin, SenderPage, ):
     formset = sender_formset
     decision_type = 'sender_decision'
     show_instructions = True
+    show_instructions_1 = True
     show_map = True
     show_block = 2
 
@@ -39,6 +37,7 @@ class ReturnDecisionP(FormSetMixin, ReturnerPage):
     formset = return_formset
     decision_type = 'return_decision'
     show_instructions = True
+    show_instructions_1 = True
     show_map = True
     show_block = 3
 
@@ -77,8 +76,6 @@ class CQ2(CQPage):
     show_map = True
 
 
-
-
 ############ END OF: Comprehension questions #############################################################
 
 
@@ -107,7 +104,6 @@ class Average3(FormSetMixin, Page):
 ########### BLOCK: INTROPATES ##############################################################
 class IntroStage1(Page):
     show_instructions = True
-
 
     def before_next_page(self):
         self.player.assign_role()

@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+
     <div class="card my-3">
         <div class="card-body">
             {% blocktrans %}
@@ -31,7 +32,13 @@
         <tbody>
         {% for f in formset %}
             <tr>
-                <td>  {{ f.instance.city.description }}</td>
+                <td>
+                 {% if  LANGUAGE_CODE == 'en' %}
+                        {{ f.instance.city.eng }}
+                    {% else %}
+                        {{ f.instance.city.description }}
+                    {% endif %}
+                </td>
                 <td>
                     {% for field in f %}
                         {% formfield field label='' %}

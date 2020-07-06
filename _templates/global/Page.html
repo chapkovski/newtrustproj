@@ -58,6 +58,7 @@
 
 
 {% block body_main %}
+    {% get_current_language as LANGUAGE_CODE %}
     {{ form.media }}
     {% block progress %}
         {% include 'global/includes/progress.html' %}

@@ -63,8 +63,8 @@ class PlayerBot(Bot):
         if self.session.config.get('cq'):
             yield CQ1, self._cq_data(CQ1)
 
-        yield ShowMap,
         yield IntroStage1,
+        yield ShowMap,
         if self.player.role() == 'sender':
             yield SenderDecisionP, self._create_data(name='senderdecisions', field_name='answer',
                                                      choice_set=[0, Constants.endowment])
