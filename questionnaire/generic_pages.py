@@ -4,7 +4,9 @@ from .forms import UpdatedOtreeForm
 from django.forms.models import modelform_factory
 from django.conf import settings
 from django.utils import translation
-
+from trust.models import TimeTracker
+from datetime import datetime,timezone
+import time, random
 
 class TransMixin:
 
@@ -16,6 +18,29 @@ class TransMixin:
 
 class Page(TransMixin, oTreePage):
     joined_fields = None
+
+    def get(self, *args, **kwargs):
+        t, _ = TimeTracker.objects.get_or_create(owner=self.participant,
+                                                 page=self.__class__.__name__,
+                                                 period=self.player.round_number,
+                                                 defaults=dict(get_time=datetime.now(timezone.utc), ))
+        return super().get(*args, **kwargs)
+
+    def post(self, *args, **kwargs):
+        if self.participant.is_browser_bot:
+            time.sleep(random.randint(0,5))
+        try:
+            t = TimeTracker.objects.get(owner=self.participant,
+                                        page=self.__class__.__name__,
+                                        period=self.player.round_number,
+                                        )
+            t.post_time = datetime.now(timezone.utc)
+            t.seconds_on_page = (t.post_time-t.get_time).seconds
+            t.save()
+        except TimeTracker.DoesNotExist:
+            pass
+
+        return super().post(*args, **kwargs)
 
     def get_progress(self):
         totpages = self.participant._max_page_index

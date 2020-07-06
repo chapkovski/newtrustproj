@@ -1,10 +1,11 @@
 import pandas as pd
 from trust.models import Decision
 from questionnaire.models import Player as QPlayer
-from trust.models import Player as TPlayer
+from trust.models import Player as TPlayer, TimeTracker
 from django.db.models import IntegerField, Count, Q
 from django.db.models.functions import Cast
-from otree.models_concrete import PageCompletion
+# from otree.models_concrete import PageCompletion
+
 from otree.models import Session
 import logging
 
@@ -117,18 +118,18 @@ class QGetter(UniGetter):
 
 class TimeGetter(UniGetter):
     def get_queryset(self):
-        q = super().get_queryset()
+        q = self.obj.objects.filter(owner__session__in=self.sessions, seconds_on_page__isnull=False)
         pages = ['CQ1', 'CQ2', 'SenderDecisionP', 'SenderBeliefP', 'ReturnDecisionP', 'ReturnerBeliefP', 'Average2',
                  'Average3',
                  'Motivation', ]
-        return q.filter(page_name__in=pages)
+        return q.filter(page__in=pages)
 
     def process_data(self, data):
-        ps = data.values('participant__code', 'page_name', 'seconds_on_page')
+        ps = data.values('owner__code', 'page', 'seconds_on_page')
         df = pd.DataFrame(list(ps))
-        df['page_name'] = df['page_name'].apply(lambda x: f'time_{x}')
-        table = pd.pivot_table(df, values='seconds_on_page', index=['participant__code'],
-                               columns=['page_name'])
+        df['page'] = df['page'].apply(lambda x: f'time_{x}')
+        table = pd.pivot_table(df, values='seconds_on_page', index=['owner__code'],
+                               columns=['page'])
 
         return table
 
@@ -138,7 +139,7 @@ def get_full_data():
     trust = TrustDataGetter(TPlayer, sessions)
     decision = DecisionGetter(Decision, sessions)
     question = QGetter(QPlayer, sessions)
-    timer = TimeGetter(PageCompletion, sessions)
+    timer = TimeGetter(TimeTracker, sessions)
     getters = [trust, decision, question, timer]
     to_merge = []
     for i in getters:

@@ -16,6 +16,7 @@ import json
 from mingle.utils import time_check
 from django_pandas.managers import DataFrameManager
 from django.utils.translation import gettext_lazy as _
+from otree.models import Participant
 
 author = 'Philipp Chapkovski'
 
@@ -79,6 +80,9 @@ class MyEncoder(JSONEncoder):
 
 class Subsession(BaseSubsession):
     session_config_dump = models.LongStringField()
+
+    def group_by_arrival_time_method(self, waiting_players):
+        return [waiting_players[0]]
 
     @time_check
     def creating_session(self):
@@ -278,3 +282,17 @@ class CQ(djmodels.Model):
         ]
         if self.counter is not None and self.counter < len(resp):
             return resp[self.counter]
+
+
+class TimeTracker(djmodels.Model):
+    class Meta:
+        unique_together = ['owner', 'page', 'period']
+
+    owner = djmodels.ForeignKey(to=Participant,
+                                on_delete=djmodels.CASCADE,
+                                related_name='timetrackers')
+    page = models.StringField()
+    period = models.IntegerField()
+    get_time = djmodels.DateTimeField()
+    post_time = djmodels.DateTimeField(null=True)
+    seconds_on_page = models.IntegerField()

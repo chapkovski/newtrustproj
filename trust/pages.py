@@ -11,8 +11,7 @@ from .forms import (sender_formset, return_formset, returnbelief_formset, sender
 class FirstWP(WaitPage):
     group_by_arrival_time = True
 
-    def get_players_for_group(self, wp):
-        return [wp[0]]
+
 
     after_all_players_arrive = 'set_players_params'
 
@@ -150,19 +149,19 @@ class IntroStage2(Page):
 page_sequence = [
     FirstWP,
     Instructions1,
-    # Instructions2,
-    # CQ1,
-    # ShowMap,
-    # IntroStage1,
-    # SenderDecisionP,
-    # ReturnDecisionP,
-    # AfterStage1,
-    # InstructionsStage2,
-    # ExamplesStage2,
-    # CQ2,
-    # IntroStage2,
-    # SenderBeliefP,
-    # ReturnerBeliefP,
-    # Average2,
-    # Average3,
+    Instructions2,
+    CQ1,
+    ShowMap,
+    IntroStage1,
+    SenderDecisionP,
+    ReturnDecisionP,
+    AfterStage1,
+    InstructionsStage2,
+    ExamplesStage2,
+    CQ2,
+    IntroStage2,
+    SenderBeliefP,
+    ReturnerBeliefP,
+    Average2,
+    Average3,
 ]
