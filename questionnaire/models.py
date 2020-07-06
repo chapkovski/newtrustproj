@@ -14,15 +14,15 @@ from .widgets import LikertWidget, BlockedCheckbox
 
 from django.conf import settings
 
-author = _('Philipp Chapkovski, HSE-Moscow')
+author = 'Philipp Chapkovski, HSE-Moscow'
 
-doc = _("""
+doc = """
 Post-experimental questionnaire for interregional project. 
-""")
+"""
 
 
 class Constants(BaseConstants):
-    name_in_url = _('Questionnaire')
+    name_in_url = 'Questionnaire'
     players_per_group = None
     num_rounds = 1
     HARD_TO_SAY_CHOICE = [999, _('Затрудняюсь ответить')]

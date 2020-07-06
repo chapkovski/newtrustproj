@@ -80,8 +80,7 @@
 
             {% if not view.custom_general_error|default_if_none:False %}
                 {% if  view.lockable|default:False %}
-                    {% trans "Пожалуйста, дождитесь продолжения эксперимента" as modal_message %}
-                    {% include 'trust/includes/error_modal.html' with message=modal_message %}
+
 
                 {% else %}
                     <div class="otree-form-errors alert alert-danger">

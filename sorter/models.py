@@ -31,5 +31,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    city = models.StringField(label=_('В каком городе вы проживаете на данный момент?'))
+    city = models.StringField()
 

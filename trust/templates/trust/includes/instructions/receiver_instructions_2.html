@@ -5,15 +5,14 @@
 {% endblock %}
 {% block body %}
 
-    <p>
-        <code>
-            {% blocktrans %}<span class="bold">Бонус Участника Б за Часть 1 </span> = начальная сумма 10
-                токенов
-                <span class="bold darkred">плюс</span> передача от Участника А, умноженная на 3
-                <span class="bold darkred">минус</span>
-                возврат Участнику А
-            {% endblocktrans %}
-        </code>
+
+    <div>
+        {% blocktrans %}Бонус Участника Б за Часть 1 = начальная сумма 10 токенов <b>плюс</b>
+            передача от Участника А, умноженная на 3 <b>минус</b> возврат Участнику
+            А{% endblocktrans %}
+    </div>
+    <div><i>{% trans 'или 10 токенов если начальная сумма не была передана' %}</i></div>
+
 
     <hr>
     <p class="lead">{% trans 'Пример 1:' %}</p>
@@ -28,7 +27,8 @@
         <code>10 {% trans 'токенов' %}</code></p>
     <p><span class="bold darkred">{% trans 'плюс' %}</span> {% trans 'плюс передача 10 токенов х 3' %}:
         <code>30 {% trans 'токенов' %}</code></p>
-    <p><span class="bold darkred">{% trans 'минус' %}</span> {% trans 'возврат' %}: <code>15 {% trans 'токенов' %}</code>
+    <p><span class="bold darkred">{% trans 'минус' %}</span> {% trans 'возврат' %}:
+        <code>15 {% trans 'токенов' %}</code>
     </p>
     <hr>
     <p class="lead">{% trans 'Пример 2' %}:</p>
@@ -37,7 +37,7 @@
     <p>{% trans 'Вы решаете вернуть 9 токенов, если Участник А из города 8  передаст Вам свою начальную сумму.' %}</p>
     <p>{% trans 'Участник А из города 8 решает не передавать вам свою начальную сумму.' %}</p>
 
-    <p><span class="bold">{% trans 'Ваш бонус в части 1:' %}</span> <code>10 -0  + 0  = 10 {% trans 'токенов' %}</code>
+    <p><span class="bold">{% trans 'Ваш бонус в части 1:' %}</span> <code>10 -0 + 0 = 10 {% trans 'токенов' %}</code>
     </p>
     <p><span class="bold darkred"></span> {% trans 'В том числе начальная сумма:' %}
         <code>10 {% trans 'токенов' %}</code></p>

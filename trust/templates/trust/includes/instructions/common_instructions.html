@@ -97,27 +97,27 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <code>
-                            {% blocktrans %}<span class="bold">Бонус Участника А за Часть 1 </span> = начальная сумма 10
-                                токенов
-                                <span class="bold darkred">минус</span> передача Участнику Б
-                                <span class="bold darkred">плюс</span> возврат от Участника Б
+                        <div>
 
+                            {% blocktrans %}Бонус Участника А за Часть 1  = начальная сумма 10
+                                токенов
+                                <b>минус</b> передача Участнику Б
+                                <b>плюс</b> возврат от Участника Б
                             {% endblocktrans %}
-                        </code>
+                        </div>
+                        <div><i>{% trans 'или 10 токенов если начальная сумма не была передана' %}</i></div>
+
+
                     </li>
                     <li class="list-group-item">
 
 
-                        <p>
-                            <code>
-                                {% blocktrans %}<span class="bold">Бонус Участника Б за Часть 1 </span> = начальная сумма 10
-                                    токенов
-                                    <span class="bold darkred">плюс</span> передача от Участника А, умноженная на 3
-                                    <span class="bold darkred">минус</span>
-                                    возврат Участнику А
-                                {% endblocktrans %}
-                            </code>
+                        <div>
+                            {% blocktrans %}Бонус Участника Б за Часть 1 = начальная сумма 10 токенов <b>плюс</b>
+                                передача от Участника А, умноженная на 3 <b>минус</b> возврат Участнику
+                                А{% endblocktrans %}
+                        </div>
+                        <div><i>{% trans 'или 10 токенов если начальная сумма не была передана' %}</i></div>
 
                     </li>
                 </ul>

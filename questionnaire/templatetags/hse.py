@@ -50,7 +50,7 @@ def render_joined_form(context, form):
 
 
 @register.inclusion_tag('questionnaire/tags/hse_button.html', name='hse_button')
-def next_button(label=_('Next'), html_class='btn-primary', *args, **kwargs):
+def next_button(label=_('Далее'), html_class='btn-primary', *args, **kwargs):
     return dict(label=label, html_class=html_class)
 
 
