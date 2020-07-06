@@ -62,8 +62,6 @@ msgid "готово"
 msgstr "done"
 
 #: _templates/global/includes/progress.html:31
-#, fuzzy
-#| msgid "Выберите город:"
 msgid "Карта городов"
 msgstr "Map"
 
@@ -2386,35 +2384,26 @@ msgstr ""
 
 #: trust/templates/trust/SenderDecisionP.html:5
 msgid "Часть 1"
-msgstr ""
+msgstr "Part 1"
 
 #: trust/templates/trust/SenderDecisionP.html:13
 msgid "Вам случайным образом выпала роль Участника А. Ваши решения:"
-msgstr ""
+msgstr "You were randomly assigned the role of Participant А. Your decisions"
 
 #: trust/templates/trust/SenderDecisionP.html:21
-#, fuzzy
-#| msgid ""
-#| "Если Участник %(role)s, с которым Вы взаимодействуете, из города\n"
-#| "            "
 msgid ""
 "Если  Участник Б, с которым Вы   взаимодействуете в паре,  будет из города"
-msgstr "If a Person %(role)s you are interacting with is a participant from"
+msgstr "If participant Б with whom you are paired is from City:"
 
 #: trust/templates/trust/SenderDecisionP.html:26
-#, fuzzy
-#| msgid ""
-#| "то согласны ли Вы передать Вашу начальную сумму этому\n"
-#| "                Участнику %(other)s?\n"
-#| "            "
 msgid ""
 "То согласны ли Вы передать свою начальную сумму в 10 токенов этому участнику "
 "Б?"
-msgstr "do you agree to send your endowment to the Participant  %(other)s?"
+msgstr "do you agree to send your endowment to this Participant B? "
 
 #: trust/templates/trust/ShowMap.html:5
 msgid "Города, в которых находятся участники эксперимента."
-msgstr ""
+msgstr "Map of all cities where participants of this study are located."
 
 #: trust/templates/trust/ShowMap.html:11
 msgid ""
@@ -2424,7 +2413,7 @@ msgid ""
 "кликните на кнопку “показать карту” в верхней\n"
 "                части экрана.\n"
 "            "
-msgstr ""
+msgstr "On this map you see all 12 cities where participants in this experiment are located. This map will always be available to you in the course of the experiment if you click on the button 'Map' at the top of the screen. "
 
 #: trust/templates/trust/includes/error_modal.html:16
 msgid "Внимание!"
