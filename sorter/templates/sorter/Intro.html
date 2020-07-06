@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Introduction
+    {% trans 'Введение' %}
 {% endblock %}
 
 {% block content %}
@@ -13,37 +13,53 @@
 
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    In this experiment you will make several decisions and you will interact with other Toloka
-                    participants from
-                    other cities from all over the country.
+                    {% blocktrans %}В этом эксперименте Вы примете несколько решений. Вы взаимодействуете с другими
+                        участниками – реальными людьми из  разных регионов Российской Федерации, зарегистрированными в
+                        сервисе Яндекс Толока.
+                    {% endblocktrans %}
                 </li>
 
                 <li class="list-group-item">
-                    Your fee for participation (equal to X USD) will be paid to you immediately after you provide us
-                    with the correct code in Toloka interface when the experiment is finished.
+                    {% blocktrans %}Ваше вознаграждение за участие в размере $3 будет Выплачено Вам как только Вы
+                        введете правильный код участника в окно интерфейса на последней странице эксперимента
+                    {% endblocktrans %}
                 </li>
                 <li class="list-group-item">
-                    The experiment consists of three parts. In two first parts you can earn extra money which will be
-                    paid to you as a <span class="font-weight-bold"> bonus</span> in Toloka.
+                    {% blocktrans %}Эксперимент состоит из трех частей. В Части 1 и Части 2 Вы также сможете заработать
+                        дополнительные деньги, которые будут выплачены Вам в качестве бонуса Толоки. Общий размер Вашего
+                        бонуса будет равен сумме бонусов за первые две части эксперимента. {% endblocktrans %}
                 </li>
                 <li class="list-group-item">
-                    Your bonus will be a sum that you earned in first 2 parts. It will be paid to you as soon as we get
-                    decisions from you and another randomly chosen Toloka participant.
+                    {% blocktrans %}Ваше вознаграждение за эти две части измеряется в специальной валюте, называемой
+                        токен. Каждый токен обменивается на US$ по ставке 1 токен = 0.10 US$. Минимально возможный
+                        размер бонуса составляет 0 Токенов (0 US$), максимально возможный размер – 50 токенов (5 US$).
+                        Эти деньги будут выплачены Вам после того как свои решения примете как Вы, так и другой участник
+                        из Толоки, выбранный случайным образом.
+                    {% endblocktrans %}
                 </li>
                 <li class="list-group-item lead">
-                    Please be patient: it may take up to 1 day before we get the decisions of another Toloka
-                    participant.
+                    {% blocktrans %}Ваши решения в одной части эксперимента не повлияют на Ваш бонус по итогам другой
+                        части эксперимента
+                    {% endblocktrans %}
                 </li>
 
                 <li class="list-group-item">
+                    {% blocktrans %}Некоторые участники этого эксперимента находятся в том же городе, что и Вы.
+                        Остальные участники находятся в одном из 11 других городов в 11 регионах России. Таким образом,
+                        всего в эксперименте взаимодействуют участники из 12 городов. Названия этих городов и регионов
+                        вы увидите когда начнется эксперимент.
 
-                    Your decision in one part of the experiment does not influence your earnings in other parts.
-
+                    {% endblocktrans %}
                 </li>
                 <li class="list-group-item">
-                    Some participants in this experiment are from the same City as you are. The other participants are
-                    from one of 11 different Cities, located in 11 Russian regions. The names of the 11 Cities (Regions)
-                    will be shown when the experiment starts.
+                    {% blocktrans %}Поскольку Вы взаимодействуете с реальными участниками из Яндекс Толока со всей
+                        Российской Федерации, разница во времени между городами, участвующими в этом эксперименте, может
+                        достигать 7 часов. Поэтому пожалуйста отнеситесь с пониманием к тому, что между Вашим  решением
+                        и решением другого участника из Толоки, с которым Вы взаимодействуете, может пройти некоторое
+                        время. Как сказано выше, Вы получите Ваш бонус как только Ваше решение будет сопоставлено с
+                        решением другого участника из Толоки, выбранного случайным образом, что может занять до 24
+                        часов.
+                    {% endblocktrans %}
                 </li>
 
             </ul>
