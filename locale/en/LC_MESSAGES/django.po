@@ -2388,12 +2388,12 @@ msgstr "Part 1"
 
 #: trust/templates/trust/SenderDecisionP.html:13
 msgid "Вам случайным образом выпала роль Участника А. Ваши решения:"
-msgstr "You were randomly assigned the role of Participant А. Your decisions"
+msgstr "You were randomly assigned the role of Participant А. Your decisions:"
 
 #: trust/templates/trust/SenderDecisionP.html:21
 msgid ""
 "Если  Участник Б, с которым Вы   взаимодействуете в паре,  будет из города"
-msgstr "If participant Б with whom you are paired is from City:"
+msgstr "If participant B with whom you are paired is from City:"
 
 #: trust/templates/trust/SenderDecisionP.html:26
 msgid ""

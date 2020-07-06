@@ -1,5 +1,5 @@
 {% extends "global/Page.html" %}
-{% load otree static i18n %}
+{% load otree  i18n %}
 
 {% block title %}
     {% trans 'Часть 1' %}
@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+    {% get_current_language as LANGUAGE_CODE %}
     <div class="card my-3">
         <div class="card-body">
             <div class="lead">
@@ -30,7 +31,13 @@
         <tbody>
         {% for f in formset %}
             <tr>
-                <td>  {{ f.instance.city.description }}</td>
+                <td>
+                    {% if  LANGUAGE_CODE == 'en' %}
+                        {{ f.instance.city.eng }}
+                    {% else %}
+                        {{ f.instance.city.description }}
+                    {% endif %}
+                </td>
                 <td>
                     {% for field in f %}
                         {% formfield field label='' %}
