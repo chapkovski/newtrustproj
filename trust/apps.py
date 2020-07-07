@@ -13,11 +13,7 @@ class TrustConfig(AppConfig):
             for i in settings.CITIES:
                 City.objects.get_or_create(code=i['code'], defaults={'description': i['name'],
                                                                      'eng': i['eng']})
-            print(City.objects.all())
+
         except OperationalError:
             logger.warning('No city table found')
 
-    def import_models(self):
-        i = super().import_models()
-        print(i)
-        return i
