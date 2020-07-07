@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 10:06-0400\n"
+"POT-Creation-Date: 2020-07-07 10:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,6 +88,7 @@ msgid "Затрудняюсь ответить"
 msgstr "Hard to say"
 
 #: questionnaire/models.py:29 questionnaire/models.py:101
+#: questionnaire/models.py:1244
 msgid "Другой"
 msgstr "Other"
 
@@ -936,7 +937,7 @@ msgstr "Don't know anything about the region"
 msgid "questionnaire_payoff"
 msgstr ""
 
-#: questionnaire/models.py:393
+#: questionnaire/models.py:391
 msgid ""
 "Пожалуйста, вспомните ваши решения в части 1 эксперимента.\n"
 "            Участник А: передать ли начальную сумму участнику В.\n"
@@ -950,7 +951,7 @@ msgstr ""
 "return anything, return everything or return only part of 30 tokens. What "
 "were you guided by when making these decisions? Why did you decide that way?"
 
-#: questionnaire/models.py:401
+#: questionnaire/models.py:399
 msgid ""
 "Пожалуйста, вспомните ваши решения в части 2 эксперимента.\n"
 "            Участник А: оценить, какую часть 30 токенов участник В захочет "
@@ -965,11 +966,11 @@ msgstr ""
 "Evaluate if Member A wanted to pass it on to you.initial amount. What were "
 "you guided by when making these decisions? Why did you decide that way?"
 
-#: questionnaire/models.py:410
+#: questionnaire/models.py:408
 msgid "Ваш пол"
 msgstr "your gender"
 
-#: questionnaire/models.py:415
+#: questionnaire/models.py:413
 msgid ""
 "Какой у Вас самый высокий уровень образования, по которому Вы получили "
 "аттестат, свидетельство, диплом? "
@@ -977,61 +978,61 @@ msgstr ""
 "What is your highest educational level which is confirmed by certificate or "
 "diploma?"
 
-#: questionnaire/models.py:421
+#: questionnaire/models.py:419
 msgid ""
 "Какой ответ лучше всего описывает Ваше основное занятие в настоящее время?"
 msgstr "Which answer best describes your status at the present time?"
 
-#: questionnaire/models.py:422
+#: questionnaire/models.py:420
 msgid "occupation_status_other"
 msgstr ""
 
-#: questionnaire/models.py:424 questionnaire/models.py:460
+#: questionnaire/models.py:422 questionnaire/models.py:458
 msgid "Уточните какое именно"
 msgstr "Specify which one"
 
-#: questionnaire/models.py:426
+#: questionnaire/models.py:424
 msgid "Ваш возраст (полных лет)"
 msgstr "Your age (full years)"
 
-#: questionnaire/models.py:431
+#: questionnaire/models.py:429
 #: questionnaire/templates/questionnaire/Personal2.html:15
 msgid "Место рождения (населенный пункт, регион)"
 msgstr "Place of birth (locality, region)"
 
-#: questionnaire/models.py:435
+#: questionnaire/models.py:433
 msgid "Ваш семейный статус"
 msgstr "your marital status"
 
-#: questionnaire/models.py:441
+#: questionnaire/models.py:439
 msgid "На каком языке Вы обычно говорите дома?"
 msgstr "What language do you usually speak at home?"
 
-#: questionnaire/models.py:443
+#: questionnaire/models.py:441
 msgid "Русский"
 msgstr "Russian"
 
-#: questionnaire/models.py:444
+#: questionnaire/models.py:442
 msgid "Другой (какой именно)"
 msgstr "Other (which one)"
 
-#: questionnaire/models.py:446
+#: questionnaire/models.py:444
 msgid "language_other"
 msgstr ""
 
-#: questionnaire/models.py:450
+#: questionnaire/models.py:448
 msgid "Если на другом языке, то на каком именно?"
 msgstr "If in another language, then in which one?"
 
-#: questionnaire/models.py:454
+#: questionnaire/models.py:452
 msgid "Жильё (квартира, дом), в котором Вы живёте в настоящее время, это"
 msgstr "The housing (apartment, house) in which you currently live, is"
 
-#: questionnaire/models.py:456
+#: questionnaire/models.py:454
 msgid "living_other"
 msgstr ""
 
-#: questionnaire/models.py:465
+#: questionnaire/models.py:463
 msgid ""
 "    Сколько человек (приблизительно) проживало в том населенном пункте, где "
 "Вы жили в возрасте 16 лет?"
@@ -1039,31 +1040,31 @@ msgstr ""
 "How many people (approximately) lived in that village where did you live at "
 "the age of 16?"
 
-#: questionnaire/models.py:472
+#: questionnaire/models.py:470
 msgid "К какой национальности Вы себя относите?"
 msgstr "What nationality do you belong to?"
 
-#: questionnaire/models.py:474
+#: questionnaire/models.py:472
 msgid "ethnicity_other"
 msgstr ""
 
-#: questionnaire/models.py:477
+#: questionnaire/models.py:475
 msgid "Укажите к какой"
 msgstr "Which one"
 
-#: questionnaire/models.py:481
+#: questionnaire/models.py:479
 msgid "Какую религию Вы исповедуете?"
 msgstr "What religion do you profess?"
 
-#: questionnaire/models.py:483
+#: questionnaire/models.py:481
 msgid "religion_other"
 msgstr ""
 
-#: questionnaire/models.py:487
+#: questionnaire/models.py:485
 msgid "Уточните какую именно"
 msgstr "Specify which one"
 
-#: questionnaire/models.py:491
+#: questionnaire/models.py:489
 msgid ""
 "Насколько Вы согласны со следующим утверждением? \"Люди, исповедующие другие "
 "религии, вероятно, \n"
@@ -1074,126 +1075,128 @@ msgstr ""
 "others religion probably the same deeply moral people as those who profess "
 "your religion."
 
-#: questionnaire/models.py:500
+#: questionnaire/models.py:498
 msgid "Как часто Вы посещаете храм"
 msgstr "How often do you visit the church"
 
-#: questionnaire/models.py:507
+#: questionnaire/models.py:505
 msgid "Я считаю себя членом местной общины (сообщества) жителей моего города"
 msgstr "I consider myself a member of the local community of my city"
 
-#: questionnaire/models.py:512
+#: questionnaire/models.py:510
 msgid "Я считаю себя россиянином"
 msgstr "I consider myself a Russian"
 
-#: questionnaire/models.py:519
+#: questionnaire/models.py:517
 msgid ""
 "Как Вы считаете, в целом большинству людей можно доверять, или же при "
 "общении с другими людьми \n"
 "            осторожность никогда не повредит?"
-msgstr "Generally speaking, would you say that most people can be trusted or that you need to be very careful in dealing with people?"
+msgstr ""
+"Generally speaking, would you say that most people can be trusted or that "
+"you need to be very careful in dealing with people?"
 
-#: questionnaire/models.py:522
+#: questionnaire/models.py:520
 msgid "Нужно быть очень осторожным с другими людьми"
 msgstr "You have to be very careful with other people"
 
-#: questionnaire/models.py:523
+#: questionnaire/models.py:521
 msgid "Большинству людей можно вполне доверять"
 msgstr "Most people can be completely trusted"
 
-#: questionnaire/models.py:529
+#: questionnaire/models.py:527
 msgid "Ваша семья"
 msgstr "your family"
 
-#: questionnaire/models.py:534
+#: questionnaire/models.py:532
 msgid "Ваши соседи"
 msgstr "your neighbors"
 
-#: questionnaire/models.py:539
+#: questionnaire/models.py:537
 msgid "Люди, с которыми Вы лично знакомы"
 msgstr "People you know personally"
 
-#: questionnaire/models.py:544
+#: questionnaire/models.py:542
 msgid "Люди, с которыми Вы не знакомы"
 msgstr "People you are not familiar with"
 
-#: questionnaire/models.py:549
+#: questionnaire/models.py:547
 msgid "Люди другой веры"
 msgstr "People of a different faith"
 
-#: questionnaire/models.py:554
+#: questionnaire/models.py:552
 msgid "Ваши друзья"
 msgstr "your friends"
 
-#: questionnaire/models.py:559
+#: questionnaire/models.py:557
 msgid "Политики"
 msgstr "Politicians"
 
-#: questionnaire/models.py:565
+#: questionnaire/models.py:563
 msgid "Церковь"
 msgstr "Church"
 
-#: questionnaire/models.py:569
+#: questionnaire/models.py:567
 msgid "Армия"
 msgstr "Army"
 
-#: questionnaire/models.py:573
+#: questionnaire/models.py:571
 msgid "Пресса (печатные медиа)"
 msgstr "Press (print media)"
 
-#: questionnaire/models.py:577
+#: questionnaire/models.py:575
 msgid "Телевидение"
 msgstr "television"
 
-#: questionnaire/models.py:581
+#: questionnaire/models.py:579
 msgid "Профсоюзы"
 msgstr "Unions"
 
-#: questionnaire/models.py:585
+#: questionnaire/models.py:583
 msgid "Полиция"
 msgstr "Police"
 
-#: questionnaire/models.py:589
+#: questionnaire/models.py:587
 msgid "Суды"
 msgstr "Courts"
 
-#: questionnaire/models.py:593
+#: questionnaire/models.py:591
 msgid "Правительство России"
 msgstr "Government of Russia"
 
-#: questionnaire/models.py:597
+#: questionnaire/models.py:595
 msgid "Политические партии"
 msgstr "Political parties"
 
-#: questionnaire/models.py:601
+#: questionnaire/models.py:599
 msgid "Президент"
 msgstr "President"
 
-#: questionnaire/models.py:605
+#: questionnaire/models.py:603
 msgid "Парламент России"
 msgstr "Parliament of Russia"
 
-#: questionnaire/models.py:609
+#: questionnaire/models.py:607
 msgid "Региональная власть"
 msgstr "Regional authority"
 
-#: questionnaire/models.py:613
+#: questionnaire/models.py:611
 msgid "Местная власть"
 msgstr "local authority"
 
-#: questionnaire/models.py:617
+#: questionnaire/models.py:615
 msgid "Гуманитарные и благотворительные организации"
 msgstr "Humanitarian and charitable organizations"
 
-#: questionnaire/models.py:621
+#: questionnaire/models.py:619
 msgid "Содружество независимых государств (СНГ)"
 msgstr "Commonwealth of Independent States (CIS)"
 
-#: questionnaire/models.py:625
+#: questionnaire/models.py:623
 msgid "Организация объединенных наций (ООН)"
 msgstr "United Nations Organization"
 
-#: questionnaire/models.py:631
+#: questionnaire/models.py:629
 msgid ""
 "По Вашему мнению, за последние годы изменился или не изменился уровень "
 "доверия людей друг к другу? Если изменился, то увеличился или уменьшился?"
@@ -1201,7 +1204,7 @@ msgstr ""
 "In your opinion, the level has changed or not changed in recent "
 "yearspeople's trust in each other? If changed, then increased or decreased?"
 
-#: questionnaire/models.py:639
+#: questionnaire/models.py:637
 msgid ""
 "Для этого человека важно предлагать новые идеи, быть творческой личностью, "
 "идти своим путем"
@@ -1209,14 +1212,14 @@ msgstr ""
 "It’s important for this person to propose new ideas, to be a creative "
 "person, go your own way"
 
-#: questionnaire/models.py:644
+#: questionnaire/models.py:642
 msgid ""
 "Для этого человека важно быть богатым,  иметь много денег и дорогих вещей"
 msgstr ""
 "For this person it is important to be rich, have a lot of money and "
 "expensive things"
 
-#: questionnaire/models.py:649
+#: questionnaire/models.py:647
 msgid ""
 "Для этого человека важно жить в безопасности, избегать всего, что может "
 "сулить опасность"
@@ -1224,11 +1227,11 @@ msgstr ""
 "For this person it is important to live in safety, to avoid everything that "
 "can  promise danger"
 
-#: questionnaire/models.py:654
+#: questionnaire/models.py:652
 msgid "Для этого человека важно хорошо проводить время, баловать себя"
 msgstr "It's important for this person to have a good time, pamper yourself"
 
-#: questionnaire/models.py:659
+#: questionnaire/models.py:657
 msgid ""
 "Для этого человека важно быть очень успешным, чтобы окружающие знали о его "
 "достижениях"
@@ -1236,7 +1239,7 @@ msgstr ""
 "For this person, it is important to be very successful so that others know "
 "about his achievements"
 
-#: questionnaire/models.py:665
+#: questionnaire/models.py:663
 msgid ""
 "Приключения и риск очень важны для этого человека, он стремится к жизни, "
 "полной захватывающих событий"
@@ -1244,7 +1247,7 @@ msgstr ""
 "Adventure and risk are very important for this person, he is committed to "
 "life, full of exciting events"
 
-#: questionnaire/models.py:671
+#: questionnaire/models.py:669
 msgid ""
 "Для этого человека важно всегда вести себя правильно, не совершать "
 "поступков, которые люди не одобрили "
@@ -1252,12 +1255,12 @@ msgstr ""
 "For this person it is important to always behave correctly, not to commit "
 "acts that people did not approve of"
 
-#: questionnaire/models.py:676
+#: questionnaire/models.py:674
 msgid "Для этого человека важно заботиться об окружающей среде и природе"
 msgstr ""
 "It's important for this person to take care of the environment and nature"
 
-#: questionnaire/models.py:681
+#: questionnaire/models.py:679
 msgid ""
 "Для этого человека важно следовать традициям и обычаям, принятым в его семье "
 "или религии"
@@ -1265,46 +1268,46 @@ msgstr ""
 "For this person it is important to follow the traditions and customs adopted "
 "in his family or religion"
 
-#: questionnaire/models.py:686
+#: questionnaire/models.py:684
 msgid "Для этого человека важно делать что-то хорошее для общества."
 msgstr ""
 "For this person it is important to do something for the good of society"
 
-#: questionnaire/models.py:691
+#: questionnaire/models.py:689
 msgid "Для этого человека важно  заботиться о близких ему людях"
 msgstr ""
 "For this person it is important to help the people nearby; to care for their "
 "well-being"
 
-#: questionnaire/models.py:696
+#: questionnaire/models.py:694
 msgid "Получение государственных пособий, на которые у человека нет права"
 msgstr "Getting government benefits that a person is not entitled to"
 
-#: questionnaire/models.py:702
+#: questionnaire/models.py:700
 msgid "Проезд без оплаты в общественном транспорте"
 msgstr "Fare without payment in public transport"
 
-#: questionnaire/models.py:708
+#: questionnaire/models.py:706
 msgid "Кража чужой собственности"
 msgstr "Theft of another's property"
 
-#: questionnaire/models.py:714
+#: questionnaire/models.py:712
 msgid "Неуплата налогов, если есть такая возможность"
 msgstr "Tax evasion, if possible"
 
-#: questionnaire/models.py:720
+#: questionnaire/models.py:718
 msgid "Получение взятки"
 msgstr "Taking a bribe"
 
-#: questionnaire/models.py:726
+#: questionnaire/models.py:724
 msgid "Применение насилия в отношении других людей"
 msgstr "Using violence against other people"
 
-#: questionnaire/models.py:737
+#: questionnaire/models.py:735
 msgid "Укажите, пожалуйста, насколько Вы в целом любите рисковать?"
 msgstr "Please indicate how much do you like to risk in general:"
 
-#: questionnaire/models.py:739
+#: questionnaire/models.py:737
 msgid ""
 "Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы "
 "«совершенно не готовы рисковать»,\n"
@@ -1315,39 +1318,39 @@ msgstr ""
 "are \"absolutely not ready to take any risks\", but 10 means that you are "
 "\"really like to take risks\""
 
-#: questionnaire/models.py:742
+#: questionnaire/models.py:740
 msgid "Я совершенно не готов рисковать"
 msgstr "I'm absolutely not ready to take any risk"
 
-#: questionnaire/models.py:743
+#: questionnaire/models.py:741
 msgid "Я охотно иду на риск"
 msgstr "I really like to take risks"
 
-#: questionnaire/models.py:748
+#: questionnaire/models.py:746
 msgid "В финансовых вопросах"
 msgstr "In financial matters"
 
-#: questionnaire/models.py:754
+#: questionnaire/models.py:752
 msgid "В свободное время и во время занятий спортом"
 msgstr "In my free time and during sports"
 
-#: questionnaire/models.py:760
+#: questionnaire/models.py:758
 msgid "В вашей профессии"
 msgstr "In your profession"
 
-#: questionnaire/models.py:766
+#: questionnaire/models.py:764
 msgid "В том что касается вашего здоровья"
 msgstr "Regarding your health"
 
-#: questionnaire/models.py:772
+#: questionnaire/models.py:770
 msgid "В отношениях с незнакомыми людьми"
 msgstr "In a relationship with strangers"
 
-#: questionnaire/models.py:777
+#: questionnaire/models.py:775
 msgid "Во время езды за рулем"
 msgstr "While driving"
 
-#: questionnaire/models.py:785
+#: questionnaire/models.py:783
 msgid ""
 "Как Вы думаете, сегодня в нашей стране среди людей больше согласия, "
 "сплоченности или несогласия, разобщенности?"
@@ -1355,7 +1358,7 @@ msgstr ""
 "Do you think today in our country there is more agreement among people,"
 "cohesion or disagreement, disunity?"
 
-#: questionnaire/models.py:792
+#: questionnaire/models.py:790
 msgid ""
 "Людям, с которыми у Вас много общего, Вы доверяете больше, чем всем "
 "остальным, меньше чем остальным или же одинаково?"
@@ -1363,11 +1366,11 @@ msgstr ""
 "People with whom you have a lot in common, you trust more than everyoneto "
 "the rest, less than the rest, or the same?"
 
-#: questionnaire/models.py:798
+#: questionnaire/models.py:796
 msgid "Можете ли Вы сказать о себе, что Вы доверчивый человек?"
 msgstr "Can you say about yourself that you are a trustful person?"
 
-#: questionnaire/models.py:805
+#: questionnaire/models.py:803
 msgid ""
 "Готовы ли Вы тратить свои ресурсы на благое дело, даже если не рассчитываете "
 "ничего получить взамен?"
@@ -1375,7 +1378,7 @@ msgstr ""
 "Are you ready to spend your resources on a good cause, even if you do not "
 "expect get nothing in return?"
 
-#: questionnaire/models.py:812
+#: questionnaire/models.py:810
 msgid ""
 "По Вашему мнению, за последние годы изменился или не изменился уровень "
 "готовности людей помогать друг другу? Если изменился, то увеличился или "
@@ -1385,7 +1388,7 @@ msgstr ""
 "people's readiness to help each other? If changed, then increased or "
 "decreased?"
 
-#: questionnaire/models.py:822
+#: questionnaire/models.py:820
 msgid ""
 "Некоторые люди чувствуют, что они обладают полной свободой выбора и "
 "контролируют свою жизнь, в\n"
@@ -1398,7 +1401,7 @@ msgstr ""
 "impact on what is happening to them. To what extent are these the "
 "characteristics apply to you and your life?"
 
-#: questionnaire/models.py:826
+#: questionnaire/models.py:824
 msgid ""
 "Для ответа выберите значение на шкале от 1 до 10, где 1 означает \"у меня "
 "нет свободы выбора\", а 10\n"
@@ -1408,19 +1411,19 @@ msgstr ""
 "To answer, select a value on a scale from 1 to 10, where 1 means \"I have no "
 "freedom of choice,\" and 10 means \"I have complete freedom of choice.\""
 
-#: questionnaire/models.py:829
+#: questionnaire/models.py:827
 msgid "У меня нет свободы выбора"
 msgstr "I have no freedom of choice"
 
-#: questionnaire/models.py:830
+#: questionnaire/models.py:828
 msgid "У меня полная свобода выбора"
 msgstr "I have complete freedom of choice"
 
-#: questionnaire/models.py:839
+#: questionnaire/models.py:837
 msgid "Как Вы думаете, конкуренция - это зло или благо?"
 msgstr "Do you think competition is evil or good?"
 
-#: questionnaire/models.py:841
+#: questionnaire/models.py:839
 msgid ""
 "Для ответа выберите значение на шкале от 1 до 10, где 1 означает, что "
 "«конкуренция вредна, \n"
@@ -1434,15 +1437,15 @@ msgstr ""
 "10 means that \"competition is good because it is encourages people to work "
 "better\" "
 
-#: questionnaire/models.py:845
+#: questionnaire/models.py:843
 msgid "Конкуренция вредна, поскольку она побуждает у людей худшие качества"
 msgstr "Competition is harmful because it induces worse qualities in people."
 
-#: questionnaire/models.py:846
+#: questionnaire/models.py:844
 msgid "Конкуренция - это благо, поскольку она побуждает людей лучше трудиться"
 msgstr "Competition is good, as it encourages people to work better."
 
-#: questionnaire/models.py:855
+#: questionnaire/models.py:853
 msgid ""
 "Как Вы думаете, могут ли люди в современном обществе разбогатеть только за "
 "счет других людей, или уровень благосостояния может вырасти у всех?"
@@ -1450,7 +1453,7 @@ msgstr ""
 "Do you think people in modern society can get rich just for  other people’s "
 "account, or can everyone’s level of well-being grow? "
 
-#: questionnaire/models.py:857
+#: questionnaire/models.py:855
 msgid ""
 "Для ответа выберите значение на шкале от 1 до 10, где 1 означает, что «люди "
 "могут разбогатеть только за счет других», а 10 означает, что «благосостояние "
@@ -1460,15 +1463,15 @@ msgstr ""
 "\"people can get rich only at the expense of others \", and 10 means that  "
 "\"Well-being can grow for everyone \""
 
-#: questionnaire/models.py:858
+#: questionnaire/models.py:856
 msgid "Люди могут разбогатеть только за счет других"
 msgstr "People can get rich only at the expense of others."
 
-#: questionnaire/models.py:859
+#: questionnaire/models.py:857
 msgid "Благосостояние может вырасти у всех"
 msgstr "Wealth can grow for everyone"
 
-#: questionnaire/models.py:868
+#: questionnaire/models.py:866
 msgid ""
 "\"Когда кто-либо мне помогает я стараюсь ответить тем же.\"  Справедливо ли "
 "это суждение в отношении Вас?"
@@ -1476,7 +1479,7 @@ msgstr ""
 "\" When someone helps me, I try to answer the same.\" Is this a judgment "
 "about you?"
 
-#: questionnaire/models.py:870
+#: questionnaire/models.py:868
 msgid ""
 "Для ответа выберите значение на шкале от 0 до 10,\n"
 "         где 0 означает, что Вы «совершенно не готовы так поступать», а 10 "
@@ -1486,15 +1489,15 @@ msgstr ""
 "\"absolutely not ready to do this \", but 10means that you are \"ready to do "
 "just that \""
 
-#: questionnaire/models.py:873 questionnaire/models.py:892
+#: questionnaire/models.py:871 questionnaire/models.py:890
 msgid "Я совершенно не готов так поступать"
 msgstr "I'm completely not ready to do that"
 
-#: questionnaire/models.py:874 questionnaire/models.py:893
+#: questionnaire/models.py:872 questionnaire/models.py:891
 msgid "Я готов поступать именно так"
 msgstr "I am ready to do just that"
 
-#: questionnaire/models.py:883
+#: questionnaire/models.py:881
 msgid ""
 "\"Если со мной поступили несправедливо, я отомщу при первом же удобном "
 "случае,\n"
@@ -1505,7 +1508,7 @@ msgstr ""
 "\"If I was treated unfairly, I will avenge at the first convenient case, "
 "even if it will cost me dearly.\" Is this a fair judgment  regarding you?"
 
-#: questionnaire/models.py:888
+#: questionnaire/models.py:886
 msgid ""
 "Для ответа выберите значение на шкале от 0 до 10,\n"
 "          где 0 означает, что Вы «совершенно не готовы так поступать», а 10 "
@@ -1516,7 +1519,7 @@ msgstr ""
 "\"absolutely not ready to do this \", but 10means that you are \"ready to do "
 "just that \""
 
-#: questionnaire/models.py:902
+#: questionnaire/models.py:900
 msgid ""
 "Как Вы думаете, если представится возможность, большинство людей попытались "
 "бы использовать вас в своих интересах, или вели бы себя порядочно?"
@@ -1524,7 +1527,7 @@ msgstr ""
 "Do you think most people would try to take advantage of you if they got a "
 "chance, or would they try to be fair?"
 
-#: questionnaire/models.py:904
+#: questionnaire/models.py:902
 msgid ""
 "Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди "
 "обязательно попытаются вас использовать», а 10 означает, что «люди поведут "
@@ -1534,15 +1537,15 @@ msgstr ""
 "\"people will definitely try to take advantage of you,\" and 10 means that "
 "\"people will try to be fair\" "
 
-#: questionnaire/models.py:905
+#: questionnaire/models.py:903
 msgid "Люди обязательно попытаются вас использовать"
 msgstr "People will definitely try to take advantage of you."
 
-#: questionnaire/models.py:906
+#: questionnaire/models.py:904
 msgid "Люди поведут себя порядочно"
 msgstr "People will try to be fair"
 
-#: questionnaire/models.py:911
+#: questionnaire/models.py:909
 msgid ""
 "Социальные различия между людьми в нашей стране в целом оправданны и "
 "справедливы"
@@ -1550,7 +1553,7 @@ msgstr ""
 "Social differences between people in our country are generally justified and "
 "fair"
 
-#: questionnaire/models.py:917
+#: questionnaire/models.py:915
 msgid ""
 "Как Вы считаете, в нашей стране сейчас имеет место разделение властей "
 "(законодательной, исполнительной и судебной) или же нет?"
@@ -1558,91 +1561,91 @@ msgstr ""
 "In your opinion, in our country there is now a separation of powers "
 "(legislative, executive and judicial) or not?"
 
-#: questionnaire/models.py:923
+#: questionnaire/models.py:921
 msgid "Как Вы считаете, независимы ли в нашей стране суды?"
 msgstr "Do you think the courts are independent in our country?"
 
-#: questionnaire/models.py:929
+#: questionnaire/models.py:927
 msgid "Что Вы думаете про борьбу с коррупцией в нашей стране?"
 msgstr "What do you think about the fight against corruption in our country?"
 
-#: questionnaire/models.py:935
+#: questionnaire/models.py:933
 msgid "До какой степени у нас в стране защищены гражданские права?"
 msgstr "To what extent are civil rights protected in our country?"
 
-#: questionnaire/models.py:941 questionnaire/models.py:1020
-#: questionnaire/models.py:1101
+#: questionnaire/models.py:939 questionnaire/models.py:1018
+#: questionnaire/models.py:1099
 msgid "Архангельск и Архангельская область"
 msgstr "Arkhangelsk"
 
-#: questionnaire/models.py:947 questionnaire/models.py:1026
-#: questionnaire/models.py:1105
+#: questionnaire/models.py:945 questionnaire/models.py:1024
+#: questionnaire/models.py:1103
 msgid "Владивосток и Приморский край"
 msgstr "Vladivistok"
 
-#: questionnaire/models.py:953 questionnaire/models.py:1033
-#: questionnaire/models.py:1109
+#: questionnaire/models.py:951 questionnaire/models.py:1031
+#: questionnaire/models.py:1107
 msgid "Воронеж и Воронежская область"
 msgstr "Voronezh"
 
-#: questionnaire/models.py:959 questionnaire/models.py:1040
-#: questionnaire/models.py:1113
+#: questionnaire/models.py:957 questionnaire/models.py:1038
+#: questionnaire/models.py:1111
 msgid "Екатеринбург и Свердловская область"
 msgstr "Ekaterinburg"
 
-#: questionnaire/models.py:965 questionnaire/models.py:1047
-#: questionnaire/models.py:1117
+#: questionnaire/models.py:963 questionnaire/models.py:1045
+#: questionnaire/models.py:1115
 msgid "Казань и республика Татарстан"
 msgstr "Kazan"
 
-#: questionnaire/models.py:971 questionnaire/models.py:1054
-#: questionnaire/models.py:1121
+#: questionnaire/models.py:969 questionnaire/models.py:1052
+#: questionnaire/models.py:1119
 msgid "Махачкала и республика Дагестан"
 msgstr "Makhachkala"
 
-#: questionnaire/models.py:977 questionnaire/models.py:1059
-#: questionnaire/models.py:1061 questionnaire/models.py:1125
+#: questionnaire/models.py:975 questionnaire/models.py:1057
+#: questionnaire/models.py:1059 questionnaire/models.py:1123
 msgid "Москва"
 msgstr "Moscow"
 
-#: questionnaire/models.py:983 questionnaire/models.py:1067
-#: questionnaire/models.py:1129
+#: questionnaire/models.py:981 questionnaire/models.py:1065
+#: questionnaire/models.py:1127
 msgid "Новосибирск и Новосибирская область"
 msgstr "Novosibirsk"
 
-#: questionnaire/models.py:989 questionnaire/models.py:1074
-#: questionnaire/models.py:1132
+#: questionnaire/models.py:987 questionnaire/models.py:1072
+#: questionnaire/models.py:1130
 msgid "Пермь и Пермский край"
 msgstr "Perm"
 
-#: questionnaire/models.py:995 questionnaire/models.py:1081
-#: questionnaire/models.py:1136
+#: questionnaire/models.py:993 questionnaire/models.py:1079
+#: questionnaire/models.py:1134
 msgid "Ростов-на-Дону и Ростовская область"
 msgstr "Rostov"
 
-#: questionnaire/models.py:1001 questionnaire/models.py:1088
-#: questionnaire/models.py:1140
+#: questionnaire/models.py:999 questionnaire/models.py:1086
+#: questionnaire/models.py:1138
 msgid "Санкт-Петербург"
 msgstr "St.Petersburg"
 
-#: questionnaire/models.py:1007 questionnaire/models.py:1093
-#: questionnaire/models.py:1144
+#: questionnaire/models.py:1005 questionnaire/models.py:1091
+#: questionnaire/models.py:1142
 msgid "Харабовск и Хабаровский край"
 msgstr "Khabarovsk"
 
-#: questionnaire/models.py:1013
+#: questionnaire/models.py:1011
 msgid "Бывали ли Вы когда-либо за границей?"
 msgstr "Have you ever been abroad?"
 
-#: questionnaire/models.py:1096
+#: questionnaire/models.py:1094
 msgid "Ваш средний ежемесячный доход"
 msgstr "Your average monthly income is"
 
-#: questionnaire/models.py:1146
+#: questionnaire/models.py:1144
 msgid "Комментарий к вашему рейтингу"
 msgstr "Your comment for the ranking above"
 
-#: questionnaire/models.py:1149
+#: questionnaire/models.py:1147
 msgid ""
 "Как Вы считаете, каков среднемесячный доход жителей Вашего региона? Напишите "
 "пожалуйста Вашу оценку (в рублях в месяц)"
@@ -1650,7 +1653,7 @@ msgstr ""
 "In your opinion, what is the average monthly income of the residents of your "
 "region? Write please your rating (in rubles per month)"
 
-#: questionnaire/models.py:1154
+#: questionnaire/models.py:1152
 msgid ""
 "Согласны ли Вы с утверждением, что различия в уровне доходов между регионами "
 "России неоправданно велики"
@@ -1658,13 +1661,13 @@ msgstr ""
 "Do you agree with the statement that differences in income levels between "
 "regions Russia is unreasonably great"
 
-#: questionnaire/models.py:1164
+#: questionnaire/models.py:1162
 msgid ""
 "Учитывая все обстоятельства, насколько Вы удовлетворены вашей жизнью в целом "
 "в эти дни?"
 msgstr ""
 
-#: questionnaire/models.py:1166
+#: questionnaire/models.py:1164
 msgid ""
 " Для ответа выберите значение на шкале от 0 до 10, где 0 означает "
 "«совершенно не удовлетворен», а 10 - «полностью удовлетворен»)"
@@ -1673,54 +1676,54 @@ msgstr ""
 "are \"absolutely not ready to do this \", but 10means that you are \"ready "
 "to do just that \""
 
-#: questionnaire/models.py:1167
+#: questionnaire/models.py:1165
 msgid "Совершенно не удовлетворен"
 msgstr "Absolutely unsatisfied"
 
-#: questionnaire/models.py:1168
+#: questionnaire/models.py:1166
 msgid "Полностью удовлетворен"
 msgstr "Absolutely satisfied completely"
 
-#: questionnaire/models.py:1173
+#: questionnaire/models.py:1171
 msgid "В целом я могу сказать, что я"
 msgstr "In general, I can say that I"
 
-#: questionnaire/models.py:1179
+#: questionnaire/models.py:1177
 msgid "По сравнению с большинством окружающих вас людей, вы"
 msgstr "Compared to most of the people around you, you"
 
-#: questionnaire/models.py:1185
+#: questionnaire/models.py:1183
 msgid ""
 "Какое высказывание наиболее точно описывает финансовое положение вашей семьи?"
 msgstr ""
 "Which statement most accurately describes your family’s financial situation?"
 
-#: questionnaire/models.py:1191
+#: questionnaire/models.py:1189
 msgid "Сколько у вас старших братьев или сестер?"
 msgstr "How many older siblings do you have?"
 
-#: questionnaire/models.py:1196
+#: questionnaire/models.py:1194
 msgid "Сколько у вас младших братьев или сестер?"
 msgstr "How many younger siblings do you have?"
 
-#: questionnaire/models.py:1202
+#: questionnaire/models.py:1200
 msgid "В каком регионе родился Ваш отец (если не знаете оставьте поле пустым)?"
 msgstr ""
 "In which region was your father born (if you don’t know, leave the field "
 "blank)?"
 
-#: questionnaire/models.py:1207
+#: questionnaire/models.py:1205
 msgid ""
 "В каком регионе родилась Ваша мать (если не знаете оставьте поле пустым)?"
 msgstr ""
 "In which region was your mother born (if you don’t know, leave the field "
 "blank)?"
 
-#: questionnaire/models.py:1211
+#: questionnaire/models.py:1209
 msgid "В скольких регионах России (не считая вашего) вам случалось бывать)?"
 msgstr "How many regions of Russia (not counting yours) have you ever been to?"
 
-#: questionnaire/models.py:1218
+#: questionnaire/models.py:1216
 msgid ""
 "В нынешней России честному человеку трудно достичь каких-то высот, занять "
 "высокое положение в обществе"
@@ -1728,7 +1731,7 @@ msgstr ""
 "In today's Russia, it is difficult for an honest person to reach some "
 "heights, to occupy high position in society"
 
-#: questionnaire/models.py:1224
+#: questionnaire/models.py:1222
 msgid ""
 "Сторонником какой политической партии вы являетесь, или по крайней мере,"
 "симпатизируете ей? "
@@ -1736,15 +1739,15 @@ msgstr ""
 "A supporter of which political party you are, or at least sympathize with "
 "her?"
 
-#: questionnaire/models.py:1226
+#: questionnaire/models.py:1224
 msgid "party_other"
 msgstr ""
 
-#: questionnaire/models.py:1230
+#: questionnaire/models.py:1228
 msgid "Если Вы сторонник другой партии, укажите какой именно"
 msgstr "If you are a supporter of another party, indicate which one"
 
-#: questionnaire/models.py:1234
+#: questionnaire/models.py:1232
 msgid ""
 "Как Вы думаете, с участником из какого города вы взаимодействовали в ходе "
 "этого исследования?"
@@ -1752,15 +1755,15 @@ msgstr ""
 "What do you think  from which city was another participant you were matched "
 "with?"
 
-#: questionnaire/models.py:1236
+#: questionnaire/models.py:1234
 msgid "who_was_other_city_other"
 msgstr ""
 
-#: questionnaire/models.py:1248
+#: questionnaire/models.py:1257
 msgid "В настоящее время вы трудоустроены?"
 msgstr "Are you currently employed?"
 
-#: questionnaire/models.py:1251
+#: questionnaire/models.py:1260
 msgid "Являетесь ли вы в настоящее время самозанятым?"
 msgstr "Are you currently self-employed?"
 
@@ -1822,7 +1825,9 @@ msgstr ""
 msgid ""
 "Часть 2 эксперимента завершена. Начинается последняя, третья часть  "
 "эксперимента - анкета."
-msgstr "Part 2 of the experiment is completed. Now the last, third part of the experiment starts - the questionnaire"
+msgstr ""
+"Part 2 of the experiment is completed. Now the last, third part of the "
+"experiment starts - the questionnaire"
 
 #: questionnaire/templates/questionnaire/IntroQ.html:16
 msgid "Перейти к части 3"
@@ -2054,10 +2059,8 @@ msgstr ""
 "box. You then will proceed to the experiment. "
 
 #: trust/models.py:100
-#, fuzzy
-#| msgid "Водители и операторы подвижного оборудования"
 msgid "Вы ввели неверный код для одного из городов!"
-msgstr "Drivers and Mobile Plant Operators"
+msgstr "Wrong code for one of the cities"
 
 #: trust/templates/trust/AfterStage1.html:12
 msgid "Часть 1 эксперимента завершена. Начинается часть 2 эксперимента."
@@ -2351,7 +2354,9 @@ msgstr "If a Person A you interact with is a participant from…"
 msgid ""
 "то, согласно Вашей оценке, передаст Вам этот Участник А свою начальную сумму "
 "или же нет?"
-msgstr "what is your estimate: does Person A transfer his initial endowment to you or not?"
+msgstr ""
+"what is your estimate: does Person A transfer his initial endowment to you "
+"or not?"
 
 #: trust/templates/trust/SenderBeliefP.html:12
 msgid ""
@@ -2679,10 +2684,6 @@ msgstr ""
 "You estimate that Person B from City 6 decides to return 15 Token to you."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:34
-#, fuzzy
-#| msgid ""
-#| "Разница между Вашей оценкой и действительным решением Участника Б "
-#| "составляет 15 - 12 = 3 токена"
 msgid ""
 "Разница между Вашей оценкой и действительным решением Участника Б составляет "
 "15-12=3 токена"
@@ -3090,14 +3091,3 @@ msgid ""
 msgstr ""
 "You are randomly paired with a participant B from City 1 who states to "
 "return 9 Token in case you transfer your endowment."
-
-#, python-format
-#~ msgid "Часть 1. Участник %(role)s: решения"
-#~ msgstr "Part 1. Participant %(role)s: decisions"
-
-#, python-format
-#~ msgid ""
-#~ "Если Участник %(other)s, с которым Вы взаимодействуете, из\n"
-#~ "                города\n"
-#~ "            "
-#~ msgstr "If participant %(other)s, with whom you are matched from the city:"
