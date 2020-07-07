@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 10:57-0400\n"
+"POT-Creation-Date: 2020-07-07 11:40-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2109,8 +2109,8 @@ msgstr ""
 "transfer their initial endowment to Persons B?"
 
 #: trust/templates/trust/Average3.html:5
-msgid "Часть 2. Дополнительные вопросы"
-msgstr "Part 2. "
+msgid "Часть 2. Дополнительный вопрос 2"
+msgstr "Part 2. Additional question 2"
 
 #: trust/templates/trust/Average3.html:16
 msgid ""
@@ -3091,3 +3091,6 @@ msgid ""
 msgstr ""
 "You are randomly paired with a participant B from City 1 who states to "
 "return 9 Token in case you transfer your endowment."
+
+#~ msgid "Часть 2. Дополнительные вопросы"
+#~ msgstr "Part 2. "
