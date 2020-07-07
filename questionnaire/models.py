@@ -11,7 +11,7 @@ from otree.api import (
 from .widgets import OtherRadioSelect
 from django.utils.translation import gettext_lazy as _
 from .widgets import LikertWidget, BlockedCheckbox
-
+from trust.models import City
 from django.conf import settings
 
 author = 'Philipp Chapkovski, HSE-Moscow'
@@ -386,8 +386,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-
-
     # Motivation
     motivation_part1 = models.TextField(
         label=_("""Пожалуйста, вспомните ваши решения в части 1 эксперимента.
@@ -1232,9 +1230,20 @@ class Player(BasePlayer):
 
     who_was_other_city = models.IntegerField(
         label=_("Как Вы думаете, с участником из какого города вы взаимодействовали в ходе этого исследования?"),
-        choices=Constants.CITIES,
+
         widget=OtherRadioSelect(other=(13, _('who_was_other_city_other')))
     )
+
+    def who_was_other_city_choices(self):
+        user_language = self.session.config.get('language', settings.LANGUAGE_CODE)
+        q = City.objects.all().values()
+        if user_language == 'en':
+            attr = 'eng'
+        else:
+            attr = 'description'
+        cities = [(int(i.get('code')), i.get(attr)) for i in q] + [(13, _('Другой'))]
+        return cities
+
     who_was_other_city_other = models.CharField(
         label="", blank=True
     )

@@ -1091,9 +1091,7 @@ msgid ""
 "Как Вы считаете, в целом большинству людей можно доверять, или же при "
 "общении с другими людьми \n"
 "            осторожность никогда не повредит?"
-msgstr ""
-"In your opinion, in general, most people can be trusted, or chatting with "
-"other people caution never hurts?"
+msgstr "Generally speaking, would you say that most people can be trusted or that you need to be very careful in dealing with people?"
 
 #: questionnaire/models.py:522
 msgid "Нужно быть очень осторожным с другими людьми"
@@ -1824,13 +1822,11 @@ msgstr ""
 msgid ""
 "Часть 2 эксперимента завершена. Начинается последняя, третья часть  "
 "эксперимента - анкета."
-msgstr ""
+msgstr "Part 2 of the experiment is completed. Now the last, third part of the experiment starts - the questionnaire"
 
 #: questionnaire/templates/questionnaire/IntroQ.html:16
-#, fuzzy
-#| msgid "Перейти к части 2"
 msgid "Перейти к части 3"
-msgstr "Continue with Part 2"
+msgstr "Continue with Part 3"
 
 #: questionnaire/templates/questionnaire/Motivation.html:5
 #: questionnaire/templates/questionnaire/Personal1.html:5
