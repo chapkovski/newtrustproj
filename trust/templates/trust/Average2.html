@@ -2,11 +2,15 @@
 {% load otree  i18n %}
 
 {% block title %}
-    {% trans 'Часть 2. Дополнительные вопросы' %}
+    {% trans 'Часть 2. Дополнительный вопрос 1' %}
 {% endblock %}
 
 {% block content %}
-
+    <style>
+    td .form-group{
+        margin-bottom: 0px;
+    }
+    </style>
     {% include 'trust/includes/extra_block.html' %}
 
     <p>

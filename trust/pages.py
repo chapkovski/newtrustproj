@@ -83,14 +83,18 @@ class CQ2(CQPage):
 class Average2(FormSetMixin, Page):
     formset = averagesendbelief_formset
     decision_type = 'average_on_send_belief'
-    show_instructions = False
+    show_instructions = True
+    show_instructions_1 = True
+    show_instructions_2 = True
     show_map = True
 
 
 class Average3(FormSetMixin, Page):
     formset = averagereturnbelief_formset
     decision_type = 'average_on_return_belief'
-    show_instructions = False
+    show_instructions = True
+    show_instructions_1 = True
+    show_instructions_2 = True
     show_map = True
 
     def before_next_page(self):
@@ -146,13 +150,13 @@ class IntroStage2(Page):
 
 page_sequence = [
     FirstWP,
-    Instructions1,
-    Instructions2,
-    CQ1,
+    # Instructions1,
+    # Instructions2,
+    # CQ1,
     IntroStage1,
-    ShowMap,
-    SenderDecisionP,
-    ReturnDecisionP,
+    # ShowMap,
+    # SenderDecisionP,
+    # ReturnDecisionP,
     AfterStage1,
     InstructionsStage2,
     ExamplesStage2,

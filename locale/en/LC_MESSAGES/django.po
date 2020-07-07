@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-06 16:56-0400\n"
+"POT-Creation-Date: 2020-07-07 10:06-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: _templates/global/Page.html:87
+#: _templates/global/Page.html:88
 #: questionnaire/templates/questionnaire/Page.html:19
 msgid "Please fix the errors in the form."
 msgstr "Пожалуйста внесите исправления в поля формы."
@@ -2066,16 +2066,17 @@ msgstr "Drivers and Mobile Plant Operators"
 #: trust/templates/trust/AfterStage1.html:12
 msgid "Часть 1 эксперимента завершена. Начинается часть 2 эксперимента."
 msgstr ""
+"Part 1 of the experiment is finished. Now Part 2 of the experiment starts."
 
 #: trust/templates/trust/AfterStage1.html:17
 msgid "Перейти к части 2"
 msgstr "Continue with Part 2"
 
-#: trust/templates/trust/Average2.html:5 trust/templates/trust/Average3.html:5
-msgid "Часть 2. Дополнительные вопросы"
-msgstr ""
+#: trust/templates/trust/Average2.html:5
+msgid "Часть 2. Дополнительный вопрос 1"
+msgstr "Part 2. Additional question 1"
 
-#: trust/templates/trust/Average2.html:12
+#: trust/templates/trust/Average2.html:17
 msgid ""
 "Предположим, что 100 случайным образом выбранных Участников А из каждого из "
 "12 городов должны\n"
@@ -2087,27 +2088,32 @@ msgid ""
 "\n"
 "        "
 msgstr ""
+"Assume that 100 randomly selected Persons A in each of the 12 cities have to "
+"decide on whether to transfer their endowments to Persons B from this "
+"experiment. What is your estimate, how many of these Persons A in each city "
+"decide to transfer their initial endowment to Persons B?"
 
-#: trust/templates/trust/Average2.html:19
+#: trust/templates/trust/Average2.html:24
 msgid ""
 "Пожалуйста, впишите свою оценку (Число от 0 до 100) в каждую строку таблицы."
 msgstr ""
+"Pls. enter your estimated number (from 0 to 100) in each row of the table."
 
-#: trust/templates/trust/Average2.html:24
+#: trust/templates/trust/Average2.html:29
 msgid "Сколько человек из 100 случайно выбранных Участников А из города "
-msgstr ""
+msgstr "If the randomly selected 100 Persons A are participants from… "
 
-#: trust/templates/trust/Average2.html:27
-#, fuzzy
-#| msgid ""
-#| "cогласно Вашей оценке, передал ли Вам этот Участник %(other)s свою "
-#| "начальную сумму или нет?"
+#: trust/templates/trust/Average2.html:32
 msgid "согласно Вашей оценке, передаст свои начальные суммы Участникам Б "
 msgstr ""
-"what is your estimate: will Person %(other)s transfer his initial endowment "
-"to you or not?"
+"what is your estimate of the number of these Persons A in each city who "
+"transfer their initial endowment to Persons B?"
 
-#: trust/templates/trust/Average3.html:11
+#: trust/templates/trust/Average3.html:5
+msgid "Часть 2. Дополнительные вопросы"
+msgstr "Part 2. "
+
+#: trust/templates/trust/Average3.html:16
 msgid ""
 "Предположим, что 100 случайным образом выбранных Участников Б из каждого из "
 "12 городов должны\n"
@@ -2117,26 +2123,28 @@ msgid ""
 "городов?\n"
 "        "
 msgstr ""
+"Assume that 100 randomly selected Persons B in each of the 12 cities have to "
+"decide on how many out of the 30 Token to return to Persons A from this "
+"experiment. What is your estimate of the average amount Persons B in each "
+"city do return? "
 
-#: trust/templates/trust/Average3.html:16
+#: trust/templates/trust/Average3.html:21
 msgid ""
 "Пожалуйста, впишите свою оценку (целое число от 0 до 30) в каждую строку "
 "таблицы."
 msgstr ""
+"Please enter your estimated integer number (from 0 to 30) in each row of the "
+"table."
 
-#: trust/templates/trust/Average3.html:22
+#: trust/templates/trust/Average3.html:27
 msgid "100 случайно выбранных Участников Б из города"
-msgstr ""
+msgstr "If the 100 randomly selected Persons B are participants from… "
 
-#: trust/templates/trust/Average3.html:26
-#, fuzzy
-#| msgid ""
-#| "cогласно Вашей оценке, передал ли Вам этот Участник %(other)s свою "
-#| "начальную сумму или нет?"
+#: trust/templates/trust/Average3.html:31
 msgid "согласно Вашей оценке, в среднем вернут Участникам А сумму"
 msgstr ""
-"what is your estimate: will Person %(other)s transfer his initial endowment "
-"to you or not?"
+"what is your estimate of the average amount Persons B in each City do "
+"return? "
 
 #: trust/templates/trust/CQ1.html:5
 msgid "Проверочные вопросы для части 1"
@@ -2156,14 +2164,12 @@ msgid "Проверочные вопросы для части 2"
 msgstr "Comprehension Questions for Part 2"
 
 #: trust/templates/trust/ExamplesStage2.html:5
-msgid "Часть 2. Примеры."
-msgstr ""
+msgid "Часть 2. Примеры"
+msgstr "Part 2. Examples"
 
 #: trust/templates/trust/ExamplesStage2.html:16
-#, fuzzy
-#| msgid "Пожалуйста, прочитайте инструкции"
 msgid "Пожалуйста кликните на кнопку внизу если Вы прочитали инструкции."
-msgstr "Please read the instructions"
+msgstr "Please click the button below if you read the instructions. "
 
 #: trust/templates/trust/ExamplesStage2.html:19
 msgid ""
@@ -2182,6 +2188,8 @@ msgid ""
 "Перед началом Части 2 эксперимента просим Вас ответить на несколько "
 "проверочных вопросов, которые помогут Вам лучше понять Ваши задания."
 msgstr ""
+"Before Part 2 of the experiment starts, please answer a few comprehension "
+"questions that help you to understand the tasks in Part 2. "
 
 #: trust/templates/trust/ExamplesStage2.html:31
 #: trust/templates/trust/Instructions1.html:24
@@ -2213,7 +2221,10 @@ msgid ""
 "экрана\n"
 "\n"
 "                "
-msgstr "Important information: The instructions are always available to you in the course of the experiment if you click on the button 'Instructions – Part 1' at the top of the screen."
+msgstr ""
+"Important information: The instructions are always available to you in the "
+"course of the experiment if you click on the button 'Instructions – Part 1' "
+"at the top of the screen."
 
 #: trust/templates/trust/Instructions2.html:27
 msgid ""
@@ -2233,7 +2244,7 @@ msgstr "Instructions. Part 2"
 
 #: trust/templates/trust/InstructionsStage2.html:12
 msgid "Сейчас мы опишем правила принятия решений в Части 2. "
-msgstr ""
+msgstr "Now we explain the rules for making decisions in Part 2."
 
 #: trust/templates/trust/InstructionsStage2.html:15
 msgid ""
@@ -2242,6 +2253,10 @@ msgid ""
 "того, с Вами в паре находится тот же самый Участник Б из того же города, что "
 "и в Части 1. "
 msgstr ""
+"All participants remain in exactly the same role and pairing as in Part 1. "
+"You were assigned to be Person A in Part 1, and you remain in this role in "
+"Part 2. Moreover, you are paired with exactly the same Person B located in "
+"the same city as in Part 1. "
 
 #: trust/templates/trust/InstructionsStage2.html:18
 msgid ""
@@ -2249,6 +2264,10 @@ msgid ""
 "из вашей пары в Части 1. Чем ближе будет Ваша оценка к действительному "
 "решению этого Участника Б, тем выше будет Ваш бонус в Части 2."
 msgstr ""
+"You can increase your bonus in this Part 2 by providing an estimate of the "
+"Part 1 decisions of the Person B you are paired with. The closer your "
+"provided estimate is to the actual decision of that Person B, the higher is "
+"your bonus in Part 2. "
 
 #: trust/templates/trust/InstructionsStage2.html:21
 msgid ""
@@ -2256,6 +2275,9 @@ msgid ""
 "пары, Вам надо дать эту оценку 12 раз – по одному для каждого из 12 городов. "
 "Для каждого из городов оценка дается один раз."
 msgstr ""
+"As in Part 1, you do not know in which city Person B is located. Therefore, "
+"you have to make this estimation 12 times – one estimate for a Person B from "
+"each of the 12 cities. You make your estimate for each of the 12 cities once."
 
 #: trust/templates/trust/InstructionsStage2.html:24
 msgid ""
@@ -2263,6 +2285,9 @@ msgid ""
 "Части 2, а именно: оценка решения Участника Б из того города, с которым Вы "
 "действительно взаимодействуете."
 msgstr ""
+"Only one of the 12 estimates is relevant for calculating your bonus in Part "
+"2 – i.e., the estimate for the decision of the Person B from the city with "
+"which you are actually paired."
 
 #: trust/templates/trust/IntroStage1.html:12
 msgid ""
@@ -2280,122 +2305,97 @@ msgid ""
 "Вы дали правильные ответы на проверочные вопросы. Теперь начинается Часть 2 "
 "эксперимента"
 msgstr ""
+"Your answers to the test questions are correct. Now Part 2 of the experiment "
+"starts. "
 
 #: trust/templates/trust/IntroStage2.html:17
 msgid "Начать"
 msgstr "Begin the study"
 
 #: trust/templates/trust/ReturnDecisionP.html:5
-#, python-format
-msgid "Часть 1. Участник %(role)s: решения"
-msgstr "Part 1. Participant %(role)s: decisions"
+msgid "Часть 2"
+msgstr "Part 2"
 
-#: trust/templates/trust/ReturnDecisionP.html:14
-#, python-format
-msgid ""
-"Если Участник %(other)s, с которым Вы взаимодействуете, из\n"
-"                города\n"
-"            "
-msgstr "If participant %(other)s, with whom you are matched from the city:"
+#: trust/templates/trust/ReturnDecisionP.html:12
+msgid "Вам случайным образом выпала роль Участника Б. Ваши решения:"
+msgstr "You were randomly assigned the role of Participant B. Your decisions:"
 
 #: trust/templates/trust/ReturnDecisionP.html:20
-#, python-format
 msgid ""
-"сколько токенов Вы\n"
-"                согласны вернуть Участнику %(other)s в том случае,\n"
-"                если он(а) перевел Вам свою начальную сумму и Вы\n"
-"                получили %(max_return)s токенов?\n"
-"            "
+"Если  Участник А, с которым Вы  взаимодействуете в паре,  будет из города "
+msgstr "If participant А with whom you are paired is from City: "
+
+#: trust/templates/trust/ReturnDecisionP.html:24
+msgid ""
+"То сколько токенов Вы согласны вернуть этому Участнику А в том случае, если "
+"он(а) передаст Вам свою начальную сумму и Вы получите 30 токенов?"
 msgstr ""
-"how many tokens do you agree to return to the Member %(other) s if he (a) "
-"transferred his initial amount to you and you got %(max_return) s tokens? "
+"…how many Token do you agree to return to participant А if he (A) transfers "
+"his initial amount to you and you receive 30 Token?"
 
 #: trust/templates/trust/ReturnerBeliefP.html:5
 #: trust/templates/trust/SenderBeliefP.html:5
-#, fuzzy
-#| msgid "Часть 2. Участник %(role)s: оценки"
 msgid "Часть 2. Ваши оценки"
-msgstr "Part 2. Participant %(role)s: estimations"
+msgstr "Part 2. Your estimates "
 
-#: trust/templates/trust/ReturnerBeliefP.html:11
-#, fuzzy
-#| msgid ""
-#| "cогласно Вашей оценке, передал ли Вам этот Участник %(other)s свою "
-#| "начальную сумму или нет?"
+#: trust/templates/trust/ReturnerBeliefP.html:12
 msgid ""
-"\n"
-"                Пожалуйста оцените, передаст ли Вам Участник А из вашей пары "
-"свою начальную сумму или же нет.\n"
+"Пожалуйста оцените, передаст ли Вам Участник А из вашей пары свою начальную "
+"сумму или же нет.\n"
 "            "
 msgstr ""
-"what is your estimate: will Person %(other)s transfer his initial endowment "
-"to you or not?"
+"Please estimate whether or not your paired Person A decides to transfer his "
+"initial endowment to you. "
 
 #: trust/templates/trust/ReturnerBeliefP.html:22
-#, fuzzy
-#| msgid ""
-#| "Если Участник %(role)s, с которым Вы взаимодействуете, из города\n"
-#| "            "
 msgid "Если Участник А, с которым Вы взаимодействуете, из города"
-msgstr "If a Person %(role)s you are interacting with is a participant from"
+msgstr "If a Person A you interact with is a participant from…"
 
 #: trust/templates/trust/ReturnerBeliefP.html:26
-#, fuzzy
-#| msgid ""
-#| "cогласно Вашей оценке, передал ли Вам этот Участник %(other)s свою "
-#| "начальную сумму или нет?"
 msgid ""
 "то, согласно Вашей оценке, передаст Вам этот Участник А свою начальную сумму "
 "или же нет?"
-msgstr ""
-"what is your estimate: will Person %(other)s transfer his initial endowment "
-"to you or not?"
+msgstr "what is your estimate: does Person A transfer his initial endowment to you or not?"
 
-#: trust/templates/trust/SenderBeliefP.html:11
+#: trust/templates/trust/SenderBeliefP.html:12
 msgid ""
-"\n"
-"               Пожалуйста оцените, сколько токенов Участник Б из вашей пары "
-"решит вернуть Вам если Вы передадите ему свою начальную сумму, независимо от "
-"того, передали ли Вы ему эту сумму или же нет.\n"
+"Пожалуйста оцените, сколько токенов Участник Б из вашей пары решит вернуть "
+"Вам если Вы передадите ему свою начальную сумму, независимо от того, "
+"передали ли Вы ему эту сумму или же нет.\n"
 "            "
 msgstr ""
+"Please estimate how many Token the paired Person B decides to return if you "
+"transfer your initial endowment, independently of whether you have actually "
+"done so or not."
 
 #: trust/templates/trust/SenderBeliefP.html:21
-#, fuzzy
-#| msgid ""
-#| "Если бы Вы передали Вашу начальную сумму Участнику  %(other)s из города"
 msgid "Если  бы вы передали свою начальную сумму Участнику Б из города"
 msgstr ""
-"If you would have transferred your initial endowment to a Person %(other)s, "
-"who is a participant from..."
+"If you had transferred your initial endowment to a Person B, who is a "
+"participant  from …:"
 
 #: trust/templates/trust/SenderBeliefP.html:27
-#, fuzzy
-#| msgid ""
-#| "то как Вы оцениваете, сколько из %(max_return)s токенов этот Участник "
-#| "%(other)s вернул бы Вам\n"
-#| "            "
 msgid ""
 "то согласно Вашей оценке,  сколько из 30 токенов  этот Участник Б решит "
 "вернуть Вам?"
 msgstr ""
-"what is your estimate of how many out of the  %(max_return)s Token Person "
-"%(other)s would have returned to you:"
+"what is your estimate of how many out of the 30 Token Person B decides to "
+"return to you:"
 
 #: trust/templates/trust/SenderDecisionP.html:5
 msgid "Часть 1"
 msgstr "Part 1"
 
-#: trust/templates/trust/SenderDecisionP.html:13
+#: trust/templates/trust/SenderDecisionP.html:14
 msgid "Вам случайным образом выпала роль Участника А. Ваши решения:"
 msgstr "You were randomly assigned the role of Participant А. Your decisions:"
 
-#: trust/templates/trust/SenderDecisionP.html:21
+#: trust/templates/trust/SenderDecisionP.html:22
 msgid ""
 "Если  Участник Б, с которым Вы   взаимодействуете в паре,  будет из города"
 msgstr "If participant B with whom you are paired is from City:"
 
-#: trust/templates/trust/SenderDecisionP.html:26
+#: trust/templates/trust/SenderDecisionP.html:27
 msgid ""
 "То согласны ли Вы передать свою начальную сумму в 10 токенов этому участнику "
 "Б?"
@@ -2413,7 +2413,10 @@ msgid ""
 "кликните на кнопку “показать карту” в верхней\n"
 "                части экрана.\n"
 "            "
-msgstr "On this map you see all 12 cities where participants in this experiment are located. This map will always be available to you in the course of the experiment if you click on the button 'Map' at the top of the screen. "
+msgstr ""
+"On this map you see all 12 cities where participants in this experiment are "
+"located. This map will always be available to you in the course of the "
+"experiment if you click on the button 'Map' at the top of the screen. "
 
 #: trust/templates/trust/includes/error_modal.html:16
 msgid "Внимание!"
@@ -2425,11 +2428,14 @@ msgid ""
 "Вашему мнению, в среднем будут вести себя участники этого эксперимента. \n"
 "            "
 msgstr ""
+"Please also answer two additional questions about what you estimate the "
+"average behavior of participants in this experiment will be. "
 
 #: trust/templates/trust/includes/extra_block.html:7
 msgid ""
 "Обратите внимание, что ответы на эти вопросы не повлияют на Ваши бонусы."
 msgstr ""
+"Please note that the answers to these questions do not affect your bonus."
 
 #: trust/templates/trust/includes/instruction_toggler.html:5
 msgid "Show instructions"
@@ -2526,17 +2532,16 @@ msgstr ""
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:3
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:2
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:20
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:24
-#, fuzzy
-#| msgid "Проверочные вопросы для части 2"
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:28
 msgid "Подсчет Вашего бонуса в части 2"
-msgstr "Comprehension Questions for Part 2"
+msgstr "Calculation of your bonus in Part 2 "
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:9
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:31
 msgid ""
 "Если Вы верно оценили решение Участника А, Ваш бонус в части 2 составит "
 msgstr ""
+"If you estimate Person A’s decision correctly, your bonus for Part 2 will be "
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:10
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:14
@@ -2545,9 +2550,9 @@ msgstr ""
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:19
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:31
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:34
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:40
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:44
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:48
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:46
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:50
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:54
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:24
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:27
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:29
@@ -2572,6 +2577,8 @@ msgstr "tokens"
 msgid ""
 "Если Вы неверно оценили решение Участника А, Ваш бонус в части 2 составит "
 msgstr ""
+"If you estimate Person A’s decision incorrectly, your bonus for Part 2 will "
+"be "
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:20
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:34
@@ -2585,27 +2592,24 @@ msgid ""
 "Пусть Вы из города 6. Вы случайным образом определены в пару с Участником А "
 "из города 2. Этот участник решил передать свою начальную сумму в Части 1 "
 msgstr ""
+"Suppose you are from City 6. You are randomly paired with a participant A "
+"from City 2 who decides to transfer his endowment in Part 1."
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:25
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:40
-#, fuzzy
-#| msgid ""
-#| "cогласно Вашей оценке, передал ли Вам этот Участник %(other)s свою "
-#| "начальную сумму или нет?"
 msgid ""
 "Согласно Вашей оценке, Участник А из города 2 решит передать  свою начальную "
 "сумму."
 msgstr ""
-"what is your estimate: will Person %(other)s transfer his initial endowment "
-"to you or not?"
+"You estimate that Person A from City 2 decides to transfer his endowment."
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:28
 msgid "Ваша оценка верна."
-msgstr ""
+msgstr "Your estimate is correct."
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:31
 msgid "Ваш бонус в части 2: 10 токенов."
-msgstr ""
+msgstr "Your bonus in Part 2: 10 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:37
 msgid ""
@@ -2613,48 +2617,53 @@ msgid ""
 "из города 8. Этот участник решил НЕ передавать  свою начальную сумму в Части "
 "1"
 msgstr ""
+"Suppose you are from City 1. You are randomly paired with a participant A "
+"from City 8 who decides NOT to transfer his endowment in Part 1."
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:43
 msgid "Ваша оценка не верна."
-msgstr ""
+msgstr "Your estimate is NOT correct."
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:46
 msgid "Ваш бонус в части 2: 0 токенов."
-msgstr ""
+msgstr "Your payoff in Part 2: 0 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:5
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:34
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:40
 msgid "Разница между Вашей оценкой и действительным решением Участника Б:"
 msgstr ""
+"Difference between your estimate and Person B’s actual return decision:"
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:6
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:35
-#, fuzzy
-#| msgid "Перейти к части 2"
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:41
 msgid "Ваш бонус в части 2:"
-msgstr "Continue with Part 2"
+msgstr "Your bonus in Part 2:"
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:10
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:39
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:45
 msgid ""
 "Разница равна 0 (Ваша оценка совпадает с решением Участника Б о возврате):"
 msgstr ""
+"The difference is 0 (Your estimate coincides with Person B’s return decision)"
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:14
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:43
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:49
 msgid "Разница больше 0, но не превышает плюс-минус 3 токена ."
 msgstr ""
+"The difference is larger than 0 but not larger than plus or minus 3 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:18
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:47
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:53
 msgid "Разница больше чем плюс-минус 3 токена."
-msgstr ""
+msgstr "The difference is larger than plus or minus 3 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:26
 msgid ""
 "Пусть вы из города 2. В Части 1 Вы решили передать свою начальную сумму "
 "Участнику Б если этот участник из города 6."
 msgstr ""
+"Suppose you are from City 2. In Part 1, you decided to transfer your "
+"endowment to a Person B if this person is from City 6."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:29
 msgid ""
@@ -2664,26 +2673,38 @@ msgid ""
 "начальную сумму умноженную на 3.\n"
 "    "
 msgstr ""
+"You are randomly paired with a Person B from City 6 in Region 6 who decides "
+"to return 12 Token in case he receives 30 Token from Person A in City 2, i."
+"e. the endowment multiplied by 3."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:33
 msgid "Вы оценили, что Участник Б из города 6 решит вернуть Вам 15 токенов."
 msgstr ""
+"You estimate that Person B from City 6 decides to return 15 Token to you."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:34
+#, fuzzy
+#| msgid ""
+#| "Разница между Вашей оценкой и действительным решением Участника Б "
+#| "составляет 15 - 12 = 3 токена"
 msgid ""
 "Разница между Вашей оценкой и действительным решением Участника Б составляет "
 "15-12=3 токена"
 msgstr ""
+"The difference between your estimate and the actual decision of Person B is "
+"15 – 12 = 3 Token. "
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:35
 msgid "Ваш бонус в части 2: 10 токенов"
-msgstr ""
+msgstr "Your bonus in Part 2: 10 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:38
 msgid ""
 "Пусть вы из города 8. В Части 1 Вы решили НЕ передать свою начальную сумму "
 "Участнику Б если этот участник из города 1."
 msgstr ""
+"Suppose you are from City 8. In Part 1, you decided NOT to transfer your "
+"endowment to a Person B if this person is from City 1."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:39
 msgid ""
@@ -2691,39 +2712,38 @@ msgid ""
 "решил вернуть 12 токенов, если он получит 30 токенов от Участника А из "
 "города 8, т.е. его начальную сумму умноженную на 3."
 msgstr ""
+"You are randomly paired with a participant B from City 1 who decides to "
+"return 12 Token in case he receives 30 Token from Person A in City 8, i.e. "
+"the endowment multiplied by 3."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:40
 msgid "Вы оценили, что Участник Б из города 6 решит вернуть 18 токенов."
-msgstr ""
+msgstr "You estimate that Person B from City 1 decides to return 18 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:41
 msgid ""
 "Разница между Вашей оценкой и действительным решением Участника Б составляет "
 "18 - 12 = 6 токенов"
 msgstr ""
+"The difference between your estimate and the actual decision of Person B is "
+"18 – 12 = 6 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:42
 msgid "Ваш бонус в части 2: 0 токенов"
-msgstr ""
+msgstr "Your bonus in Part 2: 0 Token"
 
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:5
 #: trust/templates/trust/includes/instructions/part2_instructions_sender.html:5
-#, fuzzy
-#| msgid "Ваша семья"
 msgid "Ваша задача"
-msgstr "your family"
+msgstr "Your Estimation Task "
 
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:10
-#, fuzzy
-#| msgid ""
-#| "cогласно Вашей оценке, передал ли Вам этот Участник %(other)s свою "
-#| "начальную сумму или нет?"
 msgid ""
 "Вам надо оценить, передаст ли Вам Участник А из вашей пары свою начальную "
 "сумму или же нет."
 msgstr ""
-"what is your estimate: will Person %(other)s transfer his initial endowment "
-"to you or not?"
+"You have to estimate whether or not your paired Person A transfers his "
+"initial endowment to you. "
 
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:12
 msgid ""
@@ -2732,6 +2752,9 @@ msgid ""
 "одному для каждого из 12 городов, участвующих в этом эксперименте. \n"
 "        "
 msgstr ""
+"Since you at this moment do not know yet what city your paired Person A is "
+"from, you have to make your estimate for a Person A from each of the 12 "
+"cities that are involved in this experiment."
 
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:25
 msgid ""
@@ -2741,31 +2764,50 @@ msgid ""
 "согласно следующему правилу:\n"
 "            "
 msgstr ""
+"Your estimate of whether or not your paired Person A transfers his initial "
+"endowment to you is compared to the actual transfer decision of that Person "
+"A in Part 1 of the experiment. Your estimate is converted into your bonus "
+"according to the following rule: "
 
 #: trust/templates/trust/includes/instructions/part2_instructions_sender.html:10
 msgid ""
 "Вам надо оценить сколько токенов Участник Б из вашей пары вернет Вам, если "
-"Вы передадите ему свою начальную сумму. Вы должны оценить само это решение "
-"Участника Б, независимо от того, передали ли Вы ему свою начальную сумму или "
-"же нет.\n"
+"Вы передадите ему\n"
+"                свою начальную сумму. Вы должны оценить само это решение "
+"Участника Б, независимо от того, передали ли Вы\n"
+"                ему свою начальную сумму или же нет.\n"
 "            "
 msgstr ""
+"You have to estimate how many Token your paired Person B decides to return "
+"in case you transfer your initial endowmenT .  You need to estimate that "
+"decision of Person B independently of whether you have actually transferred "
+"your endowment to him/her or not."
 
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:14
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:16
 msgid ""
 "Поскольку в настоящий момент Вы не знаете, в каком городе находится Участник "
-"Б из Вашей пары, Вам надо дать эту оценку решения Участника Б 12 раз – по "
-"одному для каждого из 12 городов, участвующих в этом эксперименте.\n"
+"Б из Вашей\n"
+"                пары, Вам надо дать эту оценку решения Участника Б 12 раз – "
+"по одному для каждого из 12 городов,\n"
+"                участвующих в этом эксперименте.\n"
 "            "
 msgstr ""
+"Since you at this moment do not know yet what city your paired Person B is "
+"located, you have to make your estimate for a Person B from each of the 12 "
+"cities that are involved in this experiment. "
 
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:29
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:33
 msgid ""
 "Ваша оценка решения Участника Б из Вашей пары о возврате сравнивается с "
-"действительным решением этого Участника Б в Части 1 эксперимента. Размер "
-"бонуса определяется на основе Вашей оценки согласно следующему правилу:\n"
+"действительным\n"
+"                решением этого Участника Б в Части 1 эксперимента. Размер "
+"бонуса определяется на основе Вашей оценки\n"
+"                согласно следующему правилу:\n"
 "            "
 msgstr ""
+"Your estimate of your paired Person B’s return decision is compared with the "
+"actual return decision of that Person B  in Part 1 of the experiment. Your "
+"estimate is converted into your bonus according to the following rule: "
 
 #: trust/templates/trust/includes/instructions/receiver_instructions_1.html:3
 msgid ""
@@ -3052,3 +3094,14 @@ msgid ""
 msgstr ""
 "You are randomly paired with a participant B from City 1 who states to "
 "return 9 Token in case you transfer your endowment."
+
+#, python-format
+#~ msgid "Часть 1. Участник %(role)s: решения"
+#~ msgstr "Part 1. Participant %(role)s: decisions"
+
+#, python-format
+#~ msgid ""
+#~ "Если Участник %(other)s, с которым Вы взаимодействуете, из\n"
+#~ "                города\n"
+#~ "            "
+#~ msgstr "If participant %(other)s, with whom you are matched from the city:"
