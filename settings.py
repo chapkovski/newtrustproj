@@ -81,6 +81,7 @@ SESSION_CONFIGS = [
      'use_browser_bots': False,
      'language': 'en',
      'app_sequence': [
+         'sorter',
          'trust',
          'questionnaire',
          'last'
@@ -95,6 +96,7 @@ SESSION_CONFIGS = [
      'use_browser_bots': False,
      'language': 'ru',
      'app_sequence': [
+         'sorter',
          'trust',
          'questionnaire',
          'last'
