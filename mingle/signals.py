@@ -3,6 +3,10 @@ from django.dispatch import receiver
 from otree.models import Session, Participant
 from .models import MingleSession, MegaSession, MegaParticipant, MegaGroup
 from trust.models import City
+import logging
+from django.conf import settings
+
+logger = logging.getLogger(__name__)
 
 
 @receiver(post_save, sender=Session)
@@ -12,14 +16,16 @@ def creating_corresponding_mingle_session(sender, instance, created, **kwargs):
     if created:
         apps = instance.config['app_sequence']
         city_code = instance.config.get('city_code')
-
-        if 'trust' in apps and city_code:
+        city_str_obj = next((item for item in settings.CITIES if item["code"] == city_code), None)
+        if city_str_obj:
+            city, _ = City.objects.get_or_create(code=city_str_obj['code'],
+                                                 defaults={'description': city_str_obj['name'],
+                                                           'eng': city_str_obj['eng']})
+        if 'trust' in apps and city:
             try:
-                city = City.objects.get(code=city_code)
                 MingleSession.objects.create(owner=instance, city=city)
             except City.DoesNotExist:
-                #TODO logger
-                print('city does not exist', city_code)
+                logger.error('city does not exist:' + city_code)
 
 
 @receiver(post_save, sender=MingleSession)
