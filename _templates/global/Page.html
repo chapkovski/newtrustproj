@@ -2,6 +2,7 @@
 {% load otree static i18n %}
 
 {% block global_styles %}
+    {% get_current_language as LANGUAGE_CODE %}
     <style>
         .col-form-label {
             font-weight: bold;
@@ -58,7 +59,7 @@
 
 
 {% block body_main %}
-    {% get_current_language as LANGUAGE_CODE %}
+{% get_current_language as LANGUAGE_CODE %}
 
     {{ form.media }}
     {% block progress %}
@@ -118,6 +119,7 @@
 {% endblock %}
 
 {% block global_scripts %}
+    {% get_current_language as LANGUAGE_CODE %}
     <script>
         $(document).on("keydown", ":input:not(textarea):not(:submit)", function (event) {
             if (event.key == "Enter") {
@@ -137,13 +139,16 @@
                 integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
         <script>
             const cities_full = {{ Constants.cities|json }};
+            const lang_dict = {ru:'name', en:'eng'};
+            const cur_lang = "{{ LANGUAGE_CODE }}";
+            const cur_field_name = lang_dict[cur_lang]
             let cities = _.filter(cities_full, 'lat');
             cities = _.map(cities, i => {
                 i.name = i.name.trim().split(' ')[0];
                 return i
             })
         </script>
-         {% get_current_language as LANGUAGE_CODE %}
+
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key={{ Constants.GOOGLE_API_KEY }}&callback=initMaps&language={{ LANGUAGE_CODE }}&region={{ LANGUAGE_CODE|upper }}">
         </script>
@@ -178,11 +183,12 @@
                 });
                 _.forEach(maps, m => {
                     const citiesPopups = _.map(cities, (i) => {
-                        return new Popup(new google.maps.LatLng(i.lat, i.long), i.name);
+                        return new Popup(new google.maps.LatLng(i.lat, i.long), i[cur_field_name]);
                     });
                     _.forEach(citiesPopups, (i) => {
                         i.setMap(m);
                     });
+
 
                 });
             }

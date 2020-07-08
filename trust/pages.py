@@ -156,10 +156,10 @@ class DebugQ(Page):
 
 page_sequence = [
     FirstWP,
-    # Instructions1,
-    # Instructions2,
-    # CQ1,
-    # IntroStage1,
+    Instructions1,
+    Instructions2,
+    CQ1,
+    IntroStage1,
     ShowMap,
     SenderDecisionP,
     ReturnDecisionP,

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-
+{% get_current_language as LANGUAGE_CODE %}
     {% include 'trust/includes/role_block.html' %}
     <h5>{% trans 'Ваши решения:' %}</h5>
     {{ formset.management_form }}
