@@ -60,9 +60,7 @@ class PlayerBot(Bot):
     def play_round(self):
         yield Instructions1
         yield Instructions2
-        if self.session.config.get('cq'):
-            yield CQ1, self._cq_data(CQ1)
-
+        yield CQ1, self._cq_data(CQ1)
         yield IntroStage1,
         yield ShowMap,
         if self.player.role() == 'sender':
@@ -71,8 +69,7 @@ class PlayerBot(Bot):
             yield AfterStage1
             yield InstructionsStage2
             yield ExamplesStage2
-            if self.session.config.get('cq'):
-                yield CQ2, self._cq_data(CQ2)
+            yield CQ2, self._cq_data(CQ2)
             yield IntroStage2
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
                                                    choice_set=Constants.receiver_choices)
@@ -82,8 +79,8 @@ class PlayerBot(Bot):
             yield AfterStage1
             yield InstructionsStage2
             yield ExamplesStage2
-            if self.session.config.get('cq'):
-                yield CQ2, self._cq_data(CQ2)
+
+            yield CQ2, self._cq_data(CQ2)
 
             yield IntroStage2
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
@@ -94,3 +91,6 @@ class PlayerBot(Bot):
                                           choice_set=range(0, 100))
         yield Average3, self._create_data(name='averageonreturnbeliefs', field_name='average_belief_on_return',
                                           choice_set=Constants.receiver_choices)
+
+        if self.session.config.get('debug', False):
+            yield DebugQ,dict(comment='botcomment')

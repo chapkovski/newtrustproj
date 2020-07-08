@@ -38,9 +38,6 @@ class CQPage(Page):
     part = None
     custom_general_error = True
 
-    def is_displayed(self) -> bool:
-        return self.session.config.get('cq', False)
-
     def get_cq_instances(self):
         """Get cq for this part and this role"""
         cqs_for_this_part = self.player.cqs.filter(part=self.part, role=None)
@@ -49,7 +46,11 @@ class CQPage(Page):
 
     def get_formset(self, data=None):
         """Get formset with cq instnaces"""
-        return cq_formset(instance=self.player, data=data, queryset=self.get_cq_instances())
+        return cq_formset(instance=self.player,
+                          data=data,
+                          queryset=self.get_cq_instances(),
+                          part=self.part
+                          )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

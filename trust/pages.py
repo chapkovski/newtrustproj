@@ -147,11 +147,17 @@ class IntroStage2(Page):
 
 ############ END OF: INTROPATES #############################################################
 
+class DebugQ(Page):
+    form_model = 'player'
+    form_fields = ['comment']
+    def is_displayed(self):
+        return self.session.config.get('debug', False)
+
 
 page_sequence = [
     FirstWP,
-    # Instructions1,
-    # Instructions2,
+    Instructions1,
+    Instructions2,
     CQ1,
     IntroStage1,
     ShowMap,
@@ -166,4 +172,5 @@ page_sequence = [
     ReturnerBeliefP,
     Average2,
     Average3,
+    DebugQ,
 ]

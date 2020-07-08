@@ -50,8 +50,9 @@ class Constants(BaseConstants):
             'Не все Ваши ответы были правильными. Пожалуйста, прочтите еще раз инструкции в верхней части экрана, и исправьте свои ответы.'),
         2: _('Некоторые ответы все еще не правильны. Пожалуйста, исправьте их.'),
         3: _(
-            'Ответы, отмеченные ниже все еще не правильны. Пожалуйста, ознакомьтесь с правильными  решениями и ответами и приступайте к эксперименту'),
+            'Ответы, отмеченные ниже все еще не правильны. Пожалуйста, ознакомьтесь с правильными  решениями и ответами и приступайте к {}'),
     }
+    error_msg_parts = {1: _('эксперименту'), 2: _('2-й части эксперимента')}
     DEFAULT_CQ_ERROR = dict(rus='Пожалуйста, проверьте правильность вашего ответа.',
                             eng='Please, check your answer.')
     GOOGLE_API_KEY = settings.GOOGLE_API_KEY
@@ -136,6 +137,8 @@ class Player(BasePlayer):
     calculable = models.BooleanField(initial=False)
     cq1_counter = models.FloatField()
     cq2_counter = models.FloatField()
+    comment = models.TextField(
+        label=_('Все ли было понятно в инструкциях? С какими сложностями вы столкнулись?'))
 
     def get_part2_instructions_path(self):
         return f'trust/includes/instructions/part2_instructions_{self.role()}.html'
@@ -260,7 +263,10 @@ class CQ(djmodels.Model):
 
     @property
     def extid(self):
-        return Constants.cqs[self.source].get('extid', '')
+        r = Constants.cqs[self.source].get('extid', '')
+        if isinstance(r, dict):
+            return r[self.lang]
+        return r
 
     @property
     def shown(self):

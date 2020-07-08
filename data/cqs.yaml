@@ -182,7 +182,9 @@ cq2_3:
     rus: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is <b><u>20 Token</b></u>.
     eng: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is <b><u>20 Token</b></u>.
 cq2_4:
-  extid: Б1
+  extid:
+    rus: Б1
+    eng: B1
   text:
     rus: В Части 1, Участник А из города 1 передал свою начальную сумму Участнику Б из города 2, тогда как Участник Б из города 2, случайным образом определенный в пару к этому Участнику А, решил что этот Участник А НЕ передаст свою начальную сумму. Какой бонус в токенах получит этот Участник Б в Части 2?
     eng: In Part 1, a Person A from City 1 transferred his initial endowment to a randomly paired Person B from City 2. In Part 2, this Person B from City 2 estimated that the paired Person A from City 1 does NOT transfer the endowment. What is the bonus in Token of this Person B for Part 2?
@@ -196,7 +198,9 @@ cq2_4:
     rus: The bonus Person B receives if he incorrectly guesses the decision of Person A is <b><u>0 Token</b></u>.
     eng: The bonus Person B receives if he incorrectly guesses the decision of Person A is <b><u>0 Token</b></u>.
 cq2_5:
-  extid: Б2
+  extid:
+    rus: Б2
+    eng: B2
   text:
     rus: В Части 1, Участник А из города 3 передал свою начальную сумму Участнику Б из города 4, тогда как Участник Б из города 4, случайным образом определенный в пару к этому Участнику А, оценил что этот Участник А передаст свою начальную сумму. Какой бонус в токенах получит этот Участник Б в Части 2?
     eng: In Part 1, a Person A from City 3 transfers his initial endowment to a randomly paired Person B from City 4. In Part 2, this Person B from City 4 estimated that the paired Person A from City 3 does transfer his endowment. What is the bonus of this Person B for Part 2?

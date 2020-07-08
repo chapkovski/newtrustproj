@@ -84,10 +84,15 @@ class CQForm(forms.ModelForm):
 
 
 class CQFormSet(BaseInlineFormSet):
+    def __init__(self,  *args, **kwargs):
+        self.part = kwargs.pop('part')
+        super().__init__(*args, **kwargs)
+
     def clean(self):
         if any(self.errors):
             mcounter = (self.queryset.aggregate(mcounter=Max('counter')))['mcounter']
-            general_msg = Constants.general_error_msg.get(mcounter)
+            error_part =  Constants.error_msg_parts.get(self.part, '')
+            general_msg = Constants.general_error_msg.get(mcounter).format(error_part)
             if general_msg:
                 raise forms.ValidationError(general_msg)
 

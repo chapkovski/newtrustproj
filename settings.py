@@ -1,5 +1,6 @@
 from os import environ
 import os
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')
 
@@ -28,6 +29,7 @@ uni_trust = dict(
     use_browser_bots=False,
     display_name="trust: Intercity Russia",
     num_demo_participants=2,
+    debug=False,
     app_sequence=[
         'sorter',
         'trust',
@@ -41,18 +43,12 @@ SESSION_CONFIGS = [
      'city_code': '01',
      'name': 'trust_ru',
      'display_name': 'trust: DEMO! Moscow - RUSSIAN',
-     'cq': True,
-     'debug': True,
-     'use_browser_bots': False,
      'language': 'ru'
      },
     {**uni_trust,
      'city_code': '01',
      'name': 'trust_en',
      'display_name': 'trust: DEMO! Moscow - ENGLISH',
-     'cq': True,
-     'debug': True,
-     'use_browser_bots': False,
      'language': 'en'
      },
 
@@ -64,7 +60,6 @@ SESSION_CONFIGS = [
         ],
         'display_name': 'Questionnaire only - RUSSIAN',
         'num_demo_participants': 1,
-        'use_browser_bots': False,
         'language': 'ru'},
     {
         'name': 'questionnaire_en',
@@ -74,15 +69,13 @@ SESSION_CONFIGS = [
         ],
         'display_name': 'Questionnaire only - ENGLISH',
         'num_demo_participants': 1,
-        'use_browser_bots': False,
+
         'language': 'en'},
     {**uni_trust,
      'city_code': '01',
      'name': 'full_en',
      'display_name': 'Full  DEMO! Moscow - ENGLISH',
-     'cq': True,
-     'debug': True,
-     'use_browser_bots': False,
+
      'language': 'en',
      'app_sequence': [
          'sorter',
@@ -95,9 +88,6 @@ SESSION_CONFIGS = [
      'city_code': '01',
      'name': 'full_ru',
      'display_name': 'Full  DEMO! Moscow - RUSSIAN',
-     'cq': True,
-     'debug': True,
-     'use_browser_bots': False,
      'language': 'ru',
      'app_sequence': [
          'sorter',
@@ -140,7 +130,6 @@ INSTALLED_APPS = [
 EXTENSION_APPS = ['trust', 'mingle', 'tolokaregister']
 MIDDLEWARE_CLASSES = ['django.middleware.locale.LocaleMiddleware', ]
 USE_I18N = True
-
 
 WEBPACK_LOADER = {
     'DEFAULT': {

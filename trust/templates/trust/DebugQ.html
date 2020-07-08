@@ -1,0 +1,11 @@
+{% extends "global/Page.html" %}
+{% load otree i18n  %}
+
+{% block title %}
+    {% trans 'Ваши комментарии' %}
+{% endblock %}
+
+{% block content %}
+    {% formfields %}
+    {% next_button %}
+{% endblock %}
