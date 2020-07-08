@@ -134,9 +134,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"
                 integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
         <script>
-            const cities_full = {{ Constants.cities|json }}
-                let
-            cities = _.filter(cities_full, 'lat')
+            const cities_full = {{ Constants.cities|json }};
+            let cities = _.filter(cities_full, 'lat');
             cities = _.map(cities, i => {
                 i.name = i.name.trim().split(' ')[0];
                 return i

@@ -29,7 +29,7 @@ uni_trust = dict(
     use_browser_bots=False,
     display_name="trust: Intercity Russia",
     num_demo_participants=2,
-    debug=False,
+    debug=True,
     app_sequence=[
         'sorter',
         'trust',

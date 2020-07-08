@@ -15,10 +15,15 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                {# BLOCK OF  MAP HERE:: #}
-                <div class="map"></div>
-                {# END BLOCK OF *MAP*  HERE:: #}
-                
+
+                <style>
+                    .modalmap {
+                        zoom: 1 !important;
+                    }
+                </style>
+                <div id="template_map" class="modalmap map my-3"></div>
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

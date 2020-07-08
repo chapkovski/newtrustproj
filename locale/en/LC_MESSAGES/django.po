@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-08 13:02-0400\n"
+"POT-Creation-Date: 2020-07-08 13:44-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgid "Please fix the errors in the form."
 msgstr "Пожалуйста внесите исправления в поля формы."
 
 #: _templates/global/includes/footer.html:10
-msgid "Это исследование проводится на базе"
+msgid "Это исследование проводится"
 msgstr "This study is conducted by "
 
 #: _templates/global/includes/footer.html:11
@@ -2769,7 +2769,7 @@ msgstr ""
 "You have to estimate whether or not your paired Person A transfers his "
 "initial endowment to you. "
 
-#: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:13       "
+#: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:13
 msgid ""
 "Поскольку в настоящий момент Вы не знаете, в каком городе находится Участник "
 "А из\n"
@@ -2782,7 +2782,7 @@ msgstr ""
 "from, you have to make your estimate for a Person A from each of the 12 "
 "cities that are involved in this experiment."
 
-#: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:29    "
+#: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:29
 msgid ""
 "Ваша оценка того, передал Вам Участник А из Вашей пары свою начальную сумму "
 "или же нет,\n"
