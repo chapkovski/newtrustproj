@@ -1,5 +1,7 @@
 from os import environ
 import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
@@ -10,7 +12,9 @@ print('GOOGLE_API', GOOGLE_API_KEY)
 SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=0.10, participation_fee=150.00, doc=""
 )
-
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 LANGUAGE_SESSION_KEY = '_language'
 import yaml
 
@@ -137,8 +141,7 @@ EXTENSION_APPS = ['trust', 'mingle', 'tolokaregister']
 MIDDLEWARE_CLASSES = ['django.middleware.locale.LocaleMiddleware', ]
 USE_I18N = True
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')
+
 WEBPACK_LOADER = {
     'DEFAULT': {
         # 'CACHE': not DEBUG,
