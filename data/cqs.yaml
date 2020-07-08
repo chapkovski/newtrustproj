@@ -186,7 +186,7 @@ cq2_4:
   text:
     rus: В Части 1, Участник А из города 1 передал свою начальную сумму Участнику Б из города 2, тогда как Участник Б из города 2, случайным образом определенный в пару к этому Участнику А, решил что этот Участник А НЕ передаст свою начальную сумму. Какой бонус в токенах получит этот Участник Б в Части 2?
     eng: In Part 1, a Person A from City 1 transferred his initial endowment to a randomly paired Person B from City 2. In Part 2, this Person B from City 2 estimated that the paired Person A from City 1 does NOT transfer the endowment. What is the bonus in Token of this Person B for Part 2?
-  correct: 10
+  correct: 0
   part: 2
   role: receiver
   wrong1:
@@ -200,7 +200,7 @@ cq2_5:
   text:
     rus: В Части 1, Участник А из города 3 передал свою начальную сумму Участнику Б из города 4, тогда как Участник Б из города 4, случайным образом определенный в пару к этому Участнику А, оценил что этот Участник А передаст свою начальную сумму. Какой бонус в токенах получит этот Участник Б в Части 2?
     eng: In Part 1, a Person A from City 3 transfers his initial endowment to a randomly paired Person B from City 4. In Part 2, this Person B from City 4 estimated that the paired Person A from City 3 does transfer his endowment. What is the bonus of this Person B for Part 2?
-  correct: 0
+  correct: 10
   part: 2
   role: receiver
   wrong1:
