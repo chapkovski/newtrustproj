@@ -2180,7 +2180,7 @@ msgid ""
 "            "
 msgstr ""
 "Important information: The instructions are always available to you in the "
-"course of the experiment if you click on the button Instructions – Part 2’ "
+"course of the experiment if you click on the button 'Instructions – Part 2’ "
 "at the top of the screen."
 
 #: trust/templates/trust/ExamplesStage2.html:25
