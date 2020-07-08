@@ -948,7 +948,7 @@ msgid ""
 msgstr ""
 "Please recall your decisions in Part 1 of the experiment. Participant A: "
 "whether to transfer the initial amount to participant B. Member B: do not "
-"return anything, return everything or return only part of 30 tokens. What "
+"return anything, return everything or return only part of 30 Token. What "
 "were you guided by when making these decisions? Why did you decide that way?"
 
 #: questionnaire/models.py:399
@@ -962,7 +962,7 @@ msgid ""
 "            Почему Вы решили именно так?"
 msgstr ""
 "Please recall your decisions in part 2 of the experiment. Member A: evaluate "
-"which part of the 30 tokens will participant B want to return. Member B: "
+"which part of the 30 Token will participant B want to return. Member B: "
 "Evaluate if Member A wanted to pass it on to you.initial amount. What were "
 "you guided by when making these decisions? Why did you decide that way?"
 
@@ -1973,7 +1973,7 @@ msgid ""
 msgstr ""
 "Your reward in these parts is calculated in a special currency called Token. "
 "Each Token is converted into USD$ at the exchange rate of 1 Token = 0.10 US"
-"$. The bonus you receive is at least 0 Token (=0 US$) and at most 50 Tokens "
+"$. The bonus you receive is at least 0 Token (=0 US$) and at most 50 Token "
 "(= 5 US$). This money is paid to you as soon as we get decisions from you "
 "and another randomly chosen Toloka participant. "
 
@@ -2571,7 +2571,7 @@ msgstr ""
 #: trust/templates/trust/includes/instructions/sender_instructions_2.html:61
 #: trust/templates/trust/includes/instructions/sender_instructions_2.html:62
 msgid "токенов"
-msgstr "tokens"
+msgstr "Token"
 
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:13
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:34
@@ -2776,7 +2776,7 @@ msgid ""
 "            "
 msgstr ""
 "You have to estimate how many Token your paired Person B decides to return "
-"in case you transfer your initial endowmenT .  You need to estimate that "
+"in case you transfer your initial endowment .  You need to estimate that "
 "decision of Person B independently of whether you have actually transferred "
 "your endowment to him/her or not."
 
@@ -2903,7 +2903,7 @@ msgid ""
 "Вы решили вернуть 15 токенов, если Участник А из города 6 передаст Вам свою "
 "начальную сумму."
 msgstr ""
-"You decide to return 15 token in case Person A from City 6 transfers his "
+"You decide to return 15 Token in case Person A from City 6 transfers his "
 "endowment."
 
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:22
@@ -2967,7 +2967,7 @@ msgid ""
 "Вы решаете вернуть 9 токенов, если Участник А из города 8  передаст Вам свою "
 "начальную сумму."
 msgstr ""
-"You decide to return 9 token in case Person A from City 8 transfers his "
+"You decide to return 9 Token in case Person A from City 8 transfers his "
 "endowment."
 
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:38
@@ -3017,7 +3017,7 @@ msgid ""
 "        "
 msgstr ""
 "Because you do not know the city’s name where Person B from your pair is "
-"located, you have to make the decision whether to transfer 10 tokens or not "
+"located, you have to make the decision whether to transfer 10 Token or not "
 "12 times – one decision for a Person B from each of the 12 cities. You make "
 "your transfer decision for each city only once."
 
