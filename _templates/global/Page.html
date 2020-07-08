@@ -59,6 +59,7 @@
 
 {% block body_main %}
     {% get_current_language as LANGUAGE_CODE %}
+
     {{ form.media }}
     {% block progress %}
         {% include 'global/includes/progress.html' %}
@@ -73,6 +74,7 @@
         {% include 'global/includes/map_modal.html' %}
     {% endif %}
     <div class="otree-body container ">
+
         <h2 class="otree-title page-header">{% block title %}{% endblock %}</h2>
         {% if view.remaining_timeout_seconds != None %}
             {% include 'otree/includes/TimeLimit.html' with form_element_id="form" %}
@@ -141,8 +143,9 @@
                 return i
             })
         </script>
+         {% get_current_language as LANGUAGE_CODE %}
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key={{ Constants.GOOGLE_API_KEY }}&callback=initMaps&language=ru&region=RU">
+                src="https://maps.googleapis.com/maps/api/js?key={{ Constants.GOOGLE_API_KEY }}&callback=initMaps&language={{ LANGUAGE_CODE }}&region={{ LANGUAGE_CODE|upper }}">
         </script>
         <script>
             function initMaps() {
