@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 11:40-0400\n"
+"POT-Creation-Date: 2020-07-08 11:13-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2149,10 +2149,11 @@ msgstr ""
 msgid "Проверочные вопросы для части 1"
 msgstr "Comprehension Questions for Part 1"
 
-#: trust/templates/trust/CQ1.html:14
+#: trust/templates/trust/CQ1.html:15
 msgid ""
 "Пожалуйста, ответьте на следующие вопросы. Если Вам нужна помощь, пожалуйста "
-"обратитесь к инструкциям, кликнув на кнопку в верхней части экрана."
+"обратитесь к\n"
+"                инструкциям, кликнув на кнопку в верхней части экрана."
 msgstr ""
 "Please answer the following questions. In case you need support, please "
 "consult the instructions available by clicking on the button at the top of "
@@ -2315,16 +2316,17 @@ msgstr "Begin the study"
 msgid "Часть 2"
 msgstr "Part 2"
 
-#: trust/templates/trust/ReturnDecisionP.html:12
-msgid "Вам случайным образом выпала роль Участника Б. Ваши решения:"
-msgstr "You were randomly assigned the role of Participant B. Your decisions:"
+#: trust/templates/trust/ReturnDecisionP.html:10
+#: trust/templates/trust/SenderDecisionP.html:12
+msgid "Ваши решения:"
+msgstr "Your decisions:"
 
-#: trust/templates/trust/ReturnDecisionP.html:20
+#: trust/templates/trust/ReturnDecisionP.html:15
 msgid ""
 "Если  Участник А, с которым Вы  взаимодействуете в паре,  будет из города "
 msgstr "If participant А with whom you are paired is from City: "
 
-#: trust/templates/trust/ReturnDecisionP.html:24
+#: trust/templates/trust/ReturnDecisionP.html:19
 msgid ""
 "То сколько токенов Вы согласны вернуть этому Участнику А в том случае, если "
 "он(а) передаст Вам свою начальную сумму и Вы получите 30 токенов?"
@@ -2387,16 +2389,12 @@ msgstr ""
 msgid "Часть 1"
 msgstr "Part 1"
 
-#: trust/templates/trust/SenderDecisionP.html:14
-msgid "Вам случайным образом выпала роль Участника А. Ваши решения:"
-msgstr "You were randomly assigned the role of Participant А. Your decisions:"
-
-#: trust/templates/trust/SenderDecisionP.html:22
+#: trust/templates/trust/SenderDecisionP.html:17
 msgid ""
 "Если  Участник Б, с которым Вы   взаимодействуете в паре,  будет из города"
 msgstr "If participant B with whom you are paired is from City:"
 
-#: trust/templates/trust/SenderDecisionP.html:27
+#: trust/templates/trust/SenderDecisionP.html:22
 msgid ""
 "То согласны ли Вы передать свою начальную сумму в 10 токенов этому участнику "
 "Б?"
@@ -2533,7 +2531,7 @@ msgstr ""
 #: trust/templates/trust/includes/instructions/part2_examples_receiver.html:3
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:2
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:20
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:28
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:31
 msgid "Подсчет Вашего бонуса в части 2"
 msgstr "Calculation of your bonus in Part 2 "
 
@@ -2551,9 +2549,9 @@ msgstr ""
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:19
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:31
 #: trust/templates/trust/includes/instructions/part2_instructions_receiver.html:34
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:46
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:50
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:54
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:49
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:53
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:57
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:24
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:27
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:29
@@ -2630,31 +2628,31 @@ msgid "Ваш бонус в части 2: 0 токенов."
 msgstr "Your payoff in Part 2: 0 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:5
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:40
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:43
 msgid "Разница между Вашей оценкой и действительным решением Участника Б:"
 msgstr ""
 "Difference between your estimate and Person B’s actual return decision:"
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:6
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:41
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:44
 msgid "Ваш бонус в части 2:"
 msgstr "Your bonus in Part 2:"
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:10
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:45
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:48
 msgid ""
 "Разница равна 0 (Ваша оценка совпадает с решением Участника Б о возврате):"
 msgstr ""
 "The difference is 0 (Your estimate coincides with Person B’s return decision)"
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:14
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:49
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:52
 msgid "Разница больше 0, но не превышает плюс-минус 3 токена ."
 msgstr ""
 "The difference is larger than 0 but not larger than plus or minus 3 Token."
 
 #: trust/templates/trust/includes/instructions/part2_examples_sender.html:18
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:53
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:56
 msgid "Разница больше чем плюс-минус 3 токена."
 msgstr "The difference is larger than plus or minus 3 Token."
 
@@ -2674,7 +2672,7 @@ msgid ""
 "начальную сумму умноженную на 3.\n"
 "    "
 msgstr ""
-"You are randomly paired with a Person B from City 6 in Region 6 who decides "
+"You are randomly paired with a Person B from City 6 who decides "
 "to return 12 Token in case he receives 30 Token from Person A in City 2, i."
 "e. the endowment multiplied by 3."
 
@@ -2776,24 +2774,24 @@ msgid ""
 "            "
 msgstr ""
 "You have to estimate how many Token your paired Person B decides to return "
-"in case you transfer your initial endowment .  You need to estimate that "
+"in case you transfer your initial endowment.  You need to estimate that "
 "decision of Person B independently of whether you have actually transferred "
 "your endowment to him/her or not."
 
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:16
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:18
 msgid ""
 "Поскольку в настоящий момент Вы не знаете, в каком городе находится Участник "
 "Б из Вашей\n"
-"                пары, Вам надо дать эту оценку решения Участника Б 12 раз – "
-"по одному для каждого из 12 городов,\n"
-"                участвующих в этом эксперименте.\n"
-"            "
+"                    пары, Вам надо дать эту оценку решения Участника Б 12 "
+"раз – по одному для каждого из 12 городов,\n"
+"                    участвующих в этом эксперименте.\n"
+"                "
 msgstr ""
 "Since you at this moment do not know yet what city your paired Person B is "
 "located, you have to make your estimate for a Person B from each of the 12 "
 "cities that are involved in this experiment. "
 
-#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:33
+#: trust/templates/trust/includes/instructions/part2_instructions_sender.html:36
 msgid ""
 "Ваша оценка решения Участника Б из Вашей пары о возврате сравнивается с "
 "действительным\n"
@@ -3091,6 +3089,18 @@ msgid ""
 msgstr ""
 "You are randomly paired with a participant B from City 1 who states to "
 "return 9 Token in case you transfer your endowment."
+
+#: trust/templates/trust/includes/role_block.html:5
+msgid "Вам случайным образом выпала роль Участника "
+msgstr "You were randomly assigned the role of Participant "
+
+#~ msgid "Вам случайным образом выпала роль Участника Б. Ваши решения:"
+#~ msgstr ""
+#~ "You were randomly assigned the role of Participant B. Your decisions:"
+
+#~ msgid "Вам случайным образом выпала роль Участника А. Ваши решения:"
+#~ msgstr ""
+#~ "You were randomly assigned the role of Participant А. Your decisions:"
 
 #~ msgid "Часть 2. Дополнительные вопросы"
 #~ msgstr "Part 2. "

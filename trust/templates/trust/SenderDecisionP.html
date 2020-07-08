@@ -8,13 +8,8 @@
 
 {% block content %}
 
-    <div class="card my-3">
-        <div class="card-body">
-            <div class="lead">
-                {% trans 'Вам случайным образом выпала роль Участника А. Ваши решения:' %}
-            </div>
-        </div>
-    </div>
+    {% include 'trust/includes/role_block.html' %}
+    <h5>{% trans 'Ваши решения:' %}</h5>
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>

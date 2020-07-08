@@ -150,8 +150,8 @@ class IntroStage2(Page):
 
 page_sequence = [
     FirstWP,
-    Instructions1,
-    Instructions2,
+    # Instructions1,
+    # Instructions2,
     CQ1,
     IntroStage1,
     ShowMap,

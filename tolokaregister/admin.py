@@ -8,13 +8,15 @@ from .models import UpdParticipant, TolokaParticipant
 class PPAdmin(admin.ModelAdmin):
     def get_session_code(self, obj):
         return obj.session.code
+
     list_display = ('code', 'get_session_code', 'id_in_session')
-    exclude = ['vars']
+    readonly_fields = ['vars', 'label', 'mturk_assignment_id', 'mturk_worker_id', '_waiting_for_ids',
+                       '_current_form_page_url', '_timeout_expiration_time']
+
 
 @admin.register(UpdParticipant)
 class PAdmin(admin.ModelAdmin):
     fields = ['label', 'payoff']
-
 
 
 @admin.register(TolokaParticipant)
