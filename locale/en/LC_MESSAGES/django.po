@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-09 12:27-0400\n"
+"POT-Creation-Date: 2020-07-09 13:01-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,6 +49,7 @@ msgstr "Instructions – Part 1"
 
 #: _templates/global/includes/instructions1_modal.html:20
 #: _templates/global/includes/instructions2_modal.html:20
+#: _templates/global/includes/map_modal.html:34
 msgid "Закрыть"
 msgstr "Close"
 
@@ -56,6 +57,10 @@ msgstr "Close"
 #: _templates/global/includes/progress.html:26
 msgid "Инструкции - часть 2"
 msgstr "Instructions – Part 2"
+
+#: _templates/global/includes/map_modal.html:13
+msgid "12 городов, участвующих в эксперименте"
+msgstr "You can see 12 cities that participate in this study"
 
 #: _templates/global/includes/progress.html:12
 msgid "готово"
@@ -2407,11 +2412,8 @@ msgstr "Map of all cities where participants of this study are located."
 #: trust/templates/trust/ShowMap.html:11
 msgid ""
 "На этой карте Вы видите 12 городов, в которых находятся участники "
-"эксперимента. Эта карта\n"
-"                будет всегда доступна Вам по ходу эксперимента, если вы "
-"кликните на кнопку “показать карту” в верхней\n"
-"                части экрана.\n"
-"            "
+"эксперимента. Эта карта будет всегда доступна Вам по ходу эксперимента, если "
+"вы кликните на кнопку “Карта городов” в верхней части экрана."
 msgstr ""
 "On this map you see all 12 cities where participants in this experiment are "
 "located. This map will always be available to you in the course of the "
