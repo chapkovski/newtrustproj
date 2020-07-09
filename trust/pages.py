@@ -150,6 +150,7 @@ class IntroStage2(Page):
 class DebugQ(Page):
     form_model = 'player'
     form_fields = ['comment']
+
     def is_displayed(self):
         return self.session.config.get('debug', False)
 

@@ -1264,3 +1264,5 @@ class Player(BasePlayer):
                                         blank=True)
     occupation_parent = models.IntegerField(choices=Constants.OCCUPATION_PARENT_CHOICES, blank=True)
     occupation_child = models.IntegerField(choices=Constants.OCCUPATION_CHILD_CHOICES, blank=True)
+    comment = models.TextField(
+        label=_('Ваши комментарии относительно анкеты'))

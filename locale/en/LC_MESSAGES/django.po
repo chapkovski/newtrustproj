@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-09 12:11-0400\n"
+"POT-Creation-Date: 2020-07-09 12:27-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1767,6 +1767,10 @@ msgstr "Are you currently employed?"
 msgid "Являетесь ли вы в настоящее время самозанятым?"
 msgstr "Are you currently self-employed?"
 
+#: questionnaire/models.py:1268
+msgid "Ваши комментарии относительно анкеты"
+msgstr "Your comments about the questionnaire"
+
 #: questionnaire/pages.py:50
 msgid ""
 "Насколько вы согласны или не согласны с каждым из следующих утверждений о "
@@ -2016,10 +2020,6 @@ msgid "Б"
 msgstr "B"
 
 #: trust/models.py:50 trust/models.py:52
-#, fuzzy
-#| msgid ""
-#| "Не все Ваши ответы были правильными. Пожалуйста, прочтите еще раз "
-#| "инструкции в верхней части экрана, и исправьте свои ответы."
 msgid ""
 "Не все Ваши ответы были правильными. Пожалуйста, сверьтесь с инструкциями в "
 "верхней части экрана и исправьте ошибки."

@@ -1,7 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from .generic_pages import Page
 from django.conf import settings
-
+from trust.pages import DebugQ
 
 class IntroQ(Page):
     pass
@@ -362,5 +362,6 @@ page_sequence = [
     SelfDetermination,
     Values,
     Risk,
-    Personal2
+    Personal2,
+    DebugQ
 ]

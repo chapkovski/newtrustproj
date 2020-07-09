@@ -11,7 +11,9 @@ VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')
 GOOGLE_API_KEY = environ.get('GOOGLE_API_KEY')
 print('GOOGLE_API', GOOGLE_API_KEY)
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=0.10, participation_fee=150.00, doc=""
+    real_world_currency_per_point=0.10, participation_fee=150.00, doc="",
+    use_browser_bots=False,
+    debug=True,
 )
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
@@ -26,10 +28,10 @@ with open(r'./data/cqs.yaml') as file:
 
 uni_trust = dict(
     name='trust',
-    use_browser_bots=False,
+
     display_name="trust: Intercity Russia",
     num_demo_participants=2,
-    debug=True,
+
     app_sequence=[
         'sorter',
         'trust',
