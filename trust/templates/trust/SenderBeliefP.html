@@ -9,30 +9,36 @@
 
     <div class="card my-3">
         <div class="card-body">
-            {% blocktrans %}Пожалуйста оцените, сколько токенов Участник Б из вашей пары решит вернуть Вам если Вы передадите ему свою начальную сумму, независимо от того, передали ли Вы ему эту сумму или же нет.
+            {% blocktrans trimmed %}
+                Пожалуйста оцените, сколько токенов Участник Б из вашей пары решит вернуть Вам если Вы
+                передадите ему свою начальную сумму, независимо от того, передали ли Вы ему эту сумму или же нет.
             {% endblocktrans %}
         </div>
     </div>
-
+    <style>
+        .narrow{ width:70%}
+    </style>
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">
         <thead>
-        <th class="align-top">
-            {% trans 'Если  бы вы передали свою начальную сумму Участнику Б из города' %}
-
+        <th class="align-top  ">
+            <div class="narrow">
+                {% trans 'Если  бы вы передали свою начальную сумму Участнику Б из города' %}
+            </div>
 
         </th>
 
         <th class="align-top">
-            {% trans 'то согласно Вашей оценке,  сколько из 30 токенов  этот Участник Б решит вернуть Вам?' %}
-
+            <div class="narrow">
+                {% trans 'то согласно Вашей оценке,  сколько из 30 токенов  этот Участник Б решит вернуть Вам?' %}
+            </div>
         </th>
         </thead>
         <tbody>
         {% for f in formset %}
             <tr>
                 <td>
-                 {% if  LANGUAGE_CODE == 'en' %}
+                    {% if  LANGUAGE_CODE == 'en' %}
                         {{ f.instance.city.eng }}
                     {% else %}
                         {{ f.instance.city.description }}

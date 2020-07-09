@@ -2,7 +2,7 @@
 {% load otree  i18n %}
 
 {% block title %}
-   {% trans 'Часть 2. Дополнительный вопрос 2' %}
+   {% trans 'Часть 2. Дополнительные вопросы' %}
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,8 @@
         margin-bottom: 0px;
     }
     </style>
-    {% include 'trust/includes/extra_block.html' %}
+{#    {% include 'trust/includes/extra_block.html' %}#}
+    <h5>{% trans 'Дополнительный вопрос' %} 2</h5>
     <p>
         {% blocktrans trimmed %}Предположим, что 100 случайным образом выбранных Участников Б из каждого из 12 городов должны
             решить, сколько из 30 токенов они вернут Участникам А  из этого эксперимента. Согласно Вашей оценке, какую

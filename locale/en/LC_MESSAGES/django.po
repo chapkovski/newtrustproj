@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-09 13:24-0400\n"
+"POT-Creation-Date: 2020-07-09 15:10-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1932,17 +1932,17 @@ msgstr "Introduction"
 #: sorter/templates/sorter/Intro.html:16
 msgid ""
 "В этом эксперименте принимают участие зарегистрированные пользователи Яндекс "
-"Толока из разных регионов Российской Федерации. Все участники – реальные "
-"люди. Вы примете несколько решений, взаимодействуя в паре с другим "
-"участником эксперимента, случайным образом выбранным из числа пользователей "
-"Яндекс Толока."
+"Толока со всей Российской Федерации. Все участники – реальные люди. Вы "
+"примете несколько решений, взаимодействуя в паре с другим участником "
+"эксперимента, случайным образом выбранным из числа пользователей Яндекс "
+"Толока."
 msgstr ""
 "In this experiment, Russian Toloka participants from all over the Russian "
 "Federation interact. The participants are all real people. You will interact "
 "with another randomly chosen Toloka participant in a pair and both of you "
 "will make several decisions."
 
-#: sorter/templates/sorter/Intro.html:26
+#: sorter/templates/sorter/Intro.html:27
 msgid ""
 "Ваше вознаграждение за участие в размере $3 будет Выплачено Вам как только "
 "Вы\n"
@@ -1954,7 +1954,7 @@ msgstr ""
 "after you have entered the correct code in the Toloka interface when the "
 "experiment is finished. "
 
-#: sorter/templates/sorter/Intro.html:31
+#: sorter/templates/sorter/Intro.html:32
 msgid ""
 "Эксперимент состоит из трех частей. В Части 1 и Части 2 Вы также сможете "
 "заработать\n"
@@ -1967,7 +1967,7 @@ msgstr ""
 "extra money which will be paid to you as a bonus in Toloka. Your total bonus "
 "will be the sum of what you earn in the first 2 parts of the experiment. "
 
-#: sorter/templates/sorter/Intro.html:36
+#: sorter/templates/sorter/Intro.html:37
 msgid ""
 "Ваше вознаграждение за эти две части измеряется в специальной валюте, "
 "называемой\n"
@@ -1986,7 +1986,7 @@ msgstr ""
 "(= 5 US$). This money is paid to you as soon as we get decisions from you "
 "and another randomly chosen Toloka participant. "
 
-#: sorter/templates/sorter/Intro.html:44
+#: sorter/templates/sorter/Intro.html:45
 msgid ""
 "Ваши решения в одной части эксперимента не повлияют на Ваш бонус по итогам "
 "другой\n"
@@ -1996,11 +1996,11 @@ msgstr ""
 "Your decisions in one part of the experiment do not influence your bonus in "
 "the other part."
 
-#: sorter/templates/sorter/Intro.html:50
+#: sorter/templates/sorter/Intro.html:51
 msgid ""
 "Некоторые участники этого эксперимента находятся в том же городе, что и Вы. "
 "Остальные участники находятся в одном из 11 других городов в 11 регионах со "
-"всей Российской Федерациии. Таким образом, всего в эксперименте "
+"всей Российской Федерации. Таким образом, всего в эксперименте "
 "взаимодействуют участники из 12 городов. Названия этих городов и регионов вы "
 "увидите когда начнется эксперимент."
 msgstr ""
@@ -2010,24 +2010,24 @@ msgstr ""
 "cities take part in this experiment. The names of the 12 cities (Regions) "
 "are shown when the experiment starts."
 
-#: sorter/templates/sorter/Intro.html:59
+#: sorter/templates/sorter/Intro.html:60
 msgid ""
-"Поскольку Вы взаимодействуете с реальными участниками из Яндекс Толока со "
-"всей Российской Федерации, разница во времени между городами, участвующими в "
-"этом эксперименте, может достигать 7 часов. Поэтому пожалуйста отнеситесь с "
-"пониманием к тому, что между Вашим  решением и решением другого участника из "
-"Толоки, с которым Вы взаимодействуете, может пройти некоторое время. Как "
+"Поскольку реальные участники из Яндекс Толока со всей Российской Федерации "
+"взаимодействуют между собой, разница во времени между городами, участвующими "
+"в этом эксперименте, может достигать 7 часов. Поэтому пожалуйста отнеситесь "
+"с пониманием к тому, что между Вашим  решением и решением другого участника "
+"из Толоки, с которым Вы взаимодействуете, может пройти некоторое время. Как "
 "сказано выше, Вы получите Ваш бонус как только Ваше решение будет "
 "сопоставлено с решением другого участника из Толоки, выбранного случайным "
 "образом, что может занять до 24 часов."
 msgstr ""
-"Because you interact with real people recruited from Toloka all over the "
-"Russian Federation, time difference between the cities that are involved in "
-"this experiment can be up to 7 hours. So, please understand that some time "
-"may pass between  your decisions and the decisions of the other Toloka "
-"participant you interact with. As mentioned above, you will receive your "
-"bonus as soon as your decision is matched with the decision of another "
-"randomly chosen Toloka participant, which can take up to 24 hours."
+"Because real people recruited from Toloka from all over Russia interact, "
+"time difference between the cities that are involved in this experiment can "
+"be up to 7 hours. So, please understand that some time may pass between  "
+"your decisions and the decisions of the other Toloka participant you "
+"interact with. As mentioned above, you will receive your bonus as soon as "
+"your decision is matched with the decision of another randomly chosen Toloka "
+"participant, which can take up to 24 hours."
 
 #: trust/models.py:44
 msgid "А"
@@ -2079,9 +2079,14 @@ msgstr ""
 msgid "Перейти к части 2"
 msgstr "Continue with Part 2"
 
-#: trust/templates/trust/Average2.html:5
-msgid "Часть 2. Дополнительный вопрос 1"
-msgstr "Part 2. Additional question 1"
+#: trust/templates/trust/Average2.html:5 trust/templates/trust/Average3.html:5
+msgid "Часть 2. Дополнительные вопросы"
+msgstr "Part 2. Additional questions "
+
+#: trust/templates/trust/Average2.html:15
+#: trust/templates/trust/Average3.html:15
+msgid "Дополнительный вопрос"
+msgstr "Additional question"
 
 #: trust/templates/trust/Average2.html:17
 msgid ""
@@ -2112,11 +2117,7 @@ msgstr ""
 "what is your estimate of the number of these Persons A in each city who "
 "transfer their initial endowment to Persons B?"
 
-#: trust/templates/trust/Average3.html:5
-msgid "Часть 2. Дополнительный вопрос 2"
-msgstr "Part 2. Additional question 2"
-
-#: trust/templates/trust/Average3.html:16
+#: trust/templates/trust/Average3.html:17
 msgid ""
 "Предположим, что 100 случайным образом выбранных Участников Б из каждого из "
 "12 городов должны решить, сколько из 30 токенов они вернут Участникам А  из "
@@ -2128,7 +2129,7 @@ msgstr ""
 "experiment. What is your estimate of the average amount Persons B in each "
 "city do return? "
 
-#: trust/templates/trust/Average3.html:21
+#: trust/templates/trust/Average3.html:22
 msgid ""
 "Пожалуйста, впишите свою оценку (целое число от 0 до 30) в каждую строку "
 "таблицы."
@@ -2136,11 +2137,11 @@ msgstr ""
 "Please enter your estimated integer number (from 0 to 30) in each row of the "
 "table."
 
-#: trust/templates/trust/Average3.html:27
+#: trust/templates/trust/Average3.html:28
 msgid "100 случайно выбранных Участников Б из города"
 msgstr "If the 100 randomly selected Persons B are participants from… "
 
-#: trust/templates/trust/Average3.html:31
+#: trust/templates/trust/Average3.html:32
 msgid "согласно Вашей оценке, в среднем вернут Участникам А сумму"
 msgstr ""
 "what is your estimate of the average amount Persons B in each City do "
@@ -2386,20 +2387,19 @@ msgstr ""
 msgid ""
 "Пожалуйста оцените, сколько токенов Участник Б из вашей пары решит вернуть "
 "Вам если Вы передадите ему свою начальную сумму, независимо от того, "
-"передали ли Вы ему эту сумму или же нет.\n"
-"            "
+"передали ли Вы ему эту сумму или же нет."
 msgstr ""
 "Please estimate how many Token the paired Person B decides to return if you "
 "transfer your initial endowment, independently of whether you have actually "
 "done so or not."
 
-#: trust/templates/trust/SenderBeliefP.html:21
+#: trust/templates/trust/SenderBeliefP.html:26
 msgid "Если  бы вы передали свою начальную сумму Участнику Б из города"
 msgstr ""
 "If you had transferred your initial endowment to a Person B, who is a "
 "participant  from …:"
 
-#: trust/templates/trust/SenderBeliefP.html:27
+#: trust/templates/trust/SenderBeliefP.html:33
 msgid ""
 "то согласно Вашей оценке,  сколько из 30 токенов  этот Участник Б решит "
 "вернуть Вам?"
@@ -2951,8 +2951,8 @@ msgid "плюс"
 msgstr "plus"
 
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:28
-msgid "плюс передача 10 токенов х 3"
-msgstr "plus  Transfer of 10 multiplied by 3"
+msgid "передача 10 токенов х 3"
+msgstr "transfer of 0 multiplied by 3"
 
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:30
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:46
@@ -2994,8 +2994,8 @@ msgid "Участник А из города 8 решает не передав�
 msgstr "Person A from city 8 decides not to transfer his endowment."
 
 #: trust/templates/trust/includes/instructions/receiver_instructions_2.html:44
-msgid "плюс передача 0 токенов х 3"
-msgstr "plus transfer of 0 multiplied by 3"
+msgid "передача 0 токенов х 3"
+msgstr "transfer of 0 multiplied by 3"
 
 #: trust/templates/trust/includes/instructions/sender_instructions_1.html:4
 msgid ""
@@ -3115,6 +3115,12 @@ msgstr ""
 msgid "Вам случайным образом выпала роль Участника "
 msgstr "You were randomly assigned the role of Participant "
 
+#~ msgid "Часть 2. Дополнительный вопрос 1"
+#~ msgstr "Part 2. Additional question 1"
+
+#~ msgid "плюс передача 10 токенов х 3"
+#~ msgstr "plus  Transfer of 10 multiplied by 3"
+
 #~ msgid ""
 #~ "Поскольку Вы взаимодействуете  с реальным участником из Яндекс Толоки из "
 #~ "одного из 12 регионов России, разница во времени между городами, "
@@ -3149,6 +3155,3 @@ msgstr "You were randomly assigned the role of Participant "
 #~ msgid "Вам случайным образом выпала роль Участника А. Ваши решения:"
 #~ msgstr ""
 #~ "You were randomly assigned the role of Participant А. Your decisions:"
-
-#~ msgid "Часть 2. Дополнительные вопросы"
-#~ msgstr "Part 2. "
