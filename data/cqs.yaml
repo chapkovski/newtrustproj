@@ -28,7 +28,7 @@ cq1_2:
 cq1_3:
   extid: 3
   text:
-    rus: "Участник Б решает вернуть Участнику А 21 токенов. Сколько токенов получит Участник А от участника Б?"
+    rus: "Участник Б решает вернуть Участнику А 21 токен. Сколько токенов получит Участник А от участника Б?"
     eng: "Person B decides to return to Person A 21 Token. How many Token does Person A receive from Person B?"
   correct: 21
   part: 1
