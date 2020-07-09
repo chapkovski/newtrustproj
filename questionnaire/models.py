@@ -1242,6 +1242,7 @@ class Player(BasePlayer):
         else:
             attr = 'description'
         cities = [(int(i.get('code')), i.get(attr)) for i in q] + [(13, _('Другой'))]
+        print("JOPA", cities)
         return cities
 
     who_was_other_city_other = models.CharField(
