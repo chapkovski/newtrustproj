@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-09 10:56-0400\n"
+"POT-Creation-Date: 2020-07-09 11:17-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2015,19 +2015,19 @@ msgstr "A"
 msgid "Б"
 msgstr "B"
 
-#: trust/models.py:50
+#: trust/models.py:50 trust/models.py:52
+#, fuzzy
+#| msgid ""
+#| "Не все Ваши ответы были правильными. Пожалуйста, прочтите еще раз "
+#| "инструкции в верхней части экрана, и исправьте свои ответы."
 msgid ""
-"Не все Ваши ответы были правильными. Пожалуйста, прочтите еще раз инструкции "
-"в верхней части экрана, и исправьте свои ответы."
+"Не все Ваши ответы были правильными. Пожалуйста, сверьтесь с инструкциями в "
+"верхней части экрана и исправьте ошибки."
 msgstr ""
 "Not all your answers are correct. Please consult the instructions at the top "
 "of the screen and fix the errors."
 
-#: trust/models.py:51
-msgid "Некоторые ответы все еще не правильны. Пожалуйста, исправьте их."
-msgstr "Some answers are still incorrect. Please fix the errors."
-
-#: trust/models.py:53
+#: trust/models.py:54
 msgid ""
 "Ответы, отмеченные ниже все еще не правильны. Пожалуйста, ознакомьтесь с "
 "правильными  решениями и ответами и приступайте к {}"
@@ -2036,19 +2036,19 @@ msgstr ""
 "to find the correct solutions. Finally enter the correct solution into the "
 "box. You then will proceed to the {}. "
 
-#: trust/models.py:55
+#: trust/models.py:56
 msgid "эксперименту"
 msgstr "the experiment"
 
-#: trust/models.py:55
+#: trust/models.py:56
 msgid "2-й части эксперимента"
 msgstr "Part 2 of the experiment"
 
-#: trust/models.py:101
+#: trust/models.py:102
 msgid "Вы ввели неверный код для одного из городов!"
 msgstr "Wrong code for one of the cities"
 
-#: trust/models.py:141
+#: trust/models.py:142
 msgid "Все ли было понятно в инструкциях? С какими сложностями вы столкнулись?"
 msgstr "Were instructions clear? Have you had any technical issues?"
 
@@ -2068,14 +2068,10 @@ msgstr "Part 2. Additional question 1"
 #: trust/templates/trust/Average2.html:17
 msgid ""
 "Предположим, что 100 случайным образом выбранных Участников А из каждого из "
-"12 городов должны\n"
-"            решить, передавать ли им свои начальные суммы Участникам Б из "
-"этого эксперимента. Согласно Вашей оценке,\n"
-"            сколько из этих участников А в каждом из этих городов примет "
-"решение передать свою начальную сумму\n"
-"            Участникам Б?\n"
-"\n"
-"        "
+"12 городов должны решить, передавать ли им свои начальные суммы Участникам Б "
+"из этого эксперимента. Согласно Вашей оценке, сколько из этих участников А в "
+"каждом из этих городов примет решение передать свою начальную сумму "
+"Участникам Б?"
 msgstr ""
 "Assume that 100 randomly selected Persons A in each of the 12 cities have to "
 "decide on whether to transfer their endowments to Persons B from this "
@@ -2105,12 +2101,9 @@ msgstr "Part 2. Additional question 2"
 #: trust/templates/trust/Average3.html:16
 msgid ""
 "Предположим, что 100 случайным образом выбранных Участников Б из каждого из "
-"12 городов должны\n"
-"            решить, сколько из 30 токенов они вернут Участникам А  из этого "
-"эксперимента. Согласно Вашей оценке, какую\n"
-"            сумму в среднем вернут эти Участники Б из каждого из 12 "
-"городов?\n"
-"        "
+"12 городов должны решить, сколько из 30 токенов они вернут Участникам А  из "
+"этого эксперимента. Согласно Вашей оценке, какую сумму в среднем вернут эти "
+"Участники Б из каждого из 12 городов?"
 msgstr ""
 "Assume that 100 randomly selected Persons B in each of the 12 cities have to "
 "decide on how many out of the 30 Token to return to Persons A from this "
@@ -3106,6 +3099,9 @@ msgstr ""
 #: trust/templates/trust/includes/role_block.html:5
 msgid "Вам случайным образом выпала роль Участника "
 msgstr "You were randomly assigned the role of Participant "
+
+#~ msgid "Некоторые ответы все еще не правильны. Пожалуйста, исправьте их."
+#~ msgstr "Some answers are still incorrect. Please fix the errors."
 
 #~ msgid ""
 #~ "Поскольку Вы взаимодействуете с реальными участниками из Яндекс Толока со "
