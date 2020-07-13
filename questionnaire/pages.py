@@ -3,6 +3,7 @@ from .generic_pages import Page
 from django.conf import settings
 from trust.pages import DebugQ
 
+
 class IntroQ(Page):
     pass
 
@@ -78,9 +79,9 @@ class Trust(Page):
                           'trust_parliament',
                           'trust_regional_authorities',
                           'trust_local_authorities',
-                          'trust_charity',
-                          'trust_CIS',
-                          'trust_UN',
+                          # 'trust_charity',
+                          # 'trust_CIS',
+                          # 'trust_UN',
                       ]}
                      ]
 
@@ -107,29 +108,29 @@ class Trust(Page):
         'trust_parliament',
         'trust_regional_authorities',
         'trust_local_authorities',
-        'trust_charity',
-        'trust_CIS',
-        'trust_UN',
-        'dtrust'
+        # 'trust_charity',
+        # 'trust_CIS',
+        # 'trust_UN',
+        # 'dtrust'
     ]
 
 
 class Values(Page):
     joined_fields = [{
         "title": _(
-            'Ниже представлены краткие описание некоторых людей. До какой степени каждый из описанных людей похож или не похож на вас?:'),
+            'Вам кажется, что вы...:'),
         "fields": [
-            'similar_newideas',
-            'similar_wealthy',
-            'similar_safety',
-            'similar_hedonic',
-            'similar_renowned',
-            'similar_care_nearby',
-            'similar_adventurous',
-            'similar_correct',
-            'similar_care_environment',
-            'similar_tradition',
-            'similar_care_society',
+            'big5_1',
+            'big5_2',
+            'big5_3',
+            'big5_4',
+            'big5_5',
+            'big5_6',
+            'big5_7',
+            'big5_8',
+            'big5_9',
+            'big5_10',
+            'big5_11',
         ]},
 
         {"title": _("""Укажите, насколько то, о чем говорится ниже, заслуживает оправдания? Для ответа выберите значение на шкале от 1 до 10, 
@@ -146,17 +147,17 @@ class Values(Page):
 
     form_model = 'player'
     form_fields = [
-        'similar_newideas',
-        'similar_wealthy',
-        'similar_safety',
-        'similar_hedonic',
-        'similar_renowned',
-        'similar_care_nearby',
-        'similar_adventurous',
-        'similar_correct',
-        'similar_care_environment',
-        'similar_tradition',
-        'similar_care_society',
+        'big5_1',
+        'big5_2',
+        'big5_3',
+        'big5_4',
+        'big5_5',
+        'big5_6',
+        'big5_7',
+        'big5_8',
+        'big5_9',
+        'big5_10',
+        'big5_11',
 
         'justified_subsidies',
         'justified_freeride',
@@ -202,7 +203,7 @@ class StatedPreferences1(Page):
         'similar_trust',
         'trustful',
         'ready_help',
-        'dreadyhelp',
+        # 'dreadyhelp',
 
     ]
 

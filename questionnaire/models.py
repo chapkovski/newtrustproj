@@ -29,6 +29,15 @@ class Constants(BaseConstants):
     CITIES = [(int(i.get('code')), i.get('name')) for i in settings.CITIES] + [(13, _('Другой'))]
     GENDER_CHOICES = [[0, _('Мужской')], [1, _('Женский')]]
     IS_OCCUPIED_CHOICES = [[False, _('Нет')], [True, _('Да')]]
+    Big5 = [
+        [1, _('Полностью согласен')],
+        [2, _('Скорее согласен')],
+        [3, _('Ни то чтобы согласен - ни то чтобы нет')],
+        [3, _('Скорее не согласен')],
+        [4, _('Совершенно не согласен')],
+        HARD_TO_SAY_CHOICE
+    ]
+
     OCCUPATION_PARENT_CHOICES = [
         [1, _("Руководители")],
         (2, _("Специалисты высшего уровня квалификации")),
@@ -111,14 +120,15 @@ class Constants(BaseConstants):
     ]
     OCCUPATION_STATUS_CHOICES = [
         [1, _('Ученик средней школы, ПТУ')],
-        [2, _('Студент дневного вуза, техникума')],
-        [3, _('Не работаете по состоянию здоровья, инвалид')],
-        [4, _('Пенсионер и не работаете')],
-        [5, _('Находитесь в декретном отпуске')],
-        [6, _('Находитесь в официальном отпуске по уходу за ребенком до 3 - х лет с сохранением места')],
-        [7, _('Домашняя хозяйка, ухаживаете за другими членами семьи, воспитываете детей')],
-        [8, _('Временно не работаете по другим причинам и ищете работу')],
-        [9, _('Временно не работаете по другим причинам и не хотите работать')],
+        [2, _('Студент дневного вуза, техникума ')],
+        [3, _('Аспирант, докторант университета, института')],
+        [4, _('Не работаете по состоянию здоровья, инвалид')],
+        [5, _('Пенсионер и не работаете')],
+        [6, _('Находитесь в декретном отпуске')],
+        [7, _('Находитесь в официальном отпуске по уходу за ребенком до 3 - х лет с сохранением места')],
+        [8, _('Домашняя хозяйка, ухаживаете за другими членами семьи, воспитываете детей')],
+        [9, _('Временно не работаете по другим причинам и ищете работу')],
+        [10, _('Временно не работаете по другим причинам и не хотите работать')],
         [14, _('Другое')],
         HARD_TO_SAY_CHOICE
     ]
@@ -631,64 +641,25 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect()
     )
 
-    # Values
-
-    similar_newideas = models.IntegerField(
-        label=_("""Для этого человека важно предлагать новые идеи, быть творческой личностью, идти своим путем"""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_wealthy = models.IntegerField(
-        label=_("""Для этого человека важно быть богатым,  иметь много денег и дорогих вещей"""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_safety = models.IntegerField(
-        label=_("""Для этого человека важно жить в безопасности, избегать всего, что может сулить опасность"""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_hedonic = models.IntegerField(
-        label=_("""Для этого человека важно хорошо проводить время, баловать себя"""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_renowned = models.IntegerField(
-        label=_("""Для этого человека важно быть очень успешным, чтобы окружающие знали о его достижениях"""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_adventurous = models.IntegerField(
-        label=_(
-            """Приключения и риск очень важны для этого человека, он стремится к жизни, полной захватывающих событий"""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_correct = models.IntegerField(
-        label=_(
-            """Для этого человека важно всегда вести себя правильно, не совершать поступков, которые люди не одобрили """),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_care_environment = models.IntegerField(
-        label=_("""Для этого человека важно заботиться об окружающей среде и природе"""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_tradition = models.IntegerField(
-        label=_("""Для этого человека важно следовать традициям и обычаям, принятым в его семье или религии"""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_care_society = models.IntegerField(
-        label=_("""Для этого человека важно делать что-то хорошее для общества."""),
-        choices=Constants.Similar6DNK
-    )
-
-    similar_care_nearby = models.IntegerField(
-        label=_("""Для этого человека важно  заботиться о близких ему людях"""),
-        choices=Constants.Similar6DNK
-    )
+    # Big 5
+    big5_1 = models.IntegerField(label='сдержанный человек', choices=Constants.Big5, widget=widgets.RadioSelect)
+    big5_2 = models.IntegerField(label='в целом доверчивый человек', choices=Constants.Big5, widget=widgets.RadioSelect)
+    big5_3 = models.IntegerField(label='добросовестный работник', choices=Constants.Big5, widget=widgets.RadioSelect)
+    big5_4 = models.IntegerField(label='умеете расслабляться, успешно справляетесь со cтрессами',
+                                 choices=Constants.Big5, widget=widgets.RadioSelect)
+    big5_5 = models.IntegerField(label='у вас живое воображение', choices=Constants.Big5, widget=widgets.RadioSelect)
+    big5_6 = models.IntegerField(label='вы открытый, общительный человек', choices=Constants.Big5,
+                                 widget=widgets.RadioSelect)
+    big5_7 = models.IntegerField(label='склонны искать недостатки у других', choices=Constants.Big5,
+                                 widget=widgets.RadioSelect)
+    big5_8 = models.IntegerField(label='склонны к лени', choices=Constants.Big5, widget=widgets.RadioSelect)
+    big5_9 = models.IntegerField(label='человек, которого легко расстроить, взволновать', choices=Constants.Big5,
+                                 widget=widgets.RadioSelect)
+    big5_10 = models.IntegerField(label='у вас мало творческих увлечений', choices=Constants.Big5,
+                                  widget=widgets.RadioSelect)
+    big5_11 = models.IntegerField(label='добрый, внимательный к окружающим человек', choices=Constants.Big5,
+                                  widget=widgets.RadioSelect)
+    # End of big 5
 
     justified_subsidies = models.IntegerField(
         label=_("""Получение государственных пособий, на которые у человека нет права"""),
@@ -1141,7 +1112,7 @@ class Player(BasePlayer):
     Khb_rank = models.CharField(
         label=_("""Харабовск и Хабаровский край""")
     )
-    rank_comment = models.LongStringField(label=_('Комментарий к вашему рейтингу'), blank=True)
+    rank_comment = models.LongStringField(label=_('Комментарий к вашему рейтингу (если есть)'), blank=True)
     regional_income = models.CharField(
         label=_(
             """Как Вы считаете, каков среднемесячный доход жителей Вашего региона? Напишите пожалуйста Вашу оценку (в рублях в месяц)""")
@@ -1236,7 +1207,7 @@ class Player(BasePlayer):
 
     def who_was_other_city_choices(self):
         user_language = self.session.config.get('language', settings.LANGUAGE_CODE)
-        q = City.objects.all().values()
+        q = City.objects.all().order_by('description').values()
         if user_language == 'en':
             attr = 'eng'
         else:
@@ -1264,4 +1235,4 @@ class Player(BasePlayer):
     occupation_parent = models.IntegerField(choices=Constants.OCCUPATION_PARENT_CHOICES, blank=True)
     occupation_child = models.IntegerField(choices=Constants.OCCUPATION_CHILD_CHOICES, blank=True)
     comment = models.TextField(
-        label=_('Ваши комментарии относительно анкеты'))
+        label=_('Если у вас есть комментарии относительно этого исследования, оставьте их ниже'), blank=True)

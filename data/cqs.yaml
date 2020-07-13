@@ -56,7 +56,7 @@ cq1_5:
   extid: 5
   text:
     eng: "What is the bonus of Person A in Token for Part 1 of the experiment if Person A transfers his initial endowment to Person B and Person B returns 9 Token to Person A?"
-    rus: "Какой бонус в токенах получит Участник А всего за Часть 1 эксперимента, если он передаст Участнику А свою начальную сумму, а Участник Б вернет Участнику А 9 токенов? "
+    rus: "Какой бонус в токенах получит Участник А всего за Часть 1 эксперимента, если он передаст Участнику Б свою начальную сумму, а Участник Б вернет Участнику А 9 токенов? "
   correct: 9
   part: 1
   wrong1:
