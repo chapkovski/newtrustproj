@@ -119,7 +119,7 @@ ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 DEMO_PAGE_INTRO_HTML = """ """
 
 SECRET_KEY = 'm1e8fnwh3#$v6xbng%$!jn_onduh(22hmzx$kt=$ch6+m6*lcg'
-
+SITE_ID = 1
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = [
     'otree',
@@ -127,6 +127,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'questionnaire',  # we need this only because we use generic pages from there.
     'mingle',  # this one is responsible for mingling.
+    'django.contrib.sites'
 
 ]
 EXTENSION_APPS = ['trust', 'mingle', 'tolokaregister']

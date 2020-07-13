@@ -10,7 +10,9 @@ specific_values = dict(age=13,
                        self_employed=False,
                        who_was_other_city=13)
 
-skipped_pages = [DebugQ]
+skipped_pages = []
+
+
 class PlayerBot(Bot):
 
     def play_round(self):
@@ -27,5 +29,5 @@ class PlayerBot(Bot):
                     yield Submission(page, fields, check_html=False)
                 else:
                     yield page, fields
-        if self.session.config.get('debug', False):
-            yield DebugQ, dict(comment='botcomment')
+
+

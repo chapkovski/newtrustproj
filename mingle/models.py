@@ -13,7 +13,7 @@ from django.db.models import (Count, F, Q, Max, Sum, Value, IntegerField, Case,
 from django.utils.safestring import mark_safe
 from .utils import time_check
 from django.urls import reverse
-
+from django.contrib.sites.models import Site
 
 class NotEnoughParticipants(ValueError):
     pass
@@ -362,6 +362,9 @@ class MegaParticipant(TrackerModel):
         return f'Megaparticipant {self.owner.code}'
 
     def get_absolute_url(self):
+        domain = Site.objects.get_current().domain
+        url = f'http://{domain}'
+        print('URL', url)
         return reverse('mega_participant_results', kwargs={'code': self.owner.code})
 
     @property

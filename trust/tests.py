@@ -92,5 +92,3 @@ class PlayerBot(Bot):
         yield Average3, self._create_data(name='averageonreturnbeliefs', field_name='average_belief_on_return',
                                           choice_set=Constants.receiver_choices)
 
-        if self.session.config.get('debug', False):
-            yield DebugQ,dict(comment='botcomment')

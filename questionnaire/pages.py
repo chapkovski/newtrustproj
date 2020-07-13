@@ -1,7 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from .generic_pages import Page
 from django.conf import settings
-from trust.pages import DebugQ
+
 
 
 class IntroQ(Page):
@@ -349,6 +349,11 @@ class Personal2(Page):
         return dict(GOOGLE_API_KEY=settings.GOOGLE_API_KEY)
 
 
+class LastQ(Page):
+    form_model = 'player'
+    form_fields = ['comment']
+
+
 page_sequence = [
     IntroQ,
     Motivation,
@@ -364,5 +369,5 @@ page_sequence = [
     Values,
     Risk,
     Personal2,
-    DebugQ
+    LastQ
 ]

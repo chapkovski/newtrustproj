@@ -147,12 +147,8 @@ class IntroStage2(Page):
 
 ############ END OF: INTROPATES #############################################################
 
-class DebugQ(Page):
-    form_model = 'player'
-    form_fields = ['comment']
 
-    def is_displayed(self):
-        return self.session.config.get('debug', False)
+
 
 
 page_sequence = [
@@ -173,5 +169,5 @@ page_sequence = [
     ReturnerBeliefP,
     Average2,
     Average3,
-    DebugQ,
+
 ]

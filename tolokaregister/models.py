@@ -6,7 +6,8 @@ import json
 
 # Some constants - mostly temporarily
 DEFAULT_BONUS_TITLE = 'Thanks!'
-DEFAULT_BONUS_MESSAGE = 'Thank you for your participation'
+DEFAULT_BONUS_MESSAGE = 'Спасибо за ваше участие! Вы можете ознакомиться с результатами по ссылке {}'
+
 """
 -  status (accept, reject, unknown, active, submitted, error)
 - Info (just a dump for response based on label of initial participant),  

@@ -257,11 +257,11 @@ class MegaParticipantDetail(DetailView):
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
         if not self.get_owner():
-            c['message'] = 'Sorry, the code is wrong'
+            c['message'] = 'Вы ввели неверный код'
             return c
         obj = self.get_object()
         if not obj or not (obj.group or obj.pseudogroup):
-            c['message'] = 'Sorry, no results yet.'
+            c['message'] = 'Процесс сбора данных еще не завершен. Вы будете проинформированы о вашем бонусе, как только мы соберем все данные.'
             return c
         if obj.group:
             decision = obj.decision(pseudo=False)

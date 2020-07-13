@@ -1,4 +1,5 @@
 {% extends 'mingle/MinglerBase.html' %}
+{% load otree %}
 {% block back %}
 
 {% endblock %}
@@ -22,41 +23,75 @@
                         <div class="card-body">
                             <table class="table table-hover table-striped ">
                                 <tr>
-                                    <td>Your code:</td>
+                                    <td>Ваш код:</td>
                                     <td>{{ p.owner.code }}</td>
 
                                 </tr>
                                 <tr>
-                                    <td>Your role:</td>
-                                    <td>Participant {{ p.player.role_desc }}</td>
+                                    <td>Ваша роль:</td>
+                                    <td>Участник {{ p.player.role_desc }}</td>
                                 </tr>
                                 <tr>
-                                    <td>You are from city:</td>
-                                    <td>{{ p.city.eng }}</td>
+                                    <td>Из города:</td>
+                                    <td>{{ p.city.description }}</td>
                                 </tr>
                                 <tr>
-                                    <td>You have been matched with participant from city:</td>
-                                    <td>{{ p.other.city.eng }}</td>
+                                    <td>Ваш партнер из города:</td>
+                                    <td>{{ p.other.city.description }}</td>
                                 </tr>
+
+
+
+                                {% if  p.role == 'sender' %}
+                                    <tr>
+                                        <td>Вы передали {{ p.other.player.role_desc }}:</td>
+                                        <td>{{ decision }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Участник {{ p.other.player.role_desc }} вернул вам:</td>
+                                        <td>{{ other_decision }}</td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td>Участник {{ p.other.player.role_desc }} передал вам:</td>
+                                        <td>{{ other_decision }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Вы вернули Участнику {{ p.other.player.role_desc }}:</td>
+                                        <td>{{ decision }}</td>
+                                    </tr>
+                                {% endif %}
+
                                 <tr>
-                                    <td>Your decision about Participant:</td>
-                                    <td>{{ decision }}</td>
+                                    <td>Ваш бонус (в токенах) за 1 часть:</td>
+                                    <td>{{ p.player.stage1payoff }}</td>
                                 </tr>
+
+                                {% if  p.role == 'sender' %}
+                                    <tr>
+                                        <td>Ваши ожидания о сумме, которую вернет {{ p.other.player.role_desc }}:</td>
+                                        <td>{{ belief }}</td>
+                                    </tr>
+
+                                {% else %}
+                                    <tr>
+                                        <td>Ваши ожидания о сумме, которую пошлет {{ p.other.player.role_desc }}:</td>
+                                        <td>{{ belief }}</td>
+                                    </tr>
+
+
+                                {% endif %}
                                 <tr>
-                                    <td>His decision:</td>
-                                    <td>{{  other_decision }}</td>
-                                </tr>
-                                <tr>
-                                    <td>You believed participant from this city would do:</td>
-                                    <td>{{ belief }}</td>
+                                    <td>Ваш бонус (в токенах) за 2 часть:</td>
+                                    <td>{{ p.player.stage2payoff }}</td>
                                 </tr>
 
                                 <tr>
-                                    <td>Your bonus in Token:</td>
+                                    <td>Ваш общий бонус (в токенах):</td>
                                     <td>{{ p.player.payoff }}</td>
                                 </tr>
-                                <tr>
-                                    <td>Your bonus in USD:</td>
+                                <tr class="font-weight-bold table-success">
+                                    <td>Ваш финальный бонус в USD:</td>
                                     <td>{{ p.owner.payoff_in_real_world_currency }}</td>
                                 </tr>
 
