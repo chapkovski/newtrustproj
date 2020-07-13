@@ -362,9 +362,6 @@ class MegaParticipant(TrackerModel):
         return f'Megaparticipant {self.owner.code}'
 
     def get_absolute_url(self):
-        domain = Site.objects.get_current().domain
-        url = f'http://{domain}'
-        print('URL', url)
         return reverse('mega_participant_results', kwargs={'code': self.owner.code})
 
     @property

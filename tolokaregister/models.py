@@ -3,10 +3,11 @@ from otree.models import Participant
 from enum import Enum
 from .toloka import TolokaClient
 import json
+from django.contrib.sites.models import Site
 
 # Some constants - mostly temporarily
-DEFAULT_BONUS_TITLE = 'Thanks!'
-DEFAULT_BONUS_MESSAGE = 'Спасибо за ваше участие! Вы можете ознакомиться с результатами по ссылке {}'
+DEFAULT_BONUS_TITLE = 'Cпасибо за ваше участие!'
+DEFAULT_BONUS_MESSAGE = 'Вы можете ознакомиться с результатами по ссылке {}'
 
 """
 -  status (accept, reject, unknown, active, submitted, error)
@@ -198,7 +199,14 @@ class TolokaParticipant(models.Model):
             # TODO:
             """We will customize these messages later """
             title = DEFAULT_BONUS_TITLE
-            message = DEFAULT_BONUS_MESSAGE
+            try:
+                domain = Site.objects.get_current().domain
+                mp = self.owner.megaparticipant.get_absolute_url()
+                url = f'http://{domain}{mp}'
+                message = DEFAULT_BONUS_MESSAGE.format(url)
+            except Exception as e:
+                print('ERROR IN BONUS PAYMENT', e)
+                message = DEFAULT_BONUS_TITLE
             resp = client.pay_bonus(user_id, bonus, title, message)
             self.bonus_paid = True
             self.save()
