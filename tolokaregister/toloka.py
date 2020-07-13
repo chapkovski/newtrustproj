@@ -54,7 +54,7 @@ class TolokaClient:
     def get_headers(self):
         """getting authorization header, and open the possibility to inject other headers later."""
         headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json; charset=utf-8'
         }
         headers.update(self.get_authorization_header())
         return headers
@@ -81,7 +81,7 @@ class TolokaClient:
         if isinstance(payload, dict):
             payload = json.dumps(payload)
 
-        response = requests.request(method, url, headers=headers, data=payload)
+        response = requests.request(method, url, headers=headers, data=payload.encode('utf-8'))
         print('HEADERs', headers)
         print('URL', url)
         print("STATUS CODE", response.status_code)
