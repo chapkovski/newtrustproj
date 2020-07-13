@@ -133,6 +133,8 @@ INSTALLED_APPS = [
 
 ]
 EXTENSION_APPS = ['trust', 'mingle', 'tolokaregister']
+TOLOKA_API = environ.get('TOLOKA_API')
+SANDBOX_TOLOKA_API = environ.get('SANDBOX_TOLOKA_API')
 MIDDLEWARE_CLASSES = ['django.middleware.locale.LocaleMiddleware', ]
 USE_I18N = True
 
