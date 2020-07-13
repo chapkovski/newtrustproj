@@ -16,6 +16,8 @@ SESSION_CONFIG_DEFAULTS = dict(
     doc="",
     use_browser_bots=False,
     debug=False,
+    toloka=True,
+    toloka_sandbox=True
 )
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
