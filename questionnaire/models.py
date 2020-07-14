@@ -970,7 +970,7 @@ class Player(BasePlayer):
     )
 
     Khb_been = models.BooleanField(
-        label=_("""Харабовск и Хабаровский край"""),
+        label=_("""Хабаровск и Хабаровский край"""),
         choices=Constants.BEEN_CHOICES,
         widget=widgets.RadioSelectHorizontal()
     )
@@ -1056,7 +1056,7 @@ class Player(BasePlayer):
 
     Khb_source = models.StringField(
         widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
-                               label=_("""Харабовск и Хабаровский край"""))
+                               label=_("""Хабаровск и Хабаровский край"""))
     )
     relative_position_in_region = models.IntegerField(
         label=_('Ваш средний ежемесячный доход'),
@@ -1107,7 +1107,7 @@ class Player(BasePlayer):
     )
 
     Khb_rank = models.CharField(
-        label=_("""Харабовск и Хабаровский край""")
+        label=_("""Хабаровск и Хабаровский край""")
     )
     rank_comment = models.LongStringField(label=_('Комментарий к вашему рейтингу (если есть)'), blank=True)
     regional_income = models.CharField(
