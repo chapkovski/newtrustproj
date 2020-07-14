@@ -385,10 +385,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    def creating_session(self):
-        for p in self.get_players():
-            p.payoff = 15
-            p.participant.vars[_('questionnaire_payoff')] = p.payoff.to_real_world_currency(self.session)
+    pass
 
 
 class Group(BaseGroup):
