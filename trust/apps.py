@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from django.db.utils import OperationalError
+from django.db.utils import OperationalError,ProgrammingError
 from django.conf import settings
 import logging
 
@@ -14,6 +14,7 @@ class TrustConfig(AppConfig):
                 City.objects.get_or_create(code=i['code'], defaults={'description': i['name'],
                                                                      'eng': i['eng']})
 
-        except OperationalError:
+        except (OperationalError,ProgrammingError) as e:
+            logger.warning(e)
             logger.warning('No city table found')
 
