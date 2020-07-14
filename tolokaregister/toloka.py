@@ -78,13 +78,12 @@ class TolokaClient:
 
     def request_to_toloka(self, url, method, payload, ):
         headers = self.get_headers()
-        print('!!!!PAYLOAD!!!!!!', payload)
-        print('!!!!PAYLOAD TYPE!!!!!!', type(payload))
-        print('!!!!PAYLOAD IS DICT!!!!!!', isinstance(payload, dict))
-        print('!!!!PAYLOAD IS STR!!!!!!', isinstance(payload, str))
 
         if isinstance(payload, dict):
-            payload = json.dumps(payload).encode('utf-8')
+            payload = json.dumps(payload)
+
+        if isinstance(payload, str):
+            payload = payload.encode('utf-8')
 
         response = requests.request(method, url, headers=headers, data=payload)
         print('HEADERs', headers)
