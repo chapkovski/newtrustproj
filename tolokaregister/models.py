@@ -7,7 +7,7 @@ from django.contrib.sites.models import Site
 
 # Some constants - mostly temporarily
 DEFAULT_BONUS_TITLE = 'Cпасибо за ваше участие!'
-DEFAULT_BONUS_MESSAGE = 'Вы можете ознакомиться с результатами по ссылке {}'
+DEFAULT_BONUS_MESSAGE = 'Cпасибо за ваше участие! Вы можете ознакомиться с результатами по ссылке {}'
 
 """
 -  status (accept, reject, unknown, active, submitted, error)
@@ -196,8 +196,7 @@ class TolokaParticipant(models.Model):
             client = TolokaClient(self.sandbox)
             user_id = self.toloka_user_id
             bonus = float(self.owner.payoff_in_real_world_currency())
-            # TODO:
-            """We will customize these messages later """
+
             title = DEFAULT_BONUS_TITLE
             try:
                 domain = Site.objects.get_current().domain
