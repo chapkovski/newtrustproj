@@ -79,9 +79,9 @@ class TolokaClient:
     def request_to_toloka(self, url, method, payload, ):
         headers = self.get_headers()
         if isinstance(payload, dict):
-            payload = json.dumps(payload)
+            payload = json.dumps(payload).encode('utf-8')
 
-        response = requests.request(method, url, headers=headers, data=payload.encode('utf-8'))
+        response = requests.request(method, url, headers=headers, data=payload)
         print('HEADERs', headers)
         print('URL', url)
         print("STATUS CODE", response.status_code)

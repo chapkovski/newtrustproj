@@ -42,8 +42,8 @@ cq1_3:
 cq1_4:
   extid: 4
   text:
-    rus: "Какой бонус в токенах получит Участник Б всего за Часть 1 эксперимента, если Участник А передаст ему свою начальную сумму, а Участник Б вернет Участнику А 9 токенов? "
-    eng: "What is the bonus of Person B in Token for Part 1 of the experiment if Person A transfers his initial endowment to Person B and Person B returns 9 Token to Person A? "
+    rus: "Какой бонус в токенах получит Участник Б всего за Часть 1 эксперимента, если Участник А передаст ему свою начальную сумму, а Участник Б вернет Участнику А 9 токенов?"
+    eng: "What is the bonus of Person B in Token for Part 1 of the experiment if Person A transfers his initial endowment to Person B and Person B returns 9 Token to Person A?"
   correct: 31
   part: 1
   wrong1:
@@ -56,7 +56,7 @@ cq1_5:
   extid: 5
   text:
     eng: "What is the bonus of Person A in Token for Part 1 of the experiment if Person A transfers his initial endowment to Person B and Person B returns 9 Token to Person A?"
-    rus: "Какой бонус в токенах получит Участник А всего за Часть 1 эксперимента, если он передаст Участнику Б свою начальную сумму, а Участник Б вернет Участнику А 9 токенов? "
+    rus: "Какой бонус в токенах получит Участник А всего за Часть 1 эксперимента, если он передаст Участнику Б свою начальную сумму, а Участник Б вернет Участнику А 9 токенов?"
   correct: 9
   part: 1
   wrong1:
@@ -69,7 +69,7 @@ cq1_6:
   extid: 6
   text:
     eng: "What is the bonus of Person A if Person A decides NOT to transfer his initial endowment to Person B?"
-    rus: "Какой бонус в токенах получит Участник А, если он решит НЕ передавать Участнику Б свою начальную сумму? "
+    rus: "Какой бонус в токенах получит Участник А, если он решит НЕ передавать Участнику Б свою начальную сумму?"
   correct: 10
   part: 1
   wrong1:
@@ -81,8 +81,8 @@ cq1_6:
 cq1_7:
   extid: 7
   text:
-    eng: "What is the bonus of Person B if Person A decides NOT to transfer his initial endowment to Person B? "
-    rus: "Какой бонус в токенах получит Участник Б, если Участник А решит НЕ передавать Участнику Б свою начальную сумму? "
+    eng: "What is the bonus of Person B if Person A decides NOT to transfer his initial endowment to Person B?"
+    rus: "Какой бонус в токенах получит Участник Б, если Участник А решит НЕ передавать Участнику Б свою начальную сумму?"
   correct: 10
   part: 1
   wrong1:
