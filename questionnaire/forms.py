@@ -6,7 +6,7 @@ from otree.api import widgets
 
 class UpdatedOtreeForm(ModelForm):
     def __init__(self, joined_fields, *args, view=None, **kwargs):
-        super().__init__(*args, **kwargs)
+        super().__init__(view=view, *args, **kwargs)
         if joined_fields:
             flattened_joined_fields = [i for j in joined_fields for i in j['fields']]
             self.joined_fields = joined_fields

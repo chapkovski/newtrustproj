@@ -1,0 +1,87 @@
+{% load i18n  otree %}
+<style>
+    .result {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .fixedbtn {
+        width: 100px
+    }
+
+    .card-wrapper {
+        max-width: 600px;
+    }
+</style>
+
+
+<div class="  d-flex">
+
+    <button class="btn btn-lg fixedbtn" role="button" type="button" id="backbtn" onclick="backward()">Назад</button>
+    <div class="result"></div>
+
+    <button class="btn btn-lg fixedbtn" role="button" type="button" id="forwardbtn" onclick="forward()">Вперед</button>
+
+</div>
+
+
+<script>
+    const instructions_array = {{ player.get_instruction_links|json }};
+    let initial_pointer = 0;
+</script>
+<script>
+    const bktbtn = $('#backbtn');
+    const fwdbtn = $('#forwardbtn');
+
+    function get_new(mypointer) {
+        const my_url_to_retrieve = instructions_array[mypointer]
+        $.ajax(my_url_to_retrieve).done(function (data) {
+            $(".result").html(data);
+        }).fail(function () {
+            console.debug('error!!')
+        });
+    }
+
+    const checkbtns = () => {
+        if (initial_pointer === 0) {
+
+            bktbtn.prop('disabled', true);
+        } else {
+            bktbtn.prop('disabled', false);
+        }
+        ;
+        if (initial_pointer >= instructions_array.length - 1) {
+
+            fwdbtn.prop('disabled', true);
+        } else {
+            fwdbtn.prop('disabled', false);
+        }
+        ;
+    }
+    checkbtns();
+    get_new(initial_pointer)
+
+    function backward() {
+        if (initial_pointer > 0) {
+            initial_pointer--;
+            get_new(initial_pointer)
+        }
+        ;
+        checkbtns();
+
+    }
+
+    function forward() {
+        if (initial_pointer < instructions_array.length - 1) {
+            initial_pointer++;
+            get_new(initial_pointer)
+        }
+        ;
+        checkbtns();
+
+    }
+
+
+</script>

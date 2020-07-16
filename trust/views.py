@@ -1,7 +1,7 @@
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, DetailView
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
-from .models import Decision
+from .models import Decision, Instruction, Player
 from django.http import HttpResponse
 from io import BytesIO
 from datetime import datetime
@@ -104,3 +104,28 @@ class PandasExport(View):
             return response
         else:
             return HttpResponseRedirect(reverse_lazy('ExportIndex'))
+
+
+class InstructionCard(DetailView):
+    """
+    Instruction card
+    """
+    url_pattern = 'instructions/<participant_code>/<card_number>'
+    url_name = 'instruction_card'
+    template_name = 'trust/includes/cards/main_card.html'
+    model = Instruction
+    context_object_name = 'card'
+
+    def get(self, request, *args, **kwargs):
+        r = super().get(request, *args, **kwargs)
+        self.object.seen += 1
+        self.object.save()
+        return r
+
+    def get_object(self, queryset=None):
+        all_player_cards = Instruction.objects.filter(
+            owner=Player.objects.get(participant__code=self.kwargs.get('participant_code')))
+        try:
+            return all_player_cards.get(page_number=self.kwargs.get('card_number'))
+        except  Instruction.DoesNotExist:
+            return all_player_cards.get(page_number=1)

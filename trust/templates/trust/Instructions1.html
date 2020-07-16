@@ -6,27 +6,8 @@
 {% endblock %}
 
 {% block content %}
-
-    {% include 'trust/includes/instructions/common_instructions.html' %}
-
-    <button class="btn-lg  nextbtn" id='next-btn' type="submit" disabled>{% trans 'Пожалуйста, прочитайте инструкции' %}</button>
-    <script>
-        const clickRegister = {'0': true};
-
-
-        const nextBtn = $('#next-btn');
-
-        $('.btn-link').click(function () {
-            clickRegister[this.dataset.partid] = true;
-            if (Object.keys(clickRegister).length >= 4) {
-
-                nextBtn.addClass('btn-danger');
-                nextBtn.html('{% trans 'Да, я прочитал(а) инструкции' %}')
-                nextBtn.attr('disabled', false);
-            }
-        })
-
-
-
-    </script>
+    <div class="my-3">
+        {% include 'trust/includes/card_block.html' %}
+    </div>
+    {% next_button %}
 {% endblock %}

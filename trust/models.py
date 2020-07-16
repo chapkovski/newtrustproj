@@ -8,9 +8,10 @@ from otree.api import (
     Currency as c,
     currency_range,
 )
-
+import os
 from django.db import models as djmodels
 from django.conf import settings
+from django.urls import reverse
 import random
 import json
 from mingle.utils import time_check
@@ -57,6 +58,7 @@ class Constants(BaseConstants):
     DEFAULT_CQ_ERROR = dict(rus='Пожалуйста, проверьте правильность вашего ответа.',
                             eng='Please, check your answer.')
     GOOGLE_API_KEY = settings.GOOGLE_API_KEY
+    num_instructions_blocks = 10
 
 
 def return_choices():
@@ -105,6 +107,8 @@ class Subsession(BaseSubsession):
         ps = self.player_set.all()
         cities = City.objects.all()
         cqs = []
+        instructions_to_add = []
+        # creating instruction trackers for players and decisions
         for p in ps:
             for d in decision_types:
                 ds = [Decision(city=city, owner=p, decision_type=d) for city in cities]
@@ -113,13 +117,12 @@ class Subsession(BaseSubsession):
                 cqs.append(CQ(source=k, part=v.get('part'),
                               role=v.get('role'),
                               owner=p))
+            inst = [Instruction(owner=p, page_number=i) for i in range(1, Constants.num_instructions_blocks + 1)]
+            instructions_to_add.extend(inst)
         ps.update(city=city_in)
         Decision.objects.bulk_create(decisions)
         CQ.objects.bulk_create(cqs)
-
-        # TODO: add requirements to plug toloka pool and project ids
-        # toloka_project_id
-        # toloka_pool_id
+        Instruction.objects.bulk_create(instructions_to_add)
 
 
 class Group(BaseGroup):
@@ -140,6 +143,10 @@ class Player(BasePlayer):
     cq2_counter = models.FloatField()
     comment = models.TextField(
         label=_('Все ли было понятно в инструкциях? С какими сложностями вы столкнулись?'))
+
+    def get_instruction_links(self):
+        instructions = [i.get_absolute_url() for i in self.instructions.all()]
+        return instructions
 
     def get_part2_instructions_path(self):
         return f'trust/includes/instructions/part2_instructions_{self.role()}.html'
@@ -303,3 +310,26 @@ class TimeTracker(djmodels.Model):
     get_time = djmodels.DateTimeField()
     post_time = djmodels.DateTimeField(null=True)
     seconds_on_page = models.IntegerField()
+
+
+class Instruction(djmodels.Model):
+    """Tracker that all instructions have been read"""
+    page_number = models.IntegerField()
+    owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="instructions")
+    seen = models.IntegerField(initial=0)
+
+    def __str__(self):
+        return f'Block {self.page_number} for player {self.owner.participant.code}, seen: {self.seen}'
+
+    def path(self):
+        tail = 'trust/includes/cards/card{}.html'
+        filled_tail = tail.format(self.page_number)
+        return filled_tail
+
+    def img_path(self):
+        return f'global/img/cards/card{self.page_number}.jpeg'
+
+    def get_absolute_url(self):
+        return reverse('instruction_card', kwargs=dict(participant_code=self.owner.participant.code,
+                                                       card_number=self.page_number
+                                                       ))
