@@ -9,5 +9,13 @@
     <div class="my-3">
         {% include 'trust/includes/card_block.html' %}
     </div>
-    {% next_button %}
+
+
+{% if instructions_read|default_if_none:False %}
+    <button class="btn-lg btn-danger " id='specificnextbtn' type="submit" >{% trans 'Да, я прочитал(а) инструкции'  %}</button>
+
+{% else %}
+    <button class="btn-lg  " id='specificnextbtn' type="submit" disabled>{% trans 'Пожалуйста, прочитайте инструкции' %}</button>
+{% endif %}
+
 {% endblock %}

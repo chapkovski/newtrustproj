@@ -35,6 +35,7 @@
     const bktbtn = $('#backbtn');
     const fwdbtn = $('#forwardbtn');
 
+
     function get_new(mypointer) {
         const my_url_to_retrieve = instructions_array[mypointer]
         $.ajax(my_url_to_retrieve).done(function (data) {
@@ -44,6 +45,13 @@
         });
     }
 
+    const enable_next_btn = () => {
+        const nextBtn = $('#specificnextbtn');
+        console.debug(nextBtn)
+        nextBtn.addClass('btn-danger');
+        nextBtn.html('{% trans 'Да, я прочитал(а) инструкции' %}')
+        nextBtn.attr('disabled', false);
+    }
     const checkbtns = () => {
         if (initial_pointer === 0) {
 
@@ -55,6 +63,7 @@
         if (initial_pointer >= instructions_array.length - 1) {
 
             fwdbtn.prop('disabled', true);
+            enable_next_btn()
         } else {
             fwdbtn.prop('disabled', false);
         }

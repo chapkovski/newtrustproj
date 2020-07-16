@@ -15,15 +15,16 @@ class FirstWP(WaitPage):
 
 
 class Instructions1(Page):
-    show_instructions = True
-    # show_instructions_1 = True
     form_model = 'player'
 
+    def instructions_read(self):
+        return not self.player.instructions.filter(seen=0).exists()
+
     def vars_for_template(self):
-        pass
+        return dict(instructions_read=self.instructions_read())
 
     def error_message(self, values):
-        if self.player.instructions.filter(seen=0).exists():
+        if not self.instructions_read():
             return 'NOT ALL INSTRUCTIONS READ!'
 
 
@@ -160,8 +161,8 @@ class IntroStage2(Page):
 page_sequence = [
     FirstWP,
     Instructions1,
-    Instructions2,
-    # CQ1,
+    # Instructions2,
+    CQ1,
     # IntroStage1,
     # ShowMap,
     # SenderDecisionP,
