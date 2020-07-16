@@ -1,109 +1,70 @@
 cq1_1:
   extid: 1
   text:
-    rus: Если Участник А передаст свою начальную сумму. Участнику Б, сколько токенов получит Участник Б?
-    eng: If Person A transfers his initial endowment to Person B how many Token does Person B receive?
+    rus: Если Участник А передаст свои 10 токенов Участнику Б, сколько токенов получит Участник Б?
+    eng: If Person A transfers his 10 tokens to Person B, how many Token does Person B receive?
   correct: 30
   part: 1
   wrong1:
-    rus: "Участник Б получает начальную сумму Участника А (10 токенов), умноженную на 3."
-    eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token."
+    rus: Сумма, переданная Участником А, умножается на 3.
+    eng: The amount transferred by Person A is multiplied by 3.
   wrong2:
-    rus: "Участник Б получает начальную сумму Участника А (10 токенов), умноженную на 3. Участник Б получит 10*3 = <b><u>30 токенов</b></u>."
-    eng: "The amount Person B receives: Transfer of Person A’s endowment multiplied by 3. Person A’s endowment: 10 Token. Person B receives 10*3 = <b><u>30 Token</b></u>."
+    rus: Участник А может передать только 10 токенов, поэтому Участник Б получит 10*3 = <b><u>30 токенов</b></u>.
+    eng: Person A can transfer only 10 token, so Person B receives 10*3 = <b><u>30 Token</b></u>.
 
 cq1_2:
   extid: 2
   text:
-    rus: "Участник А передал свою начальную сумму Участнику Б. Какую максимальную сумму может Участник Б вернуть обратно Участнику А?"
-    eng: "Person A transfers his initial endowment to Person B. What is the maximum amount Person B can return to Person A?"
+    rus: Если участник А передал свои 10 токенов Участнику Б, то какую максимальную сумму может Участник Б вернуть Участнику А?
+    eng: Suppose Person A transfers his 10 tokens to Person B. What is the maximum amount Person B can return to Person A?
   correct: 30
   part: 1
   wrong1:
-    rus: "Максимальная сумма, которую Участник Б может вернуть Участнику А, равна начальной сумме Участника А, умноженной на 3. Начальная сумма Участника А составляет 10 токенов"
-    eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment:  10 Token."
+    rus: Участник Б может вернуть Участнику А только то, что ему досталось от Участника А, но не свои начальные 10 токенов.
+    eng: Person B can return to Person A only the amount he got by way of Person A, but not his initial 10 Token.
   wrong2:
-    rus: "Максимальная сумма, которую Участник Б может вернуть Участнику А, равна начальной сумме Участника А, умноженной на 3. Начальная сумма Участника А составляет 10 токенов. Участник Б может вернуть максимум 10*3 = <b><u>30 токенов</b></u>."
-    eng: "Person B can maximally return to Person A the transferred endowment of Person A multiplied by 3. Person A’s endowment: 10 Token. Person B can maximally return 10*3 = <b><u>30 Token</b></u>."
+    rus: Участник Б получил от Участника А 10*3=<b><u>30 токенов</b></u>, и больше вернуть он не может.
+    eng: Person B received by way of Person A10*3 = <b><u>30 Token</b></u>, which is the maximum he can return.
 cq1_3:
   extid: 3
   text:
-    rus: "Участник Б решает вернуть Участнику А 21 токен. Сколько токенов получит Участник А от участника Б?"
-    eng: "Person B decides to return to Person A 21 Token. How many Token does Person A receive from Person B?"
-  correct: 21
-  part: 1
-  wrong1:
-    rus: "Сумма в 21 токен, которые Участник Б возвращает Участнику А, не умножается ни на что."
-    eng: "The amount of 21 Token Person B returns to Person A is not multiplied."
-  wrong2:
-    rus: "Сумма в 21 токен, которые Участник Б возвращает Участнику А, не умножается ни на что. Участник А получит <b><u>21 токен</b></u>."
-    eng: "The amount of 21 Token Person B returns to Person A is not multiplied.
-          Person A receives the returned amount of <b><u>21 Token</b></u>."
-cq1_4:
-  extid: 4
-  text:
-    rus: "Какой бонус в токенах получит Участник Б всего за Часть 1 эксперимента, если Участник А передаст ему свою начальную сумму, а Участник Б вернет Участнику А 9 токенов?"
-    eng: "What is the bonus of Person B in Token for Part 1 of the experiment if Person A transfers his initial endowment to Person B and Person B returns 9 Token to Person A?"
+    rus: Сколько токенов всего получит Участник Б, если ему достанется 30 токенов от Участника А, и он решит вернуть Участнику А 9 токенов?
+    eng: How many tokens will Person B get overall if she received 30 token by way of Person A and decides to return to that Person A 9 Token?
   correct: 31
   part: 1
   wrong1:
-    rus: "Бонус Участника Б равен начальной сумме Участника А в 10 токенов, умноженной на 3, минус та сумма, которую он вернет Участнику А, плюс начальная сумма Участника Б в 10 токенов."
-    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token."
+    rus: У Участника Б будет то что он оставил себе плюс начальные 10 токенов
+    eng: Person B will have whatever he kept for himself plus the initial amount of 10 Token.
   wrong2:
-    rus: "Бонус Участника Б равен начальной сумме Участника А в 10 токенов, умноженной на 3, минус та сумма, которую он вернет Участнику А, плюс начальная сумма Участника Б в 10 токенов. Ответ 10*3 – 9 + 10 = <b><u>31 токен</b></u>."
-    eng: "The bonus of Person B: Person A’s transfer of 10 Token multiplied by 3 minus return amount of 9 Token plus B’s endowment of 10 Token = 10*3 – 9 + 10 = <b><u>31 Token</b></u>."
-cq1_5:
-  extid: 5
+    rus: Участник Б оставил себе 30-9=21 токен. Считая вместе с начальными 10 токенами, он получит 30 – 9 + 10 = <b><u>31 токенов</b></u>.
+    eng: Person B will keep 30-9=21 token. Together with the initial 10 tokens, Person B will have 30 – 9 + 10 = <b><u>31 Token</b></u>.
+cq1_4:
+  extid: 4
   text:
-    eng: "What is the bonus of Person A in Token for Part 1 of the experiment if Person A transfers his initial endowment to Person B and Person B returns 9 Token to Person A?"
-    rus: "Какой бонус в токенах получит Участник А всего за Часть 1 эксперимента, если он передаст Участнику Б свою начальную сумму, а Участник Б вернет Участнику А 9 токенов?"
+    rus: Сколько токенов всего получит Участник А, если он передаст Участнику Б свои 10 токенов, а Участник Б вернет ему 9 токенов?
+    eng: How many tokens will Person A get overall if he transfers his 10 token to Person B and Person B returns 9 Token back to him?
   correct: 9
   part: 1
   wrong1:
-    rus: "Бонус Участника А равен его начальной сумме в 10 токенов минус его передача в  10 токенов Участнику Б плюс там сумма, которую Участник Б ему возвращает."
-    eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount."
+    rus: После передачи 10 токенов, у Участника А не останется токенов.
+    eng: After transfer of 1o token, Person A will not possess any token.
   wrong2:
-    rus: "Бонус Участника А равен его начальной сумме в 10 токенов минус его передача в  10 токенов плюс там сумма, которую Участник Б ему возввращает. Ответ 10 – 10 + 9 = <b><u>9 токенов</b></u>."
-    eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 10 Token plus return amount of 9 Token = 10 – 10 + 9 = <b><u>9 Token</b></u>"
-cq1_6:
-  extid: 6
-  text:
-    eng: "What is the bonus of Person A if Person A decides NOT to transfer his initial endowment to Person B?"
-    rus: "Какой бонус в токенах получит Участник А, если он решит НЕ передавать Участнику Б свою начальную сумму?"
-  correct: 10
-  part: 1
-  wrong1:
-    rus: "Бонус Участника А равен его начальной сумме в 10 токенов минус его передача в  0 токенов плюс та сумма, которую Участник Б ему вернет."
-    eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token."
-  wrong2:
-    rus: "Бонус Участника А равен его начальной сумме в 10 токенов минус его передача в  0 токенов плюс та сумма, которую Участник Б ему вернет.Ответ: 10 - 0 + 0 = <b><u>10 токенов</b></u>."
-    eng: "The bonus of Person A: Person A’s endowment of 10 Token minus transfer of 0 Token plus return amount of 0 Token = 10 – 0 + 0 = <b><u>10 Token</b></u>."
-cq1_7:
-  extid: 7
-  text:
-    eng: "What is the bonus of Person B if Person A decides NOT to transfer his initial endowment to Person B?"
-    rus: "Какой бонус в токенах получит Участник Б, если Участник А решит НЕ передавать Участнику Б свою начальную сумму?"
-  correct: 10
-  part: 1
-  wrong1:
-    rus: "Бонус Участника Б равен передаче Участника А в 0 токенов, умноженной на 3, минус возврат в 0 токенов плюс начальная сумма Участника Б в 10 токенов."
-    eng: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token."
-  wrong2:
-    rus: "Бонус Участника Б равен передаче Участника А в 0 токенов, умноженной на 3, минус возврат в 0 токенов плюс начальная сумма Участника Б в 10 токенов. Ответ 0*3 – 0 + 10 = <b><u>10 токенов</b></u>."
-    eng: "The bonus of Person B: Person A’s transfer of 0 Token multiplied by 3 minus return amount of 0 Token plus B’s endowment of 10 Token = 0*3 – 0 + 10 = <b><u>10 Token</b></u>."
+    rus: У Участника А будет только то, что вернет ему Участник Б, т.е. <b><u>9 токенов</b></u>.
+    eng: Person A will get only what is returned to him by Person B, i.e. <b><u>9 Token</b></u>.
+
 cq1_8:
-  extid: 8
+  extid: 5
   text:
-    eng: "Imagine you are randomly assigned the role of Person A. For how many participants in the role of Person B is your decision to transfer or not transfer your initial endowment relevant for calculating your bonus? "
-    rus: "Предположим, Вам случайным образом выпала роль роль Участника А. Для скольких Участников Б Ваше решение о передаче своей начальной суммы будет иметь значение для определения его бонуса?"
+    eng: If you are Person A, for how many Persons B is your decision to transfer or not transfer your 10 tokens  payoff-relevant?
+    rus: Если Вы - Участник А, то для каких Участников Б Ваше решение о передаче своих 10 токенов будет иметь значение для определения их вознаграждения?
   correct: 3
   part: 1
   wrong1:
-    rus: "Ваше решение о передаче начальной суммы имеет значение только для одного Участника Б – того, с кем вы действительно взаимодействуете."
-    eng: "Your decision to transfer or not transfer your initial endowment is relevant for the one Person B from the one city you are actually paired with."
+    rus: Участник, с которым Вы действительно взаимодействуете, определяется случайным образом.
+    eng: Person B with whom you interact is determined randomly.
   wrong2:
-    rus: "Ответ – для <b><u>1</b></u> случайно выбранного участника из одного из 12 городов, участвующих в исследовании."
-    eng: "<b><u>1</b></u> - a randomly chosen participant B from one of the 12 cities that are involved in this study."
+    rus: Ответ – <b><u>для 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании</b></u>.
+    eng: <b><u>1 - a randomly chosen participant B from one of the 12 cities that are involved in this study</b></u>.
   choices:
     - value: 1
       rus: 'Ни для кого.'
@@ -115,18 +76,18 @@ cq1_8:
       rus: 'Для 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании.'
       eng: '1 - a randomly chosen participant B from one of the 12 cities that are involved in this study. '
 cq1_9:
-  extid: 9
+  extid: 6
   text:
-    rus: 'Предположим, Вам случайным образом выпала роль Участника Б. Сколько Участников А примут решение о том, получите ли вы их утроенную начальную сумму?'
-    eng: 'Imagine you are randomly assigned the role of Person B. How many participants in the role of Person A decide on whether you actually receive their tripled initial endowment? '
+    rus: Если Вы - Участник Б, то от каких Участников А Вы можете получить 30 токенов?
+    eng: If you are Person B, from whom of the Persons A may you receive 30 tokens?
   correct: 2
   part: 1
   wrong1:
-    rus: 'Получение Вами начальной суммы, умноженной на 3, зависит только от одного Участника А – того, с кем вы действительно взаимодействуете.'
-    eng: ' Whether you actually receive the multiplied initial endowment is decided by the one Person A from the one city you are actually paired with.'
+    rus: Участник, с которым Вы действительно взаимодействуете, определяется случайным образом.
+    eng: Person B with whom you interact is determined randomly.
   wrong2:
-    rus: 'Ответ <b><u>1</b></u> – случайно выбранный участник из одного из 12 городов, принимающих участие в исследовании.'
-    eng: '<b><u>1</b></u> - a randomly chosen participant A from one of the 12 cities that are involved in this study.'
+    rus: Ответ – <b><u>для 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании</b></u>.
+    eng: <b><u>1 - a randomly chosen participant B from one of the 12 cities that are involved in this study</b></u>.
   choices:
     - value: 1
       rus: 'Для 12 – по одному из каждого города, участвующего в исследовании.'
@@ -135,7 +96,7 @@ cq1_9:
       rus: 'Для 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании.'
       eng: '1 - a randomly chosen participant B from one of the 12 cities that are involved in this study. '
     - value: 3
-      rus: 'Ни один не примет'
+      rus: Ни от кого не могу.
       eng: 'None '
 
 cq2_1:

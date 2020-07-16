@@ -45,7 +45,7 @@ class Constants(BaseConstants):
     roles = {'sender': _('А'), 'receiver': _('Б')}
     cities = settings.CITIES
     cqs = settings.CQS
-    max_cq_attempts = 2  # number of attempts after a person made an error in comp. question
+    max_cq_attempts = 1  # number of attempts after a person made an error in comp. question
     general_error_msg = {
         1: _(
             'Не все Ваши ответы были правильными. Пожалуйста, сверьтесь с инструкциями в верхней части экрана и исправьте ошибки.'),
@@ -58,7 +58,7 @@ class Constants(BaseConstants):
     DEFAULT_CQ_ERROR = dict(rus='Пожалуйста, проверьте правильность вашего ответа.',
                             eng='Please, check your answer.')
     GOOGLE_API_KEY = settings.GOOGLE_API_KEY
-    num_instructions_blocks = 10
+    num_instructions_blocks = 11
 
 
 def return_choices():
@@ -290,7 +290,6 @@ class CQ(djmodels.Model):
     def wrong_answer(self):
         lang = self.lang
         resp = [
-            Constants.DEFAULT_CQ_ERROR[lang],
             Constants.cqs[self.source]['wrong1'][lang],
             Constants.cqs[self.source]['wrong2'][lang]
         ]
