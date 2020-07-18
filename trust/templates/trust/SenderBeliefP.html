@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-
+    {% include 'trust/includes/role_block.html'  with random=False %}
     <div class="card my-3">
         <div class="card-body">
             {% blocktrans trimmed %}
@@ -16,7 +16,9 @@
         </div>
     </div>
     <style>
-        .narrow{ width:70%}
+        .narrow {
+            width: 70%
+        }
     </style>
     {{ formset.management_form }}
     <table class="table table-hover table-stripped table-sm ">

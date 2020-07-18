@@ -2,7 +2,12 @@
 <div class="card my-3  alert alert-primary">
     <div class="card-body">
         <div class="lead  font-weight-bold text-center ">
-            {% trans 'Вам случайным образом выпала роль Участника ' %} {{ player.role_desc }}.
+            {% if random|default_if_none:True %}
+                {% trans 'Вам случайным образом выпала роль Участника ' %} {{ player.role_desc }}.
+            {% else %}
+                {% trans 'Ваша роль -  Участник ' %} {{ player.role_desc }}.
+            {% endif %}
+
         </div>
     </div>
 </div>
