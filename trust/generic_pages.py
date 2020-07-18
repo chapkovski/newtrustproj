@@ -81,7 +81,7 @@ class InstructionPage(Page):
     form_model = 'player'
 
     def instructions_read(self):
-        return not self.player.get_instructions(part=1).filter(seen=0).exists()
+        return not self.player.get_instructions(part=self.part).filter(seen=0).exists()
 
     def vars_for_template(self):
         return dict(instructions_read=self.instructions_read())

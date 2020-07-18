@@ -4,17 +4,28 @@
 {% block title %}
     {% trans 'Часть 2. Инструкции' %}
 {% endblock %}
+{% block form_errors %}
+    <div class="otree-form-errors alert alert-danger">
+        {% for foo in form.non_field_errors %}
+            <div>
+                {{ foo|default_if_none:'' }}
+            </div>
+        {% endfor %}
 
+    </div>
+{% endblock %}
 {% block content %}
 
     <style>
-    .otree-body{margin-top:0px!important}
+        .otree-body {
+            margin-top: 0px !important
+        }
     </style>
     <div class="my-3">
         {% include 'trust/includes/card_block.html' with instruction_links=player.get_instructions_part2 %}
     </div>
 
-  {% if instructions_read|default_if_none:False %}
+    {% if instructions_read|default_if_none:False %}
         <button class="btn-lg btn-danger " id='specificnextbtn'
                 type="submit">{% trans 'Да, я прочитал(а) инструкции' %}</button>
 

@@ -102,8 +102,6 @@
 
     function get_new(mypointer) {
         const my_url_to_retrieve =  instructions_array[mypointer].img_path;
-        console.debug('JOPA', instructions_array[mypointer].page_number)
-        console.debug('JOssssPA', $(`[data-page_number=${instructions_array[mypointer].page_number}]`).data())
         $.ajax(my_url_to_retrieve).done(function (data) {
             $(".result").html(data);
             $('.counteritem').removeClass('activeitem')

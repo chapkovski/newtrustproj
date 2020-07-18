@@ -86,18 +86,18 @@ cq1_9:
     rus: Участник, с которым Вы действительно взаимодействуете, определяется случайным образом.
     eng: Person B with whom you interact is determined randomly.
   wrong2:
-    rus: Ответ – <b><u>для 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании</b></u>.
+    rus: Ответ – <b><u>от 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании</b></u>.
     eng: <b><u>1 - a randomly chosen participant B from one of the 12 cities that are involved in this study</b></u>.
   choices:
     - value: 1
-      rus: 'Для 12 – по одному из каждого города, участвующего в исследовании.'
-      eng: '12 - one per each city that is involved in this study'
+      rus: От 12 – по одному из каждого города, участвующего в исследовании.
+      eng: 12 - one per each city that is involved in this study
     - value: 2
-      rus: 'Для 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании.'
-      eng: '1 - a randomly chosen participant B from one of the 12 cities that are involved in this study. '
+      rus: От 1 случайно выбранного участника из одного из 12 городов, участвующих в исследовании.
+      eng: 1 - a randomly chosen participant B from one of the 12 cities that are involved in this study.
     - value: 3
       rus: Ни от кого не могу.
-      eng: 'None '
+      eng: None
 
 cq2_1:
   extid: A1
