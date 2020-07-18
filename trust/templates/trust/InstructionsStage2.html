@@ -6,11 +6,20 @@
 {% endblock %}
 
 {% block content %}
+
+    <style>
+    .otree-body{margin-top:0px!important}
+    </style>
     <div class="my-3">
         {% include 'trust/includes/card_block.html' with instruction_links=player.get_instruction_links_part2 %}
     </div>
 
-    <div class="my-3">
-        {% next_button %}
-    </div>
+  {% if instructions_read|default_if_none:False %}
+        <button class="btn-lg btn-danger " id='specificnextbtn'
+                type="submit">{% trans 'Да, я прочитал(а) инструкции' %}</button>
+
+    {% else %}
+        <button class="btn-lg d-none  " id='specificnextbtn' type="submit"
+                d-none>{% trans 'Пожалуйста, прочитайте инструкции' %}</button>
+    {% endif %}
 {% endblock %}

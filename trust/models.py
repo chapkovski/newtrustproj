@@ -61,9 +61,9 @@ class Constants(BaseConstants):
     # TODO
     tot_instructions_block = range(1, 20)
     num_instructions_blocks = dict(
-        part1=range(1, 12),
-        part2sender=range(12, 15),
-        part2receiver=range(16, 20)
+        part1=range(1, 14),
+        part2sender=[14, 15, 16],
+        part2receiver=[14, 17, 18]
     )
 
 

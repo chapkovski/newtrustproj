@@ -25,7 +25,7 @@ class Instructions1(Page):
 
     def error_message(self, values):
         if not self.instructions_read():
-            return 'NOT ALL INSTRUCTIONS READ!'
+            return 'Пожалуйста, дочитайте инструкции до конца'
 
 
 class Instructions2(Page):
@@ -56,7 +56,7 @@ class SenderBeliefP(FormSetMixin, SenderPage):
     formset = senderbelief_formset
     decision_type = 'sender_belief'
     show_instructions = True
-    show_instructions_1 = True
+
     show_instructions_2 = True
     show_map = True
 
@@ -65,7 +65,6 @@ class ReturnerBeliefP(FormSetMixin, ReturnerPage):
     formset = returnbelief_formset
     decision_type = 'receiver_belief'
     show_instructions = True
-    show_instructions_1 = True
     show_instructions_2 = True
     show_map = True
 
@@ -78,12 +77,7 @@ class CQ1(CQPage):
     show_instructions_1 = True
 
 
-class CQ2(CQPage):
-    part = 2
-    show_instructions = True
-    show_instructions_1 = True
-    show_instructions_2 = True
-    show_map = True
+
 
 
 ############ END OF: Comprehension questions #############################################################
@@ -94,7 +88,6 @@ class Average2(FormSetMixin, Page):
     formset = averagesendbelief_formset
     decision_type = 'average_on_send_belief'
     show_instructions = True
-    show_instructions_1 = True
     show_instructions_2 = True
     show_map = True
 
@@ -103,7 +96,6 @@ class Average3(FormSetMixin, Page):
     formset = averagereturnbelief_formset
     decision_type = 'average_on_return_belief'
     show_instructions = True
-    show_instructions_1 = True
     show_instructions_2 = True
     show_map = True
 
@@ -126,7 +118,6 @@ class IntroStage1(Page):
 class ShowMap(Page):
     show_instructions = True
     show_instructions_1 = True
-
     show_map = True
 
     def vars_for_template(self):
@@ -138,19 +129,27 @@ class AfterStage1(Page):
 
 
 class InstructionsStage2(Page):
-    pass
+    form_model = 'player'
+
+    def instructions_read(self):
+        return not self.player.get_instructions(part=2).filter(seen=0).exists()
+
+    def vars_for_template(self):
+        return dict(instructions_read=self.instructions_read())
+
+    def error_message(self, values):
+        if not self.instructions_read():
+            return 'Пожалуйста, дочитайте инструкции до конца'
 
 
 class ExamplesStage2(Page):
     show_instructions = True
-    show_instructions_1 = True
     show_instructions_2 = True
     show_map = True
 
 
 class IntroStage2(Page):
     show_instructions = True
-    show_instructions_1 = True
     show_instructions_2 = True
     show_map = True
 
@@ -163,7 +162,7 @@ page_sequence = [
     Instructions1,
     # CQ1,
     IntroStage1,
-    # ShowMap,
+    ShowMap,
     # SenderDecisionP,
     # ReturnDecisionP,
     # AfterStage1,
