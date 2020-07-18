@@ -6,41 +6,10 @@
 {% endblock %}
 
 {% block content %}
-    <div class="card my-3">
-        <div class="card-body">
-            {% with other=player.other_role_desc   role=player.role_desc %}
-                <p>
-                    {% blocktrans %}Сейчас мы опишем правила принятия решений в Части 2. {% endblocktrans %}
-                </p>
-                <p>
-                    {% blocktrans %}Все участники остаются в тех же самых ролях и парах, что и в Части 1. В Части 1 Вы
-                        были Участником {{ role }}, и Вы остаетесь в этой же роли в Части 2. Кроме того, с Вами в паре
-                        находится
-                        тот же самый Участник {{ other }} из того же города, что и в Части 1. {% endblocktrans %}
-                </p>
-                <p>
-                    {% blocktrans %}По итогам Части 2 Вы можете увеличить свой бонус, оценив решения Участника
-                        {{ other }} из
-                        вашей пары в Части 1. Чем ближе будет Ваша оценка к действительному решению этого Участника
-                        {{ other }},
-                        тем выше будет Ваш бонус в Части 2.{% endblocktrans %}
-                </p>
-                <p>
-                    {% blocktrans %}Как и в Части 1, Вы не знаете, в каком городе находится Участник {{ other }} из
-                        Вашей пары,
-                        Вам надо дать эту оценку 12 раз – по одному для каждого из 12 городов. Для каждого из городов
-                        оценка дается один раз.{% endblocktrans %}
-                </p>
-                <p>
-                    {% blocktrans %}Только одна из этих 12 оценок имеет значение при определении Вашего бонуса в Части
-                        2, а именно: оценка решения Участника {{ other }} из того города, с которым Вы действительно
-                        взаимодействуете.{% endblocktrans %}
-                </p>
-            {% endwith %}
-
-        </div>
+    <div class="my-3">
+        {% include 'trust/includes/card_block.html' with instruction_links=player.get_instruction_links_part2 %}
     </div>
-    {% include player.get_part2_instructions_path with in_popup=False %}
+
     <div class="my-3">
         {% next_button %}
     </div>

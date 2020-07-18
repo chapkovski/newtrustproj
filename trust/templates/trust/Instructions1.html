@@ -7,15 +7,17 @@
 
 {% block content %}
     <div class="my-3">
-        {% include 'trust/includes/card_block.html' %}
+        {% include 'trust/includes/card_block.html' with instruction_links=player.get_instruction_links_part1 %}
     </div>
 
 
-{% if instructions_read|default_if_none:False %}
-    <button class="btn-lg btn-danger " id='specificnextbtn' type="submit" >{% trans 'Да, я прочитал(а) инструкции'  %}</button>
+    {% if instructions_read|default_if_none:False %}
+        <button class="btn-lg btn-danger " id='specificnextbtn'
+                type="submit">{% trans 'Да, я прочитал(а) инструкции' %}</button>
 
-{% else %}
-    <button class="btn-lg  " id='specificnextbtn' type="submit" disabled>{% trans 'Пожалуйста, прочитайте инструкции' %}</button>
-{% endif %}
+    {% else %}
+        <button class="btn-lg  " id='specificnextbtn' type="submit"
+                disabled>{% trans 'Пожалуйста, прочитайте инструкции' %}</button>
+    {% endif %}
 
 {% endblock %}

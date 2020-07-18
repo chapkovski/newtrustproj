@@ -18,7 +18,7 @@ class Instructions1(Page):
     form_model = 'player'
 
     def instructions_read(self):
-        return not self.player.instructions.filter(seen=0).exists()
+        return not self.player.get_instructions(part=1).filter(seen=0).exists()
 
     def vars_for_template(self):
         return dict(instructions_read=self.instructions_read())
@@ -161,20 +161,17 @@ class IntroStage2(Page):
 page_sequence = [
     FirstWP,
     Instructions1,
-    # Instructions2,
-    CQ1,
-    # IntroStage1,
+    # CQ1,
+    IntroStage1,
     # ShowMap,
     # SenderDecisionP,
     # ReturnDecisionP,
     # AfterStage1,
-    # InstructionsStage2,
-    # ExamplesStage2,
-    # CQ2,
-    # IntroStage2,
-    # SenderBeliefP,
-    # ReturnerBeliefP,
-    # Average2,
-    # Average3,
+    InstructionsStage2,
+    IntroStage2,
+    SenderBeliefP,
+    ReturnerBeliefP,
+    Average2,
+    Average3,
 
 ]

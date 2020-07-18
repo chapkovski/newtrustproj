@@ -13,7 +13,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    {% include player.get_part2_instructions_path %}
+
+                    {% include 'trust/includes/card_block.html' with instruction_links=player.get_instruction_links_part2 %}
 
                 </div>
                 <div class="modal-footer">

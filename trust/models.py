@@ -58,7 +58,13 @@ class Constants(BaseConstants):
     DEFAULT_CQ_ERROR = dict(rus='Пожалуйста, проверьте правильность вашего ответа.',
                             eng='Please, check your answer.')
     GOOGLE_API_KEY = settings.GOOGLE_API_KEY
-    num_instructions_blocks = 11
+    # TODO
+    tot_instructions_block = range(1, 20)
+    num_instructions_blocks = dict(
+        part1=range(1, 12),
+        part2sender=range(12, 15),
+        part2receiver=range(16, 20)
+    )
 
 
 def return_choices():
@@ -117,7 +123,7 @@ class Subsession(BaseSubsession):
                 cqs.append(CQ(source=k, part=v.get('part'),
                               role=v.get('role'),
                               owner=p))
-            inst = [Instruction(owner=p, page_number=i) for i in range(1, Constants.num_instructions_blocks + 1)]
+            inst = [Instruction(owner=p, page_number=i) for i in Constants.tot_instructions_block]
             instructions_to_add.extend(inst)
         ps.update(city=city_in)
         Decision.objects.bulk_create(decisions)
@@ -144,15 +150,22 @@ class Player(BasePlayer):
     comment = models.TextField(
         label=_('Все ли было понятно в инструкциях? С какими сложностями вы столкнулись?'))
 
-    def get_instruction_links(self):
-        instructions = [i.get_absolute_url() for i in self.instructions.all()]
+    def get_instructions(self, part):
+
+        if part == 1:
+            page_numbers = list(Constants.num_instructions_blocks['part1'])
+        if part == 2:
+            page_numbers = list(Constants.num_instructions_blocks[f'part{part}{self.role()}'])
+        return self.instructions.filter(page_number__in=page_numbers)
+
+    def get_instruction_links_part1(self):
+
+        instructions = [i.get_absolute_url() for i in self.get_instructions(part=1)]
         return instructions
 
-    def get_part2_instructions_path(self):
-        return f'trust/includes/instructions/part2_instructions_{self.role()}.html'
-
-    def get_part2_examples_path(self):
-        return f'trust/includes/instructions/part2_examples_{self.role()}.html'
+    def get_instruction_links_part2(self):
+        instructions = [i.get_absolute_url() for i in self.get_instructions(part=2)]
+        return instructions
 
     def set_params(self):
         """create some params and decision sets that we can create before role assignment. Which are:
