@@ -2,7 +2,7 @@ from otree.api import Currency as c, currency_range
 from typing import Union, List, Any, Optional
 from ._builtin import WaitPage
 from questionnaire.generic_pages import Page
-from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage
+from .generic_pages import ReturnerPage, SenderPage, FormSetMixin, CQPage, InstructionPage
 from .models import City
 from .forms import (sender_formset, return_formset, returnbelief_formset, senderbelief_formset,
                     averagereturnbelief_formset, averagesendbelief_formset)
@@ -14,24 +14,8 @@ class FirstWP(WaitPage):
     after_all_players_arrive = 'set_players_params'
 
 
-class Instructions1(Page):
-    form_model = 'player'
-
-    def instructions_read(self):
-        return not self.player.get_instructions(part=1).filter(seen=0).exists()
-
-    def vars_for_template(self):
-        return dict(instructions_read=self.instructions_read())
-
-    def error_message(self, values):
-        if not self.instructions_read():
-            return 'Пожалуйста, дочитайте инструкции до конца'
-
-
-class Instructions2(Page):
-    show_instructions = True
-    show_instructions_1 = True
-    show_map = False
+class Instructions1(InstructionPage):
+    part = 1
 
 
 class SenderDecisionP(FormSetMixin, SenderPage, ):
@@ -75,9 +59,6 @@ class CQ1(CQPage):
     show_instructions = True
     show_map = False
     show_instructions_1 = True
-
-
-
 
 
 ############ END OF: Comprehension questions #############################################################
@@ -128,24 +109,11 @@ class AfterStage1(Page):
     pass
 
 
-class InstructionsStage2(Page):
-    form_model = 'player'
-
-    def instructions_read(self):
-        return not self.player.get_instructions(part=2).filter(seen=0).exists()
-
-    def vars_for_template(self):
-        return dict(instructions_read=self.instructions_read())
-
-    def error_message(self, values):
-        if not self.instructions_read():
-            return 'Пожалуйста, дочитайте инструкции до конца'
+class InstructionsStage2(InstructionPage):
+    part = 2
 
 
-class ExamplesStage2(Page):
-    show_instructions = True
-    show_instructions_2 = True
-    show_map = True
+
 
 
 class IntroStage2(Page):
@@ -160,17 +128,16 @@ class IntroStage2(Page):
 page_sequence = [
     FirstWP,
     Instructions1,
-    # CQ1,
+    CQ1,
     IntroStage1,
     ShowMap,
-    # SenderDecisionP,
-    # ReturnDecisionP,
-    # AfterStage1,
+    SenderDecisionP,
+    ReturnDecisionP,
+    AfterStage1,
     InstructionsStage2,
     IntroStage2,
     SenderBeliefP,
     ReturnerBeliefP,
     Average2,
     Average3,
-
 ]

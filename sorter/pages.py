@@ -3,6 +3,10 @@ from django.conf import settings
 
 class Intro(Page):
     pass
+class Intro2(Page):
+    pass
+class ExchangeRate(Page):
+    pass
 
 
 class Code(Page):
@@ -15,5 +19,7 @@ class Code(Page):
 
 page_sequence = [
     Intro,
+    Intro2,
+    ExchangeRate,
     Code
 ]

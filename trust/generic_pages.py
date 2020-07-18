@@ -74,3 +74,18 @@ class CQPage(Page):
         counter_name = f'cq{self.part}_counter'
         counter = self.get_cq_instances().aggregate(avg=Avg('counter'))['avg']
         setattr(self.player, counter_name, counter)
+
+
+class InstructionPage(Page):
+    part = None
+    form_model = 'player'
+
+    def instructions_read(self):
+        return not self.player.get_instructions(part=1).filter(seen=0).exists()
+
+    def vars_for_template(self):
+        return dict(instructions_read=self.instructions_read())
+
+    def error_message(self, values):
+        if not self.instructions_read() and not self.participant._is_bot:
+            return 'Пожалуйста, дочитайте инструкции до конца'

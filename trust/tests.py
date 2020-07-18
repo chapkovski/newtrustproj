@@ -59,7 +59,6 @@ class PlayerBot(Bot):
 
     def play_round(self):
         yield Instructions1
-        yield Instructions2
         yield CQ1, self._cq_data(CQ1)
         yield IntroStage1,
         yield ShowMap,
@@ -68,8 +67,6 @@ class PlayerBot(Bot):
                                                      choice_set=[0, Constants.endowment])
             yield AfterStage1
             yield InstructionsStage2
-            yield ExamplesStage2
-            yield CQ2, self._cq_data(CQ2)
             yield IntroStage2
             yield SenderBeliefP, self._create_data(name='senderbeliefs', field_name='belief_on_return',
                                                    choice_set=Constants.receiver_choices)
@@ -78,10 +75,6 @@ class PlayerBot(Bot):
                                                      choice_set=Constants.receiver_choices)
             yield AfterStage1
             yield InstructionsStage2
-            yield ExamplesStage2
-
-            yield CQ2, self._cq_data(CQ2)
-
             yield IntroStage2
             yield ReturnerBeliefP, self._create_data(name='returnerbeliefs', field_name='belief_on_send',
                                                      choice_set=[0, Constants.endowment])
