@@ -48,6 +48,10 @@
         margin: 6px;
         opacity: 0.5;
     }
+    .counteritem.activeitem {
+        background: darkblue;
+        opacity: 1;
+    }
 </style>
 
 <div class="d-flex flex-column">
@@ -67,7 +71,7 @@
             <div class="result"></div>
             <div class="d-flex paginator-wrapper">
                 {% for foo in instruction_links %}
-                    <div class="counteritem">&nbsp;</div>
+                    <div class="counteritem" data-page_number="{{ foo.page_number }}">&nbsp;</div>
                 {% endfor %}
             </div>
         </div>
@@ -97,9 +101,13 @@
 
 
     function get_new(mypointer) {
-        const my_url_to_retrieve = instructions_array[mypointer]
+        const my_url_to_retrieve =  instructions_array[mypointer].img_path;
+        console.debug('JOPA', instructions_array[mypointer].page_number)
+        console.debug('JOssssPA', $(`[data-page_number=${instructions_array[mypointer].page_number}]`).data())
         $.ajax(my_url_to_retrieve).done(function (data) {
             $(".result").html(data);
+            $('.counteritem').removeClass('activeitem')
+            $(`[data-page_number=${instructions_array[mypointer].page_number}]`).addClass('activeitem')
         }).fail(function () {
             console.debug('error!!')
         });

@@ -11,7 +11,7 @@
     .otree-body{margin-top:0px!important}
     </style>
     <div class="my-3">
-        {% include 'trust/includes/card_block.html' with instruction_links=player.get_instruction_links_part2 %}
+        {% include 'trust/includes/card_block.html' with instruction_links=player.get_instructions_part2 %}
     </div>
 
   {% if instructions_read|default_if_none:False %}

@@ -156,16 +156,17 @@ class Player(BasePlayer):
             page_numbers = list(Constants.num_instructions_blocks['part1'])
         if part == 2:
             page_numbers = list(Constants.num_instructions_blocks[f'part{part}{self.role()}'])
-        return self.instructions.filter(page_number__in=page_numbers)
+        return (self.instructions.filter(page_number__in=page_numbers))
 
-    def get_instruction_links_part1(self):
+    def _injecting_imgs(self, q):
+        res = [dict(page_number=i.page_number, img_path=i.get_absolute_url()) for i in q]
+        return res
 
-        instructions = [i.get_absolute_url() for i in self.get_instructions(part=1)]
-        return instructions
+    def get_instructions_part1(self):
+        return self._injecting_imgs(self.get_instructions(part=1))
 
-    def get_instruction_links_part2(self):
-        instructions = [i.get_absolute_url() for i in self.get_instructions(part=2)]
-        return instructions
+    def get_instructions_part2(self):
+        return self._injecting_imgs(self.get_instructions(part=2))
 
     def set_params(self):
         """create some params and decision sets that we can create before role assignment. Which are:
@@ -326,6 +327,7 @@ class TimeTracker(djmodels.Model):
 
 class Instruction(djmodels.Model):
     """Tracker that all instructions have been read"""
+
     page_number = models.IntegerField()
     owner = djmodels.ForeignKey(to=Player, on_delete=djmodels.CASCADE, related_name="instructions")
     seen = models.IntegerField(initial=0)
