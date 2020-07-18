@@ -2,9 +2,9 @@ import django.forms as forms
 from .models import Player, Decision, Constants, CQ
 from django.forms import inlineformset_factory, BaseModelFormSet, BaseInlineFormSet
 from otree.api import widgets
-
-forms.RadioSelect
 from django.db.models import Max
+
+DEFAULT_ERRMSG_FALLBACK = 'Проверьте правильность ваших ответов'
 
 
 class SelfCleaningMixin:
@@ -84,15 +84,16 @@ class CQForm(forms.ModelForm):
 
 
 class CQFormSet(BaseInlineFormSet):
-    def __init__(self,  *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         self.part = kwargs.pop('part')
         super().__init__(*args, **kwargs)
 
     def clean(self):
         if any(self.errors):
             mcounter = (self.queryset.aggregate(mcounter=Max('counter')))['mcounter']
-            error_part =  Constants.error_msg_parts.get(self.part, '')
-            general_msg = Constants.general_error_msg.get(mcounter).format(error_part)
+            error_part = Constants.error_msg_parts.get(self.part, '')
+
+            general_msg = Constants.general_error_msg.get(mcounter, DEFAULT_ERRMSG_FALLBACK).format(error_part)
             if general_msg:
                 raise forms.ValidationError(general_msg)
 

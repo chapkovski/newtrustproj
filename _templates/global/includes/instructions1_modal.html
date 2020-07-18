@@ -2,7 +2,9 @@
 
 <div class="my-3">
     <style>
-        .modal-lg{max-width: 850px}
+        .modal-lg {
+            max-width: 850px
+        }
     </style>
     <div class="modal fade " id="instructions1Modal" tabindex="-1" role="dialog"
          aria-labelledby="instructions1ModalLabel" aria-hidden="true">
@@ -26,3 +28,10 @@
         </div>
     </div>
 </div>
+<script>
+    $('#instructions1Modal').on('hidden.bs.modal', function (e) {
+        initial_pointer = 0;
+        get_new(initial_pointer)
+        checkbtns();
+    })
+</script>

@@ -59,7 +59,8 @@
 
 
 {% block body_main %}
-{% get_current_language as LANGUAGE_CODE %}
+
+    {% get_current_language as LANGUAGE_CODE %}
 
     {{ form.media }}
     {% block progress %}
@@ -80,29 +81,30 @@
         {% if view.remaining_timeout_seconds != None %}
             {% include 'otree/includes/TimeLimit.html' with form_element_id="form" %}
         {% endif %}
-        {% if form.errors %}
-
-            {% if not view.custom_general_error|default_if_none:False %}
-                {% if  view.lockable|default:False %}
+      {% if form.errors %}
+        {% block form_errors %}
 
 
+
+                {% if not view.custom_general_error|default_if_none:False %}
+                    {% if  view.lockable|default:False %}
+
+
+                    {% else %}
+                        <div class="otree-form-errors alert alert-danger">
+                            {% blocktrans trimmed %}Please fix the errors in the form.{% endblocktrans %}
+                            {{ form.non_field_errors|default_if_none:'' }}
+                        </div>
+                    {% endif %}
                 {% else %}
                     <div class="otree-form-errors alert alert-danger">
-                        {% blocktrans trimmed %}Please fix the errors in the form.{% endblocktrans %}
-                        {{ form.non_field_errors|default_if_none:'' }}
+                        {% block custom_error_msg %}
+                        {% endblock %}
                     </div>
                 {% endif %}
-            {% else %}
-                <div class="otree-form-errors alert alert-danger">
-                    {% block custom_error_msg %}
+        {% endblock %}
+      {% endif %}
 
-
-
-
-                    {% endblock %}
-                </div>
-            {% endif %}
-        {% endif %}
         <form action="" method="post" role="form" id="form" autocomplete="off">{% csrf_token %}
 
             <div class="_otree-content">{% block content %}{% endblock %}</div>
@@ -139,7 +141,7 @@
                 integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
         <script>
             const cities_full = {{ Constants.cities|json }};
-            const lang_dict = {ru:'name', en:'eng'};
+            const lang_dict = {ru: 'name', en: 'eng'};
             const cur_lang = "{{ LANGUAGE_CODE }}";
             const cur_field_name = lang_dict[cur_lang]
             let cities = _.filter(cities_full, 'lat');
