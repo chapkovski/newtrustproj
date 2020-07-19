@@ -9,7 +9,7 @@ from otree.api import models as omodels
 import pandas as pd
 from django.db.models.functions import Abs, Cast
 from django.db.models import (Count, F, Q, Max, Sum, Value, IntegerField, Case,
-                              When, OuterRef, Subquery, BooleanField, Avg, FloatField )
+                              When, OuterRef, Subquery, BooleanField, Avg, FloatField)
 from django.utils.safestring import mark_safe
 from .utils import time_check
 from django.urls import reverse
@@ -17,6 +17,8 @@ from django.contrib.sites.models import Site
 import logging
 
 logger = logging.getLogger(__name__)
+
+
 class NotEnoughParticipants(ValueError):
     pass
 
@@ -83,6 +85,7 @@ class MegaSession(TrackerModel):
                                                            owner__trust_player___role='receiver').values(
             'id')[:1])
         groups.update(sender=sender, receiver=receiver)
+
     @time_check
     def form_groups(self):
         """That takes all megaparticipants and create groups from the random pairs of Senders and receivers"""
@@ -104,7 +107,7 @@ class MegaSession(TrackerModel):
         smallest = list(smallest)
         random.shuffle(largest)
         unmatched = largest[len(smallest):]
-        if len(smallest)>=len(unmatched):
+        if len(smallest) >= len(unmatched):
             partners_for_unmatched = random.sample(smallest, len(unmatched))
         else:
             logger.warning('Len of partners is lower than len of unmatched!')
@@ -326,8 +329,9 @@ class MegaSession(TrackerModel):
 
     def payoff_stats(self):
         parts = self.megaparticipants.annotate(role=F('owner__trust_player___role'),
-                                               payoff=F('owner__payoff'),).\
-            values('role','city__eng', ).annotate(avpayoff=Cast(Avg('payoff'), output_field=FloatField())).order_by('role')
+                                               payoff=F('owner__payoff'), ). \
+            values('role', 'city__eng', ).annotate(avpayoff=Cast(Avg('payoff'), output_field=FloatField())).order_by(
+            'role')
         df = pd.DataFrame(parts)
         pd.reset_option('float_format')
 
@@ -336,7 +340,6 @@ class MegaSession(TrackerModel):
 
         return mark_safe(
             table.to_html(classes=['table', 'table-hover', 'table-striped', ]))
-
 
 
 class MegaParticipant(TrackerModel):

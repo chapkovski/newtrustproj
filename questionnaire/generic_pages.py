@@ -28,8 +28,8 @@ class Page(TransMixin, oTreePage):
         return super().get(*args, **kwargs)
 
     def post(self, *args, **kwargs):
-        if self.participant.is_browser_bot:
-            time.sleep(2)
+        # if self.participant.is_browser_bot:
+        #     time.sleep(2)
         try:
             t = TimeTracker.objects.get(owner=self.participant,
                                         page=self.__class__.__name__,
