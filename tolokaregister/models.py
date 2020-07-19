@@ -5,7 +5,9 @@ from .toloka import TolokaClient
 import json
 from django.contrib.sites.models import Site
 from trust.models import City
+import logging
 
+logger = logging.getLogger(__name__)
 # Some constants - mostly temporarily
 DEFAULT_BONUS_TITLE = 'Cпасибо за ваше участие!'
 DEFAULT_BONUS_MESSAGE = 'Cпасибо за ваше участие! Вы можете ознакомиться с результатами по ссылке {}'
@@ -227,7 +229,7 @@ class TolokaParticipant(models.Model):
                 url = f'http://{domain}{mp}'
                 message = DEFAULT_BONUS_MESSAGE.format(url)
             except Exception as e:
-                print('ERROR IN BONUS PAYMENT', e)
+                logger.error(f'Error in bonus payment for {self.toloka_user_id}, error: {str(e)}')
                 message = DEFAULT_BONUS_TITLE
 
             resp = client.pay_bonus(user_id, bonus, title, message)
