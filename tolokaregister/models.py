@@ -1,5 +1,5 @@
 from django.db import models
-from otree.models import Participant
+from otree.models import Participant, Session
 from enum import Enum
 from .toloka import TolokaClient
 import json
@@ -58,6 +58,14 @@ SANDBOX ASSIGNMENT EXAMPLE 000005e173--5eb766016ce18f023c602691
     }
 }
 """
+
+
+class UpdSession(Session):
+    class Meta:
+        proxy = True
+
+    def testtest(self):
+        return f'testest{self.code}'
 
 
 class UpdParticipant(Participant):
