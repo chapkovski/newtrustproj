@@ -1,20 +1,13 @@
-from django.views.generic import TemplateView, ListView, View, RedirectView
-from django.http import JsonResponse
+from django.views.generic import ListView, RedirectView
 from otree.models import Participant, Session
-from django.conf import settings
-import requests
-import json
-from .models import TolokaParticipant, UpdParticipant, StatusEnum
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
+from .models import TolokaParticipant, UpdParticipant, UpdSession
 from django.urls import reverse
-from django.forms.models import model_to_dict
 
 import json
 
 
 class TolokaSessionList(ListView):
-    model = Session
+    model = UpdSession
     url_pattern = 'tolokadata/sessions'
     url_name = 'toloka_sessions'
     display_name = 'Sessions run in Toloka'
@@ -22,7 +15,8 @@ class TolokaSessionList(ListView):
     context_object_name = 'tolokasessions'
 
     def get_queryset(self):
-        s = [o for o in Session.objects.all() if o.config.get('toloka')]
+        ss = self.model.objects.filter(is_demo=False)
+        s = [o for o in ss if o.config.get('toloka')]
         return s
 
 

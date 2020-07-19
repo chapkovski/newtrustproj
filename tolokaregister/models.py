@@ -4,6 +4,7 @@ from enum import Enum
 from .toloka import TolokaClient
 import json
 from django.contrib.sites.models import Site
+from trust.models import City
 
 # Some constants - mostly temporarily
 DEFAULT_BONUS_TITLE = 'Cпасибо за ваше участие!'
@@ -64,8 +65,15 @@ class UpdSession(Session):
     class Meta:
         proxy = True
 
-    def testtest(self):
-        return f'testest{self.code}'
+    def get_city(self):
+        city_code = self.config.get('city_code')
+        if city_code:
+            try:
+                city = City.objects.get(code=city_code).eng
+                return city
+            except (City.DoesNotExist, City.MultipleObjectsReturned):
+                pass
+
 
 
 class UpdParticipant(Participant):
