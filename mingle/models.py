@@ -108,7 +108,7 @@ class MegaSession(TrackerModel):
             partners_for_unmatched = random.sample(smallest, len(unmatched))
         else:
             logger.warning('Len of partners is lower than len of unmatched!')
-            partners_for_unmatched = random.choices(smallest, len(unmatched))
+            partners_for_unmatched = random.choices(smallest, k=len(unmatched))
         pairs = list(zip(smallest, largest[:len(smallest)]))
         self.merge_to_groups(group_type=MegaGroup, data=pairs, type_referral='group')
         # Dealing with unmatched
