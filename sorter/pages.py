@@ -1,10 +1,15 @@
 from questionnaire.generic_pages import Page
 from django.conf import settings
 
+
 class Intro(Page):
     pass
+
+
 class Intro2(Page):
     pass
+
+
 class ExchangeRate(Page):
     pass
 

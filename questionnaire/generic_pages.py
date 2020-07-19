@@ -5,8 +5,9 @@ from django.forms.models import modelform_factory
 from django.conf import settings
 from django.utils import translation
 from trust.models import TimeTracker
-from datetime import datetime,timezone
+from datetime import datetime, timezone
 import time, random
+
 
 class TransMixin:
 
@@ -35,7 +36,7 @@ class Page(TransMixin, oTreePage):
                                         period=self.player.round_number,
                                         )
             t.post_time = datetime.now(timezone.utc)
-            t.seconds_on_page = (t.post_time-t.get_time).seconds
+            t.seconds_on_page = (t.post_time - t.get_time).seconds
             t.save()
         except TimeTracker.DoesNotExist:
             pass
