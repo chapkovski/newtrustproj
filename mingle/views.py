@@ -6,7 +6,9 @@ from otree.models import Participant
 from django.contrib import messages
 from django.db.models import F, Count, Value, IntegerField, Q, BooleanField, Case, When
 from django.contrib.auth.mixins import LoginRequiredMixin
+import logging
 
+logger = logging.getLogger(__name__)
 
 def case_builder(field_name):
     return Case(
@@ -255,6 +257,7 @@ class MegaParticipantDetail(DetailView):
     context_object_name = 'p'
 
     def get_context_data(self, **kwargs):
+        logger.info(f"Result request for {self.kwargs.get('code')}")
         c = super().get_context_data(**kwargs)
         if not self.get_owner():
             c['message'] = 'Вы ввели неверный код'
