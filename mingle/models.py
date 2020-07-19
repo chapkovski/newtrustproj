@@ -14,7 +14,9 @@ from django.utils.safestring import mark_safe
 from .utils import time_check
 from django.urls import reverse
 from django.contrib.sites.models import Site
+import logging
 
+logger = logging.getLogger(__name__)
 class NotEnoughParticipants(ValueError):
     pass
 
@@ -102,7 +104,11 @@ class MegaSession(TrackerModel):
         smallest = list(smallest)
         random.shuffle(largest)
         unmatched = largest[len(smallest):]
-        partners_for_unmatched = random.sample(smallest, len(unmatched))
+        if len(smallest)>=len(unmatched):
+            partners_for_unmatched = random.sample(smallest, len(unmatched))
+        else:
+            logger.warning('Len of partners is lower than len of unmatched!')
+            partners_for_unmatched = random.choices(smallest, len(unmatched))
         pairs = list(zip(smallest, largest[:len(smallest)]))
         self.merge_to_groups(group_type=MegaGroup, data=pairs, type_referral='group')
         # Dealing with unmatched
