@@ -73,7 +73,9 @@ class UpdSession(Session):
                 return city
             except (City.DoesNotExist, City.MultipleObjectsReturned):
                 pass
-
+    def toloka_nums(self):
+        # it is a very very rough way to estimate toloka participants (which pass their id to label)
+        return self.participant_set.filter(label__isnull=False).count()
 
 
 class UpdParticipant(Participant):

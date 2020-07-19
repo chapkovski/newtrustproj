@@ -12,6 +12,7 @@
             <th>Label:</th>
             <th>City:</th>
             <th>Sandbox:</th>
+            <th>Num.participants:</th>
 
             </thead>
             <tbody>
@@ -27,6 +28,9 @@
                         {{ tolokasession.get_city|default_if_none:'' }}
                     </td>
                     <td>{{ tolokasession.config.toloka_sandbox|default_if_none:False }}</td>
+                    <td>
+                        {{ tolokasession.toloka_nums|default_if_none:'' }}
+                    </td>
 
                 </tr>
             {% endfor %}
