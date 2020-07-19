@@ -34,9 +34,9 @@
                         Megasession {{ m.id }}
                     </a>
                 </div>
-                <div>
+                <div class="ml-3">
                     <a href="{% url 'MegaSessionDetail' pk=m.id %}">
-                         {{ m.created_at }}
+                         Created: {{ m.created_at }}
                     </a>
                 </div>
                 <div class="ml-auto">
