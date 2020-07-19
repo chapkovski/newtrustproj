@@ -4,6 +4,17 @@ from otree.models import Participant, Session
 from .models import UpdParticipant, TolokaParticipant
 
 
+@admin.register(Session)
+class SessionAdmin(admin.ModelAdmin):
+    list_display = ('code', 'num_participants', 'label','is_demo')
+    list_display_links = ['code']
+    readonly_fields = ['vars', 'config',
+                       '_admin_report_app_names',
+                       '_admin_report_num_rounds',
+                       'mturk_expiration',
+                       'mturk_qual_id']
+
+
 @admin.register(Participant)
 class PPAdmin(admin.ModelAdmin):
     def get_session_code(self, obj):
