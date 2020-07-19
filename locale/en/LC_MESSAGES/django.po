@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-13 20:15-0400\n"
+"POT-Creation-Date: 2020-07-18 20:44-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: _templates/global/Page.html:91
+#: _templates/global/Page.html:95
 #: questionnaire/templates/questionnaire/Page.html:19
 msgid "Please fix the errors in the form."
 msgstr "Пожалуйста внесите исправления в поля формы."
 
-#: _templates/global/includes/footer.html:10
+#: _templates/global/includes/footer.html:13
 msgid "Это исследование проводится"
 msgstr "This study is conducted by "
 
-#: _templates/global/includes/footer.html:11
+#: _templates/global/includes/footer.html:14
 msgid "НИУ \"Высшая Школа Экономики\", Москва"
 msgstr "the Higher School of Economics, Moscow"
 
-#: _templates/global/includes/footer.html:14
+#: _templates/global/includes/footer.html:17
 msgid ""
 "Если у вас возникли какие-либо вопросы или технические неполадки, "
 "пожалуйста,\n"
@@ -42,24 +42,24 @@ msgstr ""
 "If you have any questions or technical problems, please contact us either "
 "via  Yandex.Toloka or "
 
-#: _templates/global/includes/instructions1_modal.html:10
+#: _templates/global/includes/instructions1_modal.html:14
 #: _templates/global/includes/progress.html:21
 msgid "Инструкции - часть 1"
 msgstr "Instructions – Part 1"
 
-#: _templates/global/includes/instructions1_modal.html:20
-#: _templates/global/includes/instructions2_modal.html:20
+#: _templates/global/includes/instructions1_modal.html:24
+#: _templates/global/includes/instructions2_modal.html:23
 #: _templates/global/includes/map_modal.html:34
 msgid "Закрыть"
 msgstr "Close"
 
-#: _templates/global/includes/instructions2_modal.html:10
+#: _templates/global/includes/instructions2_modal.html:12
 #: _templates/global/includes/progress.html:26
 msgid "Инструкции - часть 2"
 msgstr "Instructions – Part 2"
 
 #: _templates/global/includes/map_modal.html:13
-msgid "12 городов, участвующих в эксперименте"
+msgid "12 городов, участвующих в исследовании"
 msgstr "You can see 12 cities that participate in this study"
 
 #: _templates/global/includes/progress.html:12
@@ -93,7 +93,7 @@ msgid "Затрудняюсь ответить"
 msgstr "Hard to say"
 
 #: questionnaire/models.py:29 questionnaire/models.py:110
-#: questionnaire/models.py:1215
+#: questionnaire/models.py:1212
 msgid "Другой"
 msgstr "Other"
 
@@ -106,12 +106,12 @@ msgid "Женский"
 msgstr "Female"
 
 #: questionnaire/models.py:31 questionnaire/models.py:227
-#: questionnaire/models.py:383 trust/models.py:39
+#: questionnaire/models.py:383 trust/models.py:40
 msgid "Нет"
 msgstr "No"
 
 #: questionnaire/models.py:31 questionnaire/models.py:224
-#: questionnaire/models.py:382 trust/models.py:39
+#: questionnaire/models.py:382 trust/models.py:40
 msgid "Да"
 msgstr "Yes"
 
@@ -950,13 +950,9 @@ msgstr "Other sources"
 msgid "Ничего не знаю о регионе"
 msgstr "Don't know anything about the region"
 
-#: questionnaire/models.py:391
-msgid "questionnaire_payoff"
-msgstr ""
-
-#: questionnaire/models.py:401
+#: questionnaire/models.py:398
 msgid ""
-"Пожалуйста, вспомните ваши решения в части 1 эксперимента.\n"
+"Пожалуйста, вспомните ваши решения в части 1 исследования.\n"
 "            Участник А: передать ли начальную сумму участнику В.\n"
 "            Участник В: ничего не возвращать, вернуть все или вернуть лишь "
 "часть 30 токенов\n"
@@ -968,9 +964,9 @@ msgstr ""
 "return anything, return everything or return only part of 30 Token. What "
 "were you guided by when making these decisions? Why did you decide that way?"
 
-#: questionnaire/models.py:409
+#: questionnaire/models.py:406
 msgid ""
-"Пожалуйста, вспомните ваши решения в части 2 эксперимента.\n"
+"Пожалуйста, вспомните ваши решения в части 2 исследования.\n"
 "            Участник А: оценить, какую часть 30 токенов участник В захочет "
 "вернуть.\n"
 "            Участник В: оценить, хотел ли участник А передать Вам его "
@@ -983,11 +979,11 @@ msgstr ""
 "Evaluate if Member A wanted to pass it on to you.initial amount. What were "
 "you guided by when making these decisions? Why did you decide that way?"
 
-#: questionnaire/models.py:418
+#: questionnaire/models.py:415
 msgid "Ваш пол"
 msgstr "your gender"
 
-#: questionnaire/models.py:423
+#: questionnaire/models.py:420
 msgid ""
 "Какой у Вас самый высокий уровень образования, по которому Вы получили "
 "аттестат, свидетельство, диплом? "
@@ -995,61 +991,61 @@ msgstr ""
 "What is your highest educational level which is confirmed by certificate or "
 "diploma?"
 
-#: questionnaire/models.py:429
+#: questionnaire/models.py:426
 msgid ""
 "Какой ответ лучше всего описывает Ваше основное занятие в настоящее время?"
 msgstr "Which answer best describes your status at the present time?"
 
-#: questionnaire/models.py:430
+#: questionnaire/models.py:427
 msgid "occupation_status_other"
 msgstr ""
 
-#: questionnaire/models.py:432 questionnaire/models.py:468
+#: questionnaire/models.py:429 questionnaire/models.py:465
 msgid "Уточните какое именно"
 msgstr "Specify which one"
 
-#: questionnaire/models.py:434
+#: questionnaire/models.py:431
 msgid "Ваш возраст (полных лет)"
 msgstr "Your age (full years)"
 
-#: questionnaire/models.py:439
+#: questionnaire/models.py:436
 #: questionnaire/templates/questionnaire/Personal2.html:15
 msgid "Место рождения (населенный пункт, регион)"
 msgstr "Place of birth (locality, region)"
 
-#: questionnaire/models.py:443
+#: questionnaire/models.py:440
 msgid "Ваш семейный статус"
 msgstr "your marital status"
 
-#: questionnaire/models.py:449
+#: questionnaire/models.py:446
 msgid "На каком языке Вы обычно говорите дома?"
 msgstr "What language do you usually speak at home?"
 
-#: questionnaire/models.py:451
+#: questionnaire/models.py:448
 msgid "Русский"
 msgstr "Russian"
 
-#: questionnaire/models.py:452
+#: questionnaire/models.py:449
 msgid "Другой (какой именно)"
 msgstr "Other (which one)"
 
-#: questionnaire/models.py:454
+#: questionnaire/models.py:451
 msgid "language_other"
 msgstr ""
 
-#: questionnaire/models.py:458
+#: questionnaire/models.py:455
 msgid "Если на другом языке, то на каком именно?"
 msgstr "If in another language, then in which one?"
 
-#: questionnaire/models.py:462
+#: questionnaire/models.py:459
 msgid "Жильё (квартира, дом), в котором Вы живёте в настоящее время, это"
 msgstr "The housing (apartment, house) in which you currently live, is"
 
-#: questionnaire/models.py:464
+#: questionnaire/models.py:461
 msgid "living_other"
 msgstr ""
 
-#: questionnaire/models.py:473
+#: questionnaire/models.py:470
 msgid ""
 "    Сколько человек (приблизительно) проживало в том населенном пункте, где "
 "Вы жили в возрасте 16 лет?"
@@ -1057,31 +1053,31 @@ msgstr ""
 "How many people (approximately) lived in that village where did you live at "
 "the age of 16?"
 
-#: questionnaire/models.py:480
+#: questionnaire/models.py:477
 msgid "К какой национальности Вы себя относите?"
 msgstr "What nationality do you belong to?"
 
-#: questionnaire/models.py:482
+#: questionnaire/models.py:479
 msgid "ethnicity_other"
 msgstr ""
 
-#: questionnaire/models.py:485
+#: questionnaire/models.py:482
 msgid "Укажите к какой"
 msgstr "Which one"
 
-#: questionnaire/models.py:489
+#: questionnaire/models.py:486
 msgid "Какую религию Вы исповедуете?"
 msgstr "What religion do you profess?"
 
-#: questionnaire/models.py:491
+#: questionnaire/models.py:488
 msgid "religion_other"
 msgstr ""
 
-#: questionnaire/models.py:495
+#: questionnaire/models.py:492
 msgid "Уточните какую именно"
 msgstr "Specify which one"
 
-#: questionnaire/models.py:499
+#: questionnaire/models.py:496
 msgid ""
 "Насколько Вы согласны со следующим утверждением? \"Люди, исповедующие другие "
 "религии, вероятно, \n"
@@ -1092,19 +1088,19 @@ msgstr ""
 "others religion probably the same deeply moral people as those who profess "
 "your religion."
 
-#: questionnaire/models.py:508
+#: questionnaire/models.py:505
 msgid "Как часто Вы посещаете храм"
 msgstr "How often do you visit the church"
 
-#: questionnaire/models.py:515
+#: questionnaire/models.py:512
 msgid "Я считаю себя членом местной общины (сообщества) жителей моего города"
 msgstr "I consider myself a member of the local community of my city"
 
-#: questionnaire/models.py:520
+#: questionnaire/models.py:517
 msgid "Я считаю себя россиянином"
 msgstr "I consider myself a Russian"
 
-#: questionnaire/models.py:527
+#: questionnaire/models.py:524
 msgid ""
 "Как Вы считаете, в целом большинству людей можно доверять, или же при "
 "общении с другими людьми \n"
@@ -1113,107 +1109,107 @@ msgstr ""
 "Generally speaking, would you say that most people can be trusted or that "
 "you need to be very careful in dealing with people?"
 
-#: questionnaire/models.py:530
+#: questionnaire/models.py:527
 msgid "Нужно быть очень осторожным с другими людьми"
 msgstr "You have to be very careful with other people"
 
-#: questionnaire/models.py:531
+#: questionnaire/models.py:528
 msgid "Большинству людей можно вполне доверять"
 msgstr "Most people can be completely trusted"
 
-#: questionnaire/models.py:537
+#: questionnaire/models.py:534
 msgid "Ваша семья"
 msgstr "your family"
 
-#: questionnaire/models.py:542
+#: questionnaire/models.py:539
 msgid "Ваши соседи"
 msgstr "your neighbors"
 
-#: questionnaire/models.py:547
+#: questionnaire/models.py:544
 msgid "Люди, с которыми Вы лично знакомы"
 msgstr "People you know personally"
 
-#: questionnaire/models.py:552
+#: questionnaire/models.py:549
 msgid "Люди, с которыми Вы не знакомы"
 msgstr "People you are not familiar with"
 
-#: questionnaire/models.py:557
+#: questionnaire/models.py:554
 msgid "Люди другой веры"
 msgstr "People of a different faith"
 
-#: questionnaire/models.py:562
+#: questionnaire/models.py:559
 msgid "Ваши друзья"
 msgstr "your friends"
 
-#: questionnaire/models.py:567
+#: questionnaire/models.py:564
 msgid "Политики"
 msgstr "Politicians"
 
-#: questionnaire/models.py:573
+#: questionnaire/models.py:570
 msgid "Церковь"
 msgstr "Church"
 
-#: questionnaire/models.py:577
+#: questionnaire/models.py:574
 msgid "Армия"
 msgstr "Army"
 
-#: questionnaire/models.py:581
+#: questionnaire/models.py:578
 msgid "Пресса (печатные медиа)"
 msgstr "Press (print media)"
 
-#: questionnaire/models.py:585
+#: questionnaire/models.py:582
 msgid "Телевидение"
 msgstr "television"
 
-#: questionnaire/models.py:589
+#: questionnaire/models.py:586
 msgid "Профсоюзы"
 msgstr "Unions"
 
-#: questionnaire/models.py:593
+#: questionnaire/models.py:590
 msgid "Полиция"
 msgstr "Police"
 
-#: questionnaire/models.py:597
+#: questionnaire/models.py:594
 msgid "Суды"
 msgstr "Courts"
 
-#: questionnaire/models.py:601
+#: questionnaire/models.py:598
 msgid "Правительство России"
 msgstr "Government of Russia"
 
-#: questionnaire/models.py:605
+#: questionnaire/models.py:602
 msgid "Политические партии"
 msgstr "Political parties"
 
-#: questionnaire/models.py:609
+#: questionnaire/models.py:606
 msgid "Президент"
 msgstr "President"
 
-#: questionnaire/models.py:613
+#: questionnaire/models.py:610
 msgid "Парламент России"
 msgstr "Parliament of Russia"
 
-#: questionnaire/models.py:617
+#: questionnaire/models.py:614
 msgid "Региональная власть"
 msgstr "Regional authority"
 
-#: questionnaire/models.py:621
+#: questionnaire/models.py:618
 msgid "Местная власть"
 msgstr "local authority"
 
-#: questionnaire/models.py:625
+#: questionnaire/models.py:622
 msgid "Гуманитарные и благотворительные организации"
 msgstr "Humanitarian and charitable organizations"
 
-#: questionnaire/models.py:629
+#: questionnaire/models.py:626
 msgid "Содружество независимых государств (СНГ)"
 msgstr "Commonwealth of Independent States (CIS)"
 
-#: questionnaire/models.py:633
+#: questionnaire/models.py:630
 msgid "Организация объединенных наций (ООН)"
 msgstr "United Nations Organization"
 
-#: questionnaire/models.py:639
+#: questionnaire/models.py:636
 msgid ""
 "По Вашему мнению, за последние годы изменился или не изменился уровень "
 "доверия людей друг к другу? Если изменился, то увеличился или уменьшился?"
@@ -1221,35 +1217,35 @@ msgstr ""
 "In your opinion, the level has changed or not changed in recent "
 "yearspeople's trust in each other? If changed, then increased or decreased?"
 
-#: questionnaire/models.py:665
+#: questionnaire/models.py:662
 msgid "Получение государственных пособий, на которые у человека нет права"
 msgstr "Getting government benefits that a person is not entitled to"
 
-#: questionnaire/models.py:671
+#: questionnaire/models.py:668
 msgid "Проезд без оплаты в общественном транспорте"
 msgstr "Fare without payment in public transport"
 
-#: questionnaire/models.py:677
+#: questionnaire/models.py:674
 msgid "Кража чужой собственности"
 msgstr "Theft of another's property"
 
-#: questionnaire/models.py:683
+#: questionnaire/models.py:680
 msgid "Неуплата налогов, если есть такая возможность"
 msgstr "Tax evasion, if possible"
 
-#: questionnaire/models.py:689
+#: questionnaire/models.py:686
 msgid "Получение взятки"
 msgstr "Taking a bribe"
 
-#: questionnaire/models.py:695
+#: questionnaire/models.py:692
 msgid "Применение насилия в отношении других людей"
 msgstr "Using violence against other people"
 
-#: questionnaire/models.py:706
+#: questionnaire/models.py:703
 msgid "Укажите, пожалуйста, насколько Вы в целом любите рисковать?"
 msgstr "Please indicate how much do you like to risk in general:"
 
-#: questionnaire/models.py:708
+#: questionnaire/models.py:705
 msgid ""
 "Для ответа выберите значение на шкале от 0 до 10, где  0 означает, что Вы "
 "«совершенно не готовы рисковать»,\n"
@@ -1260,39 +1256,39 @@ msgstr ""
 "are \"absolutely not ready to take any risks\", but 10 means that you are "
 "\"really like to take risks\""
 
-#: questionnaire/models.py:711
+#: questionnaire/models.py:708
 msgid "Я совершенно не готов рисковать"
 msgstr "I'm absolutely not ready to take any risk"
 
-#: questionnaire/models.py:712
+#: questionnaire/models.py:709
 msgid "Я охотно иду на риск"
 msgstr "I really like to take risks"
 
-#: questionnaire/models.py:717
+#: questionnaire/models.py:714
 msgid "В финансовых вопросах"
 msgstr "In financial matters"
 
-#: questionnaire/models.py:723
+#: questionnaire/models.py:720
 msgid "В свободное время и во время занятий спортом"
 msgstr "In my free time and during sports"
 
-#: questionnaire/models.py:729
+#: questionnaire/models.py:726
 msgid "В вашей профессии"
 msgstr "In your profession"
 
-#: questionnaire/models.py:735
+#: questionnaire/models.py:732
 msgid "В том что касается вашего здоровья"
 msgstr "Regarding your health"
 
-#: questionnaire/models.py:741
+#: questionnaire/models.py:738
 msgid "В отношениях с незнакомыми людьми"
 msgstr "In a relationship with strangers"
 
-#: questionnaire/models.py:746
+#: questionnaire/models.py:743
 msgid "Во время езды за рулем"
 msgstr "While driving"
 
-#: questionnaire/models.py:754
+#: questionnaire/models.py:751
 msgid ""
 "Как Вы думаете, сегодня в нашей стране среди людей больше согласия, "
 "сплоченности или несогласия, разобщенности?"
@@ -1300,7 +1296,7 @@ msgstr ""
 "Do you think today in our country there is more agreement among people,"
 "cohesion or disagreement, disunity?"
 
-#: questionnaire/models.py:761
+#: questionnaire/models.py:758
 msgid ""
 "Людям, с которыми у Вас много общего, Вы доверяете больше, чем всем "
 "остальным, меньше чем остальным или же одинаково?"
@@ -1308,11 +1304,11 @@ msgstr ""
 "People with whom you have a lot in common, you trust more than everyoneto "
 "the rest, less than the rest, or the same?"
 
-#: questionnaire/models.py:767
+#: questionnaire/models.py:764
 msgid "Можете ли Вы сказать о себе, что Вы доверчивый человек?"
 msgstr "Can you say about yourself that you are a trustful person?"
 
-#: questionnaire/models.py:774
+#: questionnaire/models.py:771
 msgid ""
 "Готовы ли Вы тратить свои ресурсы на благое дело, даже если не рассчитываете "
 "ничего получить взамен?"
@@ -1320,7 +1316,7 @@ msgstr ""
 "Are you ready to spend your resources on a good cause, even if you do not "
 "expect get nothing in return?"
 
-#: questionnaire/models.py:781
+#: questionnaire/models.py:778
 msgid ""
 "По Вашему мнению, за последние годы изменился или не изменился уровень "
 "готовности людей помогать друг другу? Если изменился, то увеличился или "
@@ -1330,7 +1326,7 @@ msgstr ""
 "people's readiness to help each other? If changed, then increased or "
 "decreased?"
 
-#: questionnaire/models.py:791
+#: questionnaire/models.py:788
 msgid ""
 "Некоторые люди чувствуют, что они обладают полной свободой выбора и "
 "контролируют свою жизнь, в\n"
@@ -1343,7 +1339,7 @@ msgstr ""
 "impact on what is happening to them. To what extent are these the "
 "characteristics apply to you and your life?"
 
-#: questionnaire/models.py:795
+#: questionnaire/models.py:792
 msgid ""
 "Для ответа выберите значение на шкале от 1 до 10, где 1 означает \"у меня "
 "нет свободы выбора\", а 10\n"
@@ -1353,19 +1349,19 @@ msgstr ""
 "To answer, select a value on a scale from 1 to 10, where 1 means \"I have no "
 "freedom of choice,\" and 10 means \"I have complete freedom of choice.\""
 
-#: questionnaire/models.py:798
+#: questionnaire/models.py:795
 msgid "У меня нет свободы выбора"
 msgstr "I have no freedom of choice"
 
-#: questionnaire/models.py:799
+#: questionnaire/models.py:796
 msgid "У меня полная свобода выбора"
 msgstr "I have complete freedom of choice"
 
-#: questionnaire/models.py:808
+#: questionnaire/models.py:805
 msgid "Как Вы думаете, конкуренция - это зло или благо?"
 msgstr "Do you think competition is evil or good?"
 
-#: questionnaire/models.py:810
+#: questionnaire/models.py:807
 msgid ""
 "Для ответа выберите значение на шкале от 1 до 10, где 1 означает, что "
 "«конкуренция вредна, \n"
@@ -1379,15 +1375,15 @@ msgstr ""
 "10 means that \"competition is good because it is encourages people to work "
 "better\" "
 
-#: questionnaire/models.py:814
+#: questionnaire/models.py:811
 msgid "Конкуренция вредна, поскольку она побуждает у людей худшие качества"
 msgstr "Competition is harmful because it induces worse qualities in people."
 
-#: questionnaire/models.py:815
+#: questionnaire/models.py:812
 msgid "Конкуренция - это благо, поскольку она побуждает людей лучше трудиться"
 msgstr "Competition is good, as it encourages people to work better."
 
-#: questionnaire/models.py:824
+#: questionnaire/models.py:821
 msgid ""
 "Как Вы думаете, могут ли люди в современном обществе разбогатеть только за "
 "счет других людей, или уровень благосостояния может вырасти у всех?"
@@ -1395,7 +1391,7 @@ msgstr ""
 "Do you think people in modern society can get rich just for  other people’s "
 "account, or can everyone’s level of well-being grow? "
 
-#: questionnaire/models.py:826
+#: questionnaire/models.py:823
 msgid ""
 "Для ответа выберите значение на шкале от 1 до 10, где 1 означает, что «люди "
 "могут разбогатеть только за счет других», а 10 означает, что «благосостояние "
@@ -1405,15 +1401,15 @@ msgstr ""
 "\"people can get rich only at the expense of others \", and 10 means that  "
 "\"Well-being can grow for everyone \""
 
-#: questionnaire/models.py:827
+#: questionnaire/models.py:824
 msgid "Люди могут разбогатеть только за счет других"
 msgstr "People can get rich only at the expense of others."
 
-#: questionnaire/models.py:828
+#: questionnaire/models.py:825
 msgid "Благосостояние может вырасти у всех"
 msgstr "Wealth can grow for everyone"
 
-#: questionnaire/models.py:837
+#: questionnaire/models.py:834
 msgid ""
 "\"Когда кто-либо мне помогает я стараюсь ответить тем же.\"  Справедливо ли "
 "это суждение в отношении Вас?"
@@ -1421,7 +1417,7 @@ msgstr ""
 "\" When someone helps me, I try to answer the same.\" Is this a judgment "
 "about you?"
 
-#: questionnaire/models.py:839
+#: questionnaire/models.py:836
 msgid ""
 "Для ответа выберите значение на шкале от 0 до 10,\n"
 "         где 0 означает, что Вы «совершенно не готовы так поступать», а 10 "
@@ -1431,15 +1427,15 @@ msgstr ""
 "\"absolutely not ready to do this \", but 10means that you are \"ready to do "
 "just that \""
 
-#: questionnaire/models.py:842 questionnaire/models.py:861
+#: questionnaire/models.py:839 questionnaire/models.py:858
 msgid "Я совершенно не готов так поступать"
 msgstr "I'm completely not ready to do that"
 
-#: questionnaire/models.py:843 questionnaire/models.py:862
+#: questionnaire/models.py:840 questionnaire/models.py:859
 msgid "Я готов поступать именно так"
 msgstr "I am ready to do just that"
 
-#: questionnaire/models.py:852
+#: questionnaire/models.py:849
 msgid ""
 "\"Если со мной поступили несправедливо, я отомщу при первом же удобном "
 "случае,\n"
@@ -1450,7 +1446,7 @@ msgstr ""
 "\"If I was treated unfairly, I will avenge at the first convenient case, "
 "even if it will cost me dearly.\" Is this a fair judgment  regarding you?"
 
-#: questionnaire/models.py:857
+#: questionnaire/models.py:854
 msgid ""
 "Для ответа выберите значение на шкале от 0 до 10,\n"
 "          где 0 означает, что Вы «совершенно не готовы так поступать», а 10 "
@@ -1461,7 +1457,7 @@ msgstr ""
 "\"absolutely not ready to do this \", but 10means that you are \"ready to do "
 "just that \""
 
-#: questionnaire/models.py:871
+#: questionnaire/models.py:868
 msgid ""
 "Как Вы думаете, если представится возможность, большинство людей попытались "
 "бы использовать вас в своих интересах, или вели бы себя порядочно?"
@@ -1469,7 +1465,7 @@ msgstr ""
 "Do you think most people would try to take advantage of you if they got a "
 "chance, or would they try to be fair?"
 
-#: questionnaire/models.py:873
+#: questionnaire/models.py:870
 msgid ""
 "Для ответа выберите значение на шкале от 0 до 10, где 0 означает, что «люди "
 "обязательно попытаются вас использовать», а 10 означает, что «люди поведут "
@@ -1479,15 +1475,15 @@ msgstr ""
 "\"people will definitely try to take advantage of you,\" and 10 means that "
 "\"people will try to be fair\" "
 
-#: questionnaire/models.py:874
+#: questionnaire/models.py:871
 msgid "Люди обязательно попытаются вас использовать"
 msgstr "People will definitely try to take advantage of you."
 
-#: questionnaire/models.py:875
+#: questionnaire/models.py:872
 msgid "Люди поведут себя порядочно"
 msgstr "People will try to be fair"
 
-#: questionnaire/models.py:880
+#: questionnaire/models.py:877
 msgid ""
 "Социальные различия между людьми в нашей стране в целом оправданны и "
 "справедливы"
@@ -1495,7 +1491,7 @@ msgstr ""
 "Social differences between people in our country are generally justified and "
 "fair"
 
-#: questionnaire/models.py:886
+#: questionnaire/models.py:883
 msgid ""
 "Как Вы считаете, в нашей стране сейчас имеет место разделение властей "
 "(законодательной, исполнительной и судебной) или же нет?"
@@ -1503,91 +1499,91 @@ msgstr ""
 "In your opinion, in our country there is now a separation of powers "
 "(legislative, executive and judicial) or not?"
 
-#: questionnaire/models.py:892
+#: questionnaire/models.py:889
 msgid "Как Вы считаете, независимы ли в нашей стране суды?"
 msgstr "Do you think the courts are independent in our country?"
 
-#: questionnaire/models.py:898
+#: questionnaire/models.py:895
 msgid "Что Вы думаете про борьбу с коррупцией в нашей стране?"
 msgstr "What do you think about the fight against corruption in our country?"
 
-#: questionnaire/models.py:904
+#: questionnaire/models.py:901
 msgid "До какой степени у нас в стране защищены гражданские права?"
 msgstr "To what extent are civil rights protected in our country?"
 
-#: questionnaire/models.py:910 questionnaire/models.py:989
-#: questionnaire/models.py:1070
+#: questionnaire/models.py:907 questionnaire/models.py:986
+#: questionnaire/models.py:1067
 msgid "Архангельск и Архангельская область"
 msgstr "Arkhangelsk"
 
-#: questionnaire/models.py:916 questionnaire/models.py:995
-#: questionnaire/models.py:1074
+#: questionnaire/models.py:913 questionnaire/models.py:992
+#: questionnaire/models.py:1071
 msgid "Владивосток и Приморский край"
 msgstr "Vladivistok"
 
-#: questionnaire/models.py:922 questionnaire/models.py:1002
-#: questionnaire/models.py:1078
+#: questionnaire/models.py:919 questionnaire/models.py:999
+#: questionnaire/models.py:1075
 msgid "Воронеж и Воронежская область"
 msgstr "Voronezh"
 
-#: questionnaire/models.py:928 questionnaire/models.py:1009
-#: questionnaire/models.py:1082
+#: questionnaire/models.py:925 questionnaire/models.py:1006
+#: questionnaire/models.py:1079
 msgid "Екатеринбург и Свердловская область"
 msgstr "Ekaterinburg"
 
-#: questionnaire/models.py:934 questionnaire/models.py:1016
-#: questionnaire/models.py:1086
+#: questionnaire/models.py:931 questionnaire/models.py:1013
+#: questionnaire/models.py:1083
 msgid "Казань и республика Татарстан"
 msgstr "Kazan"
 
-#: questionnaire/models.py:940 questionnaire/models.py:1023
-#: questionnaire/models.py:1090
+#: questionnaire/models.py:937 questionnaire/models.py:1020
+#: questionnaire/models.py:1087
 msgid "Махачкала и республика Дагестан"
 msgstr "Makhachkala"
 
-#: questionnaire/models.py:946 questionnaire/models.py:1028
-#: questionnaire/models.py:1030 questionnaire/models.py:1094
+#: questionnaire/models.py:943 questionnaire/models.py:1025
+#: questionnaire/models.py:1027 questionnaire/models.py:1091
 msgid "Москва"
 msgstr "Moscow"
 
-#: questionnaire/models.py:952 questionnaire/models.py:1036
-#: questionnaire/models.py:1098
+#: questionnaire/models.py:949 questionnaire/models.py:1033
+#: questionnaire/models.py:1095
 msgid "Новосибирск и Новосибирская область"
 msgstr "Novosibirsk"
 
-#: questionnaire/models.py:958 questionnaire/models.py:1043
-#: questionnaire/models.py:1101
+#: questionnaire/models.py:955 questionnaire/models.py:1040
+#: questionnaire/models.py:1098
 msgid "Пермь и Пермский край"
 msgstr "Perm"
 
-#: questionnaire/models.py:964 questionnaire/models.py:1050
-#: questionnaire/models.py:1105
+#: questionnaire/models.py:961 questionnaire/models.py:1047
+#: questionnaire/models.py:1102
 msgid "Ростов-на-Дону и Ростовская область"
 msgstr "Rostov"
 
-#: questionnaire/models.py:970 questionnaire/models.py:1057
-#: questionnaire/models.py:1109
+#: questionnaire/models.py:967 questionnaire/models.py:1054
+#: questionnaire/models.py:1106
 msgid "Санкт-Петербург"
 msgstr "St.Petersburg"
 
-#: questionnaire/models.py:976 questionnaire/models.py:1062
-#: questionnaire/models.py:1113
-msgid "Харабовск и Хабаровский край"
+#: questionnaire/models.py:973 questionnaire/models.py:1059
+#: questionnaire/models.py:1110
+msgid "Хабаровск и Хабаровский край"
 msgstr "Khabarovsk"
 
-#: questionnaire/models.py:982
+#: questionnaire/models.py:979
 msgid "Бывали ли Вы когда-либо за границей?"
 msgstr "Have you ever been abroad?"
 
-#: questionnaire/models.py:1065
+#: questionnaire/models.py:1062
 msgid "Ваш средний ежемесячный доход"
 msgstr "Your average monthly income is"
 
-#: questionnaire/models.py:1115
+#: questionnaire/models.py:1112
 msgid "Комментарий к вашему рейтингу (если есть)"
 msgstr "Your comment for the ranking above (if at all)"
 
-#: questionnaire/models.py:1118
+#: questionnaire/models.py:1115
 msgid ""
 "Как Вы считаете, каков среднемесячный доход жителей Вашего региона? Напишите "
 "пожалуйста Вашу оценку (в рублях в месяц)"
@@ -1595,7 +1591,7 @@ msgstr ""
 "In your opinion, what is the average monthly income of the residents of your "
 "region? Write please your rating (in rubles per month)"
 
-#: questionnaire/models.py:1123
+#: questionnaire/models.py:1120
 msgid ""
 "Согласны ли Вы с утверждением, что различия в уровне доходов между регионами "
 "России неоправданно велики"
@@ -1603,13 +1599,13 @@ msgstr ""
 "Do you agree with the statement that differences in income levels between "
 "regions Russia is unreasonably great"
 
-#: questionnaire/models.py:1133
+#: questionnaire/models.py:1130
 msgid ""
 "Учитывая все обстоятельства, насколько Вы удовлетворены вашей жизнью в целом "
 "в эти дни?"
 msgstr ""
 
-#: questionnaire/models.py:1135
+#: questionnaire/models.py:1132
 msgid ""
 " Для ответа выберите значение на шкале от 0 до 10, где 0 означает "
 "«совершенно не удовлетворен», а 10 - «полностью удовлетворен»)"
@@ -1618,54 +1614,54 @@ msgstr ""
 "are \"absolutely not ready to do this \", but 10means that you are \"ready "
 "to do just that \""
 
-#: questionnaire/models.py:1136
+#: questionnaire/models.py:1133
 msgid "Совершенно не удовлетворен"
 msgstr "Absolutely unsatisfied"
 
-#: questionnaire/models.py:1137
+#: questionnaire/models.py:1134
 msgid "Полностью удовлетворен"
 msgstr "Absolutely satisfied completely"
 
-#: questionnaire/models.py:1142
+#: questionnaire/models.py:1139
 msgid "В целом я могу сказать, что я"
 msgstr "In general, I can say that I"
 
-#: questionnaire/models.py:1148
+#: questionnaire/models.py:1145
 msgid "По сравнению с большинством окружающих вас людей, вы"
 msgstr "Compared to most of the people around you, you"
 
-#: questionnaire/models.py:1154
+#: questionnaire/models.py:1151
 msgid ""
 "Какое высказывание наиболее точно описывает финансовое положение вашей семьи?"
 msgstr ""
 "Which statement most accurately describes your family’s financial situation?"
 
-#: questionnaire/models.py:1160
+#: questionnaire/models.py:1157
 msgid "Сколько у вас старших братьев или сестер?"
 msgstr "How many older siblings do you have?"
 
-#: questionnaire/models.py:1165
+#: questionnaire/models.py:1162
 msgid "Сколько у вас младших братьев или сестер?"
 msgstr "How many younger siblings do you have?"
 
-#: questionnaire/models.py:1171
+#: questionnaire/models.py:1168
 msgid "В каком регионе родился Ваш отец (если не знаете оставьте поле пустым)?"
 msgstr ""
 "In which region was your father born (if you don’t know, leave the field "
 "blank)?"
 
-#: questionnaire/models.py:1176
+#: questionnaire/models.py:1173
 msgid ""
 "В каком регионе родилась Ваша мать (если не знаете оставьте поле пустым)?"
 msgstr ""
 "In which region was your mother born (if you don’t know, leave the field "
 "blank)?"
 
-#: questionnaire/models.py:1180
+#: questionnaire/models.py:1177
 msgid "В скольких регионах России (не считая вашего) вам случалось бывать)?"
 msgstr "How many regions of Russia (not counting yours) have you ever been to?"
 
-#: questionnaire/models.py:1187
+#: questionnaire/models.py:1184
 msgid ""
 "В нынешней России честному человеку трудно достичь каких-то высот, занять "
 "высокое положение в обществе"
@@ -1673,7 +1669,7 @@ msgstr ""
 "In today's Russia, it is difficult for an honest person to reach some "
 "heights, to occupy high position in society"
 
-#: questionnaire/models.py:1193
+#: questionnaire/models.py:1190
 msgid ""
 "Сторонником какой политической партии вы являетесь, или по крайней мере,"
 "симпатизируете ей? "
@@ -1681,15 +1677,15 @@ msgstr ""
 "A supporter of which political party you are, or at least sympathize with "
 "her?"
 
-#: questionnaire/models.py:1195
+#: questionnaire/models.py:1192
 msgid "party_other"
 msgstr ""
 
-#: questionnaire/models.py:1199
+#: questionnaire/models.py:1196
 msgid "Если Вы сторонник другой партии, укажите какой именно"
 msgstr "If you are a supporter of another party, indicate which one"
 
-#: questionnaire/models.py:1203
+#: questionnaire/models.py:1200
 msgid ""
 "Как Вы думаете, с участником из какого города вы взаимодействовали в ходе "
 "этого исследования?"
@@ -1697,19 +1693,19 @@ msgstr ""
 "What do you think  from which city was another participant you were matched "
 "with?"
 
-#: questionnaire/models.py:1205
+#: questionnaire/models.py:1202
 msgid "who_was_other_city_other"
 msgstr ""
 
-#: questionnaire/models.py:1228
+#: questionnaire/models.py:1225
 msgid "В настоящее время вы трудоустроены?"
 msgstr "Are you currently employed?"
 
-#: questionnaire/models.py:1231
+#: questionnaire/models.py:1228
 msgid "Являетесь ли вы в настоящее время самозанятым?"
 msgstr "Are you currently self-employed?"
 
-#: questionnaire/models.py:1238
+#: questionnaire/models.py:1235
 msgid ""
 "Если у вас есть комментарии относительно этого исследования, оставьте их ниже"
 msgstr ""
@@ -1766,8 +1762,8 @@ msgstr ""
 
 #: questionnaire/templates/questionnaire/IntroQ.html:12
 msgid ""
-"Часть 2 эксперимента завершена. Начинается последняя, третья часть  "
-"эксперимента - анкета."
+"Часть 2 исследования завершена. Начинается последняя, третья часть  "
+"исследования - анкета."
 msgstr ""
 "Part 2 of the experiment is completed. Now the last, third part of the "
 "experiment starts - the questionnaire"
@@ -1863,60 +1859,53 @@ msgstr "Next"
 msgid "Пожалуйста, укажите город, в котором Вы находитесь"
 msgstr "Please indicate in which city you are located"
 
+#: sorter/templates/sorter/ExchangeRate.html:5
+msgid "Валюта исследования"
+msgstr "The currency used in this study "
+
 #: sorter/templates/sorter/Intro.html:5
-msgid "Введение"
-msgstr "Introduction"
+msgid "Добро пожаловать"
+msgstr ""
 
 #: sorter/templates/sorter/Intro.html:16
 msgid ""
-"В этом эксперименте принимают участие зарегистрированные пользователи Яндекс "
-"Толока со всей Российской Федерации. Все участники – реальные люди. Вы "
-"примете несколько решений, взаимодействуя в паре с другим участником "
-"эксперимента, случайным образом выбранным из числа пользователей Яндекс "
-"Толока."
+"В ходе этого исследования Вы будете взаимодействовать с другим участником из "
+"Яндекс Толока, выбранным случайным образом. Выполнение всех заданий "
+"исследования займет от 30 до 40 минут, и мы просим Вас пройти его до конца."
 msgstr ""
-"In this experiment, Russian Toloka participants from all over the Russian "
-"Federation interact. The participants are all real people. You will interact "
-"with another randomly chosen Toloka participant in a pair and both of you "
-"will make several decisions."
 
-#: sorter/templates/sorter/Intro.html:27
+#: sorter/templates/sorter/Intro.html:24              "
 msgid ""
-"Ваше вознаграждение за участие в размере $3 будет Выплачено Вам как только "
-"Вы\n"
-"                        введете правильный код участника в окно интерфейса "
-"на последней странице эксперимента\n"
-"                    "
+"Ваше вознаграждение за участие в размере $3 будет выплачено Вам как только "
+"Вы введете правильный код участника в окно интерфейса на последней странице "
+"исследования."
 msgstr ""
 "Your fee for participation (equal to 3 USD) will be paid to you immediately "
 "after you have entered the correct code in the Toloka interface when the "
 "experiment is finished. "
 
-#: sorter/templates/sorter/Intro.html:32
+#: sorter/templates/sorter/Intro.html:30
 msgid ""
-"Эксперимент состоит из трех частей. В Части 1 и Части 2 Вы также сможете "
+"Исследование состоит из трех частей. В Части 1 и Части 2 Вы также сможете "
 "заработать дополнительные деньги, которые будут выплачены Вам в качестве "
-"бонуса Толоки.  В части 3 вам предстоит ответить на вопросы анкеты. Общий "
+"бонуса Толоки. В Части 3 вам предстоит ответить на вопросы анкеты. Общий "
 "размер Вашего бонуса будет равен сумме бонусов за первые две части "
-"эксперимента."
+"исследования. Ваши решения в одной части исследования не повлияют на Ваш "
+"бонус по итогам другой части исследования."
 msgstr ""
 "The experiment consists of three parts. In Part 1 and Part 2, you can earn "
 "extra money which will be paid to you as a bonus in Toloka. Part 3 is the "
 "Questionnaire. Your total bonus will be the sum of what you earn in the "
 "first 2 parts of the experiment. "
 
-#: sorter/templates/sorter/Intro.html:39
+#: sorter/templates/sorter/Intro.html:40
 msgid ""
 "Ваше вознаграждение за эти две части измеряется в специальной валюте, "
-"называемой\n"
-"                        токен. Каждый токен обменивается на US$ по ставке 1 "
-"токен = 0.10 US$. Минимально возможный\n"
-"                        размер бонуса составляет 0 Токенов (0 US$), "
-"максимально возможный размер – 50 токенов (5 US$).\n"
-"                        Эти деньги будут выплачены Вам после того как свои "
-"решения примете как Вы, так и другой участник\n"
-"                        из Толоки, выбранный случайным образом.\n"
-"                    "
+"называемой токен. Каждый токен обменивается на US$ по ставке 1 токен = 0.10 "
+"US$. Минимально возможный размер бонуса составляет 0 Токенов (0 US$), "
+"максимально возможный размер – 50 токенов (5 US$). Эти деньги будут "
+"выплачены Вам после того как свои решения примете как Вы, так и другой "
+"участник из Толоки, выбранный случайным образом."
 msgstr ""
 "Your reward in these parts is calculated in a special currency called Token. "
 "Each Token is converted into USD$ at the exchange rate of 1 Token = 0.10 US"
@@ -1924,23 +1913,40 @@ msgstr ""
 "(= 5 US$). This money is paid to you as soon as we get decisions from you "
 "and another randomly chosen Toloka participant. "
 
-#: sorter/templates/sorter/Intro.html:47
+#: sorter/templates/sorter/Intro.html:49
 msgid ""
-"Ваши решения в одной части эксперимента не повлияют на Ваш бонус по итогам "
-"другой\n"
-"                        части эксперимента.\n"
+"На все вопросы в исследовании и анкете нет правильных и неправильных ответов "
+"-\n"
+"                        отвечайте так как считаете нужным.\n"
 "                    "
 msgstr ""
-"Your decisions in one part of the experiment do not influence your bonus in "
-"the other part."
+"There are no right or wrong answers to questions in this experiment or "
+"questionnaire. Please answer them as you find appropriate."
 
-#: sorter/templates/sorter/Intro.html:53
+#: sorter/templates/sorter/Intro2.html:5
+msgid "Участники"
+msgstr "Participants"
+
+#: sorter/templates/sorter/Intro2.html:16
 msgid ""
-"Некоторые участники этого эксперимента находятся в том же городе, что и Вы. "
+"В этом исследовании принимают участие зарегистрированные пользователи Яндекс "
+"Толока со всей Российской Федерации. Все участники – реальные люди. Вы "
+"примете несколько решений, взаимодействуя в паре с другим участником "
+"исследования, случайным образом выбранным из числа пользователей Яндекс "
+"Толока."
+msgstr ""
+"In this experiment, Russian Toloka participants from all over the Russian "
+"Federation interact. The participants are all real people. You will interact "
+"with another randomly chosen Toloka participant in a pair and both of you "
+"will make several decisions."
+
+#: sorter/templates/sorter/Intro2.html:25
+msgid ""
+"Некоторые участники этого исследования находятся в том же городе, что и Вы. "
 "Остальные участники находятся в одном из 11 других городов в 11 регионах со "
-"всей Российской Федерации. Таким образом, всего в эксперименте "
+"всей Российской Федерации. Таким образом, всего в исследовании "
 "взаимодействуют участники из 12 городов. Названия этих городов и регионов вы "
-"увидите когда начнется эксперимент."
+"увидите когда начнется исследование."
 msgstr ""
 "Some participants in this experiment are from the same city as you are. The "
 "other participants are from one of 11 different cities located in 11 regions "
@@ -1948,13 +1954,13 @@ msgstr ""
 "cities take part in this experiment. The names of the 12 cities (Regions) "
 "are shown when the experiment starts."
 
-#: sorter/templates/sorter/Intro.html:63
+#: sorter/templates/sorter/Intro2.html:33
 msgid ""
 "Поскольку реальные участники из Яндекс Толока со всей Российской Федерации "
 "взаимодействуют между собой, разница во времени между городами, участвующими "
-"в этом эксперименте, может достигать 7 часов. Поэтому пожалуйста отнеситесь "
-"с пониманием к тому, что между Вашим  решением и решением другого участника "
-"из Толоки, с которым Вы взаимодействуете, может пройти некоторое время. Как "
+"в этом исследовании, может достигать 7 часов. Пожалуйста отнеситесь с "
+"пониманием к тому, что между Вашим решением и решением другого участника из "
+"Толоки, с которым Вы взаимодействуете, может пройти некоторое время. Как "
 "сказано выше, Вы получите Ваш бонус как только Ваше решение будет "
 "сопоставлено с решением другого участника из Толоки, выбранного случайным "
 "образом, что может занять до 24 часов."
@@ -1967,21 +1973,21 @@ msgstr ""
 "your decision is matched with the decision of another randomly chosen Toloka "
 "participant, which can take up to 24 hours."
 
-#: sorter/templates/sorter/Intro.html:75
+#: sorter/templates/sorter/Intro2.html:44
 msgid ""
-"На вопросы в эксперименте и анкете нет правильных и неправильных ответов - "
-"отвечайте так как считаете нужным."
-msgstr "There are no right or wrong answers to questions in this experiment or questionnaire. Please answer them as you find appropriate."
+"Если Вы готовы начать, пожалуйста, нажмите Далее и ознакомьтесь с "
+"инструкциями."
+msgstr ""
 
-#: trust/models.py:44
+#: trust/models.py:45
 msgid "А"
 msgstr "A"
 
-#: trust/models.py:44
+#: trust/models.py:45
 msgid "Б"
 msgstr "B"
 
-#: trust/models.py:50 trust/models.py:52
+#: trust/models.py:51 trust/models.py:53
 msgid ""
 "Не все Ваши ответы были правильными. Пожалуйста, сверьтесь с инструкциями в "
 "верхней части экрана и исправьте ошибки."
@@ -1989,7 +1995,7 @@ msgstr ""
 "Not all your answers are correct. Please consult the instructions at the top "
 "of the screen and fix the errors."
 
-#: trust/models.py:54
+#: trust/models.py:55
 msgid ""
 "Ответы, отмеченные ниже все еще не правильны. Пожалуйста, ознакомьтесь с "
 "правильными  решениями и ответами, введите правильные ответы и приступайте к "
@@ -1999,26 +2005,27 @@ msgstr ""
 "to find the correct solutions. Finally enter the correct solution into the "
 "box. You then will proceed to the {}.  "
 
-#: trust/models.py:56
-msgid "эксперименту"
-msgstr "the experiment"
+#: trust/models.py:57
+msgid "исследованию"
+msgstr "study"
 
-#: trust/models.py:56
-msgid "2-й части эксперимента"
-msgstr "Part 2 of the experiment"
+#: trust/models.py:57
+msgid "2-й части исследования"
+msgstr "Part 2 of the study"
 
-#: trust/models.py:102
+#: trust/models.py:110
 msgid "Вы ввели неверный код для одного из городов!"
 msgstr "Wrong code for one of the cities"
 
-#: trust/models.py:142
+#: trust/models.py:151
 msgid "Все ли было понятно в инструкциях? С какими сложностями вы столкнулись?"
 msgstr "Were instructions clear? Have you had any technical issues?"
 
 #: trust/templates/trust/AfterStage1.html:12
-msgid "Часть 1 эксперимента завершена. Начинается часть 2 эксперимента."
+msgid "Часть 1 исследования завершена. Начинается часть 2 исследования."
 msgstr ""
-"Part 1 of the experiment is finished. Now Part 2 of the experiment starts."
+"Part 2 of the experiment is completed. Now the last, third part of the "
+"experiment starts - the questionnaire"
 
 #: trust/templates/trust/AfterStage1.html:17
 msgid "Перейти к части 2"
@@ -2037,7 +2044,7 @@ msgstr "Additional question"
 msgid ""
 "Предположим, что 100 случайным образом выбранных Участников А из каждого из "
 "12 городов должны решить, передавать ли им свои начальные суммы Участникам Б "
-"из этого эксперимента. Согласно Вашей оценке, сколько из этих участников А в "
+"из этого исследования. Согласно Вашей оценке, сколько из этих участников А в "
 "каждом из этих городов примет решение передать свою начальную сумму "
 "Участникам Б?"
 msgstr ""
@@ -2066,7 +2073,7 @@ msgstr ""
 msgid ""
 "Предположим, что 100 случайным образом выбранных Участников Б из каждого из "
 "12 городов должны решить, сколько из 30 токенов они вернут Участникам А  из "
-"этого эксперимента. Согласно Вашей оценке, какую сумму в среднем вернут эти "
+"этого исследования. Согласно Вашей оценке, какую сумму в среднем вернут эти "
 "Участники Б из каждого из 12 городов?"
 msgstr ""
 "Assume that 100 randomly selected Persons B in each of the 12 cities have to "
@@ -2110,166 +2117,40 @@ msgstr ""
 msgid "Проверочные вопросы для части 2"
 msgstr "Comprehension Questions for Part 2"
 
-#: trust/templates/trust/ExamplesStage2.html:5
-msgid "Часть 2. Примеры"
-msgstr "Part 2. Examples"
-
-#: trust/templates/trust/ExamplesStage2.html:16
-msgid "Пожалуйста кликните на кнопку внизу если Вы прочитали инструкции."
-msgstr "Please click the button below if you read the instructions. "
-
-#: trust/templates/trust/ExamplesStage2.html:19
-msgid ""
-"Важная информация: инструкции всегда доступны Вам в ходе эксперимента: "
-"просто кликните на кнопку “Инструкции - часть 2” в правой верхней части "
-"экрана\n"
-"\n"
-"            "
-msgstr ""
-"Important information: The instructions are always available to you in the "
-"course of the experiment if you click on the button 'Instructions – Part 2’ "
-"at the top of the screen."
-
-#: trust/templates/trust/ExamplesStage2.html:25
-msgid ""
-"Перед началом Части 2 эксперимента просим Вас ответить на несколько "
-"проверочных вопросов, которые помогут Вам лучше понять Ваши задания."
-msgstr ""
-"Before Part 2 of the experiment starts, please answer a few comprehension "
-"questions that help you to understand the tasks in Part 2. "
-
-#: trust/templates/trust/ExamplesStage2.html:31
-#: trust/templates/trust/Instructions1.html:24
-msgid "Да, я прочитал(а) инструкции"
-msgstr "Yes, I read the instructions"
-
 #: trust/templates/trust/Instructions1.html:5
 #: trust/templates/trust/includes/instructions/common_instructions.html:12
 msgid "Инструкции"
 msgstr "General instructions"
 
-#: trust/templates/trust/Instructions1.html:12
+#: trust/templates/trust/Instructions1.html:31
+#: trust/templates/trust/InstructionsStage2.html:31
+#: trust/templates/trust/includes/card_block.html:119
+msgid "Да, я прочитал(а) инструкции"
+msgstr "Yes, I read the instructions"
+
+#: trust/templates/trust/Instructions1.html:35
+#: trust/templates/trust/InstructionsStage2.html:35
 msgid "Пожалуйста, прочитайте инструкции"
 msgstr "Please read the instructions"
-
-#: trust/templates/trust/Instructions2.html:5
-msgid "Примеры"
-msgstr "Examples"
-
-#: trust/templates/trust/Instructions2.html:20
-msgid "Пожалуйста кликните на ссылку внизу если вы прочитали инструкции."
-msgstr "Please click the link below if you read the instructions."
-
-#: trust/templates/trust/Instructions2.html:22
-msgid ""
-"Важная информация: инструкции всегда доступны Вам в ходе эксперимента: "
-"просто кликните\n"
-"                    на кнопку “Инструкции - часть 1” в правой верхней части "
-"экрана\n"
-"\n"
-"                "
-msgstr ""
-"Important information: The instructions are always available to you in the "
-"course of the experiment if you click on the button 'Instructions – Part 1' "
-"at the top of the screen."
-
-#: trust/templates/trust/Instructions2.html:27
-msgid ""
-"Прежде чем начнется сам эксперимент, просим Вас ответить на несколько "
-"проверочных вопросов, которые помогут Вам лучше понять  Ваши задания."
-msgstr ""
-"Before the experiment itself starts please answer a few comprehension "
-"questions that will help you to understand the tasks."
-
-#: trust/templates/trust/Instructions2.html:30
-msgid "Да, я полностью прочитал(а) инструкции"
-msgstr "Yes, I read the instructions"
 
 #: trust/templates/trust/InstructionsStage2.html:5
 msgid "Часть 2. Инструкции"
 msgstr "Instructions. Part 2"
 
-#: trust/templates/trust/InstructionsStage2.html:13
-msgid "Сейчас мы опишем правила принятия решений в Части 2. "
-msgstr "Now we explain the rules for making decisions in Part 2."
-
-#: trust/templates/trust/InstructionsStage2.html:16
-#, python-format
-msgid ""
-"Все участники остаются в тех же самых ролях и парах, что и в Части 1. В "
-"Части 1 Вы\n"
-"                        были Участником %(role)s, и Вы остаетесь в этой же "
-"роли в Части 2. Кроме того, с Вами в паре\n"
-"                        находится\n"
-"                        тот же самый Участник %(other)s из того же города, "
-"что и в Части 1. "
-msgstr ""
-"All participants remain in exactly the same role and pairing as in Part 1. "
-"You were assigned to be Person %(role)s in Part 1, and you remain in this "
-"role in Part 2. Moreover, you are paired with exactly the same Person "
-"%(other)s located in the same city as in Part 1. "
-
-#: trust/templates/trust/InstructionsStage2.html:22
-#, python-format
-msgid ""
-"По итогам Части 2 Вы можете увеличить свой бонус, оценив решения Участника\n"
-"                        %(other)s из\n"
-"                        вашей пары в Части 1. Чем ближе будет Ваша оценка к "
-"действительному решению этого Участника\n"
-"                        %(other)s,\n"
-"                        тем выше будет Ваш бонус в Части 2."
-msgstr ""
-"You can increase your bonus in this Part 2 by providing an estimate of the "
-"Part 1 decisions of the Person %(other)s you are paired with. The closer "
-"your provided estimate is to the actual decision of that Person %(other)s, "
-"the higher is your bonus in Part 2. "
-
-#: trust/templates/trust/InstructionsStage2.html:29
-#, python-format
-msgid ""
-"Как и в Части 1, Вы не знаете, в каком городе находится Участник %(other)s "
-"из\n"
-"                        Вашей пары,\n"
-"                        Вам надо дать эту оценку 12 раз – по одному для "
-"каждого из 12 городов. Для каждого из городов\n"
-"                        оценка дается один раз."
-msgstr ""
-"As in Part 1, you do not know in which city Person %(other)s is located. "
-"Therefore, you have to make this estimation 12 times – one estimate for a "
-"Person %(other)s from each of the 12 cities. You make your estimate for each "
-"of the 12 cities once."
-
-#: trust/templates/trust/InstructionsStage2.html:35
-#, python-format
-msgid ""
-"Только одна из этих 12 оценок имеет значение при определении Вашего бонуса в "
-"Части\n"
-"                        2, а именно: оценка решения Участника %(other)s из "
-"того города, с которым Вы действительно\n"
-"                        взаимодействуете."
-msgstr ""
-"Only one of the 12 estimates is relevant for calculating your bonus in Part "
-"2 – i.e., the estimate for the decision of the Person %(other)s from the "
-"city with which you are actually paired."
-
 #: trust/templates/trust/IntroStage1.html:12
 msgid ""
 "Вы дали правильные ответы на проверочные вопросы. Теперь начинается Часть 1 "
-"эксперимента\n"
+"исследования.\n"
 "                "
 msgstr "Your answers are correct. Now Part 1 of the experiment starts. "
 
 #: trust/templates/trust/IntroStage1.html:18
-msgid "Начать эксперимент"
-msgstr "Begin the experiment"
+msgid "Начать исследование"
+msgstr "Begin the study"
 
 #: trust/templates/trust/IntroStage2.html:12
-msgid ""
-"Вы дали правильные ответы на проверочные вопросы. Теперь начинается Часть 2 "
-"эксперимента"
+msgid "Теперь начинается Часть 2 исследования"
 msgstr ""
-"Your answers to the test questions are correct. Now Part 2 of the experiment "
-"starts. "
 
 #: trust/templates/trust/IntroStage2.html:17
 msgid "Начать"
@@ -2303,7 +2184,7 @@ msgstr ""
 msgid "Часть 2. Ваши оценки"
 msgstr "Part 2. Your estimates "
 
-#: trust/templates/trust/ReturnerBeliefP.html:12
+#: trust/templates/trust/ReturnerBeliefP.html:13
 msgid ""
 "Пожалуйста оцените, передаст ли Вам Участник А из вашей пары свою начальную "
 "сумму или же нет.\n"
@@ -2312,11 +2193,11 @@ msgstr ""
 "Please estimate whether or not your paired Person A decides to transfer his "
 "initial endowment to you. "
 
-#: trust/templates/trust/ReturnerBeliefP.html:22
+#: trust/templates/trust/ReturnerBeliefP.html:23
 msgid "Если Участник А, с которым Вы взаимодействуете, из города"
 msgstr "If a Person A you interact with is a participant from…"
 
-#: trust/templates/trust/ReturnerBeliefP.html:26
+#: trust/templates/trust/ReturnerBeliefP.html:27
 msgid ""
 "то, согласно Вашей оценке, передаст Вам этот Участник А свою начальную сумму "
 "или же нет?"
@@ -2334,13 +2215,13 @@ msgstr ""
 "transfer your initial endowment, independently of whether you have actually "
 "done so or not."
 
-#: trust/templates/trust/SenderBeliefP.html:26
+#: trust/templates/trust/SenderBeliefP.html:28
 msgid "Если  бы вы передали свою начальную сумму Участнику Б из города"
 msgstr ""
 "If you had transferred your initial endowment to a Person B, who is a "
 "participant  from …:"
 
-#: trust/templates/trust/SenderBeliefP.html:33
+#: trust/templates/trust/SenderBeliefP.html:35
 msgid ""
 "то согласно Вашей оценке,  сколько из 30 токенов  этот Участник Б решит "
 "вернуть Вам?"
@@ -2360,13 +2241,13 @@ msgid ""
 msgstr "do you agree to send your endowment to this Participant B? "
 
 #: trust/templates/trust/ShowMap.html:5
-msgid "Города, в которых находятся участники эксперимента."
+msgid "Города, в которых находятся участники исследования."
 msgstr "Map of all cities where participants of this study are located."
 
 #: trust/templates/trust/ShowMap.html:11
 msgid ""
 "На этой карте Вы видите 12 городов, в которых находятся участники "
-"эксперимента. Эта карта будет всегда доступна Вам по ходу эксперимента, если "
+"исследования. Эта карта будет всегда доступна Вам по ходу исследования, если "
 "вы кликните на кнопку “Карта городов” в верхней части экрана."
 msgstr ""
 "On this map you see all 12 cities where participants in this experiment are "
@@ -2380,7 +2261,7 @@ msgstr "Attention!"
 #: trust/templates/trust/includes/extra_block.html:5
 msgid ""
 "Просим Вас также ответить на два дополнительных вопроса о том, как, по "
-"Вашему мнению, в среднем будут вести себя участники этого эксперимента. \n"
+"Вашему мнению, в среднем будут вести себя участники этого исследования.\n"
 "            "
 msgstr ""
 "Please also answer two additional questions about what you estimate the "
@@ -2392,15 +2273,17 @@ msgid ""
 msgstr ""
 "Please note that the answers to these questions do not affect your bonus."
 
-#: trust/templates/trust/includes/instruction_toggler.html:5
-msgid "Show instructions"
-msgstr "Инструкции"
+#: trust/templates/trust/includes/instruction_warning_block.html:4
+msgid ""
+"Пожалуйста <b>внимательно</b> прочтите инструкцию: от ее правильного "
+"понимания может зависеть Ваш бонус."
+msgstr ""
 
 #: trust/templates/trust/includes/instructions/common_instructions.html:21
 msgid ""
 "Каждому участнику случайным образом выпадает одна из двух ролей: Участник А "
 "или\n"
-"                        Участник Б. Как только начнется эксперимент, Вы "
+"                        Участник Б. Как только начнется исследование, Вы "
 "узнаете, Вашу роль: Участник А или Участник\n"
 "                        Б."
 msgstr ""
@@ -2432,7 +2315,7 @@ msgstr ""
 
 #: trust/templates/trust/includes/instructions/common_instructions.html:35
 msgid ""
-"В начале эксперимента как Участник А, так и Участник Б  получают от "
+"В начале исследования как Участник А, так и Участник Б  получают от "
 "организаторов начальную сумму в 10 токенов (=1 US$) каждый."
 msgstr ""
 "At the beginning of the experiment, Person A and Person B both receive from "
@@ -2704,7 +2587,7 @@ msgid ""
 "А из\n"
 "                        Вашей пары, Вам надо дать оценку этого решения "
 "Участника А 12 раз – по одному для каждого из 12\n"
-"                        городов, участвующих в этом эксперименте.\n"
+"                        городов, участвующих в этом исследовании.\n"
 "                    "
 msgstr ""
 "Since you at this moment do not know yet what city your paired Person A is "
@@ -2716,7 +2599,7 @@ msgid ""
 "Ваша оценка того, передал Вам Участник А из Вашей пары свою начальную сумму "
 "или же нет,\n"
 "                сравнивается с действительным решением этого Участник А в "
-"Части 1 эксперимента. Размер Вашего бонуса\n"
+"Части 1 исследования. Размер Вашего бонуса\n"
 "                определяется на основе Вашей оценки согласно следующему "
 "правилу:\n"
 "            "
@@ -2746,7 +2629,7 @@ msgid ""
 "Б из Вашей\n"
 "                    пары, Вам надо дать эту оценку решения Участника Б 12 "
 "раз – по одному для каждого из 12 городов,\n"
-"                    участвующих в этом эксперименте.\n"
+"                    участвующих в этом исследовании.\n"
 "                "
 msgstr ""
 "Since you at this moment do not know yet what city your paired Person B is "
@@ -2757,7 +2640,7 @@ msgstr ""
 msgid ""
 "Ваша оценка решения Участника Б из Вашей пары о возврате сравнивается с "
 "действительным\n"
-"                решением этого Участника Б в Части 1 эксперимента. Размер "
+"                решением этого Участника Б в Части 1 исследования. Размер "
 "бонуса определяется на основе Вашей оценки\n"
 "                согласно следующему правилу:\n"
 "            "
@@ -3052,9 +2935,153 @@ msgstr ""
 "You are randomly paired with a participant B from City 1 who states to "
 "return 9 Token in case you transfer your endowment."
 
-#: trust/templates/trust/includes/role_block.html:5
+#: trust/templates/trust/includes/role_block.html:6
 msgid "Вам случайным образом выпала роль Участника "
 msgstr "You were randomly assigned the role of Participant "
+
+#: trust/templates/trust/includes/role_block.html:8
+msgid "Ваша роль -  Участник "
+msgstr "Your role is Participant"
+
+#~ msgid "Введение"
+#~ msgstr "Introduction"
+
+#~ msgid ""
+#~ "Ваши решения в одной части эксперимента не повлияют на Ваш бонус по "
+#~ "итогам другой\n"
+#~ "                        части эксперимента.\n"
+#~ "                    "
+#~ msgstr ""
+#~ "Your decisions in one part of the experiment do not influence your bonus "
+#~ "in the other part."
+
+#~ msgid "эксперименту"
+#~ msgstr "the experiment"
+
+#~ msgid "Часть 1 эксперимента завершена. Начинается часть 2 эксперимента."
+#~ msgstr ""
+#~ "Part 1 of the experiment is finished. Now Part 2 of the experiment starts."
+
+#~ msgid "Часть 2. Примеры"
+#~ msgstr "Part 2. Examples"
+
+#~ msgid "Пожалуйста кликните на кнопку внизу если Вы прочитали инструкции."
+#~ msgstr "Please click the button below if you read the instructions. "
+
+#~ msgid ""
+#~ "Важная информация: инструкции всегда доступны Вам в ходе эксперимента: "
+#~ "просто кликните на кнопку “Инструкции - часть 2” в правой верхней части "
+#~ "экрана\n"
+#~ "\n"
+#~ "            "
+#~ msgstr ""
+#~ "Important information: The instructions are always available to you in "
+#~ "the course of the experiment if you click on the button 'Instructions – "
+#~ "Part 2’ at the top of the screen."
+
+#~ msgid ""
+#~ "Перед началом Части 2 эксперимента просим Вас ответить на несколько "
+#~ "проверочных вопросов, которые помогут Вам лучше понять Ваши задания."
+#~ msgstr ""
+#~ "Before Part 2 of the experiment starts, please answer a few comprehension "
+#~ "questions that help you to understand the tasks in Part 2. "
+
+#~ msgid "Примеры"
+#~ msgstr "Examples"
+
+#~ msgid "Пожалуйста кликните на ссылку внизу если вы прочитали инструкции."
+#~ msgstr "Please click the link below if you read the instructions."
+
+#~ msgid ""
+#~ "Важная информация: инструкции всегда доступны Вам в ходе эксперимента: "
+#~ "просто кликните\n"
+#~ "                    на кнопку “Инструкции - часть 1” в правой верхней "
+#~ "части экрана\n"
+#~ "\n"
+#~ "                "
+#~ msgstr ""
+#~ "Important information: The instructions are always available to you in "
+#~ "the course of the experiment if you click on the button 'Instructions – "
+#~ "Part 1' at the top of the screen."
+
+#~ msgid ""
+#~ "Прежде чем начнется сам эксперимент, просим Вас ответить на несколько "
+#~ "проверочных вопросов, которые помогут Вам лучше понять  Ваши задания."
+#~ msgstr ""
+#~ "Before the experiment itself starts please answer a few comprehension "
+#~ "questions that will help you to understand the tasks."
+
+#~ msgid "Да, я полностью прочитал(а) инструкции"
+#~ msgstr "Yes, I read the instructions"
+
+#~ msgid "Сейчас мы опишем правила принятия решений в Части 2. "
+#~ msgstr "Now we explain the rules for making decisions in Part 2."
+
+#, python-format
+#~ msgid ""
+#~ "Все участники остаются в тех же самых ролях и парах, что и в Части 1. В "
+#~ "Части 1 Вы\n"
+#~ "                        были Участником %(role)s, и Вы остаетесь в этой "
+#~ "же роли в Части 2. Кроме того, с Вами в паре\n"
+#~ "                        находится\n"
+#~ "                        тот же самый Участник %(other)s из того же "
+#~ "города, что и в Части 1. "
+#~ msgstr ""
+#~ "All participants remain in exactly the same role and pairing as in Part "
+#~ "1. You were assigned to be Person %(role)s in Part 1, and you remain in "
+#~ "this role in Part 2. Moreover, you are paired with exactly the same "
+#~ "Person %(other)s located in the same city as in Part 1. "
+
+#, python-format
+#~ msgid ""
+#~ "По итогам Части 2 Вы можете увеличить свой бонус, оценив решения "
+#~ "Участника\n"
+#~ "                        %(other)s из\n"
+#~ "                        вашей пары в Части 1. Чем ближе будет Ваша оценка "
+#~ "к действительному решению этого Участника\n"
+#~ "                        %(other)s,\n"
+#~ "                        тем выше будет Ваш бонус в Части 2."
+#~ msgstr ""
+#~ "You can increase your bonus in this Part 2 by providing an estimate of "
+#~ "the Part 1 decisions of the Person %(other)s you are paired with. The "
+#~ "closer your provided estimate is to the actual decision of that Person "
+#~ "%(other)s, the higher is your bonus in Part 2. "
+
+#, python-format
+#~ msgid ""
+#~ "Как и в Части 1, Вы не знаете, в каком городе находится Участник "
+#~ "%(other)s из\n"
+#~ "                        Вашей пары,\n"
+#~ "                        Вам надо дать эту оценку 12 раз – по одному для "
+#~ "каждого из 12 городов. Для каждого из городов\n"
+#~ "                        оценка дается один раз."
+#~ msgstr ""
+#~ "As in Part 1, you do not know in which city Person %(other)s is located. "
+#~ "Therefore, you have to make this estimation 12 times – one estimate for a "
+#~ "Person %(other)s from each of the 12 cities. You make your estimate for "
+#~ "each of the 12 cities once."
+
+#, python-format
+#~ msgid ""
+#~ "Только одна из этих 12 оценок имеет значение при определении Вашего "
+#~ "бонуса в Части\n"
+#~ "                        2, а именно: оценка решения Участника %(other)s "
+#~ "из того города, с которым Вы действительно\n"
+#~ "                        взаимодействуете."
+#~ msgstr ""
+#~ "Only one of the 12 estimates is relevant for calculating your bonus in "
+#~ "Part 2 – i.e., the estimate for the decision of the Person %(other)s from "
+#~ "the city with which you are actually paired."
+
+#~ msgid ""
+#~ "Вы дали правильные ответы на проверочные вопросы. Теперь начинается Часть "
+#~ "2 эксперимента"
+#~ msgstr ""
+#~ "Your answers to the test questions are correct. Now Part 2 of the "
+#~ "experiment starts. "
+
+#~ msgid "Show instructions"
+#~ msgstr "Инструкции"
 
 #~ msgid ""
 #~ "Для этого человека важно предлагать новые идеи, быть творческой "

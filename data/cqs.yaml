@@ -108,10 +108,10 @@ cq2_1:
   part: 2
   role: sender
   wrong1:
-    rus: "Посчитайте разницу в токенах между оценкой Участника А (9 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 эксперимента (15 токенов)"
+    rus: "Посчитайте разницу в токенах между оценкой Участника А (9 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 исследования (15 токенов)"
     eng: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token)."
   wrong2:
-    rus: "Посчитайте разницу в токенах между оценкой Участника А (9 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 эксперимента (15 токенов). Эта разница составит 15-9=6 токенов, что больше чем 3 токена, поэтому бонус составит <b><u>0 токенов</b></u>."
+    rus: "Посчитайте разницу в токенах между оценкой Участника А (9 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 исследования (15 токенов). Эта разница составит 15-9=6 токенов, что больше чем 3 токена, поэтому бонус составит <b><u>0 токенов</b></u>."
     eng: "Calculate the difference in Token between Person A’s estimate (9 Token) and the decision of the paired Person B in Part 1 of the experiment (15 Token). This difference is 15 – 9 = 6 Token and is larger than 3 Token. The bonus therefore is <b><u>0 Token</b></u>."
 cq2_2:
   extid: A2
@@ -122,10 +122,10 @@ cq2_2:
   part: 2
   role: sender
   wrong1:
-    rus: "Помните, что Участник Б принимает свое решение для того случая, когда Участник А передает ему свою начальную сумму. Посчитайте разницу в токенах между оценкой Участника А (15 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 эксперимента (12 токенов)."
+    rus: "Помните, что Участник Б принимает свое решение для того случая, когда Участник А передает ему свою начальную сумму. Посчитайте разницу в токенах между оценкой Участника А (15 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 исследования (12 токенов)."
     eng: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). "
   wrong2:
-    rus: "Помните, что Участник Б принимает свое решение для того случая, когда Участник А передает ему свою начальную сумму. Посчитайте разницу в токенах между оценкой Участника А (15 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 эксперимента (12 токенов). Эта разница составит 15-12=3 токена, так что бонус составит <b><u>10 токенов</b></u>."
+    rus: "Помните, что Участник Б принимает свое решение для того случая, когда Участник А передает ему свою начальную сумму. Посчитайте разницу в токенах между оценкой Участника А (15 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 исследования (12 токенов). Эта разница составит 15-12=3 токена, так что бонус составит <b><u>10 токенов</b></u>."
     eng: "Remember that Person B made his decision also for the case that Person A does transfer his endowment. Calculate the difference in Token between Person A’s estimate (15 Token) and the decision of the paired Person B in Part 1 of the experiment (12 Token). This difference is 15 Token – 12 Token = 3 Token. The bonus,therefore, is <b><u>10 Token</b></u>."
 cq2_3:
   extid: A3
@@ -136,10 +136,10 @@ cq2_3:
   part: 2
   role: sender
   wrong1:
-    rus: Посчитайте разницу в токенах между оценкой Участника А (0 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 эксперимента (0 токенов).
+    rus: Посчитайте разницу в токенах между оценкой Участника А (0 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 исследования (0 токенов).
     eng: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token).
   wrong2:
-    rus: Посчитайте разницу в токенах между оценкой Участника А (0 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 эксперимента (0 токенов). Участник А точно оценил решение Участника Б, так что его бонус составит <b><u>20 токенов</b></u>.
+    rus: Посчитайте разницу в токенах между оценкой Участника А (0 токенов) и решением того Участника Б, с которым он взаимодействовал в Части 1 исследования (0 токенов). Участник А точно оценил решение Участника Б, так что его бонус составит <b><u>20 токенов</b></u>.
     eng: Calculate the difference in Token between Person A’s estimate (0 Token) and the decision of the paired Person B in Part 1 of the experiment (0 Token). This difference is 0. Person A’s estimate is correct and the bonus, therefore, is <b><u>20 Token</b></u>.
 cq2_4:
   extid:
