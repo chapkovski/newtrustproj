@@ -73,6 +73,7 @@ class UpdSession(Session):
                 return city
             except (City.DoesNotExist, City.MultipleObjectsReturned):
                 pass
+
     def toloka_nums(self):
         # it is a very very rough way to estimate toloka participants (which pass their id to label)
         return self.participant_set.filter(label__isnull=False).count()
@@ -206,7 +207,7 @@ class TolokaParticipant(models.Model):
             print(e)
             return dict(error=True)
 
-    def pay_bonus(self):
+    def pay_bonus(self, host=None):
         """iif status is accepted and bonus is paid is false then pay a bonus retrieved from bonus_to_pay"""
         if not self.bonus_paid:
             """send pay bonus request to toloka"""
@@ -216,14 +217,19 @@ class TolokaParticipant(models.Model):
             bonus = float(self.owner.payoff_in_real_world_currency())
 
             title = DEFAULT_BONUS_TITLE
+
             try:
-                domain = Site.objects.get_current().domain
+                if host:
+                    domain = host
+                else:
+                    domain = Site.objects.get_current().domain
                 mp = self.owner.megaparticipant.get_absolute_url()
                 url = f'http://{domain}{mp}'
                 message = DEFAULT_BONUS_MESSAGE.format(url)
             except Exception as e:
                 print('ERROR IN BONUS PAYMENT', e)
                 message = DEFAULT_BONUS_TITLE
+
             resp = client.pay_bonus(user_id, bonus, title, message)
             self.bonus_paid = True
             self.save()

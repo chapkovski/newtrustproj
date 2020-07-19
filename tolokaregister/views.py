@@ -95,4 +95,5 @@ class PayBonus(TolokaGeneralRedirect):
     url_name = 'pay_toloka_bonus'
 
     def to_do(self):
-        self.tp.pay_bonus()
+        print('AAAAAA', self.request.get_host())
+        self.tp.pay_bonus(host=self.request.get_host())
