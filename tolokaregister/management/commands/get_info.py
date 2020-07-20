@@ -11,8 +11,10 @@ def update_info(p, sandbox=False):
     tp, created = TolokaParticipant.objects.get_or_create(owner=p, defaults=defaults)
     if created:
         logger.info(f'tparticipant was created for participant {p.code}')
-
+    else:
+        logger.info(f'tparticipant {tp.id} is already created for participant {p.code}')
     tp.get_info()
+    logger.info(f'participant {p.code}: status: {tp.status} ')
 
 
 def process_single_session(code):

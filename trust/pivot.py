@@ -62,7 +62,7 @@ class TrustDataGetter(UniGetter):
         data = data.annotate(**curconverter, **cq_annotator).values()
         df = pd.DataFrame(list(
             data.values('session__code', 'session__comment', 'session__label',  'participant__code',
-                        'participant__time_started', 'city','city__eng',
+                        'participant__time_started', 'city__code','city__eng',
                         '_role', 'city_order', 'participant__id_in_session', 'participant__label',
                         'cq1_counter', 'cq2_counter',
                         *cq_annotator.keys(),

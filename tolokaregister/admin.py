@@ -6,7 +6,7 @@ from .models import UpdParticipant, TolokaParticipant
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
-    list_display = ('code', 'num_participants', 'label','is_demo')
+    list_display = ('code', 'num_participants', 'label', 'is_demo')
     list_display_links = ['code']
     readonly_fields = ['vars', 'config',
                        '_admin_report_app_names',
@@ -21,7 +21,7 @@ class PPAdmin(admin.ModelAdmin):
         return obj.session.code
 
     list_display = ('code', 'get_session_code', 'id_in_session')
-    readonly_fields = ['vars', 'label', 'mturk_assignment_id', 'mturk_worker_id', '_waiting_for_ids',
+    readonly_fields = ['vars', 'mturk_assignment_id', 'mturk_worker_id', '_waiting_for_ids',
                        '_current_form_page_url', '_timeout_expiration_time']
 
 

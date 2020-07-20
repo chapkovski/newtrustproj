@@ -1,6 +1,9 @@
 from os import environ
 import os
 
+import dotenv
+dotenv.read_dotenv()
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')
 
