@@ -35,7 +35,7 @@ def data_creator(num_participants):
     for x in cities:
         logger.info(f'Creating session for city: {x}; participants:{num_participants} ')
         s = create_session(
-            session_config_name='trust_demo_ru',
+            session_config_name='trust_ru',
             num_participants=num_participants,
             label=x,
             modified_session_config_fields=dict(city_code=x)

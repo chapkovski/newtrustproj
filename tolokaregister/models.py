@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 # Some constants - mostly temporarily
 DEFAULT_BONUS_TITLE = 'Cпасибо за ваше участие!'
 DEFAULT_BONUS_MESSAGE = 'Cпасибо за ваше участие! Вы можете ознакомиться с результатами по ссылке {}'
-
+MINIMUM_BONUS_AMOUNT = 0.01
 """
 -  status (accept, reject, unknown, active, submitted, error)
 - Info (just a dump for response based on label of initial participant),  
@@ -211,13 +211,15 @@ class TolokaParticipant(models.Model):
 
     def pay_bonus(self, host=None):
         """iif status is accepted and bonus is paid is false then pay a bonus retrieved from bonus_to_pay"""
+        # we need somehow to pay zero bonus. Let's add 0.01 for zero bonus
         if not self.bonus_paid:
             """send pay bonus request to toloka"""
 
             client = TolokaClient(self.sandbox)
             user_id = self.toloka_user_id
             bonus = float(self.owner.payoff_in_real_world_currency())
-
+            if bonus == 0:
+                bonus = MINIMUM_BONUS_AMOUNT
             title = DEFAULT_BONUS_TITLE
 
             try:

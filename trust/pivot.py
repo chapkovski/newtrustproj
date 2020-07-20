@@ -58,16 +58,10 @@ class TrustDataGetter(UniGetter):
             cq0_stage1=Count('cqs__counter', filter=Q(cqs__part=1, cqs__counter=0)),
             cq1_stage1=Count('cqs__counter', filter=Q(cqs__part=1, cqs__counter=1)),
             cq2_stage1=Count('cqs__counter', filter=Q(cqs__part=1, cqs__counter=2)),
-            cq3_stage1=Count('cqs__counter', filter=Q(cqs__part=1, cqs__counter=3)),
-            cq0_stage2=Count('cqs__counter', filter=Q(cqs__part=2, cqs__counter=0)),
-            cq1_stage2=Count('cqs__counter', filter=Q(cqs__part=2, cqs__counter=1)),
-            cq2_stage2=Count('cqs__counter', filter=Q(cqs__part=2, cqs__counter=2)),
-            cq3_stage2=Count('cqs__counter', filter=Q(cqs__part=2, cqs__counter=3)),
-
         )
         data = data.annotate(**curconverter, **cq_annotator).values()
         df = pd.DataFrame(list(
-            data.values('session__code', 'participant__code', 'participant__time_started', 'city',
+            data.values('session__code', 'session__comment','session__label', 'participant__code', 'participant__time_started', 'city',
                         '_role', 'city_order', 'participant__id_in_session', 'participant__label',
                         'cq1_counter', 'cq2_counter',
                         *cq_annotator.keys(),
