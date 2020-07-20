@@ -1,17 +1,28 @@
-from django.core.management.base import BaseCommand
 import logging
-from otree.session import create_session
-from trust.models import City
+from tolokaregister.models import TolokaParticipant
+from ._uni_toloka_command import TolokaCommand
 
 logger = logging.getLogger(__name__)
 
 
+class Command(TolokaCommand):
+    command_desc = 'accepting'
 
-class Command(BaseCommand):
-    def add_arguments(self, parser):
-        parser.add_argument('num_participants', help='Number of participants per session.', type=int)
+    def do_over_single(self, p, sandbox=False):
+        try:
+            tp = TolokaParticipant.objects.get(owner=p)
+        except TolokaParticipant.DoesNotExist:
+            logger.info(f'No status known for participant {p.code}')
+            return
+        if not tp.answer_is_correct:
+            logger.info(f'User {p.code} provided wrong answer! Assignment {tp.assignment}. His answer: '
+                        f'{tp.answer}; correct answer: {tp.owner.code}')
+            return
 
-    def handle(self, num_participants, *args, **options):
-        logger.warning('This command will create a bunch of sessions for each city for toloka')
-        stub = input("Enter stub : ")
-        session_creator(num_participants, stub)
+        resp = tp.accept_assignment()
+        error = resp.get('error')
+        if error:
+            logger.info(f'Submission failed. Current user status is {tp.status}. User {p.code},'
+                        f' assignment {tp.assignment}')
+        else:
+            logger.info(f'User {p.code} is accepted')
