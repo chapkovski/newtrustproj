@@ -18,7 +18,8 @@ class Command(TolokaCommand):
         if tp.payable:
             resp = tp.pay_bonus()
         else:
-            logger.info(f"User {p.code} is not yet accepted")
+            logger.info(
+                f"I cant pay bonus to user {p.code}. Here is why: the status is {tp.status}. Bonus paid: {tp.bonus_paid}")
             return
         error = resp.get('error')
         if error:
