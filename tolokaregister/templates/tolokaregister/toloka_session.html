@@ -1,6 +1,9 @@
 {% extends "otree/BaseAdmin.html" %}
 
 {% block title %}
+    <a  role="button" type="button"  class="btn  btn-log btn-secondary-outline border"
+        href="{% url 'toloka_sessions' %}"
+    >Back</a>
     Toloka session <a href="{% url 'SessionDescription' session.code %}">{{ session.code }}</a>
 {% endblock %}
 
