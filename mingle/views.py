@@ -92,7 +92,7 @@ class CreateNewMegaSession(LoginRequiredMixin, CreateView):
         self.object = form.save(commit=False)
         formset = self.get_formset(post_data=self.request.POST)
 
-        if formset.is_valid():
+        if formset.is_valid() and form.is_valid():
             form.save(commit=True)
             formset = self.get_formset(post_data=self.request.POST)
             formset.save()

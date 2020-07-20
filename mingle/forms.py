@@ -51,4 +51,4 @@ class MegaForm(forms.ModelForm):
 
     class Meta:
         model = MegaSession
-        fields = ['id']
+        fields = ['comment']

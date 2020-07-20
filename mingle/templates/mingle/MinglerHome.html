@@ -39,6 +39,14 @@
                          Created: {{ m.created_at }}
                     </a>
                 </div>
+                {% if m.comment %}
+                <div class="ml-3">
+                    <a href="{% url 'MegaSessionDetail' pk=m.id %}">
+                        {{ m.comment}}
+                    </a>
+                </div>
+                {% endif %}
+
                 <div class="ml-auto">
                     <a role="button" class="btn btn-outline-danger "
                        href="{% url 'DeleteMegaSession' pk=m.id %}">Delete</a>
