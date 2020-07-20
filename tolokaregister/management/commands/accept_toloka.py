@@ -14,7 +14,7 @@ class Command(TolokaCommand):
         except TolokaParticipant.DoesNotExist:
             logger.info(f'No status known for participant {p.code}')
             return
-        if self.status != StatusEnum.submitted.value:
+        if tp.status != StatusEnum.submitted.value:
             logger.info(f'Cant accept assignment {tp.assignment} for user {p.code}. Current status is {tp.status}')
             return
         if not tp.answer_is_correct:
