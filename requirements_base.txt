@@ -1,4 +1,5 @@
-otree>=3.0.2
+otree==3.4.0
+psycopg2==2.8.6
 pyyaml
 pandas
 django_pandas
