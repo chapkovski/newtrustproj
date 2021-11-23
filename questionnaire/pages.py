@@ -349,11 +349,6 @@ class Personal2(Page):
         return dict(GOOGLE_API_KEY=settings.GOOGLE_API_KEY)
 
 
-class LastQ(Page):
-    form_model = 'player'
-    form_fields = ['comment']
-
-
 # new pages
 
 class SES(Page):
@@ -517,6 +512,10 @@ class SES(NewPage):
 
 
 # new pages  END
+class LastQ(Page):
+    form_model = 'player'
+    form_fields = ['comment']
+
 
 page_sequence = [
     IntroQ,
@@ -533,7 +532,6 @@ page_sequence = [
     Values,
     Risk,
     Personal2,
-    LastQ,
     Income,
     IncomeScale,
     IncomeScaleFamily,
@@ -543,5 +541,7 @@ page_sequence = [
     AltruismAndTrust,
     Patience,
     ChildrenQualities,
+    Demographics,
     SES,
+    LastQ,
 ]
