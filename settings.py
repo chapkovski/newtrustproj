@@ -48,13 +48,13 @@ uni_trust = dict(
 )
 SESSION_CONFIGS = [
     {**uni_trust,
-     'city_code': '01',
+     'city_code': '07',
      'name': 'trust_ru',
      'display_name': 'trust: DEMO! Moscow - RUSSIAN',
      'language': 'ru'
      },
     {**uni_trust,
-     'city_code': '01',
+     'city_code': '07',
      'name': 'trust_en',
      'display_name': 'trust: DEMO! Moscow - ENGLISH',
      'language': 'en'
@@ -80,7 +80,7 @@ SESSION_CONFIGS = [
 
         'language': 'en'},
     {**uni_trust,
-     'city_code': '01',
+     'city_code': '07',
      'name': 'full_en',
      'display_name': 'Full  DEMO! Moscow - ENGLISH',
 
@@ -93,7 +93,7 @@ SESSION_CONFIGS = [
      ],
      },
     {**uni_trust,
-     'city_code': '01',
+     'city_code': '07',
      'name': 'full_ru',
      'display_name': 'Full  DEMO! Moscow - RUSSIAN',
      'language': 'ru',
