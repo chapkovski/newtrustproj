@@ -1,0 +1,77 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+    <style>
+        label.btn.btn-default.btn-secondary.active {
+            background: yellow;
+            color: black;
+        }
+
+        .btn-group fieldset {
+            display: flex !important;
+            flex-direction: column-reverse;
+            width:100%
+        }
+.btn-group {
+    width: 100%;
+}
+        label.btn.btn-default.btn-secondary {
+            display: flex !important;
+            flex-direction: column;
+        }
+
+    </style>
+
+
+
+    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+    <div id="surveyResult"></div>
+    <input type="hidden" id="surveyholder" name="surveyholder">
+    <script>
+        Survey.defaultBootstrapCss.navigationButton = "btn-primary btn-lg";
+        Survey
+            .StylesManager
+            .applyTheme("bootstrap");
+
+        var json = {
+            requiredText: '',
+            showQuestionNumbers: "off",
+            showCompletedPage: false,
+            completeText: "Далее",
+            questions: [
+                {requiredErrorText: 'Пожалуйста, ответьте на вопрос',
+                    type: "rating",
+                    name: "income_scale",
+                    title: "В нашем обществе есть социальные группы, которые расположены ближе к вершине, и группы, которые расположены ближе к низу. Эти группы представлены на шкале, где самая верхняя находится вверху, а самая низкая - внизу. Куда бы Вы сейчас отнесли себя на этой шкале?",
+                    isRequired:true,
+                    rateMin: 0,
+                    rateMax: 10,
+                    minRateDescription: "Самая низкая позиция ",
+                    maxRateDescription: "Самая высокая позиция"
+                },
+            ]
+        };
+
+        window.survey = new Survey.Model(json);
+
+        survey
+            .onComplete
+            .add(function (sender) {
+                document
+                $('#surveyholder').val(JSON.stringify(sender.data, null, 3))
+                $('#form').submit()
+                ;
+            });
+
+        $("#surveyElement").Survey({model: survey});
+        ;
+    </script>
+
+
+{% endblock %}

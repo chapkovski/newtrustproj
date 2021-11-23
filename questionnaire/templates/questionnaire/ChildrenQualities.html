@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+    <style>
+
+
+    </style>
+
+    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+    <div id="surveyResult"></div>
+    <input type="hidden" id="surveyholder" name="surveyholder">
+    <script>
+        Survey.defaultBootstrapCss.navigationButton = "btn-primary btn-lg";
+        Survey
+            .StylesManager
+            .applyTheme("bootstrap");
+
+        var json = {
+            requiredText: '',
+            showQuestionNumbers: "off",
+            showCompletedPage: false,
+            completeText: "Далее",
+            questions: [
+                {
+                    type: "checkbox",
+                    isRequired: true,
+                    requiredErrorText: 'Пожалуйста, ответьте на вопрос',
+                    maxSelectedChoices: 5,
+                    name: "children_qualities",
+                    title: "Ниже представлен список качеств, которые могут развиваться у детей в ходе семейного воспитания. Какие из них, если таковые имеются, Вы считаете особенно важными? Пожалуйста, выберите до пяти вариантов.",
+
+                    hasNone: true,
+                    noneText: 'Ни одно из вышеперечисленных',
+                    colCount: 1,
+                    choices: [
+                        {value: 'good_manners', text: "Хорошие манеры"},
+                        {value: 'independence', text: "Независимость"},
+                        {value: 'hard_work', text: "Трудолюбие"},
+                        {value: 'responsibility', text: "Ответственность"},
+                        {value: 'imagination', text: "Творчество"},
+                        {value: 'respectful_and_tolerant', text: "Терпимость и уважение к другим людям"},
+                        {value: 'thrift', text: "Бережливость, бережное отношение к деньгам и вещам"},
+                        {value: 'determination', text: "Решительность, настойчивость "},
+                        {value: 'religious', text: "Религиозность"},
+                        {value: 'unselfishness', text: "Бескорыстие"},
+                        {value: 'obedience', text: "Послушание"}
+                    ]
+                }
+            ]
+        };
+
+        window.survey = new Survey.Model(json);
+
+        survey
+            .onComplete
+            .add(function (sender) {
+                document
+                $('#surveyholder').val(JSON.stringify(sender.data, null, 3))
+                $('#form').submit()
+                ;
+            });
+
+        $("#surveyElement").Survey({model: survey});
+        ;
+    </script>
+
+
+{% endblock %}

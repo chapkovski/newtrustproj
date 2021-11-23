@@ -33,8 +33,8 @@ class Constants(BaseConstants):
         [1, _('Полностью согласен')],
         [2, _('Скорее согласен')],
         [3, _('Ни то чтобы согласен - ни то чтобы нет')],
-        [3, _('Скорее не согласен')],
-        [4, _('Совершенно не согласен')],
+        [4, _('Скорее не согласен')],
+        [5, _('Совершенно не согласен')],
         HARD_TO_SAY_CHOICE
     ]
 
@@ -140,6 +140,35 @@ class Constants(BaseConstants):
         [4, _('Разведены')],
         [5, _('Живете отдельно от супруга/и')],
         [6, _('Вдовец/Вдова')],
+        HARD_TO_SAY_CHOICE
+    ]
+    BEST_INTENSIONS_CHOICES = [
+        [0, _('0 - Совершенно не согласен/согласна')],
+        [1, '1'],
+        [2, '2'],
+        [3, '3'],
+        [4, '4'],
+        [5, '5'],
+        [6, '6'],
+        [7, '7'],
+        [8, '8'],
+        [9, '9'],
+        [10, _('10 - Совершенно согласен/согласна')],
+
+    ]
+
+    smoke_choices = [
+        [0, _('Никогда')],
+        [1, _('Время от времени')],
+        [2, _('Часто')],
+        HARD_TO_SAY_CHOICE
+    ]
+
+    fast_drive_choices = [
+        [0, _('Никогда')],
+        [1, _('Время от времени')],
+        [2, _('Часто')],
+        [3, _('Я не вожу машину')],
         HARD_TO_SAY_CHOICE
     ]
     CITY_SIZE_CHOICES = [
@@ -331,6 +360,63 @@ class Constants(BaseConstants):
         [6, _('Совсем не похож на меня')],
     ]
 
+    agreement_choices_5DNK = [
+        [1, _('Совершенно не согласен/согласна')],
+        [2, _('Скорее не согласен/согласна')],
+        [3, _('Ни то чтобы согласен/согласна – ни то чтобы нет')],
+        [4, _('Скорее согласен/согласна')],
+        [5, _('Совершенно согласен/согласна')],
+        HARD_TO_SAY_CHOICE
+    ]
+
+    income_choices = [
+        [1, _('Не хватает денег даже на еду')],
+        [2, _('Хватает на еду, но не хватает на покупку одежды и обуви')],
+        [3, _('Хватает на одежду и обувь, но не хватает на покупку мелкой бытовой техники')],
+        [4, _(
+            'Хватает денег на небольшие покупки, но покупка дорогих вещей (компьютера, стиральной машины, холодильника) требует накоплений или кредита')],
+        [5, _(
+            'Хватает денег на покупки для дома, но на покупку машины, дачи, квартиры необходимо копить или брать кредит')],
+        [6, _('Можем позволить себе любые покупки без ограничений и кредитов')],
+        HARD_TO_SAY_CHOICE
+    ]
+
+    regional_income_changed_choices = [
+        [1, _('Он стал значительно меньше, чем год назад')],
+        [2, _('Он стал немного меньше, чем год назад')],
+        [3, _('Он не изменился')],
+        [4, _('Он стал немного больше, чем год назад')],
+        [5, _('Он стал значительно больше, чем год назад')],
+        HARD_TO_SAY_CHOICE
+    ]
+
+    relative_income_choices = [
+        [1, _('ниже, чем в среднем в вашем городе')],
+        [2, _('такой же, как в среднем в вашем городе')],
+        [3, _('выше, чем в среднем в вашем городе')],
+        HARD_TO_SAY_CHOICE
+    ]
+
+    Patience_10 = [
+        [0, _('0 - совершенно не готов(а) так поступать')],
+        [1, '1'],
+        [2, '2'],
+        [3, '3'],
+        [4, '4'],
+        [5, '5'],
+        [6, '6'],
+        [7, '7'],
+        [8, '8'],
+        [9, '9'],
+        [10, _('10 - готов(а) поступать именно так')],
+        HARD_TO_SAY_CHOICE
+    ]
+
+    Yes_No = [
+        [0, _('Нет')],
+        [1, _('Да')],
+        HARD_TO_SAY_CHOICE
+    ]
     AgreementChoices5DNK = [
         [1, _('Совершенно согласен')],
         [2, _('Скорее согласен')],
@@ -1233,3 +1319,170 @@ class Player(BasePlayer):
     occupation_child = models.IntegerField(choices=Constants.OCCUPATION_CHILD_CHOICES, blank=True)
     comment = models.TextField(
         label=_('Если у вас есть комментарии относительно этого исследования, оставьте их ниже'), blank=True)
+    # newquestions block
+    income_diff = models.PositiveIntegerField(
+        label=_('Различия в доходах в России слишком велики:'),
+        choices=Constants.agreement_choices_5DNK,
+        widget=widgets.RadioSelect()
+    )
+    reduce_income_diff = models.PositiveIntegerField(
+        label=_(
+            'Правительство несет ответственность за сокращение различий в доходах между людьми с высокими доходами и людьми с низкими доходами:'),
+        choices=Constants.agreement_choices_5DNK,
+        widget=widgets.RadioSelect()
+    )
+
+    regional_income_changed = models.PositiveIntegerField(
+        label=_(
+            'По Вашему мнению, изменился ли среднемесячный доход жителей вашего региона за последние 12 месяцев?'),
+        choices=Constants.regional_income_changed_choices,
+        widget=widgets.RadioSelect()
+    )
+    income_scale = models.IntegerField()
+    income_scale_family = models.IntegerField()
+    income_pyramid = models.IntegerField()
+    income_pyramid_regional = models.IntegerField()
+    # LITS
+    lits_equal = models.IntegerField()
+    lits_ownership = models.IntegerField()
+    lits_obey = models.IntegerField()
+    lits_authorities = models.IntegerField()
+    lits_wealthy = models.IntegerField()
+    lits_party = models.IntegerField()
+    # LITS END
+    donated_money = models.IntegerField(label=_('Жертвовали ли Вы деньги за предыдущие 12 месяцев?'),
+                                        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    count_on_relatives = models.IntegerField(
+        label=_(
+            'Есть ли у Вас родственники или друзья, на помощь которых Вы можете рассчитывать в случае необходимости?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    help_stranger = models.IntegerField(
+        label=_('Помогали ли Вы незнакомцу, который нуждался в помощи, за предыдущие 12 месяцев?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    own_business = models.IntegerField(
+        label=_('Для тех, кто не является самозанятым: Планируете ли Вы начать свой собственный бизнес?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    save_money = models.IntegerField(label=_('Сэкономили ли Вы какие-либо деньги за предыдущие 12 месяцев?'),
+                                     choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    fin_help = models.IntegerField(
+        label=_('Отправляли ли Вы помощь (деньги или товары) другому лицу в течение предыдущих 12 месяцев?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    vote_official = models.IntegerField(
+        label=_('Высказывали ли Вы свое мнение государственному должностному лицу в течение предыдущих 12 месяцев?'),
+        choices=Constants.Yes_No,
+        widget=widgets.RadioSelect)
+    volunteer = models.IntegerField(
+        label=_('Посвящали ли Вы добровольно время какой-либо организации в течение предыдущих 12 месяцев?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    police_confidence = models.IntegerField(
+        label=_('В городе или районе, где Вы живете, доверяете ли Вы местной полиции?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    safety = models.IntegerField(
+        label=_('Чувствуете ли Вы себя в безопасности, гуляя ночью в одиночестве по городу или району, где Вы живете?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    stolen_money = models.IntegerField(
+        label=_('Были ли украдены деньги или имущество у Вас или другого члена семьи в течение последних 12 месяцев?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    used_trust = models.IntegerField(label=_('Воспользовался ли кто-нибудь Вашим доверием за последние 12 месяцев?'),
+                                     choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    reciprocated_trust = models.IntegerField(
+        label=_('За последние 12 месяцев, когда Вы кому-то доверяли, было ли Ваше доверие вознаграждено?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    disappointed_trust = models.IntegerField(
+        label=_('За последние 12 месяцев разочаровывали ли Вы кого-то, кто Вам доверял? '), choices=Constants.Yes_No,
+        widget=widgets.RadioSelect)
+    donated_blood = models.IntegerField(label=_('Вы сдавали донорскую кровь в течение последних 12 месяцев?'),
+                                        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    # Children qualities
+    good_manners = models.IntegerField(label=_(''),
+                                       choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    independence = models.IntegerField(label=_(''),
+                                       choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    hard_work = models.IntegerField(label=_(''),
+                                    choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    responsibility = models.IntegerField(label=_(''),
+                                         choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    imagination = models.IntegerField(label=_(''),
+                                      choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    respectful_and_tolerant = models.IntegerField(label=_(''),
+                                                  choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    thrift = models.IntegerField(label=_(''),
+                                 choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    determination = models.IntegerField(label=_(''),
+                                        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    religious = models.IntegerField(label=_(''),
+                                    choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    unselfishness = models.IntegerField(label=_(''),
+                                        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+
+    obedience = models.IntegerField(label=_(''),
+                                    choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    # end of children quality block
+    # patience block
+    # Patience_10
+    patience_1 = models.IntegerField(label=_(
+        'Насколько Вы готовы отказаться от чего-то выгодного для Вас сегодня, в пользу того, чтобы получить еще большую выгоду от этого в будущем?'),
+        choices=Constants.Patience_10, widget=widgets.RadioSelect)
+    patience_2 = models.IntegerField(label=_(
+        'Насколько Вы готовы наказать кого-то, кто поступает несправедливо с другими, даже если это может дорого Вам обойтись?'),
+        choices=Constants.Patience_10, widget=widgets.RadioSelect)
+    # end of patience block
+    years_lived_current_city = models.PositiveIntegerField(
+        label=_(
+            'Пожалуйста, припомните город, в котором Вы жили в июле 2020 года. Сколько лет Вы уже прожили в названном городе на июль 2020 года?'),
+    )
+    years_lived_birth_city = models.PositiveIntegerField(
+        label=_(
+            'Сколько лет Вы прожили в городе, в котором Вы родились?'),
+    )
+    lived_other_city = models.IntegerField(label=_(
+        'Жили ли Вы в каком-либо другом городе в октябре 2020 года?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    smoke = models.PositiveIntegerField(
+        label=_('Как часто Вы курите?'),
+        choices=Constants.smoke_choices,
+        widget=widgets.RadioSelect()
+    )
+    fin_situation_change = models.PositiveIntegerField(
+        blank=True,
+        choices=Constants.income_choices,
+        widget=widgets.RadioSelect,
+        label=_(
+            """Изменилось ли финансовое положение Вашей семьи за последние 12 месяцев? - Как бы Вы ответили на предыдущий вопрос год назад?""")
+    )
+    best_intentions = models.PositiveIntegerField(
+        label='Насколько хорошо следующее утверждение описывает вас как личность? <br> <i>"Я считаю, что люди имеют только лучшие намерения"</i>'
+              '<br><small>Пожалуйста, дайте ответ по шкале от 0 до 10, где 0 означает “не описывает меня вообще,” а 10 означает “абсолютно верно меня описывает.”</small>',
+        choices=Constants.BEST_INTENSIONS_CHOICES,
+        widget=widgets.RadioSelect()
+    )
+    fast_drive = models.PositiveIntegerField(
+        label=_('Как часто Вы ездите на своем автомобиле быстрее, чем разрешено правилами дорожного движения?'),
+        choices=Constants.fast_drive_choices,
+        widget=widgets.RadioSelect()
+    )
+    plans_to_move_WP85 = models.IntegerField(
+        label='В ближайшие 12 месяцев какова вероятность того, что вы переедете из города или района, где вы сейчас живете?',
+        choices=[(1, "Да, это вероятно"),
+                 (2, "Нет, это маловероятно"),
+                 (999, 'Затрудняюсь ответить')
+                 ],
+        widget=widgets.RadioSelect
+    )
+    where_to_move_WP3120 = models.StringField(
+        blank=True,
+        label='Если вы хотели бы переехать, то куда конкретно?',
+
+    )
+
+    # newquestions block end

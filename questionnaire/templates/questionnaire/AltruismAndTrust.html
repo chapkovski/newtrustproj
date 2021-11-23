@@ -1,0 +1,151 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+      <div class="alert alert-info lead text-center"> Пожалуйста, ответьте на следующие вопросы:</div>
+    <style>
+
+        .btn-group fieldset {
+            display: flex !important;
+        }
+
+        .sv_q_rating_min_text {
+            font-style: italic;
+
+        }
+
+        .sv_q_rating_max_text {
+            font-style: italic;
+
+        }
+
+        .btn-group fieldset label {
+            margin: 5px
+        }
+
+
+    </style>
+
+
+    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+    <div id="surveyResult"></div>
+    <input type="hidden" id="surveyholder" name="surveyholder">
+    <script>
+        Survey.defaultBootstrapCss.navigationButton = "btn-primary btn-lg";
+        Survey
+            .StylesManager
+            .applyTheme("bootstrap");
+
+        var json = {
+            requiredText: '',
+            showQuestionNumbers: "off",
+            showCompletedPage: false,
+            completeText: "Далее",
+
+            questions: [
+
+                {
+                    type: "matrix",
+                    name: "altruism",
+                    title: " ",
+                    isAllRowRequired: true,
+                    isRequired: true,
+                    requiredErrorText: 'Пожалуйста, ответьте на вопрос',
+                    {#rowsOrder: 'random',#}
+                    titleLocation: "hidden",
+                    columns: [
+                        {value: 0, text: "Да"},
+                        {value: 1, text: "Нет"},
+                        {value: 999, text: "Затрудняюсь ответить"}],
+                    rows: [
+                        {
+                            value: "donated_money",
+                            text: "Жертвовали ли Вы деньги за последние 12 месяцев?"
+                        },
+                        {
+                            value: "count_on_relatives",
+                            text: "Есть ли у Вас родственники или друзья, на помощь которых Вы можете рассчитывать в случае необходимости?"
+                        },
+                        {
+                            value: "help_stranger",
+                            text: "Помогали ли Вы незнакомцу, который нуждался в помощи, за последние 12 месяцев?"
+                        },
+                        {
+                            value: "self_employed",
+                            text: "Являетесь ли Вы в настоящее время самозанятым?"
+                        },
+                        {
+                            value: "own_business",
+                            text: "Для тех, кто не является самозанятым: Планируете ли Вы начать свой собственный бизнес?"
+                        },
+                        {
+                            value: "save_money",
+                            text: "Удавалось ли Вам увеличивать свои сбережения за последние 12 месяцев?"
+                        },
+                        {
+                            value: "fin_help",
+                            text: "Помогали ли вы другому лицу (деньгами или вещами) в течение последних 12 месяцев"
+                        },
+                        {
+                            value: "vote_official",
+                            text: "Высказывали ли Вы свое мнение государственному должностному лицу в течение последних 12 месяцев?"
+                        },
+                        {
+                            value: "volunteer",
+                            text: "Участвовали ли вы добровольно в работе какой-либо организации в течение последних 12 месяцев?"
+                        },
+                        {
+                            value: "police_confidence",
+                            text: "В городе или районе, где Вы живете, доверяете ли Вы местной полиции?"
+                        },
+                        {
+                            value: "safety",
+                            text: "Чувствуете ли Вы себя в безопасности, гуляя ночью в одиночестве по городу или району, где Вы живете?"
+                        },
+                        {
+                            value: "stolen_money",
+                            text: "Были ли украдены деньги или имущество у Вас или другого члена семьи в течение последних 12 месяцев?"
+                        },
+                        {
+                            value: "used_trust",
+                            text: "Злоупотребил ли кто-нибудь Вашим доверием за последние 12 месяцев?"
+                        },
+                        {
+                            value: "reciprocated_trust",
+                            text: "За последние 12 месяцев, когда Вы кому-то доверяли, оправдалось ли Ваше доверие?"
+                        },
+                        {
+                            value: "disappointed_trust",
+                            text: "За последние 12 месяцев разочаровывали ли Вы кого-то, кто Вам доверял? "
+                        },
+                        {
+                            value: "donated_blood",
+                            text: "Вы сдавали донорскую кровь в течение последних 12 месяцев?"
+                        }
+                    ]
+                }
+            ]
+        };
+
+        window.survey = new Survey.Model(json);
+        survey.locale = 'ru';
+        survey
+            .onComplete
+            .add(function (sender) {
+                document
+                $('#surveyholder').val(JSON.stringify(sender.data, null, 3))
+                $('#form').submit()
+                ;
+            });
+
+        $("#surveyElement").Survey({model: survey});
+        ;
+    </script>
+
+
+{% endblock %}

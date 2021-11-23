@@ -129,7 +129,7 @@ SITE_ID = 1
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = [
     'otree',
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'webpack_loader',
     'questionnaire',  # we need this only because we use generic pages from there.
     'mingle',  # this one is responsible for mingling.

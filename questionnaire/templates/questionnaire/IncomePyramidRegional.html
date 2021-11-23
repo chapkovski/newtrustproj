@@ -1,0 +1,66 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="https://rvera.github.io/image-picker/image-picker/image-picker.css">
+    <style>
+        ul.thumbnails.image_picker_selector p {
+            font-weight: bold;
+            max-width: 150px;
+        }
+
+        ul.thumbnails.image_picker_selector img {
+            height: 150px;
+        }
+
+        ul.thumbnails.image_picker_selector {
+            display: flex;
+            align-items: stretch;
+            overflow: visible;
+        }
+
+        ul.thumbnails.image_picker_selector li {
+            flex-grow: 1;
+            display: flex;
+            justify-content: stretch;
+        }
+
+    </style>
+    <script src="https://rvera.github.io/image-picker/js/prettify.js"></script>
+    <script src="https://rvera.github.io/image-picker/js/jquery.masonry.min.js"></script>
+    <script src="https://rvera.github.io/image-picker/js/show_html.js"></script>
+    <script src="https://rvera.github.io/image-picker/image-picker/image-picker.js"></script>
+    <div class="alert text-center fw-bold font-weight-bold">Теперь взгляните еще раз на те же пять диаграмм, которые
+        показывают различные типы общества. Пожалуйста, прочтите описания, посмотрите на диаграммы и решите, какая из
+        них, по Вашему мнению, лучше всего описывает Ваш <span class="text-danger font-italic">ГОРОД</span>.
+    </div>
+    <select class="image-picker show-labels" name="income_pyramid_regional">
+        <option value=""></option>
+        <option data-img-src="/static/global/img/Type_A.png" value="1">
+            Тип А. Небольшая элита наверху, очень мало людей в середине и большая масса людей внизу.
+        </option>
+        <option data-img-src="/static/global/img/Type_B.png" value="2">
+            Тип B. Общество, подобное пирамиде, с небольшой элитой наверху, большим количеством людей в середине и
+            большинством людей внизу.
+        </option>
+        <option data-img-src="/static/global/img/Type_C.png" value="3">
+            Тип C. Пирамида, за исключением того, что лишь немного человек находятся внизу.
+        </option>
+        <option data-img-src="/static/global/img/Type_D.png" value="4">
+            Тип D. Общество, в котором большинство людей находятся в середине.
+        </option>
+        <option data-img-src="/static/global/img/Type_E.png" value="5">
+            Type E. Много людей наверху, и только немногие внизу.
+        </option>
+    </select>
+    <script>
+        $("select").imagepicker({show_label: true})
+    </script>
+    {% next_button %}
+
+{% endblock %}

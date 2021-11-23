@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+<div class="d-none" style="display: none">
+    {% block title %}
+
+    {% endblock %}
+</div>
+{% block content %}
+    <div class="alert alert-info lead text-center"> Пожалуйста, ответьте на следующие вопросы:</div>
+    {% autoescape off %}
+        {% formfields %}
+    {% endautoescape %}
+    <div class="my-3">    {% next_button %}
+    </div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+    <style>
+
+
+    </style>
+
+
+    <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+    <div id="surveyResult"></div>
+    <input type="hidden" id="surveyholder" name="surveyholder">
+    <script>
+        Survey.defaultBootstrapCss.navigationButton = "btn-primary btn-lg";
+        Survey
+            .StylesManager
+            .applyTheme("bootstrap");
+
+        var json = {
+            showCompletedPage: false,
+              requiredText: '',
+            questions: [
+                {
+                    hideNumber: true,
+                    "type": "matrixdropdown",
+                    "name": "patience",
+                    "title": "Сейчас нам бы хотелось узнать, насколько Вы готовы к определенным действиям/поступкам.",
+                    {#"titleLocation": "hidden",#}
+                    "columns": [
+                        {
+                            name: "col1",
+                            title: 'Пожалуйста, дайте оценку по шкале от 1 до 10, где 1 означает, что Вы “совершенно не готовы так поступать”, а 10 означает, что Вы “готовы поступать именно так”.',
+                            "titleLocation": "hidden",
+                            cellType: "rating",
+                            "rateMin": 1,
+                            "rateMax": 10,
+                            isRequired: true,
+
+                            requiredErrorText: 'Пожалуйста, ответьте на вопрос',
+                        },
+                    ],
+                    "rows": [
+                        {
+                            value: "patience_1",
+                            text: 'Насколько Вы готовы отказаться от чего-то выгодного для Вас сегодня, в пользу того, чтобы получить еще большую выгоду от этого в будущем?'
+                        },
+                        {
+                            value: "patience_2",
+                            text: 'Насколько Вы готовы наказать кого-то, кто поступает несправедливо с другими, даже если это может дорого Вам обойтись?'
+                        },
+
+
+
+                    ]
+                }
+            ],
+            "completeText": "Далее"
+        };
+
+        window.survey = new Survey.Model(json);
+
+        survey
+            .onComplete
+            .add(function (sender) {
+                document
+                $('#surveyholder').val(JSON.stringify(sender.data, null, 3))
+                $('#form').submit()
+                ;
+            });
+
+        $("#surveyElement").Survey({model: survey});
+        ;
+    </script>
+
+
+
+{% endblock %}
