@@ -7,35 +7,35 @@
 
 {% block content %}
     <style>
-    th{position: sticky; top: 20px; background:#eee;z-index:1000!important}
+        th {
+            position: sticky;
+            top: 20px;
+            background: #eee;
+            z-index: 1000 !important
+        }
     </style>
-     {% formfield player.regions_been %}
-     {% formfield player.abroad_been  %}
+    {% formfield player.regions_been %}
+    {% formfield player.abroad_been %}
     {{ form.media }}
     <div class="col-form-label">
-        {% blocktrans %}Из каких источников вам известно о следующих регионах России (возможно выбрать  несколько ответов):
+        {% blocktrans %}Из каких источников вам известно о следующих регионах России (возможно выбрать  несколько
+            ответов):
         {% endblocktrans %}
     </div>
     <table class="table">
         <thead>
         <th></th>
-        {% for foo in form.Ark_source.field.widget.inner_choices %}
+        {% for foo in form.Mos_source.field.widget.inner_choices %}
             <th>{{ foo.1 }}</th>
         {% endfor %}
 
         </thead>
-        {{ form.Ark_source }}
-        {{ form.Vlk_source }}
-        {{ form.Vor_source }}
-        {{ form.Ekb_source }}
-        {{ form.Kaz_source }}
-        {{ form.Mak_source }}
-        {{ form.Mos_source }}
-        {{ form.Nsk_source }}
-        {{ form.Per_source }}
-        {{ form.Ros_source }}
-        {{ form.SPb_source }}
-        {{ form.Khb_source }}
+        {% for foo in form %}
+            {% if foo.name in view.blocked_fields %}
+                {{ foo }}
+            {% endif %}
+        {% endfor %}
+
 
     </table>
 

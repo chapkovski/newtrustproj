@@ -27,6 +27,7 @@ class Constants(BaseConstants):
     num_rounds = 1
     HARD_TO_SAY_CHOICE = [999, _('Затрудняюсь ответить')]
     CITIES = [(int(i.get('code')), i.get('name')) for i in settings.CITIES] + [(13, _('Другой'))]
+
     GENDER_CHOICES = [[0, _('Мужской')], [1, _('Женский')]]
     IS_OCCUPIED_CHOICES = [[False, _('Нет')], [True, _('Да')]]
     Big5 = [
@@ -1195,6 +1196,38 @@ class Player(BasePlayer):
     Khb_rank = models.CharField(
         label=_("""Хабаровск и Хабаровский край""")
     )
+    # NEW CITIES
+    nnovgorod_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                                 label=_("""Нижний Новгород (Нижегородская область)""")))
+    krasnodar_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                                 label=_("""Краснодар (Краснодарский край)""")))
+    sochi_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                             label=_("""Сочи (Краснодарский край)""")))
+    volgograd_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                                 label=_("""Волгоград (Волгоградская область)""")))
+    ufa_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                           label=_("""Уфа (Башкортостан)""")))
+    chelyabinsk_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                                   label=_("""Челябинск (Челябинская область)""")))
+    omsk_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                            label=_("""Омск (Омская область)""")))
+    krasnoyarsk_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                                   label=_("""Красноярск (Красноярский край)""")))
+    irkutsk_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                               label=_("""Иркутск (Иркутская область)""")))
+    kaliningrad_source = models.StringField(widget=BlockedCheckbox(choices=Constants.SOURCE_CHOICES, blocked=999,
+                                                                   label=_("""Калининград (Калининградская область)""")))
+    nnovgorod_rank = models.CharField(label=_("""Нижний Новгород (Нижегородская область)"""))
+    krasnodar_rank = models.CharField(label=_("""Краснодар (Краснодарский край)"""))
+    sochi_rank = models.CharField(label=_("""Сочи (Краснодарский край)"""))
+    volgograd_rank = models.CharField(label=_("""Волгоград (Волгоградская область)"""))
+    ufa_rank = models.CharField(label=_("""Уфа (Башкортостан)"""))
+    chelyabinsk_rank = models.CharField(label=_("""Челябинск (Челябинская область)"""))
+    omsk_rank = models.CharField(label=_("""Омск (Омская область)"""))
+    krasnoyarsk_rank = models.CharField(label=_("""Красноярск (Красноярский край)"""))
+    irkutsk_rank = models.CharField(label=_("""Иркутск (Иркутская область)"""))
+    kaliningrad_rank = models.CharField(label=_("""Калининград (Калининградская область)"""))
+    # NEW CITIES END BLOCK
     rank_comment = models.LongStringField(label=_('Комментарий к вашему рейтингу (если есть)'), blank=True)
     regional_income = models.CharField(
         label=_(
@@ -1303,10 +1336,12 @@ class Player(BasePlayer):
     )
 
     def get_rank_fields(self):
-        # not the best decision if someone adds other fields ending with _rank... thoough
-        r = [dict(name=f.name, label=str(f.verbose_name)) for f in self._meta.get_fields() if
-             f.name.endswith('_rank')]
-        return r
+        cities = settings.CITIES
+        res = []
+        for i in cities:
+            res.append(dict(name=f"{i.get('eng')}_rank", label=i.get('name')))
+        res = sorted(res, key=lambda  x:x.get('label'))
+        return res
 
     is_occupied = models.BooleanField(label=_("В настоящее время вы трудоустроены?"),
                                       choices=Constants.IS_OCCUPIED_CHOICES,
@@ -1358,6 +1393,9 @@ class Player(BasePlayer):
         choices=Constants.Yes_No, widget=widgets.RadioSelect)
     help_stranger = models.IntegerField(
         label=_('Помогали ли Вы незнакомцу, который нуждался в помощи, за предыдущие 12 месяцев?'),
+        choices=Constants.Yes_No, widget=widgets.RadioSelect)
+    aat_self_employed = models.IntegerField(
+
         choices=Constants.Yes_No, widget=widgets.RadioSelect)
     own_business = models.IntegerField(
         label=_('Для тех, кто не является самозанятым: Планируете ли Вы начать свой собственный бизнес?'),

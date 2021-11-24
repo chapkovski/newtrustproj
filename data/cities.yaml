@@ -1,39 +1,39 @@
 - code: '07'
   name: Москва
-  eng: Moscow
+  eng: Mos
 - code: '31'
   name: Нижний Новгород (Нижегородская область)
-  eng: Nizhny Novgorod
+  eng: nnovgorod
 - code: '32'
   name: Краснодар (Краснодарский край)
-  eng: Krasnodar
+  eng: krasnodar
 - code: '33'
   name: Сочи (Краснодарский край)
-  eng: Sochi
+  eng: sochi
 - code: '34'
   name: Волгоград (Волгоградская область)
-  eng: Volgograd
+  eng: volgograd
 - code: '10'
   name: Казань (Татарстан)
-  eng: Kazan'
+  eng: Kaz
 - code: '35'
   name: Уфа (Башкортостан)
-  eng: Ufa
+  eng: ufa
 - code: '36'
   name: Челябинск (Челябинская область)
-  eng: Chelyabinsk
+  eng: chelyabinsk
 - code: '37'
   name: Омск (Омская область)
-  eng: Omsk
+  eng: omsk
 - code: '38'
   name: Красноярск (Красноярский край)
-  eng: Krasnoyarsk
+  eng: krasnoyarsk
 - code: '39'
   name: Иркутск (Иркутская область)
-  eng: Irkutsk
+  eng: irkutsk
 - code: '40'
   name: Калининград (Калининградская область)
-  eng: Kaliningrad
+  eng: kaliningrad
 
 
 

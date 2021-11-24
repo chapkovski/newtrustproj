@@ -253,74 +253,45 @@ class StatedPreferences3(Page):
 
 class RegionsKnowledge(Page):
     form_model = 'player'
-    blocked_fields = ['Ark_source',
-                      'Vlk_source',
-                      'Vor_source',
-                      'Ekb_source',
-                      'Kaz_source',
-                      'Mak_source',
-                      'Mos_source',
-                      'Nsk_source',
-                      'Per_source',
-                      'Ros_source',
-                      'SPb_source',
-                      'Khb_source', ]
 
-    form_fields = [
-        'regions_been',
-        'abroad_been',
-        'Ark_source',
-        'Vlk_source',
-        'Vor_source',
-        'Ekb_source',
-        'Kaz_source',
-        'Mak_source',
-        'Mos_source',
-        'Nsk_source',
-        'Per_source',
-        'Ros_source',
-        'SPb_source',
-        'Khb_source',
-    ]
+    def blocked_fields(self):
+        cities = settings.CITIES
+        res = []
+        _res = []
+        for i in cities:
+            _res.append(dict(field=f"{i.get('eng')}_source", rus=i.get('name')))
+        res = [i.get('field') for  i in sorted(_res, key=lambda x: x.get('rus'))]
+        return res
+
+    def get_form_fields(self):
+        res = ['regions_been',
+               'abroad_been',
+               ]
+        res.extend(self.blocked_fields())
+        return res
 
 
 class RegionsIncome(Page):
     form_model = 'player'
-    rankqs = [
-        'Ark_rank',
-        'Vlk_rank',
-        'Vor_rank',
-        'Ekb_rank',
-        'Kaz_rank',
-        'Mak_rank',
-        'Mos_rank',
-        'Nsk_rank',
-        'Per_rank',
-        'Ros_rank',
-        'SPb_rank',
-        'Khb_rank',
-    ]
 
-    form_fields = [
+    def rankqs(self):
+        cities = settings.CITIES
+        res = []
+        for i in cities:
+            res.append(f"{i.get('eng')}_rank")
+        return res
 
-        'Ark_rank',
-        'Vlk_rank',
-        'Vor_rank',
-        'Ekb_rank',
-        'Kaz_rank',
-        'Mak_rank',
-        'Mos_rank',
-        'Nsk_rank',
-        'Per_rank',
-        'Ros_rank',
-        'SPb_rank',
-        'Khb_rank',
-        'rank_comment',
-        'regional_differences',
-        'regional_income',
-        'relative_position_in_region',
-
-    ]
+    def get_form_fields(self):
+        res = [
+        ]
+        res.extend(self.rankqs())
+        res += [
+            'rank_comment',
+            'regional_differences',
+            'regional_income',
+            'relative_position_in_region',
+        ]
+        return res
 
 
 class Personal2(Page):
@@ -460,6 +431,7 @@ class AltruismAndTrust(Page):
     def post(self):
         data = json.loads(self.request.POST.get('surveyholder'))
         altruism = data.get('altruism')
+        print(altruism.items())
         if altruism:
             for k, v in altruism.items():
                 setattr(self.player, k, v)
@@ -477,7 +449,8 @@ class Patience(Page):
     template_name = 'questionnaire/Patience.html'
 
 
-class Demographics(Page):
+class Demographics(NewPage):
+    # template_name = 'questionnaire/Q1.html'
     form_model = 'player'
     form_fields = [
         "years_lived_current_city",
