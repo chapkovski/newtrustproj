@@ -19,14 +19,14 @@
 
 
     {{ form.management_form }}
-
+{%  autoescape off %}
     {% for foo in form %}
         {% for field in foo %}
             {% cqfield field %}
         {% endfor %}
 
     {% endfor %}
-
+{% endautoescape %}
 
 
     {% next_button %}
